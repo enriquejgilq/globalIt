@@ -5,33 +5,37 @@ import { GetServerSideProps } from 'next';
 // application
 import ShopPageProduct from '~/components/shop/ShopPageProduct';
 import { IProduct } from '~/interfaces/product';
+import {IProductFeatured} from '~/interfaces/productsFeatured';
 import { shopApi } from '~/api';
 import SitePageNotFound from '~/components/site/SitePageNotFound';
 
 interface Props {
-    product: IProduct | null;
+  //  product: IProduct | null;
+    productFeatured: IProductFeatured  | null;
+
 }
+
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
     const slug = typeof params?.slug === 'string' ? params?.slug : null;
 
     return {
         props: {
-            product: slug ? await shopApi.getProductBySlug(slug) : null,
+            productFeatured: slug ? await shopApi.getProductBySlug(slug) : null,
         },
     };
 };
 
 function Page(props: Props) {
-    const { product } = props;
+    const { productFeatured } = props;
 
-    if (product === null) {
+    if (productFeatured === null) {
         return <SitePageNotFound />;
     }
 
     return (
         <ShopPageProduct
-            product={product}
+            product={productFeatured}
             layout="full"
         />
     );

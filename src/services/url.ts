@@ -8,6 +8,7 @@ import { ICategory, IShopCategory } from '~/interfaces/category';
 import { IOrder } from '~/interfaces/order';
 import { IPost } from '~/interfaces/post';
 import { IProduct } from '~/interfaces/product';
+import { IProductFeatured } from '~/interfaces/productsFeatured';
 
 const url = {
     // common
@@ -48,7 +49,10 @@ const url = {
     wishlist: () => '/wishlist',
     compare: () => '/compare',
     trackOrder: () => '/track-order',
-
+    producturl: (productFeatured: IProductFeatured): IAppLinkHref => ({
+        href: `/products/[slug]?slug=${productFeatured?.code}`,
+        as: `/products/${productFeatured?.code}`,
+    }),
     // blog pages
     blog: () => '/demo/blog/classic-right-sidebar',
     post: (post: IPost) => '/demo/blog/post-full-width',

@@ -1,5 +1,5 @@
 // react
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 // third-party
 import { useIntl } from 'react-intl';
 // application
@@ -16,9 +16,14 @@ import BlockZone from '~/components/blocks/BlockZone';
 import url from '~/services/url';
 import { shopApi, blogApi } from '~/api';
 import { useDeferredData, useProductColumns, useProductTabs } from '~/services/hooks';
+import { getListProducts } from '~/store/featuredProducts/featuredProductsActions';
+import { useDispatch } from 'react-redux';
+import { getfeaturedProducts } from '~/store/featuredProducts/featuredProductsHooks';
 
 function Page() {
     const intl = useIntl();
+    const dispatch = useDispatch()
+    const featured = getfeaturedProducts();
 
     /**
      * Featured products.
@@ -32,6 +37,7 @@ function Page() {
         ], []),
         (tab) => shopApi.getFeaturedProducts(tab.categorySlug, 8),
     );
+    //const featuredProducts = useProduct
 
     const blockSale = useDeferredData(() => shopApi.getSpecialOffers(8), []);
 
@@ -90,6 +96,10 @@ function Page() {
         ], []),
     );
 
+    useEffect(() => {
+        dispatch(getListProducts())
+    }, [])
+    console.log('<<<<<<<<<<',featuredProducts)
     return (
         <React.Fragment>
             <BlockFinder />
@@ -101,6 +111,7 @@ function Page() {
                 loading={featuredProducts.isLoading}
                 products={featuredProducts.data}
                 groups={featuredProducts.tabs}
+                productFeatured={featured}
                 currentGroup={featuredProducts.tabs.find((x) => x.current)}
                 onChangeGroup={featuredProducts.handleTabChange}
             />
@@ -134,6 +145,7 @@ function Page() {
                 loading={newArrivals.isLoading}
                 products={newArrivals.data}
                 links={newArrivalsLinks}
+                productFeatured={featured}
             />
             <BlockSpace layout="divider-nl" />
             <BlockPosts

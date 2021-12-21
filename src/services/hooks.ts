@@ -15,6 +15,7 @@ import { IListOptions, INavigableList } from '~/interfaces/list';
 import { INavigationEvent } from '~/components/shared/Navigation';
 import { IProduct } from '~/interfaces/product';
 import { useIsUnmountedRef } from '~/store/hooks';
+import { useIntl } from 'react-intl';
 
 export function useGlobalMousedown(callback: (event: MouseEvent) => void, deps?: DependencyList) {
     const memoCallback = useCallback(callback, deps || []);

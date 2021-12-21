@@ -24,6 +24,7 @@ import StockStatusBadge from '~/components/shared/StockStatusBadge';
 import url from '~/services/url';
 import { getCategoryPath } from '~/services/utils';
 import { IProduct } from '~/interfaces/product';
+import {IProductFeatured} from '~/interfaces/productsFeatured';   
 import { IProductPageLayout, IProductPageSidebarPosition } from '~/interfaces/pages';
 import { shopApi } from '~/api';
 import { useCompareAddItem } from '~/store/compare/compareHooks';
@@ -39,25 +40,28 @@ import {
 } from '~/svg';
 
 interface Props {
-    product: IProduct;
+    //product: IProduct;
     layout: IProductPageLayout;
     sidebarPosition?: IProductPageSidebarPosition;
+    productFeatured: IProductFeatured 
+
 }
 
 function ShopPageProduct(props: Props) {
     const {
-        product,
+       // product,
         layout,
         sidebarPosition = 'start',
+        productFeatured
     } = props;
     const intl = useIntl();
     const wishlistAddItem = useWishlistAddItem();
     const compareAddItem = useCompareAddItem();
     const galleryLayout = `product-${layout}` as IProductGalleryLayout;
     const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
-    const productForm = useProductForm(product);
+    //const productForm = useProductForm(product);
 
-    useEffect(() => {
+   /* useEffect(() => {
         let canceled = false;
 
         shopApi.getRelatedProducts(product.id, 8).then((result) => {
@@ -75,8 +79,8 @@ function ShopPageProduct(props: Props) {
 
     if (!product) {
         return null;
-    }
-
+    }/**/
+/*
     const breadcrumb = [
         { title: intl.formatMessage({ id: 'LINK_HOME' }), url: url.home() },
         { title: intl.formatMessage({ id: 'LINK_SHOP' }), url: url.shop() },
@@ -88,7 +92,7 @@ function ShopPageProduct(props: Props) {
     ];
 
     const featuredAttributes = product.attributes.filter((x) => x.featured);
-
+*/
     const shopFeatures = (
         <div className="product__shop-features shop-features">
             <ul className="shop-features__list">
@@ -154,15 +158,15 @@ function ShopPageProduct(props: Props) {
 
     const productInfoBody = (
         <div className="product__info-body">
-            {product.compareAtPrice && (
+          {/**   {product.compareAtPrice && (
                 <div className="product__badge tag-badge tag-badge--sale">
                     <FormattedMessage id="TEXT_BADGE_SALE" />
                 </div>
-            )}
+            )} */}
 
             <div className="product__prices-stock">
                 <div className="product__prices">
-                    {product.compareAtPrice && (
+                   {/** {product.compareAtPrice && (
                         <React.Fragment>
                             <div className="product__price product__price--old">
                                 <CurrencyFormat value={product.compareAtPrice} />
@@ -170,13 +174,13 @@ function ShopPageProduct(props: Props) {
                             <div className="product__price product__price--new">
                                 <CurrencyFormat value={product.price} />
                             </div>
-                        </React.Fragment>
+                        </React.Fragment> 
                     )}
                     {!product.compareAtPrice && (
                         <div className="product__price product__price--current">
                             <CurrencyFormat value={product.price} />
                         </div>
-                    )}
+                    )}*/}
                 </div>
              {/*   <StockStatusBadge className="product__stock" stock={product.stock} />*/}
             </div>
@@ -188,18 +192,18 @@ function ShopPageProduct(props: Props) {
                             <th>
                                 <FormattedMessage id="TABLE_SKU" />
                             </th>
-                            <td>{product.sku}</td>
+                            {/*<td>{product.sku}</td>*/}
                         </tr>
-                        {product.brand && (
+                     {/**   {product.brand && (
                             <React.Fragment>
                                 <tr>
                                     <th>
                                         <FormattedMessage id="TABLE_BRAND" />
                                     </th>
                                     <td>
-                                        <AppLink href={url.brand(product.brand)}>
+                                   {/**      <AppLink href={url.brand(product.brand)}>
                                             {product.brand.name}
-                                        </AppLink>
+                                        </AppLink> 
                                     </td>
                                 </tr>
                                 <tr>
@@ -207,16 +211,16 @@ function ShopPageProduct(props: Props) {
                                         <FormattedMessage id="TABLE_COUNTRY" />
                                     </th>
                                     <td>
-                                        <FormattedMessage id={`COUNTRY_NAME_${product.brand.country}`} />
+                                        <FormattedMessage id={`COUNTRY_NAME_${product.brand.country}`} /> 
                                     </td>
                                 </tr>
                             </React.Fragment>
-                        )}
+                        )}/*/}
                         <tr>
                             <th>
                                 <FormattedMessage id="TABLE_PART_NUMBER" />
                             </th>
-                            <td>{product.partNumber}</td>
+                           {/** <td>{product.partNumber}</td>*/}
                         </tr>
                     </tbody>
                 </table>
@@ -226,10 +230,10 @@ function ShopPageProduct(props: Props) {
 
     const productActions = (
         <div className="product__actions">
-            {product.stock !== 'out-of-stock' && (
+            {/**  {product.stock !== 'out-of-stock' && (
                 <React.Fragment>
                     <div className="product__actions-item product__actions-item--quantity">
-                    {/**     <Controller
+                       <Controller
                             name="quantity"
                             rules={{
                                 required: true,
@@ -242,7 +246,7 @@ function ShopPageProduct(props: Props) {
                                     {...fieldProps}
                                 />
                             )}
-                        />*/}
+                        />
                     </div>
                     <div className="product__actions-item product__actions-item--addtocart">
                         <button
@@ -256,8 +260,8 @@ function ShopPageProduct(props: Props) {
                     </div>
                     <div className="product__actions-divider" />
                 </React.Fragment>
-            )}
-            <AsyncAction
+            )}*/}
+         {/**    <AsyncAction
                 action={() => wishlistAddItem(product)}
                 render={({ run, loading }) => (
                     <button
@@ -290,13 +294,13 @@ function ShopPageProduct(props: Props) {
                         </span>
                     </button>
                 )}
-            />
+            />*/}
         </div>
     );
 
     const productTagsAndShareLinks = (
         <div className="product__tags-and-share-links">
-            {product.tags && product.tags.length > 0 && (
+         {/**  {product.tags && product.tags.length > 0 && (
                 <div className="product__tags tags tags--sm">
                     <div className="tags__list">
                         {product.tags.map((tag, index) => (
@@ -304,21 +308,21 @@ function ShopPageProduct(props: Props) {
                                {tag}
                             </AppLink>
                         ))}
-                    </div>
+                    </div> 
                 </div>
-            )}
+            )}*/} 
             <ShareLinks className="product__share-links" />
         </div>
     );
 
     return (
         <React.Fragment>
-            <PageTitle>{product.name}</PageTitle>
+           {/**  <PageTitle>{product.name}</PageTitle>
 
               <BlockHeader
                 breadcrumb={breadcrumb}
             />
-
+*/}
             <div className={classNames('block-split', { 'block-split--has-sidebar': layout === 'sidebar' })}>
                 <div className="container">
                     <div className="block-split__row row no-gutters">
@@ -334,19 +338,19 @@ function ShopPageProduct(props: Props) {
                                     <div className="product__card product__card--one" />
                                     <div className="product__card product__card--two" />
 
-                                    <ProductGallery
+                              {/**     <ProductGallery
                                         images={product.images || []}
                                         layout={galleryLayout}
                                         className="product__gallery"
-                                    />
+                                    /> */} 
 
                                     <div className="product__header">
-                                        <h1 className="product__title">{product.name}</h1>
+                                      {/**   <h1 className="product__title">{product.name}</h1>*/}
 
                                         <div className="product__subtitle">
                                             <div className="product__rating">
                                                 <div className="product__rating-stars">
-                                                    <Rating value={product.rating || 0} />
+                                                {/**    <Rating value={product.rating || 0} />*/} 
                                                 </div>
                                                 {/** link no use!!! */}
                                                {/** <div className="product__rating-label">
@@ -362,7 +366,7 @@ function ShopPageProduct(props: Props) {
                                                 </div>*/}
                                             </div>
 
-                                            <CompatibilityStatusBadge className="product__fit" product={product} />
+                                       {/**      <CompatibilityStatusBadge className="product__fit" product={product} />*/}
                                         </div>
                                     </div>
 
@@ -374,7 +378,7 @@ function ShopPageProduct(props: Props) {
                                                 </div>
                                             )} */} 
 
-                                            {featuredAttributes.length > 0 && (
+                                     {/**     {featuredAttributes.length > 0 && (
                                                 <div className="product__features">
                                                     <div className="product__features-title">
                                                         <FormattedMessage id="TEXT_KEY_FEATURES" />
@@ -400,12 +404,12 @@ function ShopPageProduct(props: Props) {
                                                         </AppLink>
                                                     </div>
                                                 </div>
-                                            )}
+                                            )}*/}   
                                         </div>
                                     )}
 
                                     <div className="product__info">
-                                        <FormProvider {...productForm.methods}>
+                                      {/** <FormProvider {...productForm.methods}>
                                             <form onSubmit={productForm.submit} className="product__info-card">
                                                 {productInfoBody}
 
@@ -418,19 +422,19 @@ function ShopPageProduct(props: Props) {
                                                 )}
 
                                                 {productActions}
-                                                {/*Socialmedialinks*/}
-                                             {/**    {productTagsAndShareLinks}*/}
+                                                Socialmedialinks
+                                               {productTagsAndShareLinks}
                                             </form>
                                         </FormProvider>
 
-                                        {shopFeatures}
+                                        {shopFeatures} */} 
                                     </div>
 
-                                    <ProductTabs className="product__tabs" product={product} layout={layout} />
+                                    {/***<ProductTabs className="product__tabs" product={product} layout={layout} />*/} 
                                 </div>
                             </div>
 
-                            {relatedProducts.length > 0 && (
+                         {/**   {relatedProducts.length > 0 && (
                                 <React.Fragment>
                                     <BlockSpace layout="divider-nl" />
 
@@ -440,7 +444,7 @@ function ShopPageProduct(props: Props) {
                                         layout={layout === 'sidebar' ? 'grid-4-sidebar' : 'grid-5'}
                                     />
                                 </React.Fragment>
-                            )}
+                            )} */}
                         </div>
 
                         {layout === 'sidebar' && sidebarPosition === 'end' && (
