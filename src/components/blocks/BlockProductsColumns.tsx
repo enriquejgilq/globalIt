@@ -24,14 +24,14 @@ function BlockProductsColumns(props: Props) {
                         <div key={columnIdx} className="col-4">
                             <div className="block-products-columns__title">{column.title}</div>
                             <div className="block-products-columns__list">
-                                {column.products.map((product) => (
+                              {/**  column.products.map((product) => (
                                     <div key={product.id} className="block-products-columns__list-item">
                                         <ProductCard
                                             product={product}
                                             exclude={['actions', 'status-badge', 'features', 'buttons', 'meta']}
                                         />
                                     </div>
-                                ))}
+                                ))}       */}
                             </div>
                         </div>
                     ))}
