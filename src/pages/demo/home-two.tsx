@@ -132,7 +132,7 @@ function Page() {
                 categories={popularCategories.data}
             />
             <BlockSpace layout="divider-nl" />
-            <BlockProductsCarousel
+      {/**    <BlockProductsCarousel
                 blockTitle={intl.formatMessage({ id: 'HEADER_FEATURED_PRODUCTS' })}
                 layout="grid-5"
                 loading={featuredProducts.isLoading}
@@ -140,14 +140,14 @@ function Page() {
                 groups={featuredProducts.tabs}
                 currentGroup={featuredProducts.tabs.find((x) => x.current)}
                 onChangeGroup={featuredProducts.handleTabChange}
-            />
+            /> */}  
             <BlockSpace layout="divider-nl" />
             <BlockBanners />
             <BlockSpace layout="divider-nl" />
-            <BlockSale
+        {/**    <BlockSale
                 products={blockSale.data}
                 loading={blockSale.isLoading}
-            />
+            />*/} 
             <BlockSpace layout="divider-nl" />
             <BlockPosts
                 blockTitle={intl.formatMessage({ id: 'HEADER_LATEST_NEWS' })}
@@ -157,7 +157,7 @@ function Page() {
                 links={latestPostsLinks}
             />
             <BlockSpace layout="divider-nl" className="d-xl-block d-none" />
-            <BlockProductsColumns columns={columns} />
+          {/**   <BlockProductsColumns columns={columns} />*/}
             <BlockSpace layout="divider-nl" />
             <BlockFeatures layout="bottom-strip" />
         </React.Fragment>

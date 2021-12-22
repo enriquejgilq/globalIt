@@ -177,22 +177,22 @@ function ShopPageCategory(props: Props) {
                         <div className="block-split__item block-split__item-content col-auto flex-grow-1">
                             {subcategoriesTemplate}
 
-                            <BlockProductsCarousel
+                      {/**       <BlockProductsCarousel
                                 blockTitle={intl.formatMessage({ id: 'HEADER_BESTSELLERS' })}
                                 layout={hasSidebar ? 'grid-4-sidebar' : 'grid-5'}
                                 products={bestsellers.data}
                                 loading={bestsellers.isLoading}
-                            />
+                            />*/}
 
                             <BlockSpace layout="divider-nl" />
 
-                            <BlockProductsCarousel
+                       {/**     <BlockProductsCarousel
                                 blockTitle={intl.formatMessage({ id: 'HEADER_FEATURED_PRODUCTS' })}
                                 layout={hasSidebar ? 'horizontal-sidebar' : 'horizontal'}
                                 products={featured.data}
                                 loading={featured.isLoading}
                                 rows={2}
-                            />
+                            />*/} 
 
                             <BlockSpace layout="divider-nl" />
 

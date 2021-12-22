@@ -20,6 +20,8 @@ import { baseUrl } from '~/services/utils';
 import { IProduct } from '~/interfaces/product';
 import { IShopCategory } from '~/interfaces/category';
 import { shopApi } from '~/api';
+import { IProductFeatured } from '~/interfaces/productsFeatured';
+
 
 export interface IBlockZoneTab {
     name: string;
@@ -55,6 +57,8 @@ function BlockZone(props: Props) {
     const cancelRequestRef = useRef(() => {});
     const [category, setCategory] = useState<IShopCategory | null>(null);
     const [products, setProducts] = useState<IProduct[]>([]);
+    const [productsFeatured, setproductsFeatured] = useState<IProductFeatured[]>([]);
+
     const [isLoading, setIsLoading] = useState(false);
     const [currentTab, setCurrentTab] = useState<IBlockZoneTab | null>(null);
     const subs = category?.children || [];
@@ -220,14 +224,14 @@ function BlockZone(props: Props) {
                                 <div className="block-zone__carousel-loader" />
 
                                 <AppSlick className="block-zone__carousel-slick" ref={slickRef} {...slickSettings}>
-                                    {products.map((product) => (
+                                 {/** {productsFeatured.map((product) => (
                                         <div key={product.id} className="block-zone__carousel-item">
                                             <ProductCard
-                                                product={product}
+                                                productFeatured={productsFeatured}
                                                 exclude={excludeElements}
                                             />
                                         </div>
-                                    ))}
+                                    ))}*/}   
                                 </AppSlick>
                             </div>
                         </div>

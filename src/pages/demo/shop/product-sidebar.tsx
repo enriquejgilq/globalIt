@@ -21,11 +21,11 @@ function Page(props: Props) {
     const { product } = props;
 
     return (
-        <ShopPageProduct
+     {/**  <ShopPageProduct
             product={product}
             layout="sidebar"
             sidebarPosition="start"
-        />
+        /> */} 
     );
 }
 

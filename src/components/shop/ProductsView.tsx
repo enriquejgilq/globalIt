@@ -344,11 +344,11 @@ function ProductsView(props: Props) {
                                 </div>
                             </div>
                             <div className="products-list__content">
-                                {productsList.items.map((product) => (
+                              {/**   {productsList.items.map((product) => (
                                     <div key={product.id} className="products-list__item">
                                         <ProductCard product={product} />
                                     </div>
-                                ))}
+                                ))}*/}
                             </div>
                         </div>
 

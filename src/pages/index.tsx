@@ -116,10 +116,10 @@ function Page() {
                 onChangeGroup={featuredProducts.handleTabChange}
             />
             <BlockSpace layout="divider-nl" />
-            <BlockSale
+          {/**   <BlockSale
                 products={blockSale.data}
                 loading={blockSale.isLoading}
-            />
+            />*/}
             <BlockSpace layout="divider-lg" />
 
             {blockZones.map((blockZone, blockZoneIdx) => (
@@ -161,7 +161,7 @@ function Page() {
                 brands={brands.data}
             />
             <BlockSpace layout="divider-nl" className="d-xl-block d-none" />
-            <BlockProductsColumns columns={columns} />
+         {/**    <BlockProductsColumns columns={columns} />*/}
             <BlockSpace layout="before-footer" />
         </React.Fragment>
     );

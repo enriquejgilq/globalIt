@@ -13,10 +13,13 @@ import ProductCard from '~/components/shared/ProductCard';
 import Timer from '~/components/shared/Timer';
 import { baseUrl } from '~/services/utils';
 import { IProduct } from '~/interfaces/product';
+import { IProductFeatured } from '~/interfaces/productsFeatured';
 
 interface Props {
     products: IProduct[];
     loading?: boolean;
+    productFeatured: IProductFeatured[];
+
 }
 
 const slickSettings: ISlickProps = {
@@ -35,7 +38,7 @@ const slickSettings: ISlickProps = {
 };
 
 function BlockSale(props: Props) {
-    const { products, loading = false } = props;
+    const { products, loading = false,productFeatured } = props;
     const slickRef = useRef<Slick>(null);
 
     const handleNextClick = () => {
@@ -94,10 +97,10 @@ function BlockSale(props: Props) {
                     <div className="container">
                         <div className="block-sale__carousel">
                             <AppSlick ref={slickRef} {...slickSettings}>
-                                {products.map((product) => (
+                                {productFeatured.map((product) => (
                                     <div key={product.id} className="block-sale__item">
                                         <ProductCard
-                                            product={product}
+                                            productFeatured={product}
                                             exclude={['features', 'list-buttons']}
                                         />
                                     </div>
