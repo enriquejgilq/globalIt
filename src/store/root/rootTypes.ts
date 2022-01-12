@@ -11,6 +11,8 @@ import wishlistReducer, { WISHLIST_NAMESPACE } from '~/store/wishlist/wishlistRe
 import { AppReducerStateType } from '~/store/types';
 import { SHOP_NAMESPACE } from '~/store/shop/shopTypes';
 import featuredProductsReducer,{FEATUREPRODUCT_NAMESPACE} from '~/store/featuredProducts/featuredProductsReducers';
+import loginReducer, { LOGIN_NAMESPACE } from '../login/loginReducers';
+import  featuredCategoriesReducer,{FEATUREDCATEGORIES_NAMESPACE} from '../featuredCategories/featuredCategoriesReducers';
 
 
 export interface IRootState {
@@ -24,5 +26,8 @@ export interface IRootState {
     [SHOP_NAMESPACE]: AppReducerStateType<typeof shopReducer>;
     [USER_NAMESPACE]: AppReducerStateType<typeof userReducer>;
     [WISHLIST_NAMESPACE]: AppReducerStateType<typeof wishlistReducer>;
-    [FEATUREPRODUCT_NAMESPACE]: AppReducerStateType<typeof featuredProductsReducer> 
+    [FEATUREPRODUCT_NAMESPACE]: AppReducerStateType<typeof featuredProductsReducer>;
+    [LOGIN_NAMESPACE]: AppReducerStateType<typeof loginReducer>; 
+    [FEATUREDCATEGORIES_NAMESPACE]: AppReducerStateType<typeof featuredCategoriesReducer>; 
+
 }

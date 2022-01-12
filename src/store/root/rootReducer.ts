@@ -14,6 +14,8 @@ import userReducer, { USER_NAMESPACE } from '~/store/user/userReducer';
 import wishlistReducer, { WISHLIST_NAMESPACE } from '~/store/wishlist/wishlistReducer';
 import { SHOP_NAMESPACE } from '~/store/shop/shopTypes';
 import featuredProductsReducer, { FEATUREPRODUCT_NAMESPACE } from '../featuredProducts/featuredProductsReducers';
+import loginReducer, { LOGIN_NAMESPACE } from '../login/loginReducers';
+import featuredCategoriesReducer, { FEATUREDCATEGORIES_NAMESPACE } from '../featuredCategories/featuredCategoriesReducers';
 
 export default combineReducers({
     version: (state: number = version) => state,
@@ -27,5 +29,8 @@ export default combineReducers({
     [SHOP_NAMESPACE]: shopReducer,
     [USER_NAMESPACE]: userReducer,
     [WISHLIST_NAMESPACE]: wishlistReducer,
-    [FEATUREPRODUCT_NAMESPACE]: featuredProductsReducer
+    [FEATUREPRODUCT_NAMESPACE]: featuredProductsReducer,
+    [LOGIN_NAMESPACE]:loginReducer,
+    [FEATUREDCATEGORIES_NAMESPACE]:featuredCategoriesReducer,
+
 });

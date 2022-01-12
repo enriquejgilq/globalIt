@@ -9,6 +9,7 @@ import {IProductFeatured} from '~/interfaces/productsFeatured';
 import { shopApi } from '~/api';
 import SitePageNotFound from '~/components/site/SitePageNotFound';
 
+
 interface Props {
     product: IProduct | null;
     productFeatured: IProductFeatured  | null;
@@ -25,11 +26,12 @@ interface Props {
     //    },
     //};
 //};
-
 function Page(props: Props) {
-    const { productFeatured,product } = props;
 
-    if (product === null) {
+    const { productFeatured,product } = props;
+    console.log(' funciona?? <<<<', productFeatured)
+
+    if (productFeatured === null) {
         return <SitePageNotFound />;
     }
 

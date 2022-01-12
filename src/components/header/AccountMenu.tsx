@@ -1,5 +1,7 @@
 // react
 import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -10,7 +12,8 @@ import url from '~/services/url';
 import { useSignInForm } from '~/services/forms/sign-in';
 import { useUser, useUserSignOut } from '~/store/user/userHooks';
 import { validateEmail } from '~/services/validators';
-
+import { postLogin } from '~/store/login/loginAction';
+import { getlogin} from '~/store/login/loginHooks'
 interface Props {
     onCloseMenu: () => void;
 }
@@ -20,6 +23,8 @@ function AccountMenu(props: Props) {
     const intl = useIntl();
     const user = useUser();
     const userSignOut = useUserSignOut();
+    const login = getlogin();
+
 
     const signInForm = useSignInForm({
         onSuccess: useCallback(() => {
@@ -36,17 +41,19 @@ function AccountMenu(props: Props) {
             }
         });
     };
-
+    let msj_error = login?.error[Object.keys(login.error)[0]]
+    let text = msj_error?.toString();
     return (
         <div className="account-menu" onSubmit={signInForm.submit}>
-            {user === null && (
+            {login.user.is_active === false && (
                 <form className="account-menu__form">
                     <div className="account-menu__form-title">
                         <FormattedMessage id="HEADER_LOGIN_TO_YOUR_ACCOUNT" />
                     </div>
-                    {signInForm.serverError && (
+                    {msj_error && (
                         <div className="alert alert-xs alert-danger mt-n2">
-                            <FormattedMessage id={signInForm.serverError} />
+                          {/**  <FormattedMessage id={signInForm.serverError} />*/} 
+                            <p>{text}</p>
                         </div>
                     )}
                     <div className="form-group">
@@ -117,18 +124,25 @@ function AccountMenu(props: Props) {
                     </div>
                 </form>
             )}
-            {user !== null && (
+            {login.user.is_active === true && (
                 <React.Fragment>
                     <AppLink href={url.accountDashboard()} className="account-menu__user" onClick={onCloseMenu}>
                         <div className="account-menu__user-avatar">
-                            <AppImage src={user.avatar} />
+                            {login.user.picture === null ? (
+                               <div><p><b>S/I</b></p></div>    
+                              ) : (
+                                <AppImage src={login.user.picture} /> 
+                                    )
+                             
+                              }
                         </div>
                         <div className=" account-menu__user-info">
                             <div className=" account-menu__user-name">
-                                {`${user.firstName} ${user.lastName}`}
+                            {`${login.user.company_name} `}
+                               {/**  {`${user.firstName} ${user.lastName}`}/**/}
                             </div>
                             <div className=" account-menu__user-email">
-                                {user.email}
+                               {login.user.email} 
                             </div>
                         </div>
                     </AppLink>

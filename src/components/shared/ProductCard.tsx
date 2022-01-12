@@ -78,8 +78,8 @@ function ProductCard(props: Props) {
                                 'product-card__action--loading': loading,
                             })}
                             aria-label={intl.formatMessage({ id: 'BUTTON_QUICKVIEW' })}
-                          // onClick={run}
-                          onClick={() => console.log('click details' )}
+                           onClick={run}
+                            //onClick={(e) => console.log('click details',e )}
                         >
                             <Quickview16Svg />
                         </button>
@@ -153,8 +153,8 @@ function ProductCard(props: Props) {
                             ))}
                         </div>
                     )}
-                    <AppLink href={url.product(product)}>{product.name}</AppLink> 
-                     <AppLink href={url.producturl(productFeatured)}>{productFeatured?.code}</AppLink> */}
+                    <AppLink href={url.product(product)}>{product.name}</AppLink> */}
+                     <AppLink href={url.producturl(productFeatured)}>{productFeatured?.code}</AppLink> 
                      {productFeatured?.code}
                 </div>
 

@@ -356,5 +356,9 @@
   "TEXT_VEHICLE_FILTER_HELP": "Selecciona un vehículo para filtrar solo las partes que se ajustan exactamente.",
   "TEXT_WORKING_HOURS": "Horas de trabajo",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "¡Tu carrito de traducción de esto se está vacío!",
-  "API_EVAPORATORS": "inventory/public-featured-products/es/evaporadores/"
+  "API_EVAPORATORS": "inventory/public-featured-products/es/evaporadores/",
+  "API_LOGIN":"authenticate/login/",
+  "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+  "SLUG_CATEGORY_NAME":"name"
+
 }

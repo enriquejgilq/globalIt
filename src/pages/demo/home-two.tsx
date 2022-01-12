@@ -155,7 +155,7 @@ function Page() {
                 loading={latestPosts.isLoading}
                 posts={latestPosts.data}
                 links={latestPostsLinks}
-            />   
+            />
             <BlockSpace layout="divider-nl" className="d-xl-block d-none" />
           {/**   <BlockProductsColumns columns={columns} />*/}
             <BlockSpace layout="divider-nl" />

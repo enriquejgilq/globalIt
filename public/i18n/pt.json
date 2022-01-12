@@ -355,5 +355,12 @@
     "TEXT_VEHICLE_ENGINE": "Motor {engine}",
     "TEXT_VEHICLE_FILTER_HELP": "Selecione um veículo para filtrar apenas as peças de ajuste exato.",
     "TEXT_WORKING_HOURS": "Horário de Trabalho",
-    "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Seu carrinho de compras está vazio!"
+    "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Seu carrinho de compras está vazio!",
+    "API_EVAPORATORS": "inventory/public-featured-products/en/evaporators/" ,
+    "API_LOGIN":"authenticate/login/",
+    "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+    "SLUG_CATEGORY_NAME":"name_pt"
+
+
+
 }

@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React,{useEffect} from 'react';
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -14,15 +14,24 @@ import { useSignInForm } from '~/services/forms/sign-in';
 import { useSignUpForm } from '~/services/forms/sign-up';
 import { useUser } from '~/store/user/userHooks';
 import { validateEmail } from '~/services/validators';
+import { useDispatch } from 'react-redux';
+import { getlogin} from '~/store/login/loginHooks'
 
 function Page() {
     const intl = useIntl();
     const user = useUser();
+    const dispatch = useDispatch()
     const signInForm = useSignInForm();
     const signUpForm = useSignUpForm();
+    const login = getlogin();
 
+    let msj_error = login?.error[Object.keys(login.error)[0]]
+    let text = msj_error?.toString();
     if (user) {
         return <Redirect href={url.accountDashboard()} />;
+    }
+    if(login.user.is_active){
+        return <Redirect href={url.pageStoreLocation()} />;
     }
 
     const { ref: signInFormRememberMeRef, ...signInFormRememberMeRefProps } = signInForm.register('remember');
@@ -43,9 +52,10 @@ function Page() {
                                         <FormattedMessage id="HEADER_LOGIN" />
                                     </h3>
                                     <form onSubmit={signInForm.submit}>
-                                        {signInForm.serverError && (
+                                        {msj_error && (                   
                                             <div className="alert alert-sm alert-danger">
-                                                <FormattedMessage id={signInForm.serverError} />
+                                                {/*<FormattedMessage id={signInForm.serverError} />*/}
+                                                <p>{text}</p>
                                             </div>
                                         )}
                                         <div className="form-group">
@@ -124,7 +134,7 @@ function Page() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-6 d-flex mt-4 mt-md-0">
+                      {/**  <div className="col-md-6 d-flex mt-4 mt-md-0">
                             <div className="card flex-grow-1 mb-0 ml-0 ml-lg-3 mr-0 mr-lg-4">
                                 <div className="card-body card-body--padding--2">
                                     <h3 className="card-title">
@@ -224,7 +234,7 @@ function Page() {
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div>*/} 
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 // application
 import { IProduct } from '~/interfaces/product';
+import {IProductFeatured } from '~/interfaces/productsFeatured'
 import { shopApi } from '~/api';
 import {
     QUICKVIEW_CLOSE,
@@ -7,7 +8,9 @@ import {
     QuickviewCloseAction,
     QuickviewOpenAction,
     QuickviewThunkAction,
+    QuickviewOpenActionFe
 } from '~/store/quickview/quickviewActionTypes';
+import axios from 'axios';
 
 let cancelPreviousRequest = () => {};
 
@@ -24,6 +27,13 @@ export function quickviewClose(): QuickviewCloseAction {
     };
 }
 
+export function quickviewOpenSuccessFe(productFeatured:IProductFeatured) : QuickviewOpenActionFe {
+    return {
+        type: QUICKVIEW_OPEN,
+        productFeatured,
+    };
+}
+
 export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise<void>> {
     return (dispatch) => {
         cancelPreviousRequest();
@@ -32,6 +42,11 @@ export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise
             let canceled = false;
             // sending request to server, timeout is used as a stub
             const timer = setTimeout(() => {
+                //axios a get details of product
+                console.log('get details of product from server for id:D ' + productSlug+ ' es el code(code de producto xd) xd ' );
+            
+               
+             /*  
                 shopApi.getProductBySlug(productSlug).then((product) => {
                     if (canceled) {
                         return;
@@ -42,7 +57,7 @@ export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise
                     }
 
                     resolve();
-                });
+                });/**/
             }, 250);
 
             cancelPreviousRequest = () => {

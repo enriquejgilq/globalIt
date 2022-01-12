@@ -22,10 +22,10 @@ export function getListProducts(page: number = 1): FeaturedProductsThunkAction<P
             const apiEvaporators = globalIntl()?.formatMessage(
                 { id: 'API_EVAPORATORS' },
             )
-            console.log(apiEvaporators)
+         //   console.log(apiEvaporators)
             axios.get(API + apiEvaporators + '?page=' + page)
                 .then((response) => {
-                    console.log(response.data.results)
+                  //  console.log(response.data.results)
                     dispatch(fetchListProductSuccess(response.data.results));
                     resolve()
                 })
