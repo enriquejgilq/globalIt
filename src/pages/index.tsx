@@ -162,7 +162,6 @@ function Page() {
 
     return (
         <React.Fragment>
-            <Button onClick={newData}> Prueba filtro</Button>
             <BlockFinder />
             <BlockFeatures layout="top-strip" />
             <BlockSpace layout="divider-nl" />
