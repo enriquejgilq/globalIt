@@ -76,13 +76,13 @@ function BlockPosts(props: Props) {
     return (
         <div className={rootClasses}>
             <div className="container">
-                <SectionHeader
+              {/**   <SectionHeader
                     sectionTitle={blockTitle}
                     arrows
                     links={links}
                     onNext={handleNextClick}
                     onPrev={handlePrevClick}
-                />
+                /> */}
                 <div
                     className={classNames('block-posts-carousel__carousel', {
                         'block-posts-carousel__carousel--has-items': posts.length > 0,
