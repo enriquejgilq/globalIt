@@ -7,4 +7,5 @@ export interface IFeaturedCategories {
     results: Array<ICategories>;
     error: string;
     loading: boolean;
+    filters: any;
 }

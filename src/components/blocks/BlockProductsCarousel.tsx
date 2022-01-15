@@ -9,8 +9,6 @@ import ProductCard, { IProductCardElement, IProductCardLayout } from '~/componen
 import SectionHeader, { ISectionHeaderGroup } from '~/components/shared/SectionHeader';
 import { ILink } from '~/interfaces/link';
 import { IProduct } from '~/interfaces/product';
-import { IFeaturedProducts } from '~/interfaces/featuredProducts';
-import {IProductFeatured } from '~/interfaces/productsFeatured';
 
 
 export type IBlockProductsCarouselLayout =
@@ -31,7 +29,11 @@ interface Props<T extends ISectionHeaderGroup> {
     rows?: number;
     loading?: boolean;
     onChangeGroup?: (group: T) => void;
-    productFeatured: IProductFeatured[];	
+    productFeatured: any;
+    localStorage?: () => void;
+    namecategoriesIdioma: any,
+    state: any,
+    setFilterType: (data: any) => void,
 }
 
 const productCardLayoutMap: Record<IBlockProductsCarouselLayout, IProductCardLayout> = {
@@ -144,8 +146,13 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
         loading = false,
         onChangeGroup,
         productFeatured,
+        localStorage,
+        namecategoriesIdioma,
+        state,
+        setFilterType
     } = props;
     const slickRef = useRef<Slick>(null);
+
 
     const handleNextClick = () => {
         if (slickRef.current) {
@@ -161,10 +168,8 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
 
     const columns = useMemo(() => {
         const result = [];
-
         if (rows > 0) {
             const productsQueue = products.slice();
-
             while (productsQueue.length > 0) {
                 result.push(productsQueue.splice(0, rows));
             }
@@ -175,37 +180,33 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
 
     const newColumns = useMemo(() => {
         const result = [];
-
         if (rows > 0) {
-            if( productFeatured.length > 0 ){
+            if (productFeatured?.length > 0) {
                 const productsQueue = productFeatured.slice();
                 while (productsQueue.length > 0) {
                     result.push(productsQueue.splice(0, rows));
                 }
             }
-
-           
         }
-
         return result;
     }, [rows, productFeatured]);
 
     const carousel = useMemo(() => {
         const productCardLayout = productCardLayoutMap[layout];
         const productCardExclude = productCardExcludeMap[productCardLayout];
-
         return (
             <AppSlick ref={slickRef} {...slickSettings[layout]}>
-              {/**  */}  {newColumns.map((column, columnIdx) => (
+                {newColumns.map((column, columnIdx) => (
                     <div key={columnIdx} className="block-products-carousel__column">
-                    {column.map((productFeatured, productIdx) => (
+                        {column.map((productFeatured: any, productIdx: any) => (
                             <ProductCard
                                 key={productIdx}
                                 className="block-products-carousel__cell"
-                               // product={products}
+                                // product={products}
                                 layout={productCardLayout}
                                 exclude={productCardExclude}
                                 productFeatured={productFeatured}
+
                             />
                         ))}
                     </div>
@@ -213,7 +214,6 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
             </AppSlick>
         );
     }, [columns, layout]);
- 
     return (
         <div className="block block-products-carousel" data-layout={layout}>
             <div className="container">
@@ -225,18 +225,39 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
                     links={links}
                     onNext={handleNextClick}
                     onPrev={handlePrevClick}
-                    onChangeGroup={onChangeGroup}
+                    localStorage={localStorage}
+                    namecategoriesIdioma={namecategoriesIdioma}
+                    // onChangeGroup={onChangeGroup}
+                    ref={state}
+                    setFilterType={setFilterType}
                 />
 
                 <div
                     className={classNames('block-products-carousel__carousel', {
                         'block-products-carousel__carousel--loading': loading,
                         'block-products-carousel__carousel--has-items': columns.length > 0,
+
                     })}
                 >
                     <div className="block-products-carousel__carousel-loader" />
+                    <AppSlick ref={slickRef} {...slickSettings[layout]}>
+                        {newColumns.map((column, columnIdx) => (
+                            <div key={columnIdx} className="block-products-carousel__column">
+                                {column.map((productFeatured: any, productIdx: any) => (
+                                    <ProductCard
+                                        key={productIdx}
+                                        className="block-products-carousel__cell"
+                                        // product={products}
+                                        // layout={productCardLayout}
+                                        // exclude={productCardExclude}
+                                        productFeatured={productFeatured}
 
-                    {carousel}
+                                    />
+                                ))}
+                            </div>
+                        ))}
+                    </AppSlick>
+
                 </div>
             </div>
         </div>

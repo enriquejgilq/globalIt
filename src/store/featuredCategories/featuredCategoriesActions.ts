@@ -6,9 +6,11 @@ import {
     GET_CATERGORIES_FAILURE,
     GET_CATERGORIES_SUCCESS,
     GET_CATERGORIES,
+    GET_CATEGORY_FILTER,
     categorieshunkAction,
     ICategoriesAction,
-    ICategoriesActionLoading
+    ICategoriesActionLoading,
+    ICategoriesActionFilters,
 } from '~/store/featuredCategories/featuredCategoriesActionsTypes';
 
 
@@ -33,7 +35,12 @@ export function categoriesLoading(): ICategoriesActionLoading {
         type: GET_CATERGORIES,
     };
 }
-
+export function categoriesFilters(payload: any): ICategoriesActionFilters {
+    return {
+        type: GET_CATEGORY_FILTER,
+        payload
+    };
+}
 
 
 export function getFeaturedCategories(): categorieshunkAction<Promise<void>> {

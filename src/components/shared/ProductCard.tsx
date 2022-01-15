@@ -155,7 +155,7 @@ function ProductCard(props: Props) {
                     )}
                     <AppLink href={url.product(product)}>{product.name}</AppLink> */}
                      <AppLink href={url.producturl(productFeatured)}>{productFeatured?.code}</AppLink> 
-                     {productFeatured?.code}
+                     
                 </div>
 
                 <div className="product-card__rating">

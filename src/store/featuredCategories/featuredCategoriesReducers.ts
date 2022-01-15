@@ -1,5 +1,5 @@
 import { IFeaturedCategories } from '~/interfaces/featuredCategories';
-import { GET_CATERGORIES, GET_CATERGORIES_SUCCESS, GET_CATERGORIES_FAILURE } from './featuredCategoriesActionsTypes';
+import { GET_CATERGORIES, GET_CATERGORIES_SUCCESS, GET_CATERGORIES_FAILURE, GET_CATEGORY_FILTER } from './featuredCategoriesActionsTypes';
 const defaultState :IFeaturedCategories = {
     count: 0,
     next: '',
@@ -7,6 +7,7 @@ const defaultState :IFeaturedCategories = {
     results: [],
     error: '',
     loading: false,
+    filters:[]
 }
 export const FEATUREDCATEGORIES_NAMESPACE = 'featurecategories';
 
@@ -18,7 +19,8 @@ const featuredCategoriesReducer = (state: IFeaturedCategories = defaultState, ac
                 next: '',
                 results: [],
                 error: false,
-                loading: true 
+                loading: true ,
+
             }
         case GET_CATERGORIES_SUCCESS:
             return {
@@ -29,6 +31,7 @@ const featuredCategoriesReducer = (state: IFeaturedCategories = defaultState, ac
                 results : action.payload.results,
                 error: false,
                 loading: false,
+
             }
             case GET_CATERGORIES_FAILURE:
                 return {
@@ -38,7 +41,13 @@ const featuredCategoriesReducer = (state: IFeaturedCategories = defaultState, ac
                 results : [],	
                 error: action.payload,
                 loading: false, 
-                }    
+                }   
+            case GET_CATEGORY_FILTER:
+                return {
+                    ...state,
+                    filters: action.payload,
+                   
+                } 
         default:
             return state;
     }
