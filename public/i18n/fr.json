@@ -38,6 +38,7 @@
   "BUTTON_TRACK": "Suivre",
   "BUTTON_UPDATE_CART": "Mettre à jour le panier",
   "BUTTON_VIEW_CART": "Voir le panier",
+
   "COUNTRY_NAME_LAND": "RandomLand",
   "COUNTRY_NAME_RAND": "Fédération aléatoire",
   "COUNTRY_NAME_AU": "Australie",
@@ -49,6 +50,7 @@
   "COUNTRY_NAME_RU": "Russie",
   "COUNTRY_NAME_UA": "Ukraine",
   "COUNTRY_NAME_US": "États-Unis",
+
   "ERROR_ADD_TO_CART_OPTIONS": "Veuillez sélectionner les options du produit avant d'ajouter ce produit à votre panier.",
   "ERROR_ADD_TO_CART_QUANTITY": "Veuillez saisir la quantité avant d'ajouter ce produit au panier.",
   "ERROR_API_AUTH_EMAIL_ALREADY_IN_USE": "L'adresse e-mail spécifiée est déjà enregistrée.",
@@ -59,8 +61,10 @@
   "ERROR_FORM_INCORRECT_EMAIL": "Veuillez saisir une adresse e-mail valide.",
   "ERROR_FORM_PASSWORD_DOES_NOT_MATCH": "Les mots de passe doivent correspondre.",
   "ERROR_FORM_REQUIRED": "Champ obligatoire.",
+
   "FORMAT_DATE_MEDIUM": "{date, date, medium}",
   "FORMAT_ORDER_NUMBER": "#{number}",
+
   "HEADER_ADD_VEHICLE": "Ajouter un véhicule",
   "HEADER_ADDRESSES": "Adresses",
   "HEADER_BESTSELLERS": "Meilleures ventes",
@@ -112,6 +116,7 @@
   "HEADER_WISHLIST_EMPTY_TITLE": "La liste de souhaits est vide",
   "HEADER_WRITE_REVIEW": "Écrire un avis",
   "HEADER_YOUR_ORDER": "Votre commande",
+
   "INPUT_CITY_LABEL": "Ville",
   "INPUT_CITY_PLACEHOLDER": "Houston",
   "INPUT_COMPANY_LABEL": "Nom de la société",
@@ -182,6 +187,7 @@
   "INPUT_YOUR_NAME_PLACEHOLDER": "Mark Twain",
   "INPUT_YOUR_REVIEW_LABEL": "Votre avis",
   "INPUT_YOUR_REVIEW_PLACEHOLDER": " ",
+
   "LINK_ABOUT_US": "À propos de nous",
   "LINK_ACCOUNT_ADDRESSES": "Adresses",
   "LINK_ACCOUNT_DASHBOARD": "Tableau de bord",
@@ -223,6 +229,7 @@
   "LINK_VIEW_ALL_AVAILABLE_OFFERS": "Voir toutes les offres disponibles",
   "LINK_WISH_LIST": "Liste de souhaits",
   "LINK_WISHLIST": "Wishlist",
+
   "TABLE_ADD_TO_CART": "Ajouter au panier",
   "TABLE_BRAND": "Marque",
   "TABLE_COUNTRY": "Pays",
@@ -243,6 +250,7 @@
   "TABLE_TOTAL": "Total",
   "TABLE_TOTAL_SHIPPING": "Livraison",
   "TABLE_TOTAL_TAX": "Taxe",
+
   "TEXT_ACTIVE_FILTERS": "Filtres actifs",
   "TEXT_ALERT_RETURNING_CUSTOMER": "Client de retour ? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Cliquez ici pour vous connecter",
@@ -356,9 +364,12 @@
   "TEXT_VEHICLE_FILTER_HELP": "Sélectionnez un véhicule pour filtrer uniquement les pièces parfaitement adaptées.",
   "TEXT_WORKING_HOURS": "Heures de travail",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Votre panier est vide !",
-  "API_EVAPORATORS": "inventory/public-featured-products/en/evaporators/" ,
+  "TEXT_ALL": "Tout Le Monde",
+
+  "API_EVAPORATORS": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+
   "SLUG_CATEGORY_NAME":"name_fr"
 
 

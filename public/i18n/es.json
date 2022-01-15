@@ -38,6 +38,7 @@
   "BUTTON_TRACK": "Pista",
   "BUTTON_UPDATE_CART": "Actualización de la compra",
   "BUTTON_VIEW_CART": "Ver carrito",
+
   "COUNTRY_NAME_LAND": "RandomLand",
   "COUNTRY_NAME_RAND": "Random Federation",
   "COUNTRY_NAME_AU": "Australia",
@@ -49,6 +50,7 @@
   "COUNTRY_NAME_RU": "Russia",
   "COUNTRY_NAME_UA": "Ukraine",
   "COUNTRY_NAME_US": "United States",
+
   "ERROR_ADD_TO_CART_OPTIONS": "Seleccione las opciones de producto antes de agregar este producto a su carrito.",
   "ERROR_ADD_TO_CART_QUANTITY": "Ingrese la cantidad antes de agregar este producto al carrito.",
   "ERROR_API_AUTH_EMAIL_ALREADY_IN_USE": "La dirección de correo electrónico especificada ya está registrada.",
@@ -59,8 +61,10 @@
   "ERROR_FORM_INCORRECT_EMAIL": "Por favor, introduce una dirección de correo electrónico válida.",
   "ERROR_FORM_PASSWORD_DOES_NOT_MATCH": "Las contraseñas deben coincidir.",
   "ERROR_FORM_REQUIRED": "Campo requerido.",
+
   "FORMAT_DATE_MEDIUM": "{date, date, medium}",
   "FORMAT_ORDER_NUMBER": "#{number}",
+
   "HEADER_ADD_VEHICLE": "Agregar un vehículo",
   "HEADER_ADDRESSES": "Direcciones",
   "HEADER_BESTSELLERS": "Superventas",
@@ -112,6 +116,7 @@
   "HEADER_WISHLIST_EMPTY_TITLE": "La lista de deseos está vacía",
   "HEADER_WRITE_REVIEW": "Escribe una reseña",
   "HEADER_YOUR_ORDER": "Su pedido",
+
   "INPUT_CITY_LABEL": "Ciudad",
   "INPUT_CITY_PLACEHOLDER": "Houston",
   "INPUT_COMPANY_LABEL": "Nombre de la empresa",
@@ -182,6 +187,7 @@
   "INPUT_YOUR_NAME_PLACEHOLDER": "Mark Twain",
   "INPUT_YOUR_REVIEW_LABEL": "Tu opinión",
   "INPUT_YOUR_REVIEW_PLACEHOLDER": " ",
+
   "LINK_ABOUT_US": "Sobre nosotros",
   "LINK_ACCOUNT_ADDRESSES": "Direcciones",
   "LINK_ACCOUNT_DASHBOARD": "Panel de control",
@@ -223,6 +229,7 @@
   "LINK_VIEW_ALL_AVAILABLE_OFFERS": "Ver todas las ofertas disponibles",
   "LINK_WISH_LIST": "Lista de deseos",
   "LINK_WISHLIST": "Lista de deseos",
+
   "TABLE_ADD_TO_CART": "Agregar al carrito",
   "TABLE_BRAND": "Marca",
   "TABLE_COUNTRY": "País",
@@ -356,9 +363,12 @@
   "TEXT_VEHICLE_FILTER_HELP": "Selecciona un vehículo para filtrar solo las partes que se ajustan exactamente.",
   "TEXT_WORKING_HOURS": "Horas de trabajo",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "¡Tu carrito de traducción de esto se está vacío!",
-  "API_EVAPORATORS": "inventory/public-featured-products/es/evaporadores/",
+  "TEXT_ALL": "Todos",
+  
+  "API_EVAPORATORS": "inventory/public-featured-products/es/all/",
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+
   "SLUG_CATEGORY_NAME":"name"
 
 }

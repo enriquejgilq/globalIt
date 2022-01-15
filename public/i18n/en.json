@@ -364,8 +364,11 @@
   "TEXT_VEHICLE_FILTER_HELP": "Select a vehicle to filter out only exact fit parts.",
   "TEXT_WORKING_HOURS": "Working Hours",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Your shopping cart is empty!",
-  "API_EVAPORATORS": "inventory/public-featured-products/en/evaporators/", 
+  "TEXT_ALL": "All",
+
+  "API_EVAPORATORS": "inventory/public-featured-products/en/all/", 
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+
   "SLUG_CATEGORY_NAME":"name_en"
 }
