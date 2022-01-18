@@ -30,11 +30,13 @@ interface ChangeValueEvent {
 
 interface Props {
     //  filter: IFilter;
+    dataFilTers:any;
     value: string;
 }
 
 function Filter(props: Props) {
     const {// filter,
+        dataFilTers,
          value } = props;
     const dispatch = useDispatch()
 
@@ -51,12 +53,7 @@ function Filter(props: Props) {
     const nameCategoryProducts = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY' },
     )
-    const dataFilTers: any = [
-        {
-            filter: 'category',
-            name: nameCategoryProducts,
-        },
-    ]
+    
     useEffect(() => {
         dispatch(getCategoryLoading());
         dispatch(getCategoryProductsParents())

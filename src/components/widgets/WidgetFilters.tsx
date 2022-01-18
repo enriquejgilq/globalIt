@@ -1,5 +1,7 @@
 // react
 import React from 'react';
+import { globalIntl } from '~/services/i18n/global-intl';
+
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -19,7 +21,15 @@ function WidgetFilters(props: Props) {
     const shopResetFilters = useShopResetFiltersThunk();
 
     const rootClasses = classNames('widget', 'widget-filters', `widget-filters--offcanvas--${offcanvasSidebar}`);
-
+    const nameCategoryProducts = globalIntl()?.formatMessage(
+        { id: 'TEXT_CATEGORY' },
+    )
+    const dataFilTers: any = [
+        {
+            filter: 'category',
+            name: nameCategoryProducts,
+        },
+    ]
     return (
         <div className={rootClasses}>
             <div className="widget__header widget-filters__header">
@@ -29,13 +39,13 @@ function WidgetFilters(props: Props) {
             </div>
 
             <div className="widget-filters__list">
-              {/**  {filters.map((filter) => (
+               {dataFilTers.map((filter:any, index:any) => (
                     <Filter
-                        key={filter.slug}
-                        filter={filter}
+                        key={index}
+                        dataFilTers={dataFilTers}
                         value={values[filter.slug]}
                     />
-                ))} */}
+                ))} 
             </div>
 
             <div className="widget-filters__actions d-flex">
