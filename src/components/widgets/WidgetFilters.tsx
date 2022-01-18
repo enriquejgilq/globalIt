@@ -29,13 +29,13 @@ function WidgetFilters(props: Props) {
             </div>
 
             <div className="widget-filters__list">
-                {filters.map((filter) => (
+              {/**  {filters.map((filter) => (
                     <Filter
                         key={filter.slug}
                         filter={filter}
                         value={values[filter.slug]}
                     />
-                ))}
+                ))} */}
             </div>
 
             <div className="widget-filters__actions d-flex">
