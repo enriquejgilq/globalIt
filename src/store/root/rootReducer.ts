@@ -16,6 +16,8 @@ import { SHOP_NAMESPACE } from '~/store/shop/shopTypes';
 import featuredProductsReducer, { FEATUREPRODUCT_NAMESPACE } from '../featuredProducts/featuredProductsReducers';
 import loginReducer, { LOGIN_NAMESPACE } from '../login/loginReducers';
 import featuredCategoriesReducer, { FEATUREDCATEGORIES_NAMESPACE } from '../featuredCategories/featuredCategoriesReducers';
+import categoryProductsReducer,{  CATEGORY_PRODUCTS_NAMESPACE   } from '../categoryProducts/categoryProductsReducers';
+import categoryProductsChildrenReducer,{CATEGORY_PRODUCTS_CHILDREN_NAMESPACE } from '../categoryProducts/categoryProductsChildren/categoryProductsChildrenReducers'; 
 
 export default combineReducers({
     version: (state: number = version) => state,
@@ -32,5 +34,6 @@ export default combineReducers({
     [FEATUREPRODUCT_NAMESPACE]: featuredProductsReducer,
     [LOGIN_NAMESPACE]:loginReducer,
     [FEATUREDCATEGORIES_NAMESPACE]:featuredCategoriesReducer,
-
+    [CATEGORY_PRODUCTS_NAMESPACE]:categoryProductsReducer,
+    [CATEGORY_PRODUCTS_CHILDREN_NAMESPACE]:categoryProductsChildrenReducer,
 });

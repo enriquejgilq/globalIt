@@ -54,12 +54,12 @@ export function getProductsList(
 ): Promise<IProductsList> {
     const filters: AbstractFilterBuilder[] = [
         new CategoryFilterBuilder('category', 'Categories'),
-        new VehicleFilterBuilder('vehicle', 'Vehicle'),
+       /*  new VehicleFilterBuilder('vehicle', 'Vehicle'),
         new RangeFilterBuilder('price', 'Price'),
         new CheckFilterBuilder('brand', 'Brand'),
         new RadioFilterBuilder('discount', 'With Discount'),
         new RatingFilterBuilder('rating', 'Rating'),
-        new ColorFilterBuilder('color', 'Color'),
+        new ColorFilterBuilder('color', 'Color'),*/ 
     ];
 
     let products = dbProducts.slice(0);

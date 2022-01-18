@@ -141,12 +141,7 @@ function Page() {
         })
 
     }
-    console.log('<', getfeaturedCate.filters)
-    const hola = () => {
-        if (state.length > 0) {
-            dispatch(categoriesFilters(state))
-        }
-    }
+   
     const namecategoriesIdioma = getfeaturedCate.results.map((item: any) => item[nameCategories])
 
     const setFilterType = (data: any) => {

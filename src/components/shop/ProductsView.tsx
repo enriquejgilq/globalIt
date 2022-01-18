@@ -212,7 +212,7 @@ function ProductsView(props: Props) {
 
                                 <div className="view-options__spring" />
 
-                                <div className="view-options__select">
+                                {/*<div className="view-options__select">
                                     <label htmlFor="view-option-sort">
                                         <FormattedMessage id="INPUT_SORT_LABEL" />
                                         :
@@ -251,7 +251,7 @@ function ProductsView(props: Props) {
                                         <option value="24">24</option>
                                         <option value="32">32</option>
                                     </select>
-                                </div>
+                                </div>*/}
                             </div>
 
                             {hasActiveFilters && (

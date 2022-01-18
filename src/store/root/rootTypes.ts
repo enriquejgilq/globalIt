@@ -13,8 +13,8 @@ import { SHOP_NAMESPACE } from '~/store/shop/shopTypes';
 import featuredProductsReducer,{FEATUREPRODUCT_NAMESPACE} from '~/store/featuredProducts/featuredProductsReducers';
 import loginReducer, { LOGIN_NAMESPACE } from '../login/loginReducers';
 import  featuredCategoriesReducer,{FEATUREDCATEGORIES_NAMESPACE} from '../featuredCategories/featuredCategoriesReducers';
-
-
+import categoryProductsReducer, { CATEGORY_PRODUCTS_NAMESPACE } from '../categoryProducts/categoryProductsReducers';
+import categoryProductsChildrenReducer, {CATEGORY_PRODUCTS_CHILDREN_NAMESPACE} from '../categoryProducts/categoryProductsChildren/categoryProductsChildrenReducers';
 export interface IRootState {
     [CART_NAMESPACE]: AppReducerStateType<typeof cartReducer>;
     [COMPARE_NAMESPACE]: AppReducerStateType<typeof compareReducer>;
@@ -29,5 +29,7 @@ export interface IRootState {
     [FEATUREPRODUCT_NAMESPACE]: AppReducerStateType<typeof featuredProductsReducer>;
     [LOGIN_NAMESPACE]: AppReducerStateType<typeof loginReducer>; 
     [FEATUREDCATEGORIES_NAMESPACE]: AppReducerStateType<typeof featuredCategoriesReducer>; 
+    [CATEGORY_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof categoryProductsReducer>;
+    [CATEGORY_PRODUCTS_CHILDREN_NAMESPACE]: AppReducerStateType<typeof categoryProductsChildrenReducer>;
 
 }

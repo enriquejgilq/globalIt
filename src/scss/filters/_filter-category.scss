@@ -38,7 +38,10 @@ $local-item-padding-left: 14px;
 }
 .filter-category__item--parent {
     position: relative;
-
+   
+    li{
+        cursor: pointer;
+    }
     @include direction {
         #{$padding-inline-start}: $local-item-padding-left;
     }
@@ -52,6 +55,13 @@ $local-item-padding-left: 14px;
 
     @include direction {
         #{$padding-inline-start}: $local-item-padding-left;
+    }
+}
+.filterbutton{
+    p{
+        font-size: 15px;
+        font-weight: $font-weight-bold;
+        cursor: pointer; 
     }
 }
 .filter-category__arrow {

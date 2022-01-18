@@ -365,12 +365,20 @@
   "TEXT_WORKING_HOURS": "Heures de travail",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Votre panier est vide !",
   "TEXT_ALL": "Tout Le Monde",
+  "TEXT_CATEGORY": "Catégorie",
+  "TEXT_TRANSLATE":"traduction non disponible",
+
 
   "API_EVAPORATORS": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+  "API_GET_CATEGORY_PRODUCTS":"inventory/public-parent-categories/",
+  "API_GET_PRODUCTS_CHILDREN":"inventory/public-children-categories/fr/",
 
-  "SLUG_CATEGORY_NAME":"name_fr"
+
+
+  "SLUG_CATEGORY_NAME":"name_fr",
+  "SLUG_CATEGORY_NAME_CHILDREN":"slug_name_fr"
 
 
 }

@@ -365,10 +365,15 @@
   "TEXT_WORKING_HOURS": "Working Hours",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Your shopping cart is empty!",
   "TEXT_ALL": "All",
+  "TEXT_CATEGORY": "Category",
+  "TEXT_TRANSLATE":"translation not available",
 
   "API_EVAPORATORS": "inventory/public-featured-products/en/all/", 
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
+  "API_GET_CATEGORY_PRODUCTS":"inventory/public-parent-categories/",
+  "API_GET_PRODUCTS_CHILDREN":"inventory/public-children-categories/en/",
 
-  "SLUG_CATEGORY_NAME":"name_en"
+  "SLUG_CATEGORY_NAME":"name_en",
+  "SLUG_CATEGORY_NAME_CHILDREN":"slug_name_en"
 }

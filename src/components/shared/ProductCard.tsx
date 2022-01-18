@@ -141,7 +141,7 @@ function ProductCard(props: Props) {
                             <FormattedMessage id="TEXT_SKU" />
                             {': '}
                         </span>
-                        {productFeatured?.description_en}
+                        {productFeatured?.code}
                     </div>
                 )}
 
@@ -154,7 +154,7 @@ function ProductCard(props: Props) {
                         </div>
                     )}
                     <AppLink href={url.product(product)}>{product.name}</AppLink> */}
-                     <AppLink href={url.producturl(productFeatured)}>{productFeatured?.code}</AppLink> 
+                     <AppLink href={url.producturl(productFeatured)}>{productFeatured?.description_en}</AppLink> 
                      
                 </div>
 
