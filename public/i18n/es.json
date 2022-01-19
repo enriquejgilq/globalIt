@@ -377,6 +377,6 @@
 
 
   "SLUG_NAME":"name",
-  "SLUG_CATEGORY_CHILDREN":"slug_name"
+  "SLUG_CATEGORY_NAME":"slug_name"
 
 }
