@@ -4,10 +4,13 @@ import React, {
     useContext,
     useMemo,
     useState,
+    useEffect
 } from 'react';
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useDispatch } from 'react-redux';
+
 // application
 import CurrencyFormat from '~/components/shared/CurrencyFormat';
 import Navigation, { INavigationEvent } from '~/components/shared/Navigation';
@@ -32,7 +35,8 @@ import {
     useShopResetFiltersThunk,
     useShopResetFilterThunk,
 } from '~/store/shop/shopHooks';
-
+import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import {getCatalogProductsState} from '~/store/catalogProducts/catalogProductsHooks'
 interface LayoutButton {
     layout: IShopPageLayout;
     icon: React.ReactNode;
@@ -47,6 +51,8 @@ interface Props {
 function ProductsView(props: Props) {
     const { layout: layoutProps, gridLayout, offCanvasSidebar } = props;
     const intl = useIntl();
+    const dispatch = useDispatch()
+    const getCatalog = getCatalogProductsState();
     const isLoading = useShopProductsListIsLoading();
     const shop = useShop();
     const productsList = useShopProductsList();
@@ -119,7 +125,10 @@ function ProductsView(props: Props) {
     if (!productsList || !navigation) {
         return null;
     }
+    useEffect(() => {
+        dispatch(getCatalogProducts('all/all'))
 
+    }, [])
     return (
         <div className={rootClasses}>
             <div className="products-view__body">
@@ -336,19 +345,19 @@ function ProductsView(props: Props) {
                                 <div className="products-list__column products-list__column--product">
                                     <FormattedMessage id="TABLE_PRODUCT" />
                                 </div>
-                                <div className="products-list__column products-list__column--rating">
+                               {/**  <div className="products-list__column products-list__column--rating">
                                     <FormattedMessage id="TABLE_RATING" />
-                                </div>
+                                </div>*/}
                                 <div className="products-list__column products-list__column--price">
                                     <FormattedMessage id="TABLE_PRICE" />
                                 </div>
                             </div>
                             <div className="products-list__content">
-                              {/**   {productsList.items.map((product) => (
-                                    <div key={product.id} className="products-list__item">
-                                        <ProductCard product={product} />
+                              {getCatalog.results.map((item:any) => (
+                                    <div key={item.id} className="products-list__item">
+                                        <ProductCard productFeatured={item} />
                                     </div>
-                                ))}*/}
+                                ))}   
                             </div>
                         </div>
 

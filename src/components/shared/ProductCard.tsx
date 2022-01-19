@@ -66,6 +66,7 @@ function ProductCard(props: Props) {
         [`product-card--layout--${layout}`]: layout,
     });
 
+
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -125,7 +126,13 @@ function ProductCard(props: Props) {
             <div className="product-card__image">
                 <div className="image image--type--product">
                     <AppLink className="image__body">
-                        {productFeatured?.image_principal && <AppImage className="image__tag" src={productFeatured?.image_principal} />}
+                        {
+                        productFeatured.image_principal === null || productFeatured.image_principal ==="" ?(
+                            <AppImage className="image__tag"  src="/images/noimages/noimage3.jpg"   />
+                        )
+                        
+                        : (<AppImage className="image__tag" src={productFeatured?.image_principal} />)
+                    }
                     </AppLink>
                 </div> 
 {/**

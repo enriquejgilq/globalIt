@@ -51,7 +51,7 @@ function SectionHeader<T extends ISectionHeaderGroup>(props: Props<T>) {
     const dispatch = useDispatch()
     const [allCategories, setAllCategories] = useState('')
     const nameCategories: any = globalIntl()?.formatMessage(
-        { id: 'SLUG_CATEGORY_NAME' },
+        { id: 'SLUG_NAME' },
     );
     const all: any = globalIntl()?.formatMessage(
         { id: 'TEXT_ALL' },

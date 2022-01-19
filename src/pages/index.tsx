@@ -44,7 +44,7 @@ function Page() {
     const getfeaturedCate = getfeaturedCat();
     const [state, setState] = useState([{}])
     const nameCategories: any = globalIntl()?.formatMessage(
-        { id: 'SLUG_CATEGORY_NAME' },
+        { id: 'SLUG_NAME' },
     );
 
     /**

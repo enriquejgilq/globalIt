@@ -373,9 +373,10 @@
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
   "API_GET_CATEGORY_PRODUCTS":"inventory/public-parent-categories/",
   "API_GET_PRODUCTS_CHILDREN":"inventory/public-children-categories/es/",
+  "API_GET_CATALOG_PRODUCTS" : "inventory/public-products-shop/es/",
 
 
-  "SLUG_CATEGORY_NAME":"name",
-  "SLUG_CATEGORY_NAME_CHILDREN":"slug_name"
+  "SLUG_NAME":"name",
+  "SLUG_CATEGORY_CHILDREN":"slug_name"
 
 }

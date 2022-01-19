@@ -14,8 +14,9 @@ import { ICategoryFilter } from '~/interfaces/filter';
 import { globalIntl } from '~/services/i18n/global-intl';
 import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks';
 import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenHooks';
-import { clearCategoryChildren } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenAction';
 import { Button } from 'reactstrap';
+import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+
 interface Props {
     //  options: ICategoryFilter;
     categoryProductsParents: any;
@@ -35,11 +36,11 @@ function FilterCategory(props: Props) {
     } = props;
     const childrenProducts = getCategoryProductsChildrenState();
     const nameCategoryProducts: any = globalIntl()?.formatMessage(
-        { id: 'SLUG_CATEGORY_NAME' },
+        { id: 'SLUG_NAME' },
     );
 
     const slugCategoryProducts: any = globalIntl()?.formatMessage(
-        { id: 'SLUG_CATEGORY_NAME_CHILDREN' },
+        { id: 'SLUG_CATEGORY_NAME' },
     );
 
     const translate: any = globalIntl()?.formatMessage(
@@ -67,7 +68,10 @@ function FilterCategory(props: Props) {
                         <> <li>
                             <button type="button" className={classNames('section-header__groups-button', {
                                 'section-header__groups-button--active': '',
-                            })}>
+                            })}
+                            onClick={()=>
+                                dispatch(getCatalogProducts(item.parent_category[slugCategoryProducts]+'/'+item.child_category[slugCategoryProducts]))
+                            }>
                                 {item.child_category[nameCategoryProducts] === null ? translate : item.child_category[nameCategoryProducts]}
                             </button>
                         </li>

@@ -1,5 +1,8 @@
 // react
 import React, { useEffect, useMemo } from 'react';
+import { globalIntl } from '~/services/i18n/global-intl';
+import { useDispatch } from 'react-redux';
+
 // third-party
 import classNames from 'classnames';
 import { useIntl } from 'react-intl';
@@ -22,6 +25,8 @@ import {
     IShopPageOffCanvasSidebar,
     IShopPageSidebarPosition,
 } from '~/interfaces/pages';
+import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import {getCatalogProductsState} from '~/store/catalogProducts/catalogProductsHooks'
 
 interface Props {
     layout: IShopPageLayout;
@@ -35,6 +40,10 @@ function ShopPageShop(props: Props) {
         gridLayout,
         sidebarPosition = 'start',
     } = props;
+    const dispatch = useDispatch()
+    const getCatalog = getCatalogProductsState();
+
+
     const intl = useIntl();
     const router = useRouter();
     const shopState = useShop();

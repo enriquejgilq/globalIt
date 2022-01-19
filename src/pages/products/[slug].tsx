@@ -29,7 +29,6 @@ interface Props {
 function Page(props: Props) {
 
     const { productFeatured,product } = props;
-    console.log(' funciona?? <<<<', productFeatured)
 
     if (productFeatured === null) {
         return <SitePageNotFound />;

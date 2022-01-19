@@ -15,6 +15,9 @@ import loginReducer, { LOGIN_NAMESPACE } from '../login/loginReducers';
 import  featuredCategoriesReducer,{FEATUREDCATEGORIES_NAMESPACE} from '../featuredCategories/featuredCategoriesReducers';
 import categoryProductsReducer, { CATEGORY_PRODUCTS_NAMESPACE } from '../categoryProducts/categoryProductsReducers';
 import categoryProductsChildrenReducer, {CATEGORY_PRODUCTS_CHILDREN_NAMESPACE} from '../categoryProducts/categoryProductsChildren/categoryProductsChildrenReducers';
+import catalogProductsReducer,{CATALOG_PRODUCTS_NAMESPACE} from '../catalogProducts/catalogProductsReducers';
+
+
 export interface IRootState {
     [CART_NAMESPACE]: AppReducerStateType<typeof cartReducer>;
     [COMPARE_NAMESPACE]: AppReducerStateType<typeof compareReducer>;
@@ -31,5 +34,6 @@ export interface IRootState {
     [FEATUREDCATEGORIES_NAMESPACE]: AppReducerStateType<typeof featuredCategoriesReducer>; 
     [CATEGORY_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof categoryProductsReducer>;
     [CATEGORY_PRODUCTS_CHILDREN_NAMESPACE]: AppReducerStateType<typeof categoryProductsChildrenReducer>;
+    [CATALOG_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof catalogProductsReducer>;
 
 }
