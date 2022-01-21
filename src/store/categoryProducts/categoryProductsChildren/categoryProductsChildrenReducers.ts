@@ -19,10 +19,10 @@ const categoryProductsChildrenReducer = (state: any = defaultState, action: any)
     switch (action.type) {
         case GET_CATEGORY_PRODUCTS_CHILDREN_SUCCESS:
             return {
-                count: '',
-                next: null,
-                previous: null,
-                results: action.payload,
+                count: action.payload.count,
+                next: action.payload.next,
+                previous: action.payload.previous,
+                results: action.payload.results,
                 error: false,
                 loading: false
             }

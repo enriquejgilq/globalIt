@@ -35,12 +35,10 @@ export function getCataloLoading ( ): ICatalogProductsActionLoader {
 export function getCatalogProducts(payload:any): catalogProductsThunkAction<Promise<void>> {
     return (dispatch) => (
         new Promise((resolve) => {
-            const apiCatalogProducts = globalIntl()?.formatMessage(
-                { id: 'API_GET_CATALOG_PRODUCTS' },
-            )
-            axios.get(API + apiCatalogProducts+payload+'/?limit=15' )
+           
+            axios.get(payload )
                 .then((response) => {
-                  dispatch(getCatalogSuccess(response.data.results));
+                  dispatch(getCatalogSuccess(response.data));
                     resolve()
                 })
                 .catch((error) => {

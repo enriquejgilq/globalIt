@@ -39,7 +39,7 @@ export function getCategoryProductsParents(): categoryProductsThunkAction<Promis
             )
             axios.get(API + apiCategoryProducts )
                 .then((response) => {
-                  dispatch(getCategoryProducts(response.data.results));
+                  dispatch(getCategoryProducts(response.data));
                     resolve()
                 })
                 .catch((error) => {

@@ -1,6 +1,7 @@
 // react
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { API } from '~/api/constantsApi';
 
 // third-party
 import { FormattedMessage } from 'react-intl';
@@ -46,6 +47,9 @@ function FilterCategory(props: Props) {
     const translate: any = globalIntl()?.formatMessage(
         { id: 'TEXT_TRANSLATE' },
     );
+    const apiCatalogProducts = globalIntl()?.formatMessage(
+        { id: 'API_GET_CATALOG_PRODUCTS' },
+    )
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
     return (
         <div className="filter-category">
@@ -70,7 +74,7 @@ function FilterCategory(props: Props) {
                                 'section-header__groups-button--active': '',
                             })}
                             onClick={()=>
-                                dispatch(getCatalogProducts(item.parent_category[slugCategoryProducts]+'/'+item.child_category[slugCategoryProducts]))
+                                dispatch(getCatalogProducts(API+apiCatalogProducts+item.parent_category[slugCategoryProducts]+'/'+item.child_category[slugCategoryProducts]+'/?limit=16'))
                             }>
                                 {item.child_category[nameCategoryProducts] === null ? translate : item.child_category[nameCategoryProducts]}
                             </button>

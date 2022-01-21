@@ -45,7 +45,7 @@ export function getCategoryProductsChildren(payload:any): categoryProductsChildr
             )
             axios.get(API + apiCategoryProducts+ payload)
                 .then((response) => {
-                  dispatch(getCategoryChildren(response.data.results));
+                  dispatch(getCategoryChildren(response.data));
                     resolve()
                 })
                 .catch((error) => {

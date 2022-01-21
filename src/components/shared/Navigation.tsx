@@ -16,10 +16,11 @@ interface Props {
     data: INavigation;
     page?: number;
     onNavigate?: (event: INavigationEvent) => void;
+    pagescount?: any;
 }
 
 function Navigation(props: Props) {
-    const { data, page, onNavigate } = props;
+    const { data, page, onNavigate,pagescount } = props;
 
     const onPageChange = useCallback((page: number) => {
         if (onNavigate) {
@@ -43,7 +44,7 @@ function Navigation(props: Props) {
         return (
             <Pagination
                 current={page || data.page}
-                total={data.pages}
+                total={pagescount}
                 siblings={2}
                 onPageChange={onPageChange}
             />

@@ -37,6 +37,10 @@ import {
 } from '~/store/shop/shopHooks';
 import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
 import {getCatalogProductsState} from '~/store/catalogProducts/catalogProductsHooks'
+import { Button } from 'reactstrap';
+import { globalIntl } from '~/services/i18n/global-intl';
+import { API } from '~/api/constantsApi';
+
 interface LayoutButton {
     layout: IShopPageLayout;
     icon: React.ReactNode;
@@ -125,12 +129,29 @@ function ProductsView(props: Props) {
     if (!productsList || !navigation) {
         return null;
     }
+    const apiCatalogProducts = globalIntl()?.formatMessage(
+        { id: 'API_GET_CATALOG_PRODUCTS' },
+    )
     useEffect(() => {
-        dispatch(getCatalogProducts('all/all'))
-
+        dispatch(getCatalogProducts(API+apiCatalogProducts+'all/all/?limit=16'))
+        count()
     }, [])
+    const count =()=>{
+        if(getCatalog.count /16 ===0){
+            const result = getCatalog.count /16
+            return result
+        }else{
+            const result = Math.ceil(getCatalog.count /16)
+            return result
+        }
+    }   
+
+  
+
+
     return (
         <div className={rootClasses}>
+            <Button > prueba!!</Button>
             <div className="products-view__body">
                 <div className="products-view__loader" />
 
@@ -197,7 +218,7 @@ function ProductsView(props: Props) {
                                         })}
                                     </div>
                                 </div>
-
+                                { getCatalog.count > 0 && (          
                                 <div className="view-options__legend">
                                     {navigation.type === 'page' && (
                                         <FormattedMessage
@@ -205,7 +226,7 @@ function ProductsView(props: Props) {
                                             values={{
                                                 from: navigation.from,
                                                 to: navigation.to,
-                                                total: navigation.total,
+                                                total: count(),
                                             }}
                                         />
                                     )}
@@ -218,7 +239,7 @@ function ProductsView(props: Props) {
                                         />
                                     )}
                                 </div>
-
+                                    )}
                                 <div className="view-options__spring" />
 
                                 {/*<div className="view-options__select">
@@ -360,14 +381,15 @@ function ProductsView(props: Props) {
                                 ))}   
                             </div>
                         </div>
-
+                    {getCatalog.count > 0 && (
                         <div className="products-view__pagination">
                             <nav aria-label="Page navigation example">
-                                {navigation && (
+                                {getCatalog?.count !=0 && (
                                     <Navigation
                                         data={navigation}
                                         page={options.page}
                                         onNavigate={onNavigate}
+                                        pagescount={count()}
                                     />
                                 )}
                             </nav>
@@ -391,7 +413,7 @@ function ProductsView(props: Props) {
                                     />
                                 )}
                             </div>
-                        </div>
+                        </div>)}
                     </React.Fragment>
                 )}
             </div>
