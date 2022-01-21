@@ -151,7 +151,6 @@ function ProductsView(props: Props) {
 
     return (
         <div className={rootClasses}>
-            <Button > prueba!!</Button>
             <div className="products-view__body">
                 <div className="products-view__loader" />
 
