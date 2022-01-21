@@ -7,8 +7,8 @@ import { globalIntl } from '~/services/i18n/global-intl';
 import classNames from 'classnames';
 // application
 import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
-import {getCatalogProductsState} from '~/store/catalogProducts/catalogProductsHooks'
-import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
+import { getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
 import { API } from '~/api/constantsApi';
 
 
@@ -69,6 +69,17 @@ function Pagination(props: Props) {
 
         return pages;
     };
+
+    const getNextUrl = (page: number) => {
+        const stringUrl = getCatalog.next.split("=");
+
+        if (page !== 1) {
+            return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
+        }
+
+        return stringUrl[0] + "=16";
+    }
+
     const getCatalog = getCatalogProductsState();
     const apiCatalogProducts = globalIntl()?.formatMessage(
         { id: 'API_GET_CATALOG_PRODUCTS' },
@@ -80,7 +91,7 @@ function Pagination(props: Props) {
                     type="button"
                     className="page-link page-link--with-arrow"
                     aria-label="Previous"
-                    onClick={() => {setPage(current - 1); dispatch(getCatalogProducts(getCatalog.previous.replace('offset=16', 'offset='+(current - 1)*16)))}}
+                    onClick={() => { setPage(current - 1); dispatch(getCatalogProducts(getNextUrl(current - 1))) }}
                 >
                     <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
                         <ArrowRoundedLeft7x11Svg />
@@ -96,11 +107,11 @@ function Pagination(props: Props) {
                             aria-current={page === current ? 'page' : undefined}
                         >
                             {page !== current && (
-                                <button type="button" className="page-link" onClick={() => {setPage(page); 
-                                    const stringUrl = getCatalog.next.split("=");
-                                    const nextUrl = [stringUrl[0], stringUrl[1]].join("=") + "=" + page*16;
-                                   {getCatalog.previous}
-                                  dispatch(getCatalogProducts(nextUrl))
+                                <button type="button" className="page-link" onClick={() => {
+                                    setPage(page);
+
+                                    { getCatalog.previous }
+                                    dispatch(getCatalogProducts(getNextUrl(page)))
                                 }}>
                                     {page}
                                 </button>
@@ -126,8 +137,10 @@ function Pagination(props: Props) {
                     type="button"
                     className="page-link page-link--with-arrow"
                     aria-label="Next"
-                    onClick={() => {setPage(current + 1); dispatch(getCatalogProducts(getCatalog.next.replace('offset=16', 'offset='+(current + 1)*16)))
-                }}
+                    onClick={() => {
+                        setPage(current + 1);
+                        dispatch(getCatalogProducts(getNextUrl(current+1)))
+                    }}
                 >
                     <span className="page-link__arrow page-link__arrow--right" aria-hidden="true">
                         <ArrowRoundedRight7x11Svg />
