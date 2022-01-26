@@ -3,6 +3,8 @@ import React from 'react';
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { globalIntl } from '~/services/i18n/global-intl';
+
 // application
 import AppImage from '~/components/shared/AppImage';
 import AppLink from '~/components/shared/AppLink';
@@ -32,7 +34,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
    // product: IProduct;
     layout?: IProductCardLayout;
     exclude?: IProductCardElement[];
-    productFeatured: IProductFeatured;
+    productFeatured: any;
 }
 //Edit redux for product add to cart and compare 
 //redux for wishlist ready !!!!! 
@@ -66,7 +68,9 @@ function ProductCard(props: Props) {
         [`product-card--layout--${layout}`]: layout,
     });
 
-
+    const description:any = globalIntl()?.formatMessage(
+        { id: 'TEXT_CATEGORY_DESCRIPTION' },
+    )
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -79,7 +83,7 @@ function ProductCard(props: Props) {
                                 'product-card__action--loading': loading,
                             })}
                             aria-label={intl.formatMessage({ id: 'BUTTON_QUICKVIEW' })}
-                           onClick={run}
+                            onClick={run}
                             //onClick={(e) => console.log('click details',e )}
                         >
                             <Quickview16Svg />
@@ -148,7 +152,7 @@ function ProductCard(props: Props) {
                             <FormattedMessage id="TEXT_SKU" />
                             {': '}
                         </span>
-                        {productFeatured?.code}
+                        <span style={{color:"black", fontWeight:'bold'}}>{productFeatured.code}</span>
                     </div>
                 )}
 
@@ -161,7 +165,8 @@ function ProductCard(props: Props) {
                         </div>
                     )}
                     <AppLink href={url.product(product)}>{product.name}</AppLink> */}
-                     <AppLink href={url.producturl(productFeatured)}>{productFeatured?.description_en}</AppLink> 
+                    {}
+                     <AppLink href={url.producturl(productFeatured)}>{productFeatured[description]}</AppLink> 
                      
                 </div>
 

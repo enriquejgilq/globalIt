@@ -36,7 +36,7 @@ function BlockFinder() {
             <Decor className="block-finder__decor" type="bottom" />
             <div
                 className="block-finder__image"
-                style={{ backgroundImage: `url(${baseUrl('/images/finder.jpg')})` }}
+                style={{ backgroundImage: `url(${baseUrl('https://nextjs-d7664.web.app/images/slides/slider1.webp')})` }}
             />
             <div className="block-finder__body container container--max--xl">
                 <div className="block-finder__title">

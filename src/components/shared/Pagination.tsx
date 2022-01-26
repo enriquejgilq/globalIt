@@ -71,13 +71,23 @@ function Pagination(props: Props) {
     };
 
     const getNextUrl = (page: number) => {
-        const stringUrl = getCatalog.next.split("=");
+        if(getCatalog.next === null) {
+        const stringUrl = getCatalog.previous?.split("=");
 
         if (page !== 1) {
             return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
         }
 
         return stringUrl[0] + "=16";
+        } else {
+        const stringUrl = getCatalog.next?.split("=");
+
+        if (page !== 1) {
+            return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
+        }
+
+        return stringUrl[0] + "=16";
+    }
     }
 
     const getCatalog = getCatalogProductsState();

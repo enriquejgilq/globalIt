@@ -12,13 +12,13 @@ export interface IBlockSlideshowSlide {
     desktopImage: string;
     mobileImage: string;
     offer?: string;
-    title: string;
-    details: string;
+    title?: string;
+    details?: string;
     buttonLabel: string;
 }
 
 interface Props {
-    slides: IBlockSlideshowSlide[];
+    slides: any;
 }
 
 const slickSettings: ISlickProps = {
@@ -37,8 +37,8 @@ function BlockSlideshow(props: Props) {
         <div className="block block-slideshow">
             <div className="container">
                 <div className="block-slideshow__carousel">
-                    <AppSlick {...slickSettings}>
-                        {slides.map((slide, slideIdx) => (
+                    <AppSlick {...slickSettings} >
+                        {slides.map((slide:any, slideIdx:any) => (
                             <AppLink href={slide.url} key={slideIdx} className="block-slideshow__item">
                                 <span
                                     className={classNames(
@@ -67,7 +67,7 @@ function BlockSlideshow(props: Props) {
                                     className="block-slideshow__item-details"
                                     dangerouslySetInnerHTML={{ __html: slide.details }}
                                 />
-                                <span className="block-slideshow__item-button">{slide.buttonLabel}</span>
+                               <span className="block-slideshow__item-button">{slide.buttonLabel}</span>
                             </AppLink>
                         ))}
                     </AppSlick>

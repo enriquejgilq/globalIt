@@ -10,7 +10,7 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
             links: [
                 { title: 'Home One', url: '/' },
                 { title: 'Home Two', url: '/demo/home-two' },
-                {
+              /*  {
                     title: 'Header Spaceship',
                     url: '/demo/header-spaceship-variant-one',
                     links: [
@@ -18,7 +18,7 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
                         { title: 'Variant Two', url: '/demo/header-spaceship-variant-two' },
                         { title: 'Variant Three', url: '/demo/header-spaceship-variant-three' },
                     ],
-                },
+                },*/
                 {
                     title: 'Header Classic',
                     url: '/demo/header-classic-variant-one',
@@ -110,13 +110,13 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
     },
     {
         title: 'Shop',
-        url: '/demo/shop/shop-grid-4-sidebar',
-        submenu: {
+        url: '/catalog/products',
+       /* submenu: {
             type: 'menu',
             links: [
                 {
                     title: 'Category',
-                    url: '/demo/shop/category-columns-4-sidebar',
+                    url: '/catalog/products/category-columns-4-sidebar',
                     links: [
                         { title: '3 Columns Sidebar', url: '/demo/shop/category-columns-3-sidebar' },
                         { title: '4 Columns Sidebar', url: '/demo/shop/category-columns-4-sidebar' },
@@ -165,7 +165,7 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
                 { title: 'Compare', url: '/compare' },
                 { title: 'Track Order', url: '/track-order' },
             ],
-        },
+        },*/
     },
     {
         title: 'Blog',

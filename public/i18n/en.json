@@ -367,6 +367,8 @@
   "TEXT_ALL": "All",
   "TEXT_CATEGORY": "Category",
   "TEXT_TRANSLATE":"translation not available",
+  "TEXT_CATEGORY_DESCRIPTION":"description_en",
+
 
   "API_EVAPORATORS": "inventory/public-featured-products/en/all/", 
   "API_LOGIN":"authenticate/login/",
@@ -378,4 +380,6 @@
 
   "SLUG_NAME":"name_en",
   "SLUG_CATEGORY_NAME":"slug_name_en"
+  
+
 }

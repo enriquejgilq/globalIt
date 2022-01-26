@@ -20,6 +20,7 @@ import BlockZone from '~/components/blocks/BlockZone';
 import url from '~/services/url';
 import { shopApi, blogApi } from '~/api';
 import { useDeferredData, useProductColumns, useProductTabs } from '~/services/hooks';
+import BlockSlideshow from '~/components/blocks/BlockSlideshow';
 
 import { getListProducts } from '~/store/featuredProducts/featuredProductsActions';
 import { getFeaturedCategories, categoriesLoading, categoriesFilters } from '~/store/featuredCategories/featuredCategoriesActions';
@@ -103,6 +104,20 @@ function Page() {
         { title: 'New Arrivals', url: url.blog() },
         { title: 'Reviews', url: url.blog() },
     ], []);
+    const slides = useMemo(() => [
+        {
+            url: '/catalog/products',
+            desktopImage: 'https://nextjs-d7664.web.app/images/slides/slider1.webp',
+            mobileImage: 'https://nextjs-d7664.web.app/images/slides/slider1.webp',
+            buttonLabel: 'Shop Now',
+        },
+        {
+            url: '/catalog/products',
+            desktopImage: 'https://nextjs-d7664.web.app/images/slides/slider2.webp',
+            mobileImage: 'https://nextjs-d7664.web.app/images/slides/slider1.webp',
+            buttonLabel: 'Shop Now',
+        },
+    ], []);
 
     const brands = useDeferredData(() => shopApi.getBrands({ limit: 16 }), []);
 
@@ -157,10 +172,13 @@ function Page() {
 
     return (
         <React.Fragment>
-            <BlockFinder />
+            <BlockSlideshow slides={slides} />
+
+            {/*<BlockFinder />*/}
             <BlockFeatures layout="top-strip" />
             <BlockSpace layout="divider-nl" />
-            <BlockProductsCarousel
+
+             <BlockProductsCarousel
                 blockTitle={intl.formatMessage({ id: 'HEADER_FEATURED_PRODUCTS' })}
                 layout="grid-5"
                 loading={featuredProducts.isLoading}
@@ -180,7 +198,7 @@ function Page() {
                 loading={blockSale.isLoading}
             />*/}
             <BlockSpace layout="divider-lg" />
-
+{/**
             {blockZones.map((blockZone, blockZoneIdx) => (
                 <React.Fragment key={blockZoneIdx}>
                     <BlockZone
@@ -193,7 +211,7 @@ function Page() {
                     )}
                 </React.Fragment>
             ))}
-
+ 
             <BlockSpace layout="divider-nl" />
             <BlockBanners />
             <BlockSpace layout="divider-nl" />
@@ -209,7 +227,7 @@ function Page() {
                 namecategoriesIdioma={namecategoriesIdioma}
                 productFeatured={state.length === 0 ? featured : ''}
                 setFilterType={setFilterType}
-            />
+            /> 
             <BlockSpace layout="divider-nl" />
             <BlockPosts
                 blockTitle={intl.formatMessage({ id: 'HEADER_LATEST_NEWS' })}

@@ -14,7 +14,7 @@ function PageTitle(props: Props) {
             <title>
                 {title}
                 {title ? ' — ' : ''}
-                Global Air
+                Global Air | Automotive Air Conditioning 
             </title>
         </Head>
     );

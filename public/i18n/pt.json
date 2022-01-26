@@ -367,6 +367,8 @@
     "TEXT_ALL": "Todo o mundo",
     "TEXT_CATEGORY": "Categoria",
     "TEXT_TRANSLATE":"tradução não disponível",
+    "TEXT_CATEGORY_DESCRIPTION":"description_pt",
+
 
 
     "API_EVAPORATORS": "inventory/public-featured-products/pt/all/" ,
@@ -380,6 +382,8 @@
 
     "SLUG_NAME":"name_pt",
     "SLUG_CATEGORY_NAME":"slug_name_pt"
+
+    
 
 
 

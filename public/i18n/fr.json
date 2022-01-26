@@ -367,6 +367,8 @@
   "TEXT_ALL": "Tout Le Monde",
   "TEXT_CATEGORY": "Catégorie",
   "TEXT_TRANSLATE":"traduction non disponible",
+  "TEXT_CATEGORY_DESCRIPTION":"description_fr",
+
 
 
   "API_EVAPORATORS": "inventory/public-featured-products/fr/all/" ,

@@ -366,6 +366,8 @@
   "TEXT_ALL": "Todos",
   "TEXT_CATEGORY": "Categorias",
   "TEXT_TRANSLATE":"traducción no disponible",
+  "TEXT_CATEGORY_DESCRIPTION":"description_es",
+
 
 
   "API_EVAPORATORS": "inventory/public-featured-products/es/all/",
