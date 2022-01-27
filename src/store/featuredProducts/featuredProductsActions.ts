@@ -20,7 +20,7 @@ export function getListProducts(page: number = 1): FeaturedProductsThunkAction<P
     return (dispatch) => (
         new Promise((resolve) => {
             const apiEvaporators = globalIntl()?.formatMessage(
-                { id: 'API_EVAPORATORS' },
+                { id: 'API_GET_PRODUCTS_FEATURED' },
             )
          //   console.log(apiEvaporators)
             axios.get(API + apiEvaporators + '?page=' + page)

@@ -15,6 +15,6 @@ export interface ILogin {
         view_prices: boolean;
     }
     access_token:string;
-    error: string;
-    loading: false
+    error: any;
+    loading: boolean
 }

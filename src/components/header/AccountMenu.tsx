@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
+import { postLogin } from '~/store/login/loginAction';
+
 // application
 import AppImage from '~/components/shared/AppImage';
 import AppLink from '~/components/shared/AppLink';
@@ -12,7 +14,7 @@ import url from '~/services/url';
 import { useSignInForm } from '~/services/forms/sign-in';
 import { useUser, useUserSignOut } from '~/store/user/userHooks';
 import { validateEmail } from '~/services/validators';
-import { postLogin } from '~/store/login/loginAction';
+import {  logout} from '~/store/login/loginAction';
 import { getlogin} from '~/store/login/loginHooks'
 interface Props {
     onCloseMenu: () => void;
@@ -24,6 +26,7 @@ function AccountMenu(props: Props) {
     const user = useUser();
     const userSignOut = useUserSignOut();
     const login = getlogin();
+    const dispatch = useDispatch()
 
 
     const signInForm = useSignInForm({
@@ -35,14 +38,15 @@ function AccountMenu(props: Props) {
     });
 
     const onLogOutButtonClick = () => {
+        dispatch(logout())
+
         userSignOut().then(() => {
             if (onCloseMenu) {
                 onCloseMenu();
             }
         });
     };
-    let msj_error = login?.error[Object.keys(login.error)[0]]
-    let text = msj_error?.toString();
+    let msj_error = login?.error    
     return (
         <div className="account-menu" onSubmit={signInForm.submit}>
             {login.user.is_active === false && (
@@ -53,9 +57,9 @@ function AccountMenu(props: Props) {
                     {msj_error && (
                         <div className="alert alert-xs alert-danger mt-n2">
                           {/**  <FormattedMessage id={signInForm.serverError} />*/} 
-                            <p>{text}</p>
+                         <p><b> {Object.values(msj_error).toString()}</b></p>
                         </div>
-                    )}
+                    )}         
                     <div className="form-group">
                         <label htmlFor="header-signin-email" className="sr-only">
                             <FormattedMessage id="INPUT_EMAIL_ADDRESS_LABEL" />

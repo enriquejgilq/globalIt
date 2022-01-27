@@ -16,7 +16,8 @@ import { globalIntl } from '~/services/i18n/global-intl';
 import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks';
 import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenHooks';
 import { Button } from 'reactstrap';
-import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
+import { getlogin, isAuth } from '~/store/login/loginHooks'
 
 interface Props {
     //  options: ICategoryFilter;
@@ -29,6 +30,7 @@ interface Props {
 function FilterCategory(props: Props) {
     const dispatch = useDispatch()
     const categoryProducts = getCategoryProducts();
+    const is_auth = isAuth()
 
     const { categoryProductsParents,
         categoryProductsChildren,
@@ -49,6 +51,9 @@ function FilterCategory(props: Props) {
     );
     const apiCatalogProducts = globalIntl()?.formatMessage(
         { id: 'API_GET_CATALOG_PRODUCTS' },
+    )
+    const apiCatalogProductsPrivate = globalIntl()?.formatMessage(
+        { id: 'API_GET_CATALOG_PRODUCTS_PRIVATE' },
     )
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
     return (
@@ -73,9 +78,14 @@ function FilterCategory(props: Props) {
                             <button type="button" className={classNames('section-header__groups-button', {
                                 'section-header__groups-button--active': '',
                             })}
-                            onClick={()=>
-                                dispatch(getCatalogProducts(API+apiCatalogProducts+item.parent_category[slugCategoryProducts]+'/'+item.child_category[slugCategoryProducts]+'/?limit=16'))
-                            }>
+                                onClick={() => {
+                                    if (is_auth) {
+                                        dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'))
+                                    } else {
+                                        dispatch(getCatalogProducts(API + apiCatalogProducts + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'))
+                                    }
+                                }
+                                }>
                                 {item.child_category[nameCategoryProducts] === null ? translate : item.child_category[nameCategoryProducts]}
                             </button>
                         </li>

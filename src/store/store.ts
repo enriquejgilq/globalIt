@@ -8,7 +8,7 @@ import version from '~/store/version';
 import { FirstArgType } from '~/store/types';
 import { IRootState } from '~/store/root/rootTypes';
 
-const STORAGE_KEY = 'red-parts/react';
+const STORAGE_KEY = 'global-air-store';
 
 export const save = (state: any) => {
     try {

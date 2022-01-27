@@ -368,15 +368,18 @@
   "TEXT_CATEGORY": "Catégorie",
   "TEXT_TRANSLATE":"traduction non disponible",
   "TEXT_CATEGORY_DESCRIPTION":"description_fr",
+  "TEXT_EMPTY_CATEGORY_DESCRIPTION":"Il n'y a pas de produits dans cette catégorie.",
 
 
 
-  "API_EVAPORATORS": "inventory/public-featured-products/fr/all/" ,
+  "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
   "API_GET_CATEGORY_PRODUCTS":"inventory/public-parent-categories/",
   "API_GET_PRODUCTS_CHILDREN":"inventory/public-children-categories/fr/",
   "API_GET_CATALOG_PRODUCTS" : "inventory/public-products-shop/fr/",
+  "API_GET_CATALOG_PRODUCTS_PRIVATE" : "inventory/products-shop/fr/",
+
 
 
   "SLUG_NAME":"name_fr",

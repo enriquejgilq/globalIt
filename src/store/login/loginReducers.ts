@@ -1,5 +1,6 @@
 import { ILogin } from '~/interfaces/login'
-import { FETCH_LOGIN, ERROR_LOGIN, LOADING_LOGIN } from './loginActionTypes'
+import { FETCH_LOGIN, ERROR_LOGIN, LOADING_LOGIN, LOGOUT } from './loginActionTypes'
+import { withClientState } from '~/store/client';
 
 const defaultState: ILogin = {
     user: {
@@ -24,14 +25,16 @@ const defaultState: ILogin = {
 
 export const LOGIN_NAMESPACE = 'login';
 
-const loginReducer = (state: ILogin = defaultState, action: any) => {
+function loginCurrency(state = defaultState, action: any): ILogin {
+
     switch (action.type) {
         case FETCH_LOGIN:
             return {
+                // ...state,
                 user: action.payload.user,
                 access_token: action.payload.access_token,
-                error: false,
-                loading: false 
+                error: '',
+                loading: false
             }
         case ERROR_LOGIN:
             return {
@@ -61,8 +64,33 @@ const loginReducer = (state: ILogin = defaultState, action: any) => {
                 error: '',
                 loading: true
             }
+        case LOGOUT:
+            return {
+                user: {
+                    id: '',
+                    username: '',
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    phone_number: '',
+                    picture: '',
+                    user_role: '',
+                    company_name: '',
+                    is_active: false,
+                    expiration: '',
+                    view_prices: false,
+                    mac_address: '',
+                },
+                access_token: '',
+                error: '',
+                loading: false
+            }
+
+
         default:
             return state;
     }
 }
+const loginReducer = withClientState(loginCurrency, LOGIN_NAMESPACE);
+
 export default loginReducer;

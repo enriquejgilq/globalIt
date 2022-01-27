@@ -6,6 +6,7 @@ import {
     FETCH_LOGIN,
     ERROR_LOGIN,
     LOADING_LOGIN,
+    LOGOUT,
     LoginAction,
     loginThunkAction,
     ILoginAction
@@ -55,3 +56,8 @@ export function postLogin(payload: any): loginThunkAction<Promise<void>> {
         }));
 }
 
+export function logout(): LoginAction {
+    return {
+        type: LOGOUT,
+    };
+}

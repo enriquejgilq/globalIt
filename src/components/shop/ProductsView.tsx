@@ -37,6 +37,7 @@ import {
 } from '~/store/shop/shopHooks';
 import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
 import {getCatalogProductsState} from '~/store/catalogProducts/catalogProductsHooks'
+import {getlogin,isAuth} from '~/store/login/loginHooks'
 import { Button } from 'reactstrap';
 import { globalIntl } from '~/services/i18n/global-intl';
 import { API } from '~/api/constantsApi';
@@ -56,6 +57,8 @@ function ProductsView(props: Props) {
     const { layout: layoutProps, gridLayout, offCanvasSidebar } = props;
     const intl = useIntl();
     const dispatch = useDispatch()
+    const user = getlogin()
+    const is_auth = isAuth()
     const getCatalog = getCatalogProductsState();
     const isLoading = useShopProductsListIsLoading();
     const shop = useShop();
@@ -132,6 +135,10 @@ function ProductsView(props: Props) {
     const apiCatalogProducts = globalIntl()?.formatMessage(
         { id: 'API_GET_CATALOG_PRODUCTS' },
     )
+    const messageEmpty = globalIntl()?.formatMessage(
+        { id: 'TEXT_EMPTY_CATEGORY_DESCRIPTION' },
+    )
+
     useEffect(() => {
         dispatch(getCatalogProducts(API+apiCatalogProducts+'all/all/?limit=16'))
         count()
@@ -373,6 +380,11 @@ function ProductsView(props: Props) {
                                 </div>
                             </div>
                             <div className="products-list__content">
+                              {getCatalog.results.length === 0 &&(
+                            <div className="view-options__body">
+                                <p><b>{messageEmpty}</b></p>
+                              </div> 
+                              )}  
                               {getCatalog.results.map((item:any) => (
                                     <div key={item.id} className="products-list__item">
                                         <ProductCard productFeatured={item} />

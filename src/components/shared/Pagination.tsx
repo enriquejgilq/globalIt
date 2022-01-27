@@ -91,9 +91,7 @@ function Pagination(props: Props) {
     }
 
     const getCatalog = getCatalogProductsState();
-    const apiCatalogProducts = globalIntl()?.formatMessage(
-        { id: 'API_GET_CATALOG_PRODUCTS' },
-    )
+   
     return (
         <ul className="pagination">
             <li className={classNames('page-item', { disabled: current <= 1 })}>
