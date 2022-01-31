@@ -231,8 +231,8 @@ function ProductsView(props: Props) {
                                             id="TEXT_SHOWING_PRODUCTS"
                                             values={{
                                                 from: navigation.from,
-                                                to: navigation.to,
-                                                total: count(),
+                                                to: navigation.from === 1  ? navigation.to : navigation.from+15,
+                                                total: getCatalog.count,
                                             }}
                                         />
                                     )}
@@ -410,8 +410,8 @@ function ProductsView(props: Props) {
                                         id="TEXT_SHOWING_PRODUCTS"
                                         values={{
                                             from: navigation.from,
-                                            to: navigation.to,
-                                            total: navigation.total,
+                                            to: navigation.from === 1 ? navigation.to : navigation.from+15,
+                                            total: getCatalog.count,
                                         }}
                                     />
                                 )}

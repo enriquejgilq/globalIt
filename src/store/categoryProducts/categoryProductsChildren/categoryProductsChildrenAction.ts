@@ -10,7 +10,8 @@ import {
     ICategoryProductsChildrenAction,
     ICategoryProductsChildrenActionLoader,
     ICategoryProductsChildrenClearAction,
-    categoryProductsChildrenThunkAction
+    categoryProductsChildrenThunkAction,
+    GET_CATEGORY_PRODUCTS_CHILDREN_SUCCESS_PRIVATE
 
 } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenActionTypes';
 
@@ -36,6 +37,12 @@ export function clearCategoryChildren ( ): ICategoryProductsChildrenClearAction 
         type: CLEAR_CATEGORY_CHILDREN,
     };
 }
+export function getCategoryChildrenPrivate(payload: any): ICategoryProductsChildrenAction {
+    return {
+        type: GET_CATEGORY_PRODUCTS_CHILDREN_SUCCESS_PRIVATE,
+        payload
+    };
+}
 
 export function getCategoryProductsChildren(payload:any): categoryProductsChildrenThunkAction<Promise<void>> {
     return (dispatch) => (
@@ -52,5 +59,27 @@ export function getCategoryProductsChildren(payload:any): categoryProductsChildr
                    dispatch(getCategoryChildrenError(error ? error.response.data : 'Algo salio mal'));
                 })
         }));
+}
+
+export function getCategoryProductsChildrenPrivate(payload:any  ): categoryProductsChildrenThunkAction<Promise<void>> {
+    return (dispatch, getState) => (
+        new Promise((resolve) => {
+            const state = getState()
+            const apiCategoryProducts = globalIntl()?.formatMessage(
+                { id: 'API_GET_PRODUCTS_CHILDREN' },
+            )
+            axios.get(API + apiCategoryProducts+ payload,{
+                headers: {
+                    Authorization: 'Token ' + state.login.access_token 
+                }
+            }).then((response) => {
+                dispatch(getCategoryChildrenPrivate(response.data));
+                resolve()
+            }
+            ).catch((error) => {
+                dispatch(getCategoryChildrenError(error ? error.response.data : 'Algo salio mal'));
+            }
+            )
+        }));     
 }
 

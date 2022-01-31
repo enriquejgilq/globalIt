@@ -4,6 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { globalIntl } from '~/services/i18n/global-intl';
+import { useDispatch } from 'react-redux';
 
 // application
 import AppImage from '~/components/shared/AppImage';
@@ -17,7 +18,7 @@ import { IProduct } from '~/interfaces/product';
 import {IProductFeatured } from '~/interfaces/productsFeatured';
 import { useCartAddItem } from '~/store/cart/cartHooks';
 import { useCompareAddItem } from '~/store/compare/compareHooks';
-import { useQuickviewOpen } from '~/store/quickview/quickviewHooks';
+import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
 import { useWishlistAddItem,usewishlistAddItemFeatured } from '~/store/wishlist/wishlistHooks';
 import {
     Cart20Svg,
@@ -25,6 +26,9 @@ import {
     Quickview16Svg,
     Wishlist16Svg,
 } from '~/svg';
+import { isAuth } from '~/store/login/loginHooks'
+import { getImages,getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
+import {getImagesCarouselState} from '~/store/imagesCarousel/imagesCarouselHooks';
 
 export type IProductCardElement = 'actions' | 'status-badge' | 'meta' | 'features' | 'buttons' | 'list-buttons';
 
@@ -53,13 +57,22 @@ function ProductCard(props: Props) {
     } = props;
     const intl = useIntl();
    // const featuredAttributes = product.attributes.filter((x) => x.featured);
+   const is_auth = isAuth()
+   const allImages = getImagesCarouselState();
+   const dispatch = useDispatch()
     const cartAddItem = useCartAddItem();
     const quickviewOpen = useQuickviewOpen();
+    const quickviewOpenPrivate = useQuickviewOpenPrivate();
+
     const compareAddItem = useCompareAddItem();
     const wishlistAddItem = useWishlistAddItem();
     const wishlistAddItemFeatured = usewishlistAddItemFeatured();
+   
+
 
     const showQuickview = () => quickviewOpen(productFeatured?.code);
+    const showQuickviewPrivate = () => quickviewOpenPrivate(productFeatured?.code);
+
    // const addToWishlist = () => wishlistAddItem(productFeatured);
     const addToFeaturedWishlist = () => wishlistAddItemFeatured(productFeatured);
    // const addToCompare = () => compareAddItem(product);
@@ -71,20 +84,27 @@ function ProductCard(props: Props) {
     const description:any = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY_DESCRIPTION' },
     )
+ console.log(allImages.loading)
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
                 <AsyncAction
-                    action={() => showQuickview()}
+                    action={() => 
+                        is_auth ?  showQuickviewPrivate() : showQuickview()
+                    }    
                     render={({ run, loading }) => (
                         <button
                             type="button"
                             className={classNames('product-card__action product-card__action--quickview', {
-                                'product-card__action--loading': loading,
+                                'product-card__action--loading': allImages.loading? loading : false,
                             })}
                             aria-label={intl.formatMessage({ id: 'BUTTON_QUICKVIEW' })}
-                            onClick={run}
-                            //onClick={(e) => console.log('click details',e )}
+                            onClick={()=>{run ? run() : null;
+                                dispatch(getCataloLoading());
+                                dispatch(getImages(productFeatured.code))
+                               // console.log('click',productFeatured.code)
+                            }}
+                         //   onClick={run}
                         >
                             <Quickview16Svg />
                         </button>
@@ -130,13 +150,10 @@ function ProductCard(props: Props) {
             <div className="product-card__image">
                 <div className="image image--type--product">
                     <AppLink className="image__body">
-                        {
-                        productFeatured.image_principal === null || productFeatured.image_principal ==="" ?(
-                            <AppImage className="image__tag"  src="/images/noimages/noimage3.jpg"   />
-                        )
-                        
-                        : (<AppImage className="image__tag" src={productFeatured?.image_principal} />)
-                    }
+                        {productFeatured.image_principal === null || productFeatured.image_principal ==="" ?(
+                        <AppImage className="image__tag"  src="/images/noimages/noimage3.jpg"   />
+                        ):(
+                        <AppImage className="image__tag" src={productFeatured?.image_principal} />) }
                     </AppLink>
                 </div> 
 {/**
@@ -165,9 +182,7 @@ function ProductCard(props: Props) {
                         </div>
                     )}
                     <AppLink href={url.product(product)}>{product.name}</AppLink> */}
-                    {}
                      <AppLink href={url.producturl(productFeatured)}>{productFeatured[description]}</AppLink> 
-                     
                 </div>
 
                 <div className="product-card__rating">

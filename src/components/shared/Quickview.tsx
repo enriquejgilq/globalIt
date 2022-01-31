@@ -1,5 +1,7 @@
 // react
 import React, { useCallback, useMemo } from 'react';
+import { globalIntl } from '~/services/i18n/global-intl';
+
 // third-party
 import classNames from 'classnames';
 import { Controller, FormProvider } from 'react-hook-form';
@@ -20,6 +22,7 @@ import { useCompareAddItem } from '~/store/compare/compareHooks';
 import { useProductForm } from '~/services/forms/product';
 import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
 import { useWishlistAddItem } from '~/store/wishlist/wishlistHooks';
+import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 
 function Quickview() {
     const quickview = useQuickview();
@@ -27,9 +30,15 @@ function Quickview() {
     const wishlistAddItem = useWishlistAddItem();
     const compareAddItem = useCompareAddItem();
     const { product } = quickview;
-    const image = useMemo(() => product?.images || [], [product]);
+    const allImages = getImagesCarouselState();
+    const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
     const productForm = useProductForm(product);
-
+    const description: any = globalIntl()?.formatMessage(
+        { id: 'TEXT_CATEGORY_DESCRIPTION' },
+    )
+    const noimage: any = globalIntl()?.formatMessage(
+        { id: 'TEXT_EMPTY_IMAGES' },
+    )
     const toggle = useCallback(() => {
         if (quickview.open) {
             quickviewClose();
@@ -39,17 +48,17 @@ function Quickview() {
     if (!product) {
         return null;
     }
-
+    console.log(image);
     const productTemplate = (
         <div className="quickview__product">
             <div className="quickview__product-name">
-                {product.name}
+                {product[description]}
             </div>
-            <div className="quickview__product-rating">
+            {/**   <div className="quickview__product-rating">
                 <div className="quickview__product-rating-stars">
                     <Rating value={product.rating || 0} />
                 </div>
-                <div className="quickview__product-rating-title">
+                 <div className="quickview__product-rating-title">
                     <FormattedMessage
                         id="TEXT_RATING_LABEL"
                         values={{
@@ -57,8 +66,8 @@ function Quickview() {
                             reviews: product.reviews,
                         }}
                     />
-                </div>
-            </div>
+                </div> 
+            </div>*/}
             <div className="quickview__product-meta">
                 <table>
                     <tbody>
@@ -66,9 +75,9 @@ function Quickview() {
                             <th>
                                 <FormattedMessage id="TABLE_SKU" />
                             </th>
-                            <td>{product.sku}</td>
+                            <td>{product.code}</td>
                         </tr>
-                        {product.brand && (
+                        {/**   {product.brand && (
                             <React.Fragment>
                                 <tr>
                                     <th>
@@ -97,18 +106,19 @@ function Quickview() {
                                 <FormattedMessage id="TABLE_PART_NUMBER" />
                             </th>
                             <td>{product.partNumber}</td>
-                        </tr>
+                        </tr>*/}
                     </tbody>
                 </table>
             </div>
-            {product.excerpt && (
+
+            {product[description] && (
                 <div className="quickview__product-description">
-                    {product.excerpt}
+                    {product[description]}
                 </div>
             )}
             <div className="quickview__product-prices-stock">
                 <div className="quickview__product-prices">
-                    {product.compareAtPrice !== null && (
+                    {/**   {product.compareAtPrice !== null && (
                         <React.Fragment>
                             <div className="quickview__product-price quickview__product-price--old">
                                 <CurrencyFormat value={product.compareAtPrice} />
@@ -117,7 +127,7 @@ function Quickview() {
                                 <CurrencyFormat value={product.price} />
                             </div>
                         </React.Fragment>
-                    )}
+                    )} */}
                     {product.compareAtPrice === null && (
                         <div className="quickview__product-price quickview__product-price--current">
                             <CurrencyFormat value={product.price} />
@@ -148,14 +158,15 @@ function Quickview() {
                     />
                 </div>
                 <div className="quickview__product-actions-item quickview__product-actions-item--addtocart">
-                    <button
+                    {/**   <button
                         type="submit"
                         className={classNames('btn', 'btn-primary', 'btn-block', {
-                            'btn-loading': productForm.submitInProgress,
+                            'btn-loading':'',
+                            
                         })}
                     >
                         <FormattedMessage id="BUTTON_ADD_TO_CART" />
-                    </button>
+                    </button> */}
                 </div>
 
                 <AsyncAction
@@ -203,15 +214,26 @@ function Quickview() {
 
             <FormProvider {...productForm.methods}>
                 <form onSubmit={productForm.submit} className="quickview__body">
-                    <ProductGallery className="quickview__gallery" layout="quickview" images={image} />
+                    {image.length === 0 ? (
+                        <div style={{
+                            width: '270px',
+                            textAlign: 'justify',
+                            justifyContent: 'center',
+                            
+                        }}>
+                            <p><b>{noimage}</b></p>
+                        </div>
+                    ) : (
+                        <ProductGallery className="quickview__gallery" layout="quickview" images={image} />)
+                    }
 
                     {productTemplate}
                 </form>
             </FormProvider>
 
-            <AppLink href={url.product(product)} className="quickview__see-details">
+            { /**  <AppLink href={url.producturl(product.code)} className="quickview__see-details">
                 <FormattedMessage id="BUTTON_SEE_FULL_DETAILS" />
-            </AppLink>
+            </AppLink> */}
         </Modal>
     );
 }

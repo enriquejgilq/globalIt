@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { API } from '~/api/constantsApi';
 import { globalIntl } from '~/services/i18n/global-intl';
-
 import {
     GET_CATALOG_PRODUCTS,
     GET_CATALOG_PRODUCTS_SUCCESS,
@@ -50,7 +49,8 @@ export function getCatalogProductsPrivate(payload:any  ): catalogProductsThunkAc
     return (dispatch, getState) => (
         new Promise((resolve) => {
             const state = getState()
-            axios.get(payload,{
+            axios.get(
+                 payload,{
                 headers: {
                     Authorization: 'Token ' + state.login.access_token 
                 }

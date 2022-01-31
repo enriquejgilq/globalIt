@@ -19,6 +19,7 @@ import featuredCategoriesReducer, { FEATUREDCATEGORIES_NAMESPACE } from '../feat
 import categoryProductsReducer,{  CATEGORY_PRODUCTS_NAMESPACE   } from '../categoryProducts/categoryProductsReducers';
 import categoryProductsChildrenReducer,{CATEGORY_PRODUCTS_CHILDREN_NAMESPACE } from '../categoryProducts/categoryProductsChildren/categoryProductsChildrenReducers'; 
 import catalogProductsReducer,{CATALOG_PRODUCTS_NAMESPACE} from '../catalogProducts/catalogProductsReducers';
+import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/imagesCarouselReducers';
 export default combineReducers({
     version: (state: number = version) => state,
     [CART_NAMESPACE]: cartReducer,
@@ -37,5 +38,7 @@ export default combineReducers({
     [CATEGORY_PRODUCTS_NAMESPACE]:categoryProductsReducer,
     [CATEGORY_PRODUCTS_CHILDREN_NAMESPACE]:categoryProductsChildrenReducer,
     [CATALOG_PRODUCTS_NAMESPACE]:catalogProductsReducer,
+    [IMAGESCAROUSEL_NAMESPACE]:imagesCarouselReducer,
+
 
 });

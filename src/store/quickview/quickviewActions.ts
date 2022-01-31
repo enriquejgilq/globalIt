@@ -2,19 +2,25 @@
 import { IProduct } from '~/interfaces/product';
 import {IProductFeatured } from '~/interfaces/productsFeatured'
 import { shopApi } from '~/api';
+import { API } from '~/api/constantsApi';
+import { globalIntl } from '~/services/i18n/global-intl';
+
 import {
     QUICKVIEW_CLOSE,
     QUICKVIEW_OPEN,
+    QUICKVIEW_PRIVATE,
     QuickviewCloseAction,
     QuickviewOpenAction,
     QuickviewThunkAction,
-    QuickviewOpenActionFe
+    QuickviewOpenActionFe,
+    QuickviewOpenActionPrivate,
+    QUICKVIEW_PRIVATE_SUCCESS
 } from '~/store/quickview/quickviewActionTypes';
 import axios from 'axios';
 
 let cancelPreviousRequest = () => {};
 
-export function quickviewOpenSuccess(product: IProduct): QuickviewOpenAction {
+export function quickviewOpenSuccess(product: any): QuickviewOpenAction {
     return {
         type: QUICKVIEW_OPEN,
         product,
@@ -27,12 +33,15 @@ export function quickviewClose(): QuickviewCloseAction {
     };
 }
 
-export function quickviewOpenSuccessFe(productFeatured:IProductFeatured) : QuickviewOpenActionFe {
+export function quickviewOpenSuccessPrivate(product:any) : QuickviewOpenActionPrivate {
     return {
-        type: QUICKVIEW_OPEN,
-        productFeatured,
+        type: QUICKVIEW_PRIVATE_SUCCESS,
+        product,
     };
 }
+
+
+
 
 export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise<void>> {
     return (dispatch) => {
@@ -42,10 +51,21 @@ export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise
             let canceled = false;
             // sending request to server, timeout is used as a stub
             const timer = setTimeout(() => {
-                //axios a get details of product
-                console.log('get details of product from server for id:D ' + productSlug+ ' es el code(code de producto xd) xd ' );
-            
-               
+                const apiDetails = globalIntl()?.formatMessage(
+                    { id: 'API_GET_PRODUCTS_BY_CODE' },
+                )
+                axios.get(API + apiDetails+productSlug.toLowerCase()  )
+                .then((response) => {
+                    dispatch(quickviewOpenSuccess(response?.data));
+                    console.log(response.data)
+                    resolve()
+                })
+                .catch((error) => {
+                    console.log(error)
+                  //  dispatch(getCategoriesError(error));
+                })
+              
+             //   dispatch(quickviewOpenSuccess(productSlug));
              /*  
                 shopApi.getProductBySlug(productSlug).then((product) => {
                     if (canceled) {
@@ -55,7 +75,51 @@ export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise
                     if (product) {
                         dispatch(quickviewOpenSuccess(product));
                     }
+                    resolve();
+                });/**/
+            }, 250);
 
+            cancelPreviousRequest = () => {
+                canceled = true;
+                clearTimeout(timer);
+                resolve();
+            };
+        });
+    };
+}
+export function quickviewOpenPrivate(productSlug: string): QuickviewThunkAction<Promise<void>> {
+    return (dispatch,getState) => {
+        cancelPreviousRequest();
+
+        return new Promise((resolve) => {
+            let canceled = false;
+            // sending request to server, timeout is used as a stub
+            const timer = setTimeout(() => {
+                const state = getState()
+
+                const apiDetailsPrivate = globalIntl()?.formatMessage(
+                    { id: 'API_GET_PRODUCTS_BY_CODE_PRIVATE' },
+                )
+                axios.get(API + apiDetailsPrivate+productSlug.toLowerCase(), {
+                    headers: {
+                        Authorization: 'Token ' + state.login.access_token 
+                    }
+                }).then((response) => {
+                    dispatch(quickviewOpenSuccessPrivate(response.data));
+                    resolve()
+                }
+                )
+               
+             //   dispatch(quickviewOpenSuccess(productSlug));
+             /*  
+                shopApi.getProductBySlug(productSlug).then((product) => {
+                    if (canceled) {
+                        return;
+                    }
+
+                    if (product) {
+                        dispatch(quickviewOpenSuccess(product));
+                    }
                     resolve();
                 });/**/
             }, 250);

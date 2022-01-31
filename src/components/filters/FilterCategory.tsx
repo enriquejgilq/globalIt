@@ -17,7 +17,6 @@ import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHo
 import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenHooks';
 import { Button } from 'reactstrap';
 import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
-import { getlogin, isAuth } from '~/store/login/loginHooks'
 
 interface Props {
     //  options: ICategoryFilter;
@@ -25,18 +24,18 @@ interface Props {
     categoryProductsChildren: any;
     selectCategoryChildren?: (parent: any) => void,
     onClearCategoryChildren?: () => void,
+    is_auth: boolean,
 }
 
 function FilterCategory(props: Props) {
-    const dispatch = useDispatch()
-    const categoryProducts = getCategoryProducts();
-    const is_auth = isAuth()
-
     const { categoryProductsParents,
         categoryProductsChildren,
         selectCategoryChildren,
-        onClearCategoryChildren
+        onClearCategoryChildren,
+        is_auth
     } = props;
+    const dispatch = useDispatch()
+    const categoryProducts = getCategoryProducts();
     const childrenProducts = getCategoryProductsChildrenState();
     const nameCategoryProducts: any = globalIntl()?.formatMessage(
         { id: 'SLUG_NAME' },
@@ -55,6 +54,10 @@ function FilterCategory(props: Props) {
     const apiCatalogProductsPrivate = globalIntl()?.formatMessage(
         { id: 'API_GET_CATALOG_PRODUCTS_PRIVATE' },
     )
+
+    const clear =() => {
+        onClearCategoryChildren
+    }
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
     return (
         <div className="filter-category">
@@ -64,6 +67,7 @@ function FilterCategory(props: Props) {
                         <span className="filter-category__arrow">
                             <ArrowRoundedLeft6x9Svg />
                         </span>
+                        
                         <button type="button"
                             className={classNames('section-header__groups-button', {
                                 'section-header__groups-button--active': '',
@@ -72,7 +76,7 @@ function FilterCategory(props: Props) {
                             <FormattedMessage id="LINK_ALL_PRODUCTS" />
                         </button>
                     </li>
-                    <p><b>{result[0]}</b>  </p>
+                    <p><b>{result[0]}</b></p>
                     {categoryProductsChildren.results?.map((item: any) => (
                         <> <li>
                             <button type="button" className={classNames('section-header__groups-button', {
@@ -99,8 +103,8 @@ function FilterCategory(props: Props) {
                                 className={classNames('section-header__groups-button', {
                                     'section-header__groups-button--active': '',
                                 })}
-                                onClick={() => { selectCategoryChildren ? selectCategoryChildren(item[slugCategoryProducts]) : null }}
-                            >
+                                onClick={() => {
+                                    selectCategoryChildren ? selectCategoryChildren(item[slugCategoryProducts]) : null }}> 
                                 {item[nameCategoryProducts]}
                             </button>
                         </React.Fragment>

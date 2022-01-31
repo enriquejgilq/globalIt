@@ -9,7 +9,7 @@ import { colorType } from '~/services/color';
 import { IProductOption } from '~/interfaces/product';
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
-    options: IProductOption[];
+    options: any;
     namespace?: string;
 }
 
@@ -22,15 +22,14 @@ function ProductForm(props: Props) {
     } = props;
     const { register } = useFormContext();
     const ns = useMemo(() => (namespace ? `${namespace}.` : ''), [namespace]);
-
-    const optionsTemplate = options.map((option, optionIdx) => (
+    const optionsTemplate = options?.map((option:any, optionIdx:any) => (
         <div key={optionIdx} className="product-form__row">
             <div className="product-form__title">{option.name}</div>
             <div className="product-form__control">
                 {option.type === 'default' && (
                     <div className="input-radio-label">
                         <div className="input-radio-label__list">
-                            {option.values.map((value, valueIdx) => (
+                            {option.values.map((value:any, valueIdx:any) => (
                                 <label key={valueIdx} className="input-radio-label__item">
                                     <input
                                         type="radio"
@@ -48,7 +47,7 @@ function ProductForm(props: Props) {
                 {option.type === 'color' && (
                     <div className="input-radio-color">
                         <div className="input-radio-color__list">
-                            {option.values.map((value, valueIdx) => (
+                            {option.values.map((value:any, valueIdx:any) => (
                                 <React.Fragment key={valueIdx}>
                                     <label
                                         className={classNames('input-radio-color__item', {

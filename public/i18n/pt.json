@@ -369,7 +369,7 @@
     "TEXT_TRANSLATE":"tradução não disponível",
     "TEXT_CATEGORY_DESCRIPTION":"description_pt",
     "TEXT_EMPTY_CATEGORY_DESCRIPTION":"Não há nenhum produto nesta categoria.",
-
+    "TEXT_EMPTY_IMAGES": "nenhuma imagem para exibir",
 
 
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,
@@ -379,14 +379,13 @@
     "API_GET_PRODUCTS_CHILDREN":"inventory/public-children-categories/pt/",
     "API_GET_CATALOG_PRODUCTS" : "inventory/public-products-shop/pt/",
     "API_GET_CATALOG_PRODUCTS_PRIVATE" : "inventory/products-shop/pt/",
-
+    "API_GET_PRODUCTS_BY_CODE" : "inventory/public-products/",
+    "API_GET_PRODUCTS_BY_CODE_PRIVATE" : "inventory/products/",
+    "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
 
 
     "SLUG_NAME":"name_pt",
     "SLUG_CATEGORY_NAME":"slug_name_pt"
 
     
-
-
-
 }

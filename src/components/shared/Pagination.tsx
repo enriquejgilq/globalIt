@@ -8,8 +8,9 @@ import classNames from 'classnames';
 // application
 import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
 import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
-import { getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
 import { API } from '~/api/constantsApi';
+import {  isAuth } from '~/store/login/loginHooks'
 
 
 interface Props {
@@ -27,6 +28,7 @@ function Pagination(props: Props) {
         onPageChange,
     } = props;
     const dispatch = useDispatch()
+    const is_auth = isAuth()
 
     const setPage = (value: number) => {
         if (value < 1 || value > total || value === current) {
@@ -91,7 +93,6 @@ function Pagination(props: Props) {
     }
 
     const getCatalog = getCatalogProductsState();
-   
     return (
         <ul className="pagination">
             <li className={classNames('page-item', { disabled: current <= 1 })}>
@@ -99,7 +100,12 @@ function Pagination(props: Props) {
                     type="button"
                     className="page-link page-link--with-arrow"
                     aria-label="Previous"
-                    onClick={() => { setPage(current - 1); dispatch(getCatalogProducts(getNextUrl(current - 1))) }}
+                    onClick={() => { setPage(current - 1);
+                        if(is_auth){
+                            dispatch(getCatalogProductsPrivate(getNextUrl(current - 1)))
+                        }else{ 
+                            dispatch(getCatalogProducts(getNextUrl(current - 1))) }}
+                        } 
                 >
                     <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
                         <ArrowRoundedLeft7x11Svg />
@@ -119,7 +125,11 @@ function Pagination(props: Props) {
                                     setPage(page);
 
                                     { getCatalog.previous }
+                                    if(is_auth){
+                                        dispatch(getCatalogProductsPrivate(getNextUrl(page)))
+                                    }else{
                                     dispatch(getCatalogProducts(getNextUrl(page)))
+                                    }
                                 }}>
                                     {page}
                                 </button>
@@ -147,7 +157,11 @@ function Pagination(props: Props) {
                     aria-label="Next"
                     onClick={() => {
                         setPage(current + 1);
+                        if(is_auth){
+                            dispatch(getCatalogProductsPrivate(getNextUrl(current + 1)))
+                        }else{
                         dispatch(getCatalogProducts(getNextUrl(current+1)))
+                        }
                     }}
                 >
                     <span className="page-link__arrow page-link__arrow--right" aria-hidden="true">

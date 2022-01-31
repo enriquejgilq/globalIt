@@ -286,6 +286,7 @@ function ProductGallery(props: Props) {
                     beforeChange={handleFeaturedBeforeChange}
                     afterChange={handleFeaturedAfterChange}
                 >
+
                     {images.map((image, index) => (
                         <div key={index} className="image image--type--product">
                             <AppLink

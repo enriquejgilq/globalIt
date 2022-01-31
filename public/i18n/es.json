@@ -250,6 +250,7 @@
   "TABLE_TOTAL": "Total",
   "TABLE_TOTAL_SHIPPING": "Envío",
   "TABLE_TOTAL_TAX": "Impuestos",
+  
   "TEXT_ACTIVE_FILTERS": "Filtros activos",
   "TEXT_ALERT_RETURNING_CUSTOMER": "¿Cliente recurrente? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Haga clic aquí para iniciar sesión",
@@ -368,7 +369,7 @@
   "TEXT_TRANSLATE":"traducción no disponible",
   "TEXT_CATEGORY_DESCRIPTION":"description_es",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":" No hay productos en esta categoría.",
-
+  "TEXT_EMPTY_IMAGES": "No hay imágenes para mostrar",
 
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
@@ -378,9 +379,13 @@
   "API_GET_PRODUCTS_CHILDREN":"inventory/public-children-categories/es/",
   "API_GET_CATALOG_PRODUCTS" : "inventory/public-products-shop/es/",
   "API_GET_CATALOG_PRODUCTS_PRIVATE" : "inventory/products-shop/es/",
-  
+  "API_GET_PRODUCTS_BY_CODE" : "inventory/public-products/",
+  "API_GET_PRODUCTS_BY_CODE_PRIVATE" : "inventory/products/",
+  "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
+
 
   "SLUG_NAME":"name",
   "SLUG_CATEGORY_NAME":"slug_name"
+
 
 }

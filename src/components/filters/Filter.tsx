@@ -17,9 +17,10 @@ import { useShopSetFilterValueThunk } from '~/store/shop/shopHooks';
 import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks';
 import { getCategoryProductsParents, getCategoryLoading } from '~/store/categoryProducts/categoryProductsActions';
 import { getCategoryProductsChildren,
-        clearCategoryChildren
+        clearCategoryChildren,getCategoryProductsChildrenPrivate
   } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenAction';
 import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenHooks';
+import { getlogin, isAuth } from '~/store/login/loginHooks'
 
 type RenderFilterFn = ICollapseRenderFn<HTMLDivElement, HTMLDivElement>;
 
@@ -39,6 +40,7 @@ function Filter(props: Props) {
         dataFilTers,
          value } = props;
     const dispatch = useDispatch()
+    const is_auth = isAuth()
 
     const shopSetFilterValue = useShopSetFilterValueThunk();
     const categoryProductsParents = getCategoryProducts();
@@ -60,12 +62,16 @@ function Filter(props: Props) {
     }, [])
    
     const selectCategoryChildren = (parent:any) => {
-        dispatch(getCategoryProductsChildren(parent))
+        if(is_auth){
+            dispatch(getCategoryProductsChildrenPrivate(parent))
+        }else{
+             dispatch(getCategoryProductsChildren(parent))
+        }
     }
+    
     const onClearCategoryChildren = () => {
         dispatch(clearCategoryChildren())
     }
-
     const renderFn: RenderFilterFn = ({ toggle, setItemRef, setContentRef }) => (
 
         <div className="filter filter--opened" ref={setItemRef}>
@@ -84,6 +90,7 @@ function Filter(props: Props) {
                                 categoryProductsChildren={categoryProductsChildren}
                                 selectCategoryChildren={selectCategoryChildren}
                                 onClearCategoryChildren={onClearCategoryChildren}
+                                is_auth={is_auth}
                                 />
                             {/** 
                              * 

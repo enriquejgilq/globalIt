@@ -49,7 +49,7 @@ const url = {
     wishlist: () => '/wishlist',
     compare: () => '/compare',
     trackOrder: () => '/track-order',
-    producturl: (productFeatured: IProductFeatured): IAppLinkHref => ({
+    producturl: (productFeatured: any): IAppLinkHref => ({
         href: `/products/[slug]?slug=${productFeatured?.code}`,
         as: `/products/${productFeatured?.code}`,
     }),
