@@ -84,7 +84,6 @@ function ProductCard(props: Props) {
     const description:any = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY_DESCRIPTION' },
     )
- console.log(allImages.loading)
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">

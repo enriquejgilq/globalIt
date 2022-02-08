@@ -38,6 +38,8 @@
   "BUTTON_TRACK": "Pista",
   "BUTTON_UPDATE_CART": "Actualización de la compra",
   "BUTTON_VIEW_CART": "Ver carrito",
+  "BUTTON_VIEW_PRICES": "Ver precios",
+
 
   "COUNTRY_NAME_LAND": "RandomLand",
   "COUNTRY_NAME_RAND": "Random Federation",
@@ -250,7 +252,6 @@
   "TABLE_TOTAL": "Total",
   "TABLE_TOTAL_SHIPPING": "Envío",
   "TABLE_TOTAL_TAX": "Impuestos",
-  
   "TEXT_ACTIVE_FILTERS": "Filtros activos",
   "TEXT_ALERT_RETURNING_CUSTOMER": "¿Cliente recurrente? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Haga clic aquí para iniciar sesión",
@@ -328,9 +329,9 @@
   "TEXT_SHOP_FEATURE_SECURITY_TITLE": "100% de seguridad",
   "TEXT_SHOP_FEATURE_SUPPORT_SUBTITLE": "Llámanos en cualquier momento",
   "TEXT_SHOP_FEATURE_SUPPORT_TITLE": "Soporte 24/7",
-  "TEXT_SHOWING_PRODUCTS": "Demostración {from}–{to} de {total} {total, plural, one {product} other {products}}",
+  "TEXT_SHOWING_PRODUCTS": "Demostración {from}–{to} de {total} {total, plural, one {producto} other {productos}}",
   "TEXT_SKU": "SKU",
-  "TEXT_SLOGAN": "Fabricante de partes de aire acondicionado automotriz",
+  "TEXT_SLOGAN": "Fabricante de piezas de aire acondicionado para automóviles",
   "TEXT_SOCIAL_LINKS_MESSAGE": "Síguenos en las redes sociales",
   "TEXT_STARS": "{stars, plural, one {{stars} star rating} other {{stars} stars rating}}",
   "TEXT_STOCK_IN_STOCK": "En stock",
@@ -372,6 +373,7 @@
   "TEXT_EMPTY_IMAGES": "No hay imágenes para mostrar",
 
 
+
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
@@ -386,6 +388,5 @@
 
   "SLUG_NAME":"name",
   "SLUG_CATEGORY_NAME":"slug_name"
-
 
 }

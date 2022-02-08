@@ -22,7 +22,7 @@ const url = {
     },
 
     // shop pages
-    shop: () => '/catalog',
+    shop: () => '/catalog/products',
     shopCategory: (category: IShopCategory): IAppLinkHref => ({
         href: `/catalog/[slug]${category.layout === 'products' ? '/products' : ''}?slug=${category.slug}`,
         as: `/catalog/${category.slug}${category.layout === 'products' ? '/products' : ''}`,
@@ -35,9 +35,9 @@ const url = {
             },
         },
     }),
-    product: (product: IProduct): IAppLinkHref => ({
-        href: `/products/[slug]?slug=${product.slug}`,
-        as: `/products/${product.slug}`,
+    product: (product: any): IAppLinkHref => ({
+        href: `/products/[slug]?slug=${product}`,
+        as: `/products/${product}`,
     }),
     brand: (brand: IBrand) => '/',
     cart: () => '/cart',
@@ -46,13 +46,14 @@ const url = {
         href: `/cart/checkout/[token]?token=${order.token}`,
         as: `/cart/checkout/${order.token}`,
     }),
+     producturl: (productFeatured: any): IAppLinkHref => ({
+        href: `/products/[slug]?slug=${productFeatured}`,
+        as: `/products/${productFeatured}`,
+    }),
     wishlist: () => '/wishlist',
     compare: () => '/compare',
     trackOrder: () => '/track-order',
-    producturl: (productFeatured: any): IAppLinkHref => ({
-        href: `/products/[slug]?slug=${productFeatured?.code}`,
-        as: `/products/${productFeatured?.code}`,
-    }),
+   
     // blog pages
     blog: () => '/demo/blog/classic-right-sidebar',
     post: (post: IPost) => '/demo/blog/post-full-width',

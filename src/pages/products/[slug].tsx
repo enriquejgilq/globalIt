@@ -8,11 +8,12 @@ import { IProduct } from '~/interfaces/product';
 import {IProductFeatured} from '~/interfaces/productsFeatured';
 import { shopApi } from '~/api';
 import SitePageNotFound from '~/components/site/SitePageNotFound';
+import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
 
 
 interface Props {
-    product: IProduct | null;
-    productFeatured: IProductFeatured  | null;
+    product: any | null;
+    productFeatured: any  | null;
 
 }
 
@@ -27,18 +28,19 @@ interface Props {
     //};
 //};
 function Page(props: Props) {
+    const details = useQuickview();
 
     const { productFeatured,product } = props;
 
-    if (productFeatured === null) {
+    if (details.product === null) {
         return <SitePageNotFound />;
     }
 
     return (
-       {/**  <ShopPageProduct
-            product={product}
+         <ShopPageProduct
+            product={details.product}
             layout="full"
-        />*/}
+        />
     );
 }
 

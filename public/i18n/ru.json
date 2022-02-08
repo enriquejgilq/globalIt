@@ -364,7 +364,7 @@
   "TEXT_VEHICLE_FILTER_HELP": "Выберите автомобиль, чтобы отфильтровать только точно подходящие запчасти.",
   "TEXT_WORKING_HOURS": "Часы работы",
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Ваша корзина пуста!",
-  "API_EVAPORATORS": "inventory/public-featured-products/en/evaporators/" ,
+  "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/en/evaporators/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/"
 

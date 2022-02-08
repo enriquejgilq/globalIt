@@ -48,7 +48,6 @@ function Quickview() {
     if (!product) {
         return null;
     }
-    console.log(image);
     const productTemplate = (
         <div className="quickview__product">
             <div className="quickview__product-name">
@@ -224,16 +223,22 @@ function Quickview() {
                             <p><b>{noimage}</b></p>
                         </div>
                     ) : (
-                        <ProductGallery className="quickview__gallery" layout="quickview" images={image} />)
+                        <ProductGallery
+                         className="quickview__gallery"
+                          layout="quickview" 
+                          images={image} />)
                     }
-
                     {productTemplate}
                 </form>
             </FormProvider>
 
-            { /**  <AppLink href={url.producturl(product.code)} className="quickview__see-details">
+              <AppLink href={url.producturl(product.code)}
+               onClick={()=> {
+                quickviewClose();
+               }} 
+                 className="quickview__see-details">
                 <FormattedMessage id="BUTTON_SEE_FULL_DETAILS" />
-            </AppLink> */}
+            </AppLink> 
         </Modal>
     );
 }
