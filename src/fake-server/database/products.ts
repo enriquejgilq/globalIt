@@ -54,7 +54,7 @@ function resolveProductAttributesDef(attributesDef: IProductAttributesDef): IPro
     return attributes;
 }
 
-function makeProducts(defs: IProductDef[]): IProduct[] {
+function makeProducts(defs: IProductDef[]): any {
     return defs.map((def) => {
         let badges: string[] = [];
 
