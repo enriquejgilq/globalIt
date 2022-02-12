@@ -13,10 +13,13 @@ export const QUICKVIEW_PRIVATE_FAILURE = 'QUICKVIEW_PRIVATE_FAILURE';
 export interface QuickviewOpenAction {
     type: typeof QUICKVIEW_OPEN;
     product: IProduct;
+    open: boolean;
+
 }
 export interface QuickviewOpenActionFe {
     type: typeof QUICKVIEW_OPEN;
     productFeatured: IProductFeatured;
+    open: boolean;
 }
 
 
@@ -27,6 +30,8 @@ export interface QuickviewCloseAction {
 export interface QuickviewOpenActionPrivate {
     type: typeof QUICKVIEW_PRIVATE_SUCCESS;
     product: any;
+    open: boolean;
+
 }
 
 export type QuickviewAction =

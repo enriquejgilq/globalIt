@@ -20,7 +20,7 @@ function Dropcart(props: Props) {
     const { onCloseMenu } = props;
     const cart = useCart();
     const cartRemoveItem = useCartRemoveItem();
-
+console.log(cart.items)
     return (
         <div className="dropcart">
             {cart.items.length === 0 && (
@@ -42,7 +42,7 @@ function Dropcart(props: Props) {
                                         >
                                             <AppImage
                                                 className="image__tag"
-                                                src={item.product.images && item.product.images[0]}
+                                                src={item.product.webp_100 && item.product.webp_100}
                                             />
                                         </AppLink>
                                     </div>

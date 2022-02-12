@@ -20,10 +20,11 @@ import axios from 'axios';
 
 let cancelPreviousRequest = () => {};
 
-export function quickviewOpenSuccess(product: any): QuickviewOpenAction {
+export function quickviewOpenSuccess(product: any, open:boolean): QuickviewOpenAction {
     return {
         type: QUICKVIEW_OPEN,
         product,
+        open 
     };
 }
 
@@ -33,17 +34,18 @@ export function quickviewClose(): QuickviewCloseAction {
     };
 }
 
-export function quickviewOpenSuccessPrivate(product:any) : QuickviewOpenActionPrivate {
+export function quickviewOpenSuccessPrivate(product:any,open:boolean) : QuickviewOpenActionPrivate {
     return {
         type: QUICKVIEW_PRIVATE_SUCCESS,
         product,
+        open
     };
 }
 
 
 
 
-export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise<void>> {
+export function quickviewOpen(productSlug: string, open:boolean): QuickviewThunkAction<Promise<void>> {
     return (dispatch) => {
         cancelPreviousRequest();
 
@@ -56,7 +58,7 @@ export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise
                 )
                 axios.get(API + apiDetails+productSlug.toLowerCase()  )
                 .then((response) => {
-                    dispatch(quickviewOpenSuccess(response?.data));
+                    dispatch(quickviewOpenSuccess(response?.data, open));
                     console.log(response.data)
                     resolve()
                 })
@@ -87,7 +89,7 @@ export function quickviewOpen(productSlug: string): QuickviewThunkAction<Promise
         });
     };
 }
-export function quickviewOpenPrivate(productSlug: string): QuickviewThunkAction<Promise<void>> {
+export function quickviewOpenPrivate(productSlug: string, open:boolean): QuickviewThunkAction<Promise<void>> {
     return (dispatch,getState) => {
         cancelPreviousRequest();
 
@@ -105,7 +107,7 @@ export function quickviewOpenPrivate(productSlug: string): QuickviewThunkAction<
                         Authorization: 'Token ' + state.login.access_token 
                     }
                 }).then((response) => {
-                    dispatch(quickviewOpenSuccessPrivate(response.data));
+                    dispatch(quickviewOpenSuccessPrivate(response.data, open));
                     resolve()
                 }
                 )

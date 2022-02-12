@@ -190,7 +190,8 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
         }
         return result;
     }, [rows, productFeatured]);
-
+    const productCardLayout = productCardLayoutMap[layout];
+    const productCardExclude = productCardExcludeMap[productCardLayout];
     const carousel = useMemo(() => {
         const productCardLayout = productCardLayoutMap[layout];
         const productCardExclude = productCardExcludeMap[productCardLayout];
@@ -240,6 +241,7 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
                     })}
                 >
                     <div className="block-products-carousel__carousel-loader" />
+                    
                     <AppSlick ref={slickRef} {...slickSettings[layout]}>
                         {newColumns.map((column, columnIdx) => (
                             <div key={columnIdx} className="block-products-carousel__column">
@@ -248,8 +250,8 @@ function BlockProductsCarousel<T extends ISectionHeaderGroup>(props: Props<T>) {
                                         key={productIdx}
                                         className="block-products-carousel__cell"
                                         // product={products}
-                                        // layout={productCardLayout}
-                                        // exclude={productCardExclude}
+                                        layout={productCardLayout}
+                                         exclude={productCardExclude}
                                         productFeatured={productFeatured}
 
                                     />

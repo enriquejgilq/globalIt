@@ -1,4 +1,8 @@
-import { GET_IMAGES_CAROUSEL, GET_IMAGES_CAROUSEL_SUCCESS, GET_IMAGES_CAROUSEL_ERROR } from './imagesCarouselActionTypes';
+import { GET_IMAGES_CAROUSEL, 
+    GET_IMAGES_CAROUSEL_SUCCESS, 
+    GET_IMAGES_CAROUSEL_ERROR 
+} from './imagesCarouselActionTypes';
+import { withClientState } from '~/store/client';
 
 const defaultState: any = {
     count: '',
@@ -10,7 +14,9 @@ const defaultState: any = {
 
 }
 export const IMAGESCAROUSEL_NAMESPACE = 'imagescarousel';
-const imagesCarouselReducer = (state: any = defaultState, action: any) => {
+
+
+function imagesCarousel(state = defaultState, action: any): any {
     switch (action.type) {
         case GET_IMAGES_CAROUSEL_SUCCESS:
             return {
@@ -45,4 +51,7 @@ const imagesCarouselReducer = (state: any = defaultState, action: any) => {
             return state;
     }
 }
+
+const imagesCarouselReducer = withClientState(imagesCarousel, IMAGESCAROUSEL_NAMESPACE);
+
 export default imagesCarouselReducer;

@@ -119,11 +119,11 @@ function ShopPageProduct(props: Props) {
         { id: 'BUTTON_VIEW_PRICES' },
     )
     const handleEvent = (event: any) => {
-        if (event.type === "mousedown") {
-            setOnPress(true);
-        } else {
-            setOnPress(false);
-        }
+        setOnPress(true)
+
+        setTimeout(() => {
+            setOnPress(false)
+        }, 500);
     }
 
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
@@ -201,23 +201,12 @@ function ShopPageProduct(props: Props) {
             <div className="product__prices-stock">
             { is_auth ===true && (<> 
                 <div className="product__prices">
-               
-            
-                    {product.sale_price > 0 && (
-                        <React.Fragment>
-                            <div className="product__price product__price--old">
-                                <CurrencyFormat value={product.sale_price} />
-                            </div>
-                            <div className="product__price product__price--new">
-                                <CurrencyFormat value={product.sale_price} />
-                            </div>
-                        </React.Fragment>
-                    )}
-                    
-                    {!product.sale_price && (
-                        <Button type='button' onMouseDown={handleEvent} onMouseUp={handleEvent} className="product__price product__price--current">
+                    {product.sale_price && (
+                        <button className={classNames('btn', 'btn-primary', 'btn-lg', 'btn-block',   {
+                            'btn-primary': 'btn-primary',
+                        })} type='button' onClick={handleEvent}>
                             {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
-                        </Button>
+                        </button>
                     )}
                    
                 </div>
@@ -273,7 +262,7 @@ function ShopPageProduct(props: Props) {
 
     const productActions = (
         <div className="product__actions">
-            {/**  {product.stock !== 'out-of-stock' && (
+           {/**   {product.stock !== 'out-of-stock' && (
                 <React.Fragment>
                     <div className="product__actions-item product__actions-item--quantity">
                        <Controller
@@ -303,8 +292,8 @@ function ShopPageProduct(props: Props) {
                     </div>
                     <div className="product__actions-divider" />
                 </React.Fragment>
-            )}*/}
-            {/**    <AsyncAction
+            )}
+              <AsyncAction
                 action={() => wishlistAddItem(product)}
                 render={({ run, loading }) => (
                     <button

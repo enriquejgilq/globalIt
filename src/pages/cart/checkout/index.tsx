@@ -78,7 +78,7 @@ function Page() {
             try {
                 await userSignUp(data.account.email, data.account.password);
             } catch (error) {
-                alert(intl.formatMessage({ id: `ERROR_API_${error.message}` }));
+               // alert(intl.formatMessage({ id: `ERROR_API_${error.message}` }));
 
                 return;
             }

@@ -70,12 +70,12 @@ function ProductCard(props: Props) {
    
 
 
-    const showQuickview = () => quickviewOpen(productFeatured?.code);
-    const showQuickviewPrivate = () => quickviewOpenPrivate(productFeatured?.code);
+    const showQuickview = () => quickviewOpen(productFeatured?.code, true);
+    const showQuickviewPrivate = () => quickviewOpenPrivate(productFeatured?.code, true);
 
    // const addToWishlist = () => wishlistAddItem(productFeatured);
     const addToFeaturedWishlist = () => wishlistAddItemFeatured(productFeatured);
-   // const addToCompare = () => compareAddItem(product);
+   const addToCompare = () => compareAddItem(productFeatured);
 
     const rootClasses = classNames('product-card', className, {
         [`product-card--layout--${layout}`]: layout,
@@ -84,6 +84,10 @@ function ProductCard(props: Props) {
     const description:any = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY_DESCRIPTION' },
     )
+    const ondetails =()=>{
+        is_auth ? quickviewOpenPrivate(productFeatured?.code, false): quickviewOpen(productFeatured?.code, false)
+        dispatch(getImages(productFeatured.code))
+        }
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -95,7 +99,7 @@ function ProductCard(props: Props) {
                         <button
                             type="button"
                             className={classNames('product-card__action product-card__action--quickview', {
-                                'product-card__action--loading': allImages.loading? loading : false,
+                                'product-card__action--loading': loading,
                             })}
                             aria-label={intl.formatMessage({ id: 'BUTTON_QUICKVIEW' })}
                             onClick={()=>{run ? run() : null;
@@ -155,10 +159,10 @@ function ProductCard(props: Props) {
                         <AppImage className="image__tag" src={productFeatured?.image_principal} />) }
                     </AppLink>
                 </div> 
-{/**
+
                 {!exclude.includes('status-badge') && (
-                    <CompatibilityStatusBadge className="product-card__fit" product={product} />
-                )} */}
+                    <CompatibilityStatusBadge className="product-card__fit" product={productFeatured} />
+                )} 
             </div>
 
             <div className="product-card__info">
@@ -173,15 +177,15 @@ function ProductCard(props: Props) {
                 )}
 
                 <div className="product-card__name">
-                  {/**   {product.badges && product.badges.length > 0 && (
+                    { /**  {productFeatured.badges && productFeatured.badges.length > 0 && (
                         <div className="product-card__badges">
-                            {product.badges.map((badge) => (
+                            {productFeatured.badges.map((badge:any) => (
                                 <div key={badge} className={`tag-badge tag-badge--${badge}`}>{badge}</div>
                             ))}
                         </div>
                     )}
-                    <AppLink href={url.product(product)}>{product.name}</AppLink> */}
-                     <AppLink href={url.producturl(productFeatured)}>{productFeatured[description]}</AppLink> 
+                    <AppLink href={url.product(productFeatured)}>{productFeatured.name}</AppLink>  */}
+                     <AppLink onClick={ ondetails} href={url.producturl(productFeatured.code)}>{productFeatured[description]}</AppLink> 
                 </div>
 
                 <div className="product-card__rating">
@@ -196,25 +200,25 @@ function ProductCard(props: Props) {
                         />
                     </div> */}
                 </div>
-{/*
-                {!exclude.includes('features') && featuredAttributes.length > 0 && (
+
+                {!exclude.includes('features') && productFeatured.length > 0 && (
                     <div className="product-card__features">
                         <ul>
-                            {featuredAttributes.map((attribute, index) => (
+                            {productFeatured.map((attribute:any, index:any) => (
                                 <li key={index}>
                                     {attribute.name}
                                     {': '}
-                                    {attribute.values.map((x) => x.name).join(', ')}
+                                    {attribute.values.map((x:any) => x.name).join(', ')}
                                 </li>
                             ))}
                         </ul>
                     </div>
-                )}**/}
+                )}
             </div>
 
             <div className="product-card__footer">
                 <div className="product-card__prices">
-                {/**     {product.compareAtPrice !== null && (
+                      {/**     {product.compareAtPrice !== null && (
                         <React.Fragment>
                             <div className="product-card__price product-card__price--new">
                                 <CurrencyFormat value={product.price} />
@@ -232,8 +236,8 @@ function ProductCard(props: Props) {
                 </div>
                 {!exclude.includes('buttons') && (
                     <React.Fragment>
-                     {/**    <AsyncAction
-                            action={() => cartAddItem(product)}
+                         <AsyncAction
+                            action={() => cartAddItem(productFeatured)}
                             render={({ run, loading }) => (
                                 <button
                                     type="button"
@@ -246,11 +250,11 @@ function ProductCard(props: Props) {
                                     <Cart20Svg />
                                 </button>
                             )}
-                        /> */}
-                      {/**   {!exclude.includes('list-buttons') && (
+                        /> 
+                        {!exclude.includes('list-buttons') && (
                             <React.Fragment>
                                 <AsyncAction
-                                    action={() => cartAddItem(product)}
+                                    action={() => cartAddItem(productFeatured)}
                                     render={({ run, loading }) => (
                                         <button
                                             type="button"
@@ -298,7 +302,7 @@ function ProductCard(props: Props) {
                                     )}
                                 />
                             </React.Fragment> 
-                        )} */}
+                        )} 
                     </React.Fragment>
                 )}
             </div>

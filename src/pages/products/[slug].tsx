@@ -1,5 +1,7 @@
 // react
 import React from 'react';
+import { useIntl } from 'react-intl';
+
 // third-party
 import { GetServerSideProps } from 'next';
 // application
@@ -16,8 +18,6 @@ interface Props {
     productFeatured: any  | null;
 
 }
-
-
 //export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
   //  const slug = typeof params?.slug === 'string' ? params?.slug : null;
 
@@ -29,13 +29,16 @@ interface Props {
 //};
 function Page(props: Props) {
     const details = useQuickview();
-
+    const intl = useIntl();
     const { productFeatured,product } = props;
-
+    console.log(details)
+   if(details.stateFrom ==="server"){
+       return( <p>{intl.formatMessage({ id: 'LOADING_TEXT' })}.</p>)
+   }
     if (details.product === null) {
         return <SitePageNotFound />;
     }
-
+ 
     return (
          <ShopPageProduct
             product={details.product}

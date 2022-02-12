@@ -372,6 +372,7 @@
   "TEXT_CATEGORY_DESCRIPTION":"description_fr",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":"Il n'y a pas de produits dans cette catégorie.",
   "TEXT_EMPTY_IMAGES": "Aucune image à afficher",
+  "LOADING_TEXT": "Mise en charge...",
 
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,

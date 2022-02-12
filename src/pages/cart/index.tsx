@@ -75,7 +75,7 @@ function Page() {
             ];
         });
     };
-
+ console.log(items)
     if (items.length === 0) {
         return (
             <React.Fragment>
@@ -147,7 +147,7 @@ function Page() {
                                 <AppLink href={url.product(item.product)} className="image__body">
                                     <AppImage
                                         className="image__tag"
-                                        src={item.product.images && item.product.images[0]}
+                                        src={item.product.webp_100 && item.product.webp_100}
                                     />
                                 </AppLink>
                             </div>

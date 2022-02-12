@@ -16,13 +16,13 @@ import {
 } from '~/store/cart/cartActionTypes';
 
 export function cartAddItemSuccess(
-    product: IProduct,
+    product: any,
     options: ICartItemOption[] = [],
     quantity = 1,
 ): CartAddItemAction {
     toast.success(globalIntl()?.formatMessage(
         { id: 'TEXT_TOAST_PRODUCT_ADDED_TO_CART' },
-        { productName: product.name },
+        { productName: product.code2 },
     ));
 
     return {
@@ -48,7 +48,7 @@ export function cartUpdateQuantitiesSuccess(quantities: CartItemQuantity[]): Car
 }
 
 export function cartAddItem(
-    product: IProduct,
+    product: any,
     options: ICartItemOption[] = [],
     quantity = 1,
 ): CartThunkAction<Promise<void>> {

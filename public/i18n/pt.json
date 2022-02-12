@@ -371,6 +371,7 @@
     "TEXT_CATEGORY_DESCRIPTION":"description_pt",
     "TEXT_EMPTY_CATEGORY_DESCRIPTION":"Não há nenhum produto nesta categoria.",
     "TEXT_EMPTY_IMAGES": "nenhuma imagem para exibir",
+    "LOADING_TEXT": "Carregamento...",
 
 
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,

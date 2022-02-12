@@ -371,7 +371,7 @@
   "TEXT_CATEGORY_DESCRIPTION":"description_en",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":"There are no products in this category.",
   "TEXT_EMPTY_IMAGES": "No images to display",
-
+  "LOADING_TEXT": "Loading...",
 
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/en/all/", 
