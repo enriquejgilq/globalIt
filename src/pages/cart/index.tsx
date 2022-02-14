@@ -75,7 +75,6 @@ function Page() {
             ];
         });
     };
- console.log(items)
     if (items.length === 0) {
         return (
             <React.Fragment>
@@ -147,14 +146,14 @@ function Page() {
                                 <AppLink href={url.product(item.product)} className="image__body">
                                     <AppImage
                                         className="image__tag"
-                                        src={item.product.webp_100 && item.product.webp_100}
+                                        src={item.product.image_principal && item.product.image_principal}
                                     />
                                 </AppLink>
                             </div>
                         </td>
                         <td className="cart-table__column cart-table__column--product">
                             <AppLink href={url.product(item.product)} className="cart-table__product-name">
-                                {item.product.name}
+                                {item.product.code}
                             </AppLink>
                             {item.options.length > 0 && (
                                 <ul className="cart-table__options">

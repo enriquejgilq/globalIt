@@ -19,8 +19,8 @@ interface Props {
 function Dropcart(props: Props) {
     const { onCloseMenu } = props;
     const cart = useCart();
+    console.log('cart', cart);
     const cartRemoveItem = useCartRemoveItem();
-console.log(cart.items)
     return (
         <div className="dropcart">
             {cart.items.length === 0 && (
@@ -42,7 +42,7 @@ console.log(cart.items)
                                         >
                                             <AppImage
                                                 className="image__tag"
-                                                src={item.product.webp_100 && item.product.webp_100}
+                                                src={item.product.image_principal && item.product.image_principal}
                                             />
                                         </AppLink>
                                     </div>
@@ -52,7 +52,7 @@ console.log(cart.items)
                                                 href={url.product(item.product)}
                                                 onClick={onCloseMenu}
                                             >
-                                                {item.product.name}
+                                                {item.product.code}
                                             </AppLink>
                                         </div>
                                         {item.options.length > 0 && (

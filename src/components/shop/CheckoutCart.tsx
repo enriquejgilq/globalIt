@@ -25,7 +25,7 @@ function CheckoutCart() {
                 {cart.items.map((item) => (
                     <tr key={item.id}>
                         <td>
-                            {`${item.product.name} × ${item.quantity}`}
+                            {`${item.product.code} × ${item.quantity}`}
                         </td>
                         <td><CurrencyFormat value={item.total} /></td>
                     </tr>

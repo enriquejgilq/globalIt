@@ -55,7 +55,6 @@ export function getFeaturedCategories(): categorieshunkAction<Promise<void>> {
                     resolve()
                 })
                 .catch((error) => {
-                    console.log(error)
                     dispatch(getCategoriesError(error));
 
                 })

@@ -68,6 +68,9 @@ export type IProductStock = 'in-stock' | 'out-of-stock' | 'on-backorder';
 export type IProductCompatibilityResult = 'all' | 'fit' | 'not-fit' | 'unknown';
 
 export interface IProduct {
+    code: any;
+    image_principal: any;
+    sale_price: any;
     webp_100: string;
     id: number;
     name: string;

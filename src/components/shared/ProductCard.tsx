@@ -234,6 +234,8 @@ function ProductCard(props: Props) {
                         </div>
                     )} */}
                 </div>
+                {productFeatured.sale_price !== undefined  && ( <>
+              
                 {!exclude.includes('buttons') && (
                     <React.Fragment>
                          <AsyncAction
@@ -304,6 +306,8 @@ function ProductCard(props: Props) {
                             </React.Fragment> 
                         )} 
                     </React.Fragment>
+                )}
+                  </>
                 )}
             </div>
         </div>

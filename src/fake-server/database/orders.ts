@@ -12,7 +12,7 @@ export function getOrderToken(orderId: number): string {
     return token.slice(0, token.length - orderId.toString().length) + orderId.toString();
 }
 
-function makeOrders(defs: IOrderDef[]): IOrder[] {
+function makeOrders(defs: IOrderDef[]): any {
     return defs.map((def) => {
         const id = getNextOrderId();
         const items = def.items.map((orderItemDef) => {

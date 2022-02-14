@@ -123,7 +123,7 @@ function ShopPageProduct(props: Props) {
 
         setTimeout(() => {
             setOnPress(false)
-        }, 500);
+        }, 1500);
     }
 
     //const featuredAttributes = product.attributes.filter((x) => x.featured);

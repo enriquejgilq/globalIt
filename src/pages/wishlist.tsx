@@ -87,9 +87,9 @@ function Page() {
                                     <th className="wishlist__column wishlist__column--head wishlist__column--product">
                                         <FormattedMessage id="TABLE_PRODUCT" />
                                     </th>
-                                    <th className="wishlist__column wishlist__column--head wishlist__column--stock">
+                                  {/**  <th className="wishlist__column wishlist__column--head wishlist__column--stock">
                                         <FormattedMessage id="TABLE_STOCK_STATUS" />
-                                    </th>
+                                    </th>*/} 
                                     <th className="wishlist__column wishlist__column--head wishlist__column--price">
                                         <FormattedMessage id="TABLE_PRICE" />
                                     </th>
@@ -113,7 +113,7 @@ function Page() {
                                                 <AppLink href={url.product(product)} className="image__body">
                                                     <AppImage
                                                         className="image__tag"
-                                                        src={product.images && product.images[0]}
+                                                        src={product.image_principal && product.image_principal}
                                                     />
                                                 </AppLink>
                                             </div>
@@ -126,10 +126,10 @@ function Page() {
                                             )}
                                         >
                                             <div className="wishlist__product-name">
-                                                <AppLink href={url.product(product)}>{product.name}</AppLink>
+                                                <AppLink href={url.product(product)}>{product.code}</AppLink>
                                             </div>
                                             <div className="wishlist__product-rating">
-                                                <div className="wishlist__product-rating-stars">
+                                               {/**  <div className="wishlist__product-rating-stars">
                                                     <Rating value={product.rating || 0} />
                                                 </div>
                                                 <div className="wishlist__product-rating-title">
@@ -140,10 +140,10 @@ function Page() {
                                                             reviews: product.reviews,
                                                         }}
                                                     />
-                                                </div>
+                                                </div>*/}
                                             </div>
                                         </td>
-                                        <td
+                                       {/**  <td
                                             className={classNames(
                                                 'wishlist__column',
                                                 'wishlist__column--body',
@@ -151,7 +151,7 @@ function Page() {
                                             )}
                                         >
                                             <StockStatusBadge stock={product.stock} />
-                                        </td>
+                                        </td>*/}
                                         <td
                                             className={classNames(
                                                 'wishlist__column',
@@ -159,7 +159,7 @@ function Page() {
                                                 'wishlist__column--price',
                                             )}
                                         >
-                                            <CurrencyFormat value={product.price} />
+                                            <CurrencyFormat value={product.sale_price} />
                                         </td>
                                         <td
                                             className={classNames(

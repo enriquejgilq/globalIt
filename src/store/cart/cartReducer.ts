@@ -59,7 +59,7 @@ function calcTotals(items: ICartItem[]): ICartTotal[] {
         {
             type: 'shipping',
             title: 'SHIPPING',
-            price: 25,
+            price: 0,
         },
         {
             type: 'tax',
@@ -69,7 +69,7 @@ function calcTotals(items: ICartItem[]): ICartTotal[] {
     ];
 }
 
-function addItem(state: ICartState, product: IProduct, options: ICartItemOption[], quantity: number) {
+function addItem(state: ICartState, product: any, options: ICartItemOption[], quantity: number) {
     const itemIndex = findItemIndex(state.items, product, options);
 
     let newItems;
@@ -81,8 +81,8 @@ function addItem(state: ICartState, product: IProduct, options: ICartItemOption[
             id: lastItemId,
             product: JSON.parse(JSON.stringify(product)),
             options: JSON.parse(JSON.stringify(options)),
-            price: product.price,
-            total: product.price * quantity,
+            price: product.sale_price,
+            total: product.sale_price * quantity,
             quantity,
         }];
     } else {
