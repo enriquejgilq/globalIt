@@ -4,7 +4,7 @@ import React, {
     useContext,
     useMemo,
     useState,
-    useEffect
+    useEffect, useRef
 } from 'react';
 // third-party
 import classNames from 'classnames';
@@ -35,12 +35,13 @@ import {
     useShopResetFiltersThunk,
     useShopResetFilterThunk,
 } from '~/store/shop/shopHooks';
-import {getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
-import {getCatalogProductsState} from '~/store/catalogProducts/catalogProductsHooks'
-import {getlogin,isAuth} from '~/store/login/loginHooks'
-import { Button } from 'reactstrap';
+import { getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
+import { getlogin, isAuth } from '~/store/login/loginHooks'
+import { Button, Input } from 'reactstrap';
 import { globalIntl } from '~/services/i18n/global-intl';
 import { API } from '~/api/constantsApi';
+import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
 
 interface LayoutButton {
     layout: IShopPageLayout;
@@ -77,6 +78,10 @@ function ProductsView(props: Props) {
     // Cursor based navigation
     const handleAfterChange = useSetOption('after');
     const handleBeforeChange = useSetOption('before');
+    const quickviewOpenPrivate = useQuickviewOpenPrivate();
+    const [findShop, setFindShop] = useState('')
+
+
 
     const onNavigate = useCallback((event: INavigationEvent) => {
         // Page based navigation
@@ -140,20 +145,23 @@ function ProductsView(props: Props) {
     )
 
     useEffect(() => {
-        dispatch(getCatalogProducts(API+apiCatalogProducts+'all/all/?limit=16'))
+        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
         count()
     }, [])
-    const count =()=>{
-        if(getCatalog.count /16 ===0){
-            const result = getCatalog.count /16
+    const count = () => {
+        if (getCatalog.count / 16 === 0) {
+            const result = getCatalog.count / 16
             return result
-        }else{
-            const result = Math.ceil(getCatalog.count /16)
+        } else {
+            const result = Math.ceil(getCatalog.count / 16)
             return result
         }
-    }   
+    }
+    const findCatalog = (e: any) => {
+        e.preventDefault();
+       dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&search='+findShop))
+    }
 
-  
 
 
     return (
@@ -224,35 +232,39 @@ function ProductsView(props: Props) {
                                         })}
                                     </div>
                                 </div>
-                                { getCatalog.count > 0 && (          
-                                <div className="view-options__legend">
-                                    {navigation.type === 'page' && (
-                                        <FormattedMessage
-                                            id="TEXT_SHOWING_PRODUCTS"
-                                            values={{
-                                                from: navigation.from,
-                                                to: navigation.from === 1  ? navigation.to : navigation.from+15,
-                                                total: getCatalog.count,
-                                            }}
-                                        />
-                                    )}
-                                    {navigation.type === 'cursor' && typeof navigation.total === 'number' && (
-                                        <FormattedMessage
-                                            id="TEXT_TOTAL_PRODUCTS"
-                                            values={{
-                                                total: navigation.total,
-                                            }}
-                                        />
-                                    )}
-                                </div>
-                                    )}
+                                {getCatalog.count > 0 && (
+                                    <div className="view-options__legend">
+                                        {navigation.type === 'page' && (
+                                            <FormattedMessage
+                                                id="TEXT_SHOWING_PRODUCTS"
+                                                values={{
+                                                    from: navigation.from,
+                                                    to: navigation.from === 1 ? navigation.to : navigation.from + 15,
+                                                    total: getCatalog.count,
+                                                }}
+                                            />
+                                        )}
+                                        {navigation.type === 'cursor' && typeof navigation.total === 'number' && (
+                                            <FormattedMessage
+                                                id="TEXT_TOTAL_PRODUCTS"
+                                                values={{
+                                                    total: navigation.total,
+                                                }}
+                                            />
+                                        )}
+                                    </div>
+                                )}
                                 <div className="view-options__spring" />
 
-                                {/*<div className="view-options__select">
-                                    <label htmlFor="view-option-sort">
-                                        <FormattedMessage id="INPUT_SORT_LABEL" />
-                                        :
-                                    </label>
+                                <div className="view-options__select">
+                                 
+                                    <Input
+                                        value={findShop}
+                                        onChange={(e) => {
+                                            setFindShop(e.currentTarget.value);
+                                        }}
+                                    />
+                                    {/**  
                                     <select
                                         id="view-option-sort"
                                         className="form-control form-control-sm"
@@ -268,9 +280,12 @@ function ProductsView(props: Props) {
                                         <option value="name_desc">
                                             {intl.formatMessage({ id: 'INPUT_SORT_OPTION_NAME_DESC' })}
                                         </option>
-                                    </select>
+                                    </select>*/}
+                                    <button type="button" className="btn btn-primary btn-sm" onClick={findCatalog}>
+                                        <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" />
+                                    </button>
                                 </div>
-
+                                {/*
                                 <div className="view-options__select">
                                     <label htmlFor="view-option-limit">
                                         <FormattedMessage id="INPUT_LIMIT_LABEL" />
@@ -372,7 +387,7 @@ function ProductsView(props: Props) {
                                 <div className="products-list__column products-list__column--product">
                                     <FormattedMessage id="TABLE_PRODUCT" />
                                 </div>
-                               {/**  <div className="products-list__column products-list__column--rating">
+                                {/**  <div className="products-list__column products-list__column--rating">
                                     <FormattedMessage id="TABLE_RATING" />
                                 </div>*/}
                                 <div className="products-list__column products-list__column--price">
@@ -380,51 +395,51 @@ function ProductsView(props: Props) {
                                 </div>
                             </div>
                             <div className="products-list__content">
-                              {getCatalog.results.length === 0 &&(
-                            <div className="view-options__body">
-                                <p><b>{messageEmpty}</b></p>
-                              </div> 
-                              )}  
-                              {getCatalog.results.map((item:any) => (
+                                {getCatalog.results.length === 0 && (
+                                    <div className="view-options__body">
+                                        <p><b>{messageEmpty}</b></p>
+                                    </div>
+                                )}
+                                {getCatalog.results.map((item: any) => (
                                     <div key={item.id} className="products-list__item">
                                         <ProductCard productFeatured={item} />
                                     </div>
-                                ))}   
+                                ))}
                             </div>
                         </div>
-                    {getCatalog.count > 0 && (
-                        <div className="products-view__pagination">
-                            <nav aria-label="Page navigation example">
-                                {getCatalog?.count !=0 && (
-                                    <Navigation
-                                        data={navigation}
-                                        page={options.page}
-                                        onNavigate={onNavigate}
-                                        pagescount={count()}
-                                    />
-                                )}
-                            </nav>
-                            <div className="products-view__pagination-legend">
-                                {navigation.type === 'page' && (
-                                    <FormattedMessage
-                                        id="TEXT_SHOWING_PRODUCTS"
-                                        values={{
-                                            from: navigation.from,
-                                            to: navigation.from === 1 ? navigation.to : navigation.from+15,
-                                            total: getCatalog.count,
-                                        }}
-                                    />
-                                )}
-                                {navigation.type === 'cursor' && typeof navigation.total === 'number' && (
-                                    <FormattedMessage
-                                        id="TEXT_TOTAL_PRODUCTS"
-                                        values={{
-                                            total: navigation.total,
-                                        }}
-                                    />
-                                )}
-                            </div>
-                        </div>)}
+                        {getCatalog.count > 0 && (
+                            <div className="products-view__pagination">
+                                <nav aria-label="Page navigation example">
+                                    {getCatalog?.count != 0 && (
+                                        <Navigation
+                                            data={navigation}
+                                            page={options.page}
+                                            onNavigate={onNavigate}
+                                            pagescount={count()}
+                                        />
+                                    )}
+                                </nav>
+                                <div className="products-view__pagination-legend">
+                                    {navigation.type === 'page' && (
+                                        <FormattedMessage
+                                            id="TEXT_SHOWING_PRODUCTS"
+                                            values={{
+                                                from: navigation.from,
+                                                to: navigation.from === 1 ? navigation.to : navigation.from + 15,
+                                                total: getCatalog.count,
+                                            }}
+                                        />
+                                    )}
+                                    {navigation.type === 'cursor' && typeof navigation.total === 'number' && (
+                                        <FormattedMessage
+                                            id="TEXT_TOTAL_PRODUCTS"
+                                            values={{
+                                                total: navigation.total,
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                            </div>)}
                     </React.Fragment>
                 )}
             </div>

@@ -46,7 +46,7 @@ import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarous
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 
-import { Button } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
 
 interface Props {
@@ -217,13 +217,16 @@ function ShopPageProduct(props: Props) {
             </div>
 
             <div className="product__meta">
-               {/**   <table>
+            
+                 <table>
                     <tbody>
                         <tr>
                             <th>
-                                <FormattedMessage id="TABLE_SKU" />
+                                <Input placeholder='cantidad' type='number'> </Input>  
                             </th>
-                            <td>{product.sku}</td>
+                            <td>
+                            <Button color="primary" size="sm" type='button'> <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
+                                </td>
                         </tr>
                         {/**   {product.brand && (
                             <React.Fragment>
@@ -253,9 +256,11 @@ function ShopPageProduct(props: Props) {
                             </th>
                              <td>{product.partNumber}</td>
                         </tr>
+                        */}
                     </tbody>
                 </table>
-                */}
+                
+               
             </div>
         </div>
     );

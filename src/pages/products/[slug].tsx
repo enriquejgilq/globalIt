@@ -31,7 +31,6 @@ function Page(props: Props) {
     const details = useQuickview();
     const intl = useIntl();
     const { productFeatured,product } = props;
-    console.log(details)
    if(details.stateFrom ==="server"){
        return( <p>{intl.formatMessage({ id: 'LOADING_TEXT' })}.</p>)
    }
