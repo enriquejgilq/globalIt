@@ -23,29 +23,28 @@ function Topbar(props: Props) {
 
     return (
         <div className={rootClasses}>
-            {layout === 'spaceship-start' && (
+            {layout === "spaceship-start" && (
                 <React.Fragment>
                     <div className="topbar__item-text d-none d-xxl-flex">
-                        <FormattedMessage id="TEXT_TOPBAR_PHONE" values={{ phone: '(800) 060-0730' }} />
+                        <FormattedMessage id="TEXT_TOPBAR_PHONE" values={{ phone: "(507) 6980-1716" }} />
                     </div>
-                    <div className="topbar__item-text">
-                        <AppLink href={url.pageAboutUs()} className="topbar__link">
-                            <FormattedMessage id="LINK_ABOUT_US" />
-                        </AppLink>
-                    </div>
-                    <div className="topbar__item-text">
+                    {/* <div className="topbar__item-text d-none d-xxl-flex">
+                        <FormattedMessage id="TEXT_EMAIL_ADDRESS" values={{ phone: "(507) 6980-1716" }} />
+                    </div> */}
+                    <div className="topbar__item-text">ipolo@globalair.us</div>
+                    {/* <div className="topbar__item-text">
                         <AppLink href={url.pageContactUs()} className="topbar__link">
                             <FormattedMessage id="LINK_CONTACTS" />
                         </AppLink>
-                    </div>
-                    <div className="topbar__item-text">
+                    </div> */}
+                    {/* <div className="topbar__item-text">
                         <AppLink href={url.trackOrder()} className="topbar__link">
                             <FormattedMessage id="LINK_TRACK_ORDER" />
                         </AppLink>
-                    </div>
+                    </div> */}
                 </React.Fragment>
             )}
-            {layout === 'classic' && (
+            {layout === "classic" && (
                 <React.Fragment>
                     <div className="topbar__item-text">
                         <AppLink href={url.pageAboutUs()} className="topbar__link">
@@ -75,19 +74,18 @@ function Topbar(props: Props) {
                     <div className="topbar__item-spring" />
                 </React.Fragment>
             )}
-            {layout !== 'spaceship-start' && (
+            {layout !== "spaceship-start" && (
                 <React.Fragment>
                     <div className="topbar__item-button">
                         <AppLink href={url.compare()} className="topbar__button">
                             <span className="topbar__button-label">
-                                <FormattedMessage id="TEXT_TOPBAR_COMPARE" />
-                                :
+                                <FormattedMessage id="TEXT_TOPBAR_COMPARE" />:
                             </span>
                             <span className="topbar__button-title">{compare.items.length}</span>
                         </AppLink>
                     </div>
 
-                    <DropdownCurrency />
+                    {/* <DropdownCurrency /> */}
 
                     <DropdownLanguage />
                 </React.Fragment>

@@ -5,41 +5,41 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
     {
         title: 'Home',
         url: '/',
-        submenu: {
-            type: 'menu',
-            links: [
-                { title: 'Home One', url: '/' },
-                { title: 'Home Two', url: '/demo/home-two' },
-              /*  {
-                    title: 'Header Spaceship',
-                    url: '/demo/header-spaceship-variant-one',
-                    links: [
-                        { title: 'Variant One', url: '/demo/header-spaceship-variant-one' },
-                        { title: 'Variant Two', url: '/demo/header-spaceship-variant-two' },
-                        { title: 'Variant Three', url: '/demo/header-spaceship-variant-three' },
-                    ],
-                },*/
-                {
-                    title: 'Header Classic',
-                    url: '/demo/header-classic-variant-one',
-                    links: [
-                        { title: 'Variant One', url: '/demo/header-classic-variant-one' },
-                        { title: 'Variant Two', url: '/demo/header-classic-variant-two' },
-                        { title: 'Variant Three', url: '/demo/header-classic-variant-three' },
-                        { title: 'Variant Four', url: '/demo/header-classic-variant-four' },
-                        { title: 'Variant Five', url: '/demo/header-classic-variant-five' },
-                    ],
-                },
-                {
-                    title: 'Mobile Header',
-                    url: '/demo/mobile-header-variant-one',
-                    links: [
-                        { title: 'Variant One', url: '/demo/mobile-header-variant-one' },
-                        { title: 'Variant Two', url: '/demo/mobile-header-variant-two' },
-                    ],
-                },
-            ],
-        },
+        // submenu: {
+        //     type: 'menu',
+        //     links: [
+        //         { title: 'Home One', url: '/' },
+        //         { title: 'Home Two', url: '/demo/home-two' },
+        //       /*  {
+        //             title: 'Header Spaceship',
+        //             url: '/demo/header-spaceship-variant-one',
+        //             links: [
+        //                 { title: 'Variant One', url: '/demo/header-spaceship-variant-one' },
+        //                 { title: 'Variant Two', url: '/demo/header-spaceship-variant-two' },
+        //                 { title: 'Variant Three', url: '/demo/header-spaceship-variant-three' },
+        //             ],
+        //         },*/
+        //         {
+        //             title: 'Header Classic',
+        //             url: '/demo/header-classic-variant-one',
+        //             links: [
+        //                 { title: 'Variant One', url: '/demo/header-classic-variant-one' },
+        //                 { title: 'Variant Two', url: '/demo/header-classic-variant-two' },
+        //                 { title: 'Variant Three', url: '/demo/header-classic-variant-three' },
+        //                 { title: 'Variant Four', url: '/demo/header-classic-variant-four' },
+        //                 { title: 'Variant Five', url: '/demo/header-classic-variant-five' },
+        //             ],
+        //         },
+        //         {
+        //             title: 'Mobile Header',
+        //             url: '/demo/mobile-header-variant-one',
+        //             links: [
+        //                 { title: 'Variant One', url: '/demo/mobile-header-variant-one' },
+        //                 { title: 'Variant Two', url: '/demo/mobile-header-variant-two' },
+        //             ],
+        //         },
+        //     ],
+        // },
     },
     {
         title: 'Megamenu',
@@ -168,47 +168,64 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
         },*/
     },
     {
-        title: 'Blog',
-        url: '/demo/blog/classic-right-sidebar',
-        submenu: {
-            type: 'menu',
-            links: [
-                {
-                    title: 'Blog Classic',
-                    url: '/demo/blog/classic-right-sidebar',
-                    links: [
-                        { title: 'Left Sidebar', url: '/demo/blog/classic-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/classic-right-sidebar' },
-                    ],
-                },
-                {
-                    title: 'Blog List',
-                    url: '/demo/blog/list-right-sidebar',
-                    links: [
-                        { title: 'Left Sidebar', url: '/demo/blog/list-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/list-right-sidebar' },
-                    ],
-                },
-                {
-                    title: 'Blog Grid',
-                    url: '/demo/blog/grid-right-sidebar',
-                    links: [
-                        { title: 'Left Sidebar', url: '/demo/blog/grid-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/grid-right-sidebar' },
-                    ],
-                },
-                {
-                    title: 'Post Page',
-                    url: '/demo/blog/post-full-width',
-                    links: [
-                        { title: 'Full Width', url: '/demo/blog/post-full-width' },
-                        { title: 'Left Sidebar', url: '/demo/blog/post-left-sidebar' },
-                        { title: 'Right Sidebar', url: '/demo/blog/post-right-sidebar' },
-                    ],
-                },
-                { title: 'Post Without Image', url: '/demo/blog/post-without-image' },
-            ],
-        },
+        title: 'About Us',
+        url: '/about-us',
+        // submenu: {
+        //     type: 'menu',
+        //     links: [
+        //         {
+        //             title: 'Blog Classic',
+        //             url: '/demo/blog/classic-right-sidebar',
+        //             links: [
+        //                 { title: 'Left Sidebar', url: '/demo/blog/classic-left-sidebar' },
+        //                 { title: 'Right Sidebar', url: '/demo/blog/classic-right-sidebar' },
+        //             ],
+        //         },
+        //         {
+        //             title: 'Blog List',
+        //             url: '/demo/blog/list-right-sidebar',
+        //             links: [
+        //                 { title: 'Left Sidebar', url: '/demo/blog/list-left-sidebar' },
+        //                 { title: 'Right Sidebar', url: '/demo/blog/list-right-sidebar' },
+        //             ],
+        //         },
+        //         {
+        //             title: 'Blog Grid',
+        //             url: '/demo/blog/grid-right-sidebar',
+        //             links: [
+        //                 { title: 'Left Sidebar', url: '/demo/blog/grid-left-sidebar' },
+        //                 { title: 'Right Sidebar', url: '/demo/blog/grid-right-sidebar' },
+        //             ],
+        //         },
+        //         {
+        //             title: 'Post Page',
+        //             url: '/demo/blog/post-full-width',
+        //             links: [
+        //                 { title: 'Full Width', url: '/demo/blog/post-full-width' },
+        //                 { title: 'Left Sidebar', url: '/demo/blog/post-left-sidebar' },
+        //                 { title: 'Right Sidebar', url: '/demo/blog/post-right-sidebar' },
+        //             ],
+        //         },
+        //         { title: 'Post Without Image', url: '/demo/blog/post-without-image' },
+        //     ],
+        // },
+    },
+    {
+        title: 'Contact Us',
+        url: '/contact-us',
+        // submenu: {
+        //     type: 'menu',
+        //     links: [
+        //         { title: 'About Us', url: '/about-us' },
+        //         { title: 'Contact Us v1', url: '/demo/site/contact-us-v1' },
+        //         { title: 'Contact Us v2', url: '/demo/site/contact-us-v2' },
+        //         { title: '404', url: '/demo/site/not-found' },
+        //         { title: 'Terms And Conditions', url: '/terms' },
+        //         { title: 'FAQ', url: '/faq' },
+        //         { title: 'Components', url: '/demo/site/components' },
+        //         { title: 'Typography', url: '/demo/site/typography' },
+        //     ],
+        // },
     },
     {
         title: 'Account',
@@ -240,33 +257,16 @@ const dataHeaderMainMenu: IMainMenuLink[] = [
             ],
         },
     },
-    {
-        title: 'Pages',
-        url: '/about-us',
-        submenu: {
-            type: 'menu',
-            links: [
-                { title: 'About Us', url: '/about-us' },
-                { title: 'Contact Us v1', url: '/demo/site/contact-us-v1' },
-                { title: 'Contact Us v2', url: '/demo/site/contact-us-v2' },
-                { title: '404', url: '/demo/site/not-found' },
-                { title: 'Terms And Conditions', url: '/terms' },
-                { title: 'FAQ', url: '/faq' },
-                { title: 'Components', url: '/demo/site/components' },
-                { title: 'Typography', url: '/demo/site/typography' },
-            ],
-        },
-    },
-    {
-        title: 'Buy Theme',
-        url: 'https://themeforest.net/item/redparts-auto-parts-react-ecommerce-template/28404847',
-        customFields: {
-            anchorProps: {
-                target: '_blank',
-            },
-            ignoreIn: ['spaceship'],
-        },
-    },
+    // {
+    //     title: 'Buy Theme',
+    //     url: 'https://themeforest.net/item/redparts-auto-parts-react-ecommerce-template/28404847',
+    //     customFields: {
+    //         anchorProps: {
+    //             target: '_blank',
+    //         },
+    //         ignoreIn: ['spaceship'],
+    //     },
+    // },
 ];
 
 export default dataHeaderMainMenu;

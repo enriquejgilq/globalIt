@@ -1,15 +1,15 @@
 const theme = {
-    name: 'RedParts',
-    url: 'https://themeforest.net/item/redparts-auto-parts-react-ecommerce-template/28404847',
+    name: 'Global Air',
+    url: 'https://globalair.us',
     author: {
-        name: 'Kos',
-        profile_url: 'https://themeforest.net/user/kos9',
+        name: 'II Global Air',
+        profile_url: '',
     },
     contacts: {
         address: ['715 Fake Street, New York 10021 USA'],
-        email: ['info@globalair.us'],
-        phone: ['+1 (305) 625-3454'],
-        hours: ['Mon-Sat 10:00pm - 7:00pm'],
+        email: ['ipolo@globalair.us'],
+        phone: ['+(507) 6980-1716'],
+        hours: ['Mon-Sat 07:00am - 05:00pm'],
     },
 };
 

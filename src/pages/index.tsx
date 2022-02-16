@@ -78,16 +78,16 @@ function Page() {
             mobileImage: '/images/categories/category-overlay-1-mobile.jpg',
             categorySlug: 'tires-wheels',
         },
-        {
-            image: '/images/categories/category-overlay-2.jpg',
-            mobileImage: '/images/categories/category-overlay-2-mobile.jpg',
-            categorySlug: 'interior-parts',
-        },
-        {
-            image: '/images/categories/category-overlay-3.jpg',
-            mobileImage: '/images/categories/category-overlay-3-mobile.jpg',
-            categorySlug: 'engine-drivetrain',
-        },
+        // {
+        //     image: '/images/categories/category-overlay-2.jpg',
+        //     mobileImage: '/images/categories/category-overlay-2-mobile.jpg',
+        //     categorySlug: 'interior-parts',
+        // },
+        // {
+        //     image: '/images/categories/category-overlay-3.jpg',
+        //     mobileImage: '/images/categories/category-overlay-3-mobile.jpg',
+        //     categorySlug: 'engine-drivetrain',
+        // },
     ], []);
 
     const newArrivals = useDeferredData(() => shopApi.getLatestProducts(12), []);
@@ -174,7 +174,7 @@ function Page() {
         <React.Fragment>
             <BlockSlideshow slides={slides} />
 
-            {/*<BlockFinder />*/}
+            {/* <BlockFinder /> */}
             <BlockFeatures layout="top-strip" />
             <BlockSpace layout="divider-nl" />
 
@@ -193,12 +193,12 @@ function Page() {
                 setFilterType={setFilterType}
             />
             <BlockSpace layout="divider-nl" />
-            {/**   <BlockSale
+            {/* <BlockSale
                 products={blockSale.data}
                 loading={blockSale.isLoading}
-            />*/}
+            /> */}
             <BlockSpace layout="divider-lg" />
-{/**
+            
             {blockZones.map((blockZone, blockZoneIdx) => (
                 <React.Fragment key={blockZoneIdx}>
                     <BlockZone
@@ -215,7 +215,7 @@ function Page() {
             <BlockSpace layout="divider-nl" />
             <BlockBanners />
             <BlockSpace layout="divider-nl" />
-            <BlockProductsCarousel
+            {/* <BlockProductsCarousel
                 blockTitle={intl.formatMessage({ id: 'HEADER_NEW_ARRIVALS' })}
                 layout="horizontal"
                 rows={2}
@@ -227,23 +227,23 @@ function Page() {
                 namecategoriesIdioma={namecategoriesIdioma}
                 productFeatured={state.length === 0 ? featured : ''}
                 setFilterType={setFilterType}
-            /> 
-            <BlockSpace layout="divider-nl" />
-            <BlockPosts
+            />  */}
+            {/* <BlockSpace layout="divider-nl" /> */}
+            {/* <BlockPosts
                 blockTitle={intl.formatMessage({ id: 'HEADER_LATEST_NEWS' })}
                 layout="grid"
                 loading={latestPosts.isLoading}
                 posts={latestPosts.data}
                 links={latestPostsLinks}
-            />
-            <BlockSpace layout="divider-nl" />
-            <BlockBrands
+            /> */}
+            {/* <BlockSpace layout="divider-nl" /> */}
+            {/* <BlockBrands
                 layout="columns-8-full"
                 brands={brands.data}
-            />
-            <BlockSpace layout="divider-nl" className="d-xl-block d-none" />
-            {/**    <BlockProductsColumns columns={columns} />*/}
-            <BlockSpace layout="before-footer" />
+            /> */}
+            {/* <BlockSpace layout="divider-nl" className="d-xl-block d-none" /> */}
+            {/* <BlockProductsColumns columns={columns} /> */}
+            {/* <BlockSpace layout="before-footer" /> */}
         </React.Fragment>
     );
 }

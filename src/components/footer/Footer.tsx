@@ -69,7 +69,7 @@ export function Footer() {
                             {/* copyright / end */}
                         </div>
                         <div className="site-footer__payments">
-                            <AppImage src="/images/payments.png" />
+                            {/* <AppImage src="/images/payments.png" /> */}
                         </div>
                     </div>
                 </div>

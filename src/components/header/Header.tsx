@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import AccountMenu from '~/components/header/AccountMenu';
 import AppLink from '~/components/shared/AppLink';
 import CurrencyFormat from '~/components/shared/CurrencyFormat';
-import Departments from '~/components/header/Departments';
+// import Departments from '~/components/header/Departments';
 import Dropcart from '~/components/header/Dropcart';
 import Indicator, { IIndicatorController } from '~/components/header/Indicator';
 import Logo from '~/components/header/Logo';
@@ -65,9 +65,9 @@ function Header() {
             )}
 
             <div className="header__navbar">
-                <div className="header__navbar-departments">
+                {/* <div className="header__navbar-departments">
                     <Departments label={departmentsLabel} />
-                </div>
+                </div> */}
                 <div className=" header__navbar-menu">
                     <MainMenu />
                 </div>

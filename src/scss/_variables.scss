@@ -200,6 +200,24 @@
       icon-color:   #fff,
       shadow:       none,
    ), $dark-scheme));
+   // top-bar-end
+   $topbarend-scheme: () !default;
+   $topbarend-scheme: register-scheme(map_merge((
+      name:         topbarend,
+      // colors
+      main:         #d51b2b,
+      opposite:     #fff, opposite-font-weight-map: $font-weight-decrease-map,
+      opposite-alt: #ccc,
+      muted:        #fff,
+      // states
+      hover:        rgba(#fff, .08),
+      active:       rgba(#fff, .12),
+      // decor
+      divider:      #4d4d4d,
+      arrow-color:  #808080,
+      icon-color:   #fff,
+      shadow:       none,
+   ), $topbarend-scheme));
    // light
    $light-scheme: () !default;
    $light-scheme: register-scheme(map_merge((
@@ -269,7 +287,7 @@
    // ----------------------------------------
    // -- .topbar--spaceship-end
    // ----------------------------------------
-      $topbar-spaceship-end-scheme-based-on: dark !default;
+      $topbar-spaceship-end-scheme-based-on: topbarend !default;
       $topbar-spaceship-end-scheme: () !default;
       $topbar-spaceship-end-scheme: map-merge-all(get-scheme($topbar-spaceship-end-scheme-based-on), $topbar-spaceship-end-scheme);
 
