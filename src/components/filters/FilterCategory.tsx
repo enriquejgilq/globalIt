@@ -16,6 +16,9 @@ import { globalIntl } from '~/services/i18n/global-intl';
 import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks';
 import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenHooks';
 import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
+import {
+    useShopResetFiltersThunk,
+} from '~/store/shop/shopHooks';
 import { Button, Input } from 'reactstrap';
 
 interface Props {
@@ -41,6 +44,8 @@ function FilterCategory(props: Props) {
 
     const categoryProducts = getCategoryProducts();
     const childrenProducts = getCategoryProductsChildrenState();
+    const shopResetFilters = useShopResetFiltersThunk();
+
     const nameCategoryProducts: any = globalIntl()?.formatMessage(
         { id: 'SLUG_NAME' },
     );
@@ -85,7 +90,10 @@ function FilterCategory(props: Props) {
                             className={classNames('section-header__groups-button', {
                                 'section-header__groups-button--active': '',
                             })}
-                            onClick={onClearCategoryChildren}>
+                            onClick={()=> {
+                                onClearCategoryChildren ? onClearCategoryChildren() : null;
+                                dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+                            }}>
                             <FormattedMessage id="LINK_ALL_PRODUCTS" />
                         </button>
                     </li>
@@ -97,6 +105,7 @@ function FilterCategory(props: Props) {
                             })}
                                 onClick={() => {
                                     setCategoryChildren(item.child_category[slugCategoryProducts])
+                                    shopResetFilters ? shopResetFilters() : null
                                     if (is_auth) {
                                         dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'))
 
@@ -121,6 +130,7 @@ function FilterCategory(props: Props) {
                                 onClick={() => {
                                     selectCategoryChildren ? selectCategoryChildren(item[slugCategoryProducts]) : null
                                     setCategoryParents(item[slugCategoryProducts])
+                                    shopResetFilters ? shopResetFilters() : null
                                 }}>
                                 {item[nameCategoryProducts]}
                             </button>
@@ -135,7 +145,13 @@ function FilterCategory(props: Props) {
                      }}
                     > </Input>
 
-                    <Button color="primary" size="sm" type='button' onClick={onFind}> 
+                    <Button color="primary" size="sm" type='button' onClick={()=> {
+                                    shopResetFilters ? shopResetFilters() : null
+                                    onFind()
+
+
+
+                    }}> 
                     <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /> 
                     </Button>
 

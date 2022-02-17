@@ -281,7 +281,7 @@
     "TEXT_CREATED_AT": "Criado em",
     "TEXT_DEFAULT_ADDRESS": "Padrão",
     "TEXT_EMAIL_ADDRESS": "Endereço de e-mail",
-    "TEXT_INDICATOR_ACCOUNT_LABEL": "Olá, faça login",
+    "TEXT_INDICATOR_ACCOUNT_LABEL": "Faça login",
     "TEXT_INDICATOR_ACCOUNT_VALUE": "Minha conta",
     "TEXT_INDICATOR_CART_LABEL": "Carrinho de compras",
     "TEXT_KEY_FEATURES": "Principais recursos",
@@ -372,7 +372,9 @@
     "TEXT_EMPTY_CATEGORY_DESCRIPTION":"Não há nenhum produto nesta categoria.",
     "TEXT_EMPTY_IMAGES": "nenhuma imagem para exibir",
     "LOADING_TEXT": "Carregamento...",
-
+    "TEXT_TITLE_ABOUT_US": "Sobre Nós",
+    "TEXT_BODY_ABOUT_US": "A Global Air é líder mundial na indústria de ar condicionado automotivo. Nossa equipe projeta e desenvolve produtos de controle climático para todos os principais veículos na estrada hoje. Com sede em Miami Gardens, Flórida, EUA, estamos a minutos dos aeroportos de Miami e Fort Lauderdale. A Global Air conquistou uma reputação de produtos premium e atendimento ao cliente de classe mundial através de anos de trabalho árduo e compromisso com a excelência. Esses fatores, juntamente com preços competitivos, entrega no prazo e um forte departamento de engenharia, fazem da Global Air a escolha certa para suas necessidades de componentes de ar condicionado automotivo.",
+    "TEXT_GREETING":"Olá",
 
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,
     "API_LOGIN":"authenticate/login/",

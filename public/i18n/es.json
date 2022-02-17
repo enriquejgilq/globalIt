@@ -190,7 +190,7 @@
   "INPUT_YOUR_REVIEW_LABEL": "Tu opinión",
   "INPUT_YOUR_REVIEW_PLACEHOLDER": " ",
 
-  "LINK_ABOUT_US": "Sobre nosotros",
+  "LINK_ABOUT_US": "Nosotros",
   "LINK_ACCOUNT_ADDRESSES": "Direcciones",
   "LINK_ACCOUNT_DASHBOARD": "Panel de control",
   "LINK_ACCOUNT_GARAGE": "Garaje",
@@ -281,7 +281,7 @@
   "TEXT_CREATED_AT": "Creado en",
   "TEXT_DEFAULT_ADDRESS": "Predeterminado",
   "TEXT_EMAIL_ADDRESS": "Dirección de correo electrónico",
-  "TEXT_INDICATOR_ACCOUNT_LABEL": "Hola, Iniciar sesión",
+  "TEXT_INDICATOR_ACCOUNT_LABEL": "Iniciar sesión",
   "TEXT_INDICATOR_ACCOUNT_VALUE": "Mi cuenta",
   "TEXT_INDICATOR_CART_LABEL": "Carrito de la compra",
   "TEXT_KEY_FEATURES": "Funciones clave",
@@ -331,7 +331,7 @@
   "TEXT_SHOP_FEATURE_SUPPORT_TITLE": "Soporte 24/7",
   "TEXT_SHOWING_PRODUCTS": "Demostración {from}–{to} de {total} {total, plural, one {producto} other {productos}}",
   "TEXT_SKU": "SKU",
-  "TEXT_SLOGAN": "Fabricante de piezas de aire acondicionado para automóviles",
+  "TEXT_SLOGAN": "Fabricante de piezas de aire acondicionado automotriz",
   "TEXT_SOCIAL_LINKS_MESSAGE": "Síguenos en las redes sociales",
   "TEXT_STARS": "{stars, plural, one {{stars} star rating} other {{stars} stars rating}}",
   "TEXT_STOCK_IN_STOCK": "En stock",
@@ -372,8 +372,9 @@
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":" No hay productos en esta categoría.",
   "TEXT_EMPTY_IMAGES": "No hay imágenes para mostrar",
   "LOADING_TEXT": "Cargando...",
-
-
+  "TEXT_TITLE_ABOUT_US": "Sobre Nosotros",
+  "TEXT_BODY_ABOUT_US": "Global Air es líder mundial en la industria del aire acondicionado automotriz. Nuestro equipo diseña y desarrolla productos de control de clima para todos los vehículos principales que circulan hoy en día. Con sede en Miami Gardens, Florida, EE. UU., estamos a minutos de los aeropuertos de Miami y Fort Lauderdale. Global Air se ha ganado una reputación de productos de primera calidad y servicio al cliente de clase mundial a través de años de arduo trabajo y compromiso con la excelencia. Estos factores, junto con precios competitivos, entregas a tiempo y un sólido departamento de ingeniería, hacen de Global Air la elección correcta para sus necesidades de componentes de aire acondicionado para automóviles.",
+  "TEXT_GREETING":"Hola",
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
   "API_LOGIN":"authenticate/login/",

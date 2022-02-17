@@ -282,7 +282,8 @@
   "TEXT_CREATED_AT": "Créé à",
   "TEXT_DEFAULT_ADDRESS": "Par défaut",
   "TEXT_EMAIL_ADDRESS": "Adresse e-mail",
-  "TEXT_INDICATOR_ACCOUNT_LABEL": "Bonjour, connectez-vous",
+  "TEXT_INDICATOR_ACCOUNT_LABEL": "Connectez-vous",
+  "TEXT_INDICATOR_ACCOUNT_LOGIN": "Connectez-vous",
   "TEXT_INDICATOR_ACCOUNT_VALUE": "Mon compte",
   "TEXT_INDICATOR_CART_LABEL": "Panier",
   "TEXT_KEY_FEATURES": "Caractéristiques clés",
@@ -373,7 +374,9 @@
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":"Il n'y a pas de produits dans cette catégorie.",
   "TEXT_EMPTY_IMAGES": "Aucune image à afficher",
   "LOADING_TEXT": "Mise en charge...",
-
+  "TEXT_TITLE_ABOUT_US": "À Propos De Nous",
+  "TEXT_BODY_ABOUT_US": "Global Air est un leader mondial de l'industrie de la climatisation automobile. Notre équipe conçoit et développe des produits de climatisation pour tous les principaux véhicules sur la route aujourd'hui. Basés à Miami Gardens, en Floride, aux États-Unis, nous sommes à quelques minutes des aéroports de Miami et de Fort Lauderdale. Global Air s'est forgé une réputation de produits haut de gamme et de service client de classe mondiale grâce à des années de travail acharné et d'engagement envers l'excellence. Ces facteurs, ainsi que des prix compétitifs, une livraison à temps et un service d'ingénierie solide, font de Global Air le bon choix pour vos besoins en composants de climatisation automobile.",
+  "TEXT_GREETING":"Salut",
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",

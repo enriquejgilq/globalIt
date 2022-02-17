@@ -19,20 +19,24 @@ import { useCart } from '~/store/cart/cartHooks';
 import { useOptions } from '~/store/options/optionsHooks';
 import { useUser } from '~/store/user/userHooks';
 import { useWishlist } from '~/store/wishlist/wishlistHooks';
+import { getlogin, isAuth } from '~/store/login/loginHooks'
 
 function Header() {
+   
     const user = useUser();
     const wishlist = useWishlist();
     const options = useOptions();
     const desktopLayout = options.desktopHeaderLayout;
-
+    const is_auth = isAuth()
+    const user_info = getlogin()
     const departmentsLabel = useMemo(() => (
         desktopLayout === 'spaceship'
             ? <FormattedMessage id="BUTTON_DEPARTMENTS" />
             : <FormattedMessage id="BUTTON_DEPARTMENTS_LONG" />
     ), [desktopLayout]);
 
-    const accountIndicatorLabel = user ? user.email : <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_LABEL" />;
+    console.log('Header', user);
+    const accountIndicatorLabel = is_auth ?  <FormattedMessage id="TEXT_GREETING" /> : <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_LABEL" />;
     const accountIndicatorValue = <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_VALUE" />;
     const accountIndicatorCtrl = useRef<IIndicatorController | null>(null);
 
