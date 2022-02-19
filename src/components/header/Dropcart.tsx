@@ -19,7 +19,6 @@ interface Props {
 function Dropcart(props: Props) {
     const { onCloseMenu } = props;
     const cart = useCart();
-    console.log('cart', cart);
     const cartRemoveItem = useCartRemoveItem();
     return (
         <div className="dropcart">

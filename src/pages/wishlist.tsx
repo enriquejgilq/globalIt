@@ -169,7 +169,7 @@ function Page() {
                                             )}
                                         >
                                             <AsyncAction
-                                                action={() => cartAddItem(product)}
+                                                action={() => cartAddItem(product,[],1)}
                                                 render={({ run, loading }) => (
                                                     <button
                                                         type="button"

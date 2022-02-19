@@ -185,7 +185,7 @@ function Page() {
                 {compare.items.map((product) => (
                     <td key={product.id} className="compare-table__column compare-table__column--product">
                         <AsyncAction
-                            action={() => cartAddItem(product)}
+                            action={() => cartAddItem(product,[],1)}
                             render={({ run, loading }) => (
                                 <button
                                     type="button"

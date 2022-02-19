@@ -45,6 +45,7 @@ import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHook
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
+import { useCartAddItem } from '~/store/cart/cartHooks';
 
 import { Button, Input } from 'reactstrap';
 
@@ -72,10 +73,12 @@ function ShopPageProduct(props: Props) {
     const compareAddItem = useCompareAddItem();
     const details = useQuickview();
     const allImages = getImagesCarouselState();
+    const cartAddItem = useCartAddItem();
 
     const galleryLayout = `product-${layout}` as IProductGalleryLayout;
     const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
     const [onPress, setOnPress] = useState(false);
+    const [quantity, setQuantity] = useState<any>(1);
     const productForm = useProductForm(product);
     const is_auth = isAuth()
 
@@ -120,12 +123,11 @@ function ShopPageProduct(props: Props) {
     )
     const handleEvent = (event: any) => {
         setOnPress(true)
-
         setTimeout(() => {
             setOnPress(false)
         }, 1500);
     }
-
+    console.log('<<<<<<<<<<<',product)
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
@@ -222,11 +224,24 @@ function ShopPageProduct(props: Props) {
                     <tbody>
                         <tr>
                             <th>
-                                <Input placeholder='cantidad' type='number'> </Input>  
+                            <Input
+                              placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })} 
+                              type='number'
+                              //value={findShop}
+                                 onChange={(e) => {
+                                     const number = e.target.value;
+                                     setQuantity(parseInt(number));
+                     }}
+                              
+                              >  </Input>  
                             </th>
                             <td>
-                            <Button color="primary" size="sm" type='button'> <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
-                                </td>
+                            <Button 
+                            color="primary" 
+                            size="sm" 
+                            type='button' 
+                            onClick={() => cartAddItem(product,[],quantity)} > <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
+                             </td>
                         </tr>
                         {/**   {product.brand && (
                             <React.Fragment>

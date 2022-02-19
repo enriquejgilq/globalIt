@@ -50,7 +50,7 @@ export function cartUpdateQuantitiesSuccess(quantities: CartItemQuantity[]): Car
 export function cartAddItem(
     product: any,
     options: ICartItemOption[] = [],
-    quantity = 1,
+    quantity : number,
 ): CartThunkAction<Promise<void>> {
     // sending request to server, timeout is used as a stub
     return (dispatch) => (

@@ -239,7 +239,7 @@ function ProductCard(props: Props) {
                 {!exclude.includes('buttons') && (
                     <React.Fragment>
                          <AsyncAction
-                            action={() => cartAddItem(productFeatured)}
+                            action={() => cartAddItem(productFeatured,[],1)}
                             render={({ run, loading }) => (
                                 <button
                                     type="button"
@@ -256,7 +256,7 @@ function ProductCard(props: Props) {
                         {!exclude.includes('list-buttons') && (
                             <React.Fragment>
                                 <AsyncAction
-                                    action={() => cartAddItem(productFeatured)}
+                                    action={() => cartAddItem(productFeatured,[],1)}
                                     render={({ run, loading }) => (
                                         <button
                                             type="button"
