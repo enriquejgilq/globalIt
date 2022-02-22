@@ -271,6 +271,7 @@
   "TEXT_CALL_ADD_ADDRESS": "Agrega una dirección de entrega para acelerar el proceso de pago.",
   "TEXT_CALL_US": "Llámanos:",
   "TEXT_CATEGORIES": "Categorías",
+
   "TEXT_CATEGORY_IS_EMPTY_SUBTITLE": "Aún no hemos agregado productos a esta categoría",
   "TEXT_CATEGORY_IS_EMPTY_TITLE": "La categoría está vacía",
   "TEXT_COMPATIBILITY_ALL": "Apto para todos los vehículos",
@@ -367,6 +368,8 @@
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "¡Tu carrito de traducción de esto se está vacío!",
   "TEXT_ALL": "Todos",
   "TEXT_CATEGORY": "Categorias",
+  "TEXT_CONTAINER": "Container",
+
   "TEXT_TRANSLATE":"traducción no disponible",
   "TEXT_CATEGORY_DESCRIPTION":"description_es",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":" No hay productos en esta categoría.",

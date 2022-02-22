@@ -24,12 +24,21 @@ function WidgetFilters(props: Props) {
     const nameCategoryProducts = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY' },
     )
+    const nameContainer = globalIntl()?.formatMessage(
+        { id: 'TEXT_CONTAINER' },
+    )
     const dataFilTers: any = [
         {
-            filter: 'category',
+          
             name: nameCategoryProducts,
         },
+        {
+           
+            name: nameContainer,
+        },
+       
     ]
+    
     return (
         <div className={rootClasses}>
             <div className="widget__header widget-filters__header">
@@ -43,7 +52,8 @@ function WidgetFilters(props: Props) {
                     <Filter
                         key={index}
                         dataFilTers={dataFilTers}
-                        value={values[filter.slug]}
+                        title={filter.name}
+                        
                     />
                 ))} 
             </div>

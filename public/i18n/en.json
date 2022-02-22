@@ -367,6 +367,8 @@
   "TEXT_YOUR_SHOPPING_CART_IS_EMPTY": "Your shopping cart is empty!",
   "TEXT_ALL": "All",
   "TEXT_CATEGORY": "Category",
+  "TEXT_CONTAINER": "Container",
+
   "TEXT_TRANSLATE":"translation not available",
   "TEXT_CATEGORY_DESCRIPTION":"description_en",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":"There are no products in this category.",
