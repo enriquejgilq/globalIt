@@ -268,10 +268,14 @@ function Page() {
                     <FormattedMessage id="HEADER_CART_TOTALS" />
                 </h3>
 
-                <table className="cart__totals-table">
-                    {cart.totals.length > 0 && (
+                <table >
+                
+    {/**  className="cart__totals-table"*/} 
+                
+                
+                    {/** {cart.totals.length > 0 && (
                         <React.Fragment>
-                            <thead>
+                           <thead>
                                 <tr>
                                     <th>
                                         <FormattedMessage id="TABLE_SUBTOTAL" />
@@ -279,10 +283,10 @@ function Page() {
                                     <td>
                                         <CurrencyFormat value={cart.subtotal} />
                                     </td>
-                                </tr>
+                                </tr>  
                             </thead>
                             <tbody>
-                                {cart.totals.map((total, index) => (
+                              {/**    {cart.totals.map((total, index) => (
                                     <tr key={index}>
                                         <th>
                                             <FormattedMessage id={`TABLE_TOTAL_${total.title}`} />
@@ -303,7 +307,7 @@ function Page() {
                                 ))}
                             </tbody>
                         </React.Fragment>
-                    )}
+                    )}*/}
                     <tfoot>
                         <tr>
                             <th>

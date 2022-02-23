@@ -109,7 +109,7 @@ function ProductsView(props: Props) {
     const layoutButtons: LayoutButton[] = useMemo(() => [
         { layout: 'grid', icon: <LayoutGrid16Svg /> },
         { layout: 'grid-with-features', icon: <LayoutGridWithDetails16Svg /> },
-        { layout: 'list', icon: <LayoutList16Svg /> },
+      //  { layout: 'list', icon: <LayoutList16Svg /> },
         { layout: 'table', icon: <LayoutTable16Svg /> },
     ], []);
 

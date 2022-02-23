@@ -13,6 +13,7 @@
         margin: -($gutter / 2);
     }
     .products-list__item {
+        height: 475px;
         margin: $gutter / 2;
         width: calc((100% - #{$columns * $gutter}) / #{$columns});
     }

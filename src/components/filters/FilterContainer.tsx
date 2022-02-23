@@ -1,29 +1,49 @@
 import React from 'react'
-import { Progress } from 'reactstrap'
+import { Progress, ButtonGroup, Button } from 'reactstrap'
 
 
 
 
 interface Props {
-  value:any
+  value: any
 }
 function FilterContainer(props: Props) {
-  const { 
+  const {
     value
-} = props;
+  } = props;
+  const [state, setState] = React.useState(false)
+  const onChange = (e: any) => {
+    if (state === false) {
+      setState(true)
+    } else {
+      setState(false)
+    }
+
+  }
   return (
     <div style={{ display: 'flex', flex: '1', justifyContent: 'center', alignContent: 'center', flexDirection: 'column' }}>
-      <Progress value={value}
-      color={
-        value === 20 ? 'success' : 'danger'
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '15px' }}>
+        <div>
+          <input onChange={onChange} type="radio" checked={state} value="valueOne" />
+         Container
+        </div>
+        <div>
+          <input onChange={onChange} type="radio" checked={!state} value="valueTwo" />
+           Pallet
+        </div>
+      </div>
+      {state ? <>
+        <Progress value={value} color='danger'>
+        </Progress>
+        <img style={{ width: '220px' }} src="/images/container.jpg" />
+      </> :
+        <>
+           <img style={{ width: '220px' }} src="/images/pallet.jpg" />
+        </>
+
+
       }
-      
-      
-      
-      
-      >
-      </Progress>
-      <img style={{ width: '220px' }} src="/images/container.jpg" />
+
     </div>
 
   )

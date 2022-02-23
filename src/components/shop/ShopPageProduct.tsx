@@ -127,7 +127,6 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-    console.log('<<<<<<<<<<<',product)
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
@@ -201,47 +200,47 @@ function ShopPageProduct(props: Props) {
             )}
 
             <div className="product__prices-stock">
-            { is_auth ===true && (<> 
-                <div className="product__prices">
-                    {product.sale_price && (
-                        <button className={classNames('btn', 'btn-primary', 'btn-lg', 'btn-block',   {
-                            'btn-primary': 'btn-primary',
-                        })} type='button' onClick={handleEvent}>
-                            {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
-                        </button>
-                    )}
-                   
-                </div>
-                {product.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
-                    (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
-                }
-                 </> )}
+                {is_auth === true && (<>
+                    <div className="product__prices">
+                        {product.sale_price && (
+                            <button className={classNames('btn', 'btn-primary', 'btn-lg', 'btn-block', {
+                                'btn-primary': 'btn-primary',
+                            })} type='button' onClick={handleEvent}>
+                                {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
+                            </button>
+                        )}
+
+                    </div>
+                    {product.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
+                        (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
+                    }
+                </>)}
             </div>
 
             <div className="product__meta">
-            
-                 <table>
+
+                <table>
                     <tbody>
                         <tr>
                             <th>
-                            <Input
-                              placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })} 
-                              type='number'
-                              //value={findShop}
-                                 onChange={(e) => {
-                                     const number = e.target.value;
-                                     setQuantity(parseInt(number));
-                     }}
-                              
-                              >  </Input>  
+                                <Input
+                                    placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })}
+                                    type='number'
+                                    //value={findShop}
+                                    onChange={(e) => {
+                                        const number = e.target.value;
+                                        setQuantity(parseInt(number));
+                                    }}
+                                />
                             </th>
                             <td>
-                            <Button 
-                            color="primary" 
-                            size="sm" 
-                            type='button' 
-                            onClick={() => cartAddItem(product,[],quantity)} > <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
-                             </td>
+                                <Button
+                                    color="primary"
+                                    size="sm"
+                                    type='button'
+                                    onClick={() => cartAddItem(product, [], quantity)} >
+                                    <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
+                            </td>
                         </tr>
                         {/**   {product.brand && (
                             <React.Fragment>
@@ -274,15 +273,15 @@ function ShopPageProduct(props: Props) {
                         */}
                     </tbody>
                 </table>
-                
-               
+
+
             </div>
         </div>
     );
 
     const productActions = (
         <div className="product__actions">
-           {/**   {product.stock !== 'out-of-stock' && (
+            {/**   {product.stock !== 'out-of-stock' && (
                 <React.Fragment>
                     <div className="product__actions-item product__actions-item--quantity">
                        <Controller
@@ -476,7 +475,7 @@ function ShopPageProduct(props: Props) {
                                                 )}
 
                                                 {productActions}
-                                                
+
                                                 {productTagsAndShareLinks}
                                             </form>
                                         </FormProvider>

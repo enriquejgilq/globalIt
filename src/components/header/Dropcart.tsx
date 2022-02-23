@@ -94,7 +94,7 @@ function Dropcart(props: Props) {
                     <div className="dropcart__totals">
                         <table>
                             <tbody>
-                                {cart.totals.length > 0 && (
+                              {/**   {cart.totals.length > 0 && (
                                     <tr>
                                         <th>
                                             <FormattedMessage id="TABLE_SUBTOTAL" />
@@ -113,7 +113,7 @@ function Dropcart(props: Props) {
                                             <CurrencyFormat value={total.price} />
                                         </td>
                                     </tr>
-                                ))}
+                                ))}*/}
                                 <tr>
                                     <th>
                                         <FormattedMessage id="TABLE_TOTAL" />
