@@ -232,7 +232,7 @@ function ProductCard(props: Props) {
                     </div>
                 )}
             </div>
-            {is_auth === false && (<>
+            {is_auth === true && (<>
             <div className="product-card__footer">
                 
                 {productFeatured.sale_price !== undefined && (<>
