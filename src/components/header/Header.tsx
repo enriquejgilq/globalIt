@@ -14,12 +14,13 @@ import MainMenu from '~/components/header/MainMenu';
 import Search from '~/components/header/Search';
 import Topbar from '~/components/header/Topbar';
 import url from '~/services/url';
-import { Heart32Svg, Person32Svg, Cart32Svg } from '~/svg';
+import { Heart32Svg, Person32Svg, Cart32Svg, List2Svg } from '~/svg';
 import { useCart } from '~/store/cart/cartHooks';
 import { useOptions } from '~/store/options/optionsHooks';
 import { useUser } from '~/store/user/userHooks';
 import { useWishlist } from '~/store/wishlist/wishlistHooks';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
+import ImageIcon from '../../../public/images/avatars/icon.svg'
 
 function Header() {
    
@@ -110,7 +111,7 @@ function Header() {
 
                 <Indicator
                     href={url.cart()}
-                    icon={<Cart32Svg />}
+                    icon={<List2Svg /> }
                     label={cartIndicatorLabel}
                     value={<CurrencyFormat value={cart.total} />}
                     counter={cart.quantity}

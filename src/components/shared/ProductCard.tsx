@@ -12,7 +12,7 @@ import AppLink from '~/components/shared/AppLink';
 import AsyncAction from '~/components/shared/AsyncAction';
 import CompatibilityStatusBadge from '~/components/shared/CompatibilityStatusBadge';
 import CurrencyFormat from '~/components/shared/CurrencyFormat';
-import Rating from '~/components/shared/Rating';
+//import Rating from '~/components/shared/Rating';
 import url from '~/services/url';
 import { IProduct } from '~/interfaces/product';
 import { IProductFeatured } from '~/interfaces/productsFeatured';
@@ -232,39 +232,31 @@ function ProductCard(props: Props) {
                     </div>
                 )}
             </div>
-            {is_auth === true && (<>
+            {is_auth === false && (<>
             <div className="product-card__footer">
                 
                 {productFeatured.sale_price !== undefined && (<>
                     {!exclude.includes('buttons') && (
                         <React.Fragment>
-                             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', marginRight:'15px'}}>
-                            <button className={classNames('btn', 'btn-primary', 'btn-sm', {
-                                'btn-primary': 'btn-primary',
-                            })} type='button' onClick={handleEvent} >
+                             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex:'1', justifyContent:'center', 
+                             alignContent:'center', alignItems:'center', alignSelf:'center' }}>
+                             
+                             <button type="button" className={`btn btn-primary btn-xs`}
+                              onClick={handleEvent} >
                                 {onPress === true ? <CurrencyFormat value={productFeatured.sale_price} /> : prices}
                             </button>
                             {productFeatured.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
                             (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
                         }
                         </div>
-                       
-                        
                             {!exclude.includes('list-buttons') && (
                                 <React.Fragment>
                                     <AsyncAction
                                         action={() => cartAddItem(productFeatured, [], quantity)}
                                         render={({ run, loading }) => (
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                height: '40px',
-                                                gap: '4px',
-                                                marginTop: '-35px',
-                                                width: '110px'
-
-                                            }}>
-                                                <Input style={{ width: '110px', }}
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex:'1', justifyContent:'center', 
+                                            alignContent:'center', alignItems:'center', alignSelf:'center' }}>
+                                                <Input  className={`btn btn-secondary btn-xs`}
                                                     placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })}
                                                     type='number'
                                                     min="0"
@@ -274,13 +266,11 @@ function ProductCard(props: Props) {
                                                     }}
 
                                                 />
-                                                
-                                                <Button style={{ width: '110px', height: '30px', fontSize: '8px' }}
-                                                    color="primary"
-                                                    size="sm"
-                                                    type='button'
+                                                {/**  ['primary', 'secondary', 'light', 'muted'*/} 
+                                                <button type="button" className={`btn btn-primary btn-xs`}
                                                     onClick={run}   >
-                                                    <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
+                                                    <FormattedMessage id="BUTTON_ADD_TO_CART" />                                                    
+                                                    </button>
                                             </div>
                                         )}
                                     />

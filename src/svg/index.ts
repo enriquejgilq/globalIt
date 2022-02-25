@@ -38,6 +38,7 @@ import RecycleBin16 from './recycle-bin-16.svg';
 import Search20 from './search-20.svg';
 import Wishlist16 from './wishlist-16.svg';
 import ZoomIn24 from './zoom-in-24.svg';
+import List2 from './icon-32.svg'
 
 export const ArrowDown9x6Svg = ArrowDown9x6;
 export const ArrowDownSm7x5Svg = ArrowDownSm7x5;
@@ -79,3 +80,4 @@ export const RecycleBin16Svg = RecycleBin16;
 export const Search20Svg = Search20;
 export const Wishlist16Svg = Wishlist16;
 export const ZoomIn24Svg = ZoomIn24;
+export const List2Svg = List2;

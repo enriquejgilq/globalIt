@@ -1,7 +1,7 @@
 {
   "BUTTON_ADD_ADDRESS": "Añadir dirección",
   "BUTTON_ADD_NEW": "Agregar nuevo",
-  "BUTTON_ADD_TO_CART": "Agregar a cotización",
+  "BUTTON_ADD_TO_CART": "Agregar",
   "BUTTON_ADD_TO_COMPARE": "Añadir a comparar",
   "BUTTON_ADD_TO_WISHLIST": "Añadir a la lista de deseos",
   "BUTTON_ADD_VEHICLE": "Agregar vehículo",
@@ -38,7 +38,7 @@
   "BUTTON_TRACK": "Pista",
   "BUTTON_UPDATE_CART": "Actualización de la compra",
   "BUTTON_VIEW_CART": "Ver carrito",
-  "BUTTON_VIEW_PRICES": "Ver precios",
+  "BUTTON_VIEW_PRICES": "Precio",
 
 
   "COUNTRY_NAME_LAND": "RandomLand",

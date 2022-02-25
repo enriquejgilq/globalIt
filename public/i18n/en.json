@@ -1,7 +1,7 @@
 {
   "BUTTON_ADD_ADDRESS": "Add Address",
   "BUTTON_ADD_NEW": "Add New",
-  "BUTTON_ADD_TO_CART": "Add to quote",
+  "BUTTON_ADD_TO_CART": "Add",
   "BUTTON_ADD_TO_COMPARE": "Add to compare",
   "BUTTON_ADD_TO_WISHLIST": "Add to wishlist",
   "BUTTON_ADD_VEHICLE": "Add Vehicle",
@@ -38,7 +38,7 @@
   "BUTTON_TRACK": "Track",
   "BUTTON_UPDATE_CART": "Update Cart",
   "BUTTON_VIEW_CART": "View Cart",
-  "BUTTON_VIEW_PRICES": "View Prices",
+  "BUTTON_VIEW_PRICES": "View",
 
   "COUNTRY_NAME_LAND": "RandomLand",
   "COUNTRY_NAME_RAND": "Random Federation",

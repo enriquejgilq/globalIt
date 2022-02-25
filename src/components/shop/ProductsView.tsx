@@ -257,13 +257,16 @@ function ProductsView(props: Props) {
                                 <div className="view-options__spring" />
 
                                 <div className="view-options__select">
-                                 
+                                 {/** 
                                     <Input
                                         value={findShop}
                                         onChange={(e) => {
                                             setFindShop(e.currentTarget.value);
                                         }}
                                     />
+                                    <button type="button" className="btn btn-primary btn-sm" onClick={findCatalog}>
+                                        <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" />
+                                    </button> */}
                                     {/**  
                                     <select
                                         id="view-option-sort"
@@ -281,9 +284,7 @@ function ProductsView(props: Props) {
                                             {intl.formatMessage({ id: 'INPUT_SORT_OPTION_NAME_DESC' })}
                                         </option>
                                     </select>*/}
-                                    <button type="button" className="btn btn-primary btn-sm" onClick={findCatalog}>
-                                        <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" />
-                                    </button>
+                                    
                                 </div>
                                 {/*
                                 <div className="view-options__select">

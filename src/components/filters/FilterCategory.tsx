@@ -148,9 +148,6 @@ function FilterCategory(props: Props) {
                     <Button color="primary" size="sm" type='button' onClick={()=> {
                                     shopResetFilters ? shopResetFilters() : null
                                     onFind()
-
-
-
                     }}> 
                     <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /> 
                     </Button>

@@ -11,7 +11,7 @@ function FilterContainer(props: Props) {
   const {
     value
   } = props;
-  const [state, setState] = React.useState(false)
+  const [state, setState] = React.useState(true)
   const onChange = (e: any) => {
     if (state === false) {
       setState(true)
@@ -23,27 +23,25 @@ function FilterContainer(props: Props) {
   return (
     <div style={{ display: 'flex', flex: '1', justifyContent: 'center', alignContent: 'center', flexDirection: 'column' }}>
       <div style={{ display: 'flex', flexDirection: 'row', gap: '15px' }}>
-        <div>
+        <div >
           <input onChange={onChange} type="radio" checked={state} value="valueOne" />
-         Container
+          Container
         </div>
         <div>
           <input onChange={onChange} type="radio" checked={!state} value="valueTwo" />
-           Pallet
+          Pallet
         </div>
       </div>
-      {state ? <>
-        <Progress value={value} color='danger'>
-        </Progress>
-        <img style={{ width: '220px' }} src="/images/container.jpg" />
-      </> :
+      {state ?
         <>
-           <img style={{ width: '220px' }} src="/images/pallet.jpg" />
+          <Progress value={value} color='danger'>
+          </Progress>
+          <img style={{ width: '220px' }} src="/images/container.jpg" />
+        </>:
+        <>
+          <img style={{ width: '220px' }} src="/images/pallet.jpg" />
         </>
-
-
       }
-
     </div>
 
   )
