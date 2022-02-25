@@ -27,16 +27,17 @@ function WidgetFilters(props: Props) {
     const nameContainer = globalIntl()?.formatMessage(
         { id: 'TEXT_CONTAINER' },
     )
+
+    const nameSearch = globalIntl()?.formatMessage(
+        { id: 'TEXT_SEARCH' },
+    )
     const dataFilTers: any = [
         {
-          
             name: nameCategoryProducts,
         },
         {
-           
             name: nameContainer,
         },
-       
     ]
     
     return (

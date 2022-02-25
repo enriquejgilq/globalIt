@@ -1,9 +1,6 @@
 import React from 'react'
 import { Progress, ButtonGroup, Button } from 'reactstrap'
 
-
-
-
 interface Props {
   value: any
 }

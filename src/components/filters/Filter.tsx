@@ -50,6 +50,7 @@ function Filter(props: Props) {
     const dispatch = useDispatch()
     const is_auth = isAuth()
     const cart = useCart();
+    const { Provider, Consumer } = React.createContext<any>('all');
 
     const shopSetFilterValue = useShopSetFilterValueThunk();
     const categoryProductsParents = getCategoryProducts();
@@ -67,6 +68,9 @@ function Filter(props: Props) {
     )
     const nameContainer = globalIntl()?.formatMessage(
         { id: 'TEXT_CONTAINER' },
+    )
+    const nameSearch = globalIntl()?.formatMessage(
+        { id: 'TEXT_SEARCH' },
     )
     useEffect(() => {
         dispatch(getCategoryLoading());
@@ -97,6 +101,7 @@ function Filter(props: Props) {
     const onClearCategoryChildren = () => {
         dispatch(clearCategoryChildren())
     }
+    
     const renderFn: RenderFilterFn = ({ toggle, setItemRef, setContentRef }) => (
         <div className="filter filter--opened" ref={setItemRef}>
             <button type="button" className="filter__title" onClick={toggle}>
@@ -106,8 +111,11 @@ function Filter(props: Props) {
                 </span>
             </button>
             <div className="filter__body" ref={setContentRef}>
+                <Provider value={'asdsadsadasdasd'} > 
+
                 <div className="filter__container">
                     {title === nameCategoryProducts &&
+                    
                         <FilterCategory
                             categoryProductsParents={categoryProductsParents}
                             categoryProductsChildren={categoryProductsChildren}
@@ -116,8 +124,8 @@ function Filter(props: Props) {
                             is_auth={is_auth}
                         />
                     }
-                    {title === nameContainer && <FilterContainer value={value} />}
 
+                    {title === nameContainer && <FilterContainer value={value} />}
 
                     {/** 
 
@@ -161,14 +169,18 @@ function Filter(props: Props) {
                                 />
                             )} */}
                 </div>
+                </Provider>
+
             </div>
         </div>
     );
 
     return (
+
         <div className="widget-filters__item">
             <Collapse toggleClass="filter--opened" render={renderFn} />
         </div>
+
     );
 }
 

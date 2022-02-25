@@ -37,6 +37,7 @@ function FilterCategory(props: Props) {
         onClearCategoryChildren,
         is_auth
     } = props;
+    const { Provider, Consumer } = React.createContext<any>(null);
     const dispatch = useDispatch()
     const [categoryParents, setCategoryParents] = useState("all");
     const [categoryChildren, setCategoryChildren] = useState("all");
@@ -68,10 +69,10 @@ function FilterCategory(props: Props) {
         onClearCategoryChildren
     }
     const onFind = () => {
-        if (is_auth=== false) {
-         dispatch(getCatalogProducts(API + apiCatalogProducts + categoryParents+'/'+categoryChildren+'/?limit=16&search='+findShop))
-        }else {
-            dispatch(getCatalogProductsPrivate(API + apiCatalogProducts + categoryParents+'/'+categoryChildren+'/?limit=16&search='+findShop))
+        if (is_auth === false) {
+            dispatch(getCatalogProducts(API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
+        } else {
+            dispatch(getCatalogProductsPrivate(API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
         }
 
     }
@@ -90,7 +91,7 @@ function FilterCategory(props: Props) {
                             className={classNames('section-header__groups-button', {
                                 'section-header__groups-button--active': '',
                             })}
-                            onClick={()=> {
+                            onClick={() => {
                                 onClearCategoryChildren ? onClearCategoryChildren() : null;
                                 dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
                             }}>
@@ -138,19 +139,23 @@ function FilterCategory(props: Props) {
                     ))}
                 </>)}
                 <li>
-                    <Input type='text'
-                     value={findShop}
-                     onChange={(e) => {
-                         setFindShop(e.currentTarget.value);
-                     }}
-                    > </Input>
+                    <div style={{ marginTop: '10px' }}>
+                    <div style={{ marginBottom: '10px', borderBottom: 'solid 1px #ebebeb', width: '350px', marginLeft: '-25px' }} />
+                        <p><b> <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /></b></p>
+                        <Input type='text'
+                            value={findShop}
+                            onChange={(e) => {
+                                setFindShop(e.currentTarget.value);
+                            }}> </Input>
+                            <br/>
+                        <Button color="primary" size="sm" type='button' onClick={() => {
+                            shopResetFilters ? shopResetFilters() : null
+                            onFind()
+                        }}>
+                            <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" />
+                        </Button>
+                    </div>
 
-                    <Button color="primary" size="sm" type='button' onClick={()=> {
-                                    shopResetFilters ? shopResetFilters() : null
-                                    onFind()
-                    }}> 
-                    <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /> 
-                    </Button>
 
                 </li>
 
