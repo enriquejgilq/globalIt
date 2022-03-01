@@ -200,32 +200,40 @@ function ShopPageProduct(props: Props) {
             )}
 
             <div className="product__prices-stock">
-                {is_auth === true && (<>
-                    <div className="product__prices">
-                        {product.sale_price && (
-                            <button className={classNames('btn', 'btn-primary', 'btn-lg', 'btn-block', {
-                                'btn-primary': 'btn-primary',
-                            })} type='button' onClick={handleEvent}>
-                                {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
-                            </button>
-                        )}
-
-                    </div>
-                    {product.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
-                        (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
-                    }
-                </>)}
+                {is_auth === true && (
+                    <>
+                        <div className="product__prices">
+                            {product.sale_price && (
+                                <button
+                                    className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
+                                        "btn-primary": "btn-primary",
+                                    })}
+                                    type="button"
+                                    onClick={handleEvent}
+                                >
+                                    {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
+                                </button>
+                            )}
+                        </div>
+                        <b>
+                            {product.available > 15 ? (
+                                <StockStatusBadge className="product__stock" stock={"in-stock"} />
+                            ) : (
+                                <StockStatusBadge className="product__stock" stock={"out-of-stock"} />
+                            )}
+                        </b>
+                    </>
+                )}
             </div>
 
             <div className="product__meta">
-
                 <table>
                     <tbody>
                         <tr>
                             <th>
                                 <Input
-                                    placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })}
-                                    type='number'
+                                    placeholder={intl.formatMessage({ id: "TABLE_QUANTITY" })}
+                                    type="number"
                                     //value={findShop}
                                     onChange={(e) => {
                                         const number = e.target.value;
@@ -237,9 +245,11 @@ function ShopPageProduct(props: Props) {
                                 <Button
                                     color="primary"
                                     size="sm"
-                                    type='button'
-                                    onClick={() => cartAddItem(product, [], quantity)} >
-                                    <FormattedMessage id="BUTTON_ADD_TO_CART" /> </Button>
+                                    type="button"
+                                    onClick={() => cartAddItem(product, [], quantity)}
+                                >
+                                    <FormattedMessage id="BUTTON_ADD_TO_CART" />{" "}
+                                </Button>
                             </td>
                         </tr>
                         {/**   {product.brand && (
@@ -273,8 +283,6 @@ function ShopPageProduct(props: Props) {
                         */}
                     </tbody>
                 </table>
-
-
             </div>
         </div>
     );

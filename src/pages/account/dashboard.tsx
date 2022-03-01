@@ -40,7 +40,7 @@ function Page() {
     }
     return (
         <div className="dashboard">
-            <PageTitle>{intl.formatMessage({ id: 'HEADER_DASHBOARD' })}</PageTitle>
+            <PageTitle>{intl.formatMessage({ id: "HEADER_DASHBOARD" })}</PageTitle>
 
             <div className="dashboard__profile card profile-card">
                 <div className="card-body profile-card__body">
@@ -52,7 +52,7 @@ function Page() {
                         )}
                     </div>
                     <div className="profile-card__name">
-                        {`${user_info.user.first_name} ${user_info.user.username}`}
+                        {`${user_info.user.first_name} ${user_info.user.last_name}`}
                     </div>
                     <div className="profile-card__email">{user?.email}</div>
                     <div className="profile-card__edit">
@@ -67,7 +67,9 @@ function Page() {
                 <div className="dashboard__address card">
                     <div className="card-body d-flex justify-content-center align-items-center">
                         <div className="text-center w-75">
-                            <p><FormattedMessage id="TEXT_CALL_ADD_ADDRESS" /></p>
+                            <p>
+                                <FormattedMessage id="TEXT_CALL_ADD_ADDRESS" />
+                            </p>
 
                             <AppLink href={url.accountAddressNew()} className="btn btn-secondary btn-sm">
                                 <FormattedMessage id="BUTTON_ADD_ADDRESS" />
@@ -83,18 +85,20 @@ function Page() {
                     address={address}
                     label={<FormattedMessage id="TEXT_DEFAULT_ADDRESS" />}
                     featured
-                    footer={(
+                    footer={
                         <AppLink href={url.accountAddressEdit(address)}>
                             <FormattedMessage id="LINK_EDIT_ADDRESS" />
                         </AppLink>
-                    )}
+                    }
                 />
             )}
 
             {orders.length > 0 && (
                 <div className="dashboard__orders card">
                     <div className="card-header">
-                        <h5><FormattedMessage id="HEADER_RECENT_ORDERS" /></h5>
+                        <h5>
+                            <FormattedMessage id="HEADER_RECENT_ORDERS" />
+                        </h5>
                     </div>
                     <div className="card-divider" />
                     <div className="card-table">
@@ -134,9 +138,7 @@ function Page() {
                                                 />
                                             </td>
                                             <td>
-                                                <FormattedMessage
-                                                    id={`TEXT_ORDER_STATUS_${order.status}`}
-                                                />
+                                                <FormattedMessage id={`TEXT_ORDER_STATUS_${order.status}`} />
                                             </td>
                                             <td>
                                                 <FormattedMessage

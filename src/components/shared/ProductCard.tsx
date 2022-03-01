@@ -105,46 +105,44 @@ function ProductCard(props: Props) {
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
                 <AsyncAction
-                    action={() =>
-                        is_auth ? showQuickviewPrivate() : showQuickview()
-                    }
+                    action={() => (is_auth ? showQuickviewPrivate() : showQuickview())}
                     render={({ run, loading }) => (
                         <button
                             type="button"
-                            className={classNames('product-card__action product-card__action--quickview', {
-                                'product-card__action--loading': loading,
+                            className={classNames("product-card__action product-card__action--quickview", {
+                                "product-card__action--loading": loading,
                             })}
-                            aria-label={intl.formatMessage({ id: 'BUTTON_QUICKVIEW' })}
+                            aria-label={intl.formatMessage({ id: "BUTTON_QUICKVIEW" })}
                             onClick={() => {
                                 run ? run() : null;
                                 dispatch(getCataloLoading());
-                                dispatch(getImages(productFeatured.code))
+                                dispatch(getImages(productFeatured.code));
                                 // console.log('click',productFeatured.code)
                             }}
-                        //   onClick={run}
+                            //   onClick={run}
                         >
                             <Quickview16Svg />
                         </button>
                     )}
                 />
 
-                {!exclude.includes('actions') && (
+                {!exclude.includes("actions") && (
                     <React.Fragment>
-                        <AsyncAction
+                        {/* <AsyncAction
                             action={() => addToFeaturedWishlist()}
                             render={({ run, loading }) => (
                                 <button
                                     type="button"
-                                    className={classNames('product-card__action product-card__action--wishlist', {
-                                        'product-card__action--loading': loading,
+                                    className={classNames("product-card__action product-card__action--wishlist", {
+                                        "product-card__action--loading": loading,
                                     })}
-                                    aria-label={intl.formatMessage({ id: 'BUTTON_ADD_TO_WISHLIST' })}
+                                    aria-label={intl.formatMessage({ id: "BUTTON_ADD_TO_WISHLIST" })}
                                     onClick={run}
                                 >
                                     <Wishlist16Svg />
                                 </button>
                             )}
-                        />
+                        /> */}
                         {/**   <AsyncAction
                             action={() => addToCompare()}
                             render={({ run, loading }) => (
@@ -165,52 +163,55 @@ function ProductCard(props: Props) {
             </div>
             <div className="product-card__image">
                 <div className="image image--type--product">
-                    <AppLink className="image__body" onClick={ondetails} href={url.producturl(productFeatured.code)}   >
+                    <AppLink className="image__body" onClick={ondetails} href={url.producturl(productFeatured.code)}>
                         {productFeatured.image_principal === null || productFeatured.image_principal === "" ? (
                             <AppImage className="image__tag" src="/images/noimages/noimage3.jpg" />
                         ) : (
-                            <AppImage className="image__tag" src={productFeatured?.image_principal} />)}
+                            <AppImage className="image__tag" src={productFeatured?.image_principal} />
+                        )}
                     </AppLink>
-
-
-
                 </div>
 
-                {!exclude.includes('status-badge') && (
+                {!exclude.includes("status-badge") && (
                     <CompatibilityStatusBadge className="product-card__fit" product={productFeatured} />
                 )}
             </div>
 
             <div className="product-card__info">
-                {!exclude.includes('meta') && (
-                    <div className="product-card__meta">
+                {!exclude.includes("meta") && (
+                    <div className="product-card__meta row ml-1">
                         <span className="product-card__meta-title">
-                            <FormattedMessage id="TEXT_SKU" />
-                            {': '}
+                            {/* <FormattedMessage id="TEXT_SKU" /> */}
+                            {/* {": "} */}
                         </span>
-                        <span style={{ color: "black", fontWeight: 'bold' }}>{productFeatured.code}</span>
-                        {is_auth === true && (<div
-                            style={{
-                                marginTop: '5px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                flexDirection: 'column',
-                                gap: '5px',
-                                width: '70px'
-                            }}>
-
-                            {productFeatured.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
-                                (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
-                            }
-                        </div>
-
+                        <span style={{ fontSize: "14px", color: "black", fontWeight: "bold", marginLeft: "-2px" }}>
+                            {productFeatured.code}
+                        </span>
+                        {is_auth === true && (
+                            <div
+                                style={{
+                                    marginTop: "-6px",
+                                    // display: "flex",
+                                    // justifyContent: "center",
+                                    // flexDirection: "column",
+                                    // gap: "5px",
+                                    // width: "70px",
+                                }}
+                            >
+                                <b>
+                                    {productFeatured.available > 15 ? (
+                                        <StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />
+                                    ) : (
+                                        <StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />
+                                    )}
+                                </b>
+                            </div>
                         )}
                     </div>
                 )}
 
-
                 <div className="product-card__name">
-                    { /**  {productFeatured.badges && productFeatured.badges.length > 0 && (
+                    {/**  {productFeatured.badges && productFeatured.badges.length > 0 && (
                         <div className="product-card__badges">
                             {productFeatured.badges.map((badge:any) => (
                                 <div key={badge} className={`tag-badge tag-badge--${badge}`}>{badge}</div>
@@ -218,12 +219,12 @@ function ProductCard(props: Props) {
                         </div>
                     )}
                     <AppLink href={url.product(productFeatured)}>{productFeatured.name}</AppLink>  */}
-                    <AppLink onClick={ondetails} href={url.producturl(productFeatured.code)}>{productFeatured[description]}</AppLink>
+                    <AppLink onClick={ondetails} href={url.producturl(productFeatured.code)}>
+                        {productFeatured[description]}
+                    </AppLink>
                 </div>
-                <div className="product-card__rating">
-
-
-                    {/**   <Rating className="product-card__rating-stars" value={product.rating || 0} />
+                {/* <div className="product-card__rating">
+                    <Rating className="product-card__rating-stars" value={product.rating || 0} />
                     <div className=" product-card__rating-label">
                         <FormattedMessage
                             id="TEXT_RATING_LABEL"
@@ -232,64 +233,99 @@ function ProductCard(props: Props) {
                                 reviews: product.reviews,
                             }}
                         />
-                    </div> */}
-                </div>
+                    </div>
+                </div> */}
 
-                {!exclude.includes('features') && productFeatured.length > 0 && (
+                {!exclude.includes("features") && productFeatured.length > 0 && (
                     <div className="product-card__features">
-
                         <ul>
                             {productFeatured.map((attribute: any, index: any) => (
                                 <li key={index}>
                                     {attribute.name}
-                                    {': '}
-                                    {attribute.values.map((x: any) => x.name).join(', ')}
+                                    {": "}
+                                    {attribute.values.map((x: any) => x.name).join(", ")}
                                 </li>
                             ))}
                         </ul>
-
-
                     </div>
                 )}
             </div>
-            {is_auth === true && (<>
-                <div className="product-card__footer">
+            {is_auth === true && (
+                <>
+                    <div
+                        className="product-card__footer"
+                        style={{
+                            marginTop: "-15px",
 
-                    {productFeatured.sale_price !== undefined && (<>
-                        {!exclude.includes('buttons') && (
-                            <React.Fragment>
-                                {!exclude.includes('list-buttons') && (
+                        }}
+                    >
+                        {productFeatured.sale_price !== undefined && (
+                            <>
+                                {!exclude.includes("buttons") && (
                                     <React.Fragment>
-                                        <AsyncAction
-                                            action={() => cartAddItem(productFeatured, [], quantity)}
-                                            render={({ run, loading }) => (
-                                                <div style={{
-                                                    height: '40px',
-                                                    display: 'flex', flexDirection: 'row', gap: '5px', flex: '1', justifyContent: 'center',
-                                                    alignContent: 'center', alignItems: 'center', alignSelf: 'center'
-                                                }}>
-                                                    <button type="button" className={`btn btn-primary btn-xs`}
-                                                        onClick={handleEvent} >
-                                                        {onPress === true ? <CurrencyFormat value={productFeatured.sale_price} /> : prices}
-                                                    </button>
-                                                    <Input style={{ height: '25px', width: '90px', fontSize: '12px', textAlign: 'justify' }}
-                                                        placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })}
-                                                        type='number'
-                                                        min="0"
-                                                        onChange={(e) => {
-                                                            const number = e.target.value;
-                                                            setQuantity(parseInt(number));
-                                                        }}
-
-                                                    />
-                                                    <button type="button" className={`btn btn-primary btn-xs`}
-                                                        onClick={run}   >
-                                                        <FormattedMessage id="BUTTON_ADD_TO_CART" />
-                                                    </button>
-                                                </div>
-                                            )}
-                                        />
-                                        {/** 
+                                        {!exclude.includes("list-buttons") && (
+                                            <React.Fragment>
+                                                <AsyncAction
+                                                    action={() => cartAddItem(productFeatured, [], quantity)}
+                                                    render={({ run, loading }) => (
+                                                        <div
+                                                            style={{
+                                                                height: "40px",
+                                                                display: "flex",
+                                                                flexDirection: "row",
+                                                                gap: "5px",
+                                                                flex: "1",
+                                                                justifyContent: "center",
+                                                                alignContent: "center",
+                                                                alignItems: "center",
+                                                                alignSelf: "center",
+                                                            }}
+                                                        >
+                                                            <button
+                                                                type="button"
+                                                                className={`btn btn-primary btn-xs mr-3`}
+                                                                onClick={handleEvent}
+                                                                style={{
+                                                                    marginLeft: "-10px",
+                                                                }}
+                                                            >
+                                                                {onPress === true ? (
+                                                                    <CurrencyFormat
+                                                                        value={productFeatured.sale_price}
+                                                                    />
+                                                                ) : (
+                                                                    prices
+                                                                )}
+                                                            </button>
+                                                            <Input
+                                                                style={{
+                                                                    height: "25px",
+                                                                    width: "85px",
+                                                                    fontSize: "12px",
+                                                                    textAlign: "justify",
+                                                                }}
+                                                                placeholder={intl.formatMessage({
+                                                                    id: "TABLE_QUANTITY",
+                                                                })}
+                                                                type="number"
+                                                                min="0"
+                                                                onChange={(e) => {
+                                                                    const number = e.target.value;
+                                                                    setQuantity(parseInt(number));
+                                                                }}
+                                                            />
+                                                            {/**  ['primary', 'secondary', 'light', 'muted'*/}
+                                                            <button
+                                                                type="button"
+                                                                className={`btn btn-primary btn-xs`}
+                                                                onClick={run}
+                                                            >
+                                                                <FormattedMessage id="BUTTON_ADD_TO_CART" />
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                />
+                                                {/** 
                                     <AsyncAction
                                         action={() => addToFeaturedWishlist()}
                                         render={({ run, loading }) => (
@@ -324,13 +360,15 @@ function ProductCard(props: Props) {
                                             </button>
                                         )}
                                     />*/}
+                                            </React.Fragment>
+                                        )}
                                     </React.Fragment>
                                 )}
-                            </React.Fragment>
+                            </>
                         )}
-                    </>
-                    )}
-                </div></>)}
+                    </div>
+                </>
+            )}
         </div>
     );
 }

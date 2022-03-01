@@ -14,13 +14,12 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
 function StockStatusBadge(props: Props) {
     const { stock, className, ...rootProps } = props;
     const rootClasses = classNames(className);
-
+    
     const typesMap: Record<IProductStock, IStatusBadgeType> = useMemo(() => ({
         'in-stock': 'success',
         'out-of-stock': 'failure',
         'on-backorder': 'warning',
     }), []);
-
     const textMap = useMemo(() => ({
         'in-stock': (<FormattedMessage id="TEXT_STOCK_IN_STOCK" />),
         'out-of-stock': (<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />),

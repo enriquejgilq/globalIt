@@ -56,10 +56,12 @@ function AccountMenu(props: Props) {
                     </div>
                     {msj_error && (
                         <div className="alert alert-xs alert-danger mt-n2">
-                          {/**  <FormattedMessage id={signInForm.serverError} />*/} 
-                         <p><b> {Object.values(msj_error).toString()}</b></p>
+                            {/**  <FormattedMessage id={signInForm.serverError} />*/}
+                            <p>
+                                <b> {Object.values(msj_error).toString()}</b>
+                            </p>
                         </div>
-                    )}         
+                    )}
                     <div className="form-group">
                         <label htmlFor="header-signin-email" className="sr-only">
                             <FormattedMessage id="INPUT_EMAIL_ADDRESS_LABEL" />
@@ -67,17 +69,17 @@ function AccountMenu(props: Props) {
                         <input
                             id="header-signin-email"
                             type="email"
-                            className={classNames('form-control', 'form-control-sm', {
-                                'is-invalid': signInForm.errors.email,
+                            className={classNames("form-control", "form-control-sm", {
+                                "is-invalid": signInForm.errors.email,
                             })}
                             placeholder="customer@example.com"
-                            {...signInForm.register('email', { required: true, validate: { email: validateEmail } })}
+                            {...signInForm.register("email", { required: true, validate: { email: validateEmail } })}
                         />
                         <div className="invalid-feedback">
-                            {signInForm.errors.email?.type === 'required' && (
+                            {signInForm.errors.email?.type === "required" && (
                                 <FormattedMessage id="ERROR_FORM_REQUIRED" />
                             )}
-                            {signInForm.errors.email?.type === 'email' && (
+                            {signInForm.errors.email?.type === "email" && (
                                 <FormattedMessage id="ERROR_FORM_INCORRECT_EMAIL" />
                             )}
                         </div>
@@ -87,25 +89,25 @@ function AccountMenu(props: Props) {
                             <FormattedMessage id="INPUT_PASSWORD_LABEL" />
                         </label>
                         <div
-                            className={classNames('account-menu__form-forgot', {
-                                'is-invalid': signInForm.errors.password,
+                            className={classNames("account-menu__form-forgot", {
+                                "is-invalid": signInForm.errors.password,
                             })}
                         >
                             <input
                                 id="header-signin-password"
                                 type="password"
-                                className={classNames('form-control', 'form-control-sm', {
-                                    'is-invalid': signInForm.errors.password,
+                                className={classNames("form-control", "form-control-sm", {
+                                    "is-invalid": signInForm.errors.password,
                                 })}
-                                placeholder={intl.formatMessage({ id: 'INPUT_PASSWORD_PLACEHOLDER' })}
-                                {...signInForm.register('password', { required: true })}
+                                placeholder={intl.formatMessage({ id: "INPUT_PASSWORD_PLACEHOLDER" })}
+                                {...signInForm.register("password", { required: true })}
                             />
                             <AppLink href={url.passwordRecovery()} className="account-menu__form-forgot-link">
                                 <FormattedMessage id="LINK_FORGOT" />
                             </AppLink>
                         </div>
                         <div className="invalid-feedback">
-                            {signInForm.errors.password?.type === 'required' && (
+                            {signInForm.errors.password?.type === "required" && (
                                 <FormattedMessage id="ERROR_FORM_REQUIRED" />
                             )}
                         </div>
@@ -114,8 +116,8 @@ function AccountMenu(props: Props) {
                     <div className="form-group account-menu__form-button">
                         <button
                             type="submit"
-                            className={classNames('btn', 'btn-primary', 'btn-sm', {
-                                'btn-loading': signInForm.submitInProgress,
+                            className={classNames("btn", "btn-primary", "btn-sm", {
+                                "btn-loading": signInForm.submitInProgress,
                             })}
                         >
                             <FormattedMessage id="BUTTON_LOGIN" />
@@ -133,20 +135,17 @@ function AccountMenu(props: Props) {
                     <AppLink href={url.accountDashboard()} className="account-menu__user" onClick={onCloseMenu}>
                         <div className="account-menu__user-avatar">
                             {login.user.picture === null ? (
-                                <AppImage src="/images/avatars/no_avatar.png" /> 
-                              ) : (
-                                <AppImage src={login.user.picture} /> 
-                                    )
-                              }
+                                <AppImage src="/images/avatars/no_avatar.png" />
+                            ) : (
+                                <AppImage src={login.user.picture} />
+                            )}
                         </div>
                         <div className=" account-menu__user-info">
                             <div className=" account-menu__user-name">
-                            {`${login.user.company_name} `}
-                               {/**  {`${user.firstName} ${user.lastName}`}/**/}
+                                {`${login.user.first_name} ${login.user.last_name}`}
+                                {/**  {`${user.firstName} ${user.lastName}`}/**/}
                             </div>
-                            <div className=" account-menu__user-email">
-                               {login.user.email} 
-                            </div>
+                            <div className=" account-menu__user-email">{login.user.email}</div>
                         </div>
                     </AppLink>
                     <div className="account-menu__divider" />
