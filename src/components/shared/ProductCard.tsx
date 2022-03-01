@@ -282,7 +282,6 @@ function ProductCard(props: Props) {
                                                         }}
 
                                                     />
-                                                    {/**  ['primary', 'secondary', 'light', 'muted'*/}
                                                     <button type="button" className={`btn btn-primary btn-xs`}
                                                         onClick={run}   >
                                                         <FormattedMessage id="BUTTON_ADD_TO_CART" />

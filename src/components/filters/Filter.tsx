@@ -75,6 +75,7 @@ function Filter(props: Props) {
     useEffect(() => {
         dispatch(getCategoryLoading());
         dispatch(getCategoryProductsParents())
+
     }, [])
 
     useEffect(() => {
@@ -88,6 +89,8 @@ function Filter(props: Props) {
         else {
             setValue(0)
         }
+        console.log('estas aqui xdd')
+
     }, [cart])
 
     const selectCategoryChildren = (parent: any) => {

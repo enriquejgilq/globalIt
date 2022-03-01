@@ -145,7 +145,13 @@ function ProductsView(props: Props) {
     )
 
     useEffect(() => {
-        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+        var URLactual = window.location;
+        if(URLactual.search ){
+            var page:any = URLactual.search.toString().slice(6)
+            dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&offset='+16*(page-1)))
+        }else{
+            dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+        }
         count()
     }, [])
     const count = () => {

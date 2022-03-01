@@ -1,5 +1,5 @@
 // react
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { globalIntl } from '~/services/i18n/global-intl';
 
 // third-party
@@ -23,28 +23,47 @@ import { useProductForm } from '~/services/forms/product';
 import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
 import { useWishlistAddItem } from '~/store/wishlist/wishlistHooks';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
+import { useCartAddItem } from '~/store/cart/cartHooks';
+
+import { Button, Input } from 'reactstrap';
 
 function Quickview() {
     const quickview = useQuickview();
     const quickviewClose = useQuickviewClose();
     const wishlistAddItem = useWishlistAddItem();
     const compareAddItem = useCompareAddItem();
+    const cartAddItem = useCartAddItem();
     const { product } = quickview;
     const allImages = getImagesCarouselState();
     const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
     const productForm = useProductForm(product);
+
+    const [quantity, setQuantity] = useState<any>(1);
+    const [onPress, setOnPress] = useState(false);
+
     const description: any = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY_DESCRIPTION' },
     )
     const noimage: any = globalIntl()?.formatMessage(
         { id: 'TEXT_EMPTY_IMAGES' },
     )
+    const amount: any = globalIntl()?.formatMessage(
+        { id: 'TABLE_QUANTITY' },
+    )
+    const prices: any = globalIntl()?.formatMessage(
+        { id: 'BUTTON_VIEW_PRICES' },
+    )
     const toggle = useCallback(() => {
         if (quickview.open) {
             quickviewClose();
         }
     }, [quickview.open, quickviewClose]);
-
+    const handleEvent = (event: any) => {
+        setOnPress(true)
+        setTimeout(() => {
+            setOnPress(false)
+        }, 1500);
+    }
     if (!product) {
         return null;
     }
@@ -76,6 +95,12 @@ function Quickview() {
                             </th>
                             <td>{product.code}</td>
                         </tr>
+                        <div style={{ margin: '5px' }}>
+                            {product.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
+                                (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
+                            }
+                        </div>
+
                         {/**   {product.brand && (
                             <React.Fragment>
                                 <tr>
@@ -117,6 +142,8 @@ function Quickview() {
             )}
             <div className="quickview__product-prices-stock">
                 <div className="quickview__product-prices">
+
+
                     {/**   {product.compareAtPrice !== null && (
                         <React.Fragment>
                             <div className="quickview__product-price quickview__product-price--old">
@@ -133,7 +160,6 @@ function Quickview() {
                         </div>
                     )}
                 </div>
-                <StockStatusBadge className="quickview__product-stock" stock={product.stock} />
             </div>
 
             <ProductForm
@@ -144,7 +170,7 @@ function Quickview() {
 
             <div className="quickview__product-actions">
                 <div className="quickview__product-actions-item quickview__product-actions-item--quantity">
-                    <Controller
+                    {/**   <Controller
                         name="quantity"
                         rules={{ required: true }}
                         render={({ field: { ref: fieldRef, ...fieldProps } }) => (
@@ -154,9 +180,43 @@ function Quickview() {
                                 {...fieldProps}
                             />
                         )}
-                    />
+                    />*/}
                 </div>
                 <div className="quickview__product-actions-item quickview__product-actions-item--addtocart">
+                    <div style={{
+                        height: '40px',
+                        display: 'flex', flexDirection: 'row', gap: '5px', flex: '1', justifyContent: 'center',
+                        alignContent: 'center', alignItems: 'center', alignSelf: 'center'
+                    }}>
+                        <button type="button" className={`btn btn-primary btn-xs`}
+                            onClick={handleEvent}
+                        >
+                            {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
+                        </button>
+                        <Input style={{ height: '25px', width: '90px', fontSize: '12px', textAlign: 'justify' }}
+                            placeholder={amount}
+                            type='number'
+                            min="0"
+                            onChange={(e) => {
+                                const number = e.target.value;
+                                setQuantity(parseInt(number));
+                            }}
+                        />
+                        <AsyncAction
+                            action={() => cartAddItem(product, [], quantity)}
+                            render={({ run, loading }) => (
+                                <div className="quickview__product-actions-item quickview__product-actions-item--wishlist">
+                                    <button type="button" className={`btn btn-primary btn-xs`}
+                                        onClick={run}
+                                    >
+                                        <FormattedMessage id="BUTTON_ADD_TO_CART" />
+
+                                    </button>
+                                </div>
+                            )}
+                        />
+                    </div>
+
                     {/**   <button
                         type="submit"
                         className={classNames('btn', 'btn-primary', 'btn-block', {
@@ -168,7 +228,7 @@ function Quickview() {
                     </button> */}
                 </div>
 
-                <AsyncAction
+                {/**  <AsyncAction
                     action={() => wishlistAddItem(product)}
                     render={({ run, loading }) => (
                         <div className="quickview__product-actions-item quickview__product-actions-item--wishlist">
@@ -200,7 +260,7 @@ function Quickview() {
                             </button>
                         </div>
                     )}
-                />
+                />*/}
             </div>
         </div>
     );
@@ -218,27 +278,27 @@ function Quickview() {
                             width: '270px',
                             textAlign: 'justify',
                             justifyContent: 'center',
-                            
+
                         }}>
                             <p><b>{noimage}</b></p>
                         </div>
                     ) : (
                         <ProductGallery
-                         className="quickview__gallery"
-                          layout="quickview" 
-                          images={image} />)
+                            className="quickview__gallery"
+                            layout="quickview"
+                            images={image} />)
                     }
                     {productTemplate}
                 </form>
             </FormProvider>
 
-              <AppLink href={url.producturl(product.code)}
-               onClick={()=> {
-                quickviewClose();
-               }} 
-                 className="quickview__see-details">
+            <AppLink href={url.producturl(product.code)}
+                onClick={() => {
+                    quickviewClose();
+                }}
+                className="quickview__see-details">
                 <FormattedMessage id="BUTTON_SEE_FULL_DETAILS" />
-            </AppLink> 
+            </AppLink>
         </Modal>
     );
 }
