@@ -36,8 +36,8 @@ function Header() {
             : <FormattedMessage id="BUTTON_DEPARTMENTS_LONG" />
     ), [desktopLayout]);
 
-    console.log('Header', user);
-    const accountIndicatorLabel = is_auth ?  <FormattedMessage id="TEXT_GREETING" /> : <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_LABEL" />;
+    console.log('Header', user_info.user.email);
+    const accountIndicatorLabel = is_auth ?   user_info.user.email: <FormattedMessage id="TEXT_GREETING" /> ;
     const accountIndicatorValue = <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_VALUE" />;
     const accountIndicatorCtrl = useRef<IIndicatorController | null>(null);
 
@@ -92,11 +92,11 @@ function Header() {
                 <Search />
             </div>
             <div className="header__indicators">
-                <Indicator
+              {/**  <Indicator
                     href={url.wishlist()}
                     icon={<Heart32Svg />}
                     counter={wishlist.items.length}
-                />
+                />*/} 
 
                 <Indicator
                     href={url.accountDashboard()}

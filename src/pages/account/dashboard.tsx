@@ -14,12 +14,14 @@ import { accountApi } from '~/api';
 import { IAddress } from '~/interfaces/address';
 import { IOrder } from '~/interfaces/order';
 import { useUser } from '~/store/user/userHooks';
+import { getlogin, isAuth } from '~/store/login/loginHooks'
 
 function Page() {
     const intl = useIntl();
     const user = useUser();
     const [address, setAddress] = useState<IAddress | null>(null);
     const [orders, setOrders] = useState<IOrder[]>([]);
+    const user_info = getlogin()
 
     useEffect(() => {
         if (user) {
@@ -33,10 +35,10 @@ function Page() {
         }
     }, [user]);
 
-    if (!user) {
+    if (!user_info) {
         return null;
     }
-
+    console.log('<<<<<<<<<<<<<', user_info.user.picture)
     return (
         <div className="dashboard">
             <PageTitle>{intl.formatMessage({ id: 'HEADER_DASHBOARD' })}</PageTitle>
@@ -44,12 +46,16 @@ function Page() {
             <div className="dashboard__profile card profile-card">
                 <div className="card-body profile-card__body">
                     <div className="profile-card__avatar">
-                        <AppImage src={user.avatar} />
+                        {user_info.user.picture === null ? (
+                            <AppImage src="/images/avatars/no_avatar.png" />
+                        ) : (
+                            <AppImage src={user_info.user.picture} />
+                        )}
                     </div>
                     <div className="profile-card__name">
-                        {`${user.firstName} ${user.lastName}`}
+                        {`${user_info.user.first_name} ${user_info.user.username}`}
                     </div>
-                    <div className="profile-card__email">{user.email}</div>
+                    <div className="profile-card__email">{user?.email}</div>
                     <div className="profile-card__edit">
                         <AppLink href={url.accountProfile()} className="btn btn-secondary btn-sm">
                             <FormattedMessage id="BUTTON_EDIT_PROFILE" />

@@ -111,8 +111,6 @@ function Filter(props: Props) {
                 </span>
             </button>
             <div className="filter__body" ref={setContentRef}>
-                <Provider value={'asdsadsadasdasd'} > 
-
                 <div className="filter__container">
                     {title === nameCategoryProducts &&
                     
@@ -124,9 +122,7 @@ function Filter(props: Props) {
                             is_auth={is_auth}
                         />
                     }
-
-                    {title === nameContainer && <FilterContainer value={value} />}
-
+                    {title === nameContainer &&  <FilterContainer value={value} />}
                     {/** 
 
                             {filter.type === 'range' && (
@@ -169,8 +165,6 @@ function Filter(props: Props) {
                                 />
                             )} */}
                 </div>
-                </Provider>
-
             </div>
         </div>
     );

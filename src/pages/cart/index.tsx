@@ -1,5 +1,7 @@
 // react
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -16,6 +18,7 @@ import url from '~/services/url';
 import { Cross12Svg } from '~/svg';
 import { ICartItem } from '~/store/cart/cartTypes';
 import { useCart, useCartRemoveItem, useCartUpdateQuantities } from '~/store/cart/cartHooks';
+import { Button } from 'reactstrap';
 
 interface Quantity {
     itemId: number;
@@ -111,7 +114,11 @@ function Page() {
             </React.Fragment>
         );
     }
+    const onFinish =()=>{
+        toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
+        
 
+    }
     const table = (
         <table className="cart-table__table">
             <thead className="cart-table__head">
@@ -219,7 +226,9 @@ function Page() {
                 <tr>
                     <td colSpan={6}>
                         <div className="cart-table__actions">
+                            {/**  
                             <form className="cart-table__coupon-form form-row">
+                                
                                 <div className="form-group mb-0 col flex-grow-1">
                                     <label htmlFor="coupon-code" className="sr-only">
                                         <FormattedMessage id="INPUT_COUPON_CODE_LABEL" />
@@ -236,7 +245,7 @@ function Page() {
                                         <FormattedMessage id="BUTTON_APPLY_COUPON" />
                                     </button>
                                 </div>
-                            </form>
+                            </form>*/}
                             <div className="cart-table__update-button">
                                 <AsyncAction
                                     action={updateQuantities}
@@ -320,9 +329,9 @@ function Page() {
                     </tfoot>
                 </table>
 
-                <AppLink href={url.checkout()} className="btn btn-primary btn-xl btn-block">
+                <Button onClick={onFinish} href={url.accountProfile()} className="btn btn-xl btn-block">
                     <FormattedMessage id="BUTTON_PROCEED_TO_CHECKOUT" />
-                </AppLink>
+                </Button>
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ function Page() {
     const {
         register,
         handleSubmit,
-        reset,
+     //   reset,
         formState: { errors },
     } = useForm<IForm>({
         defaultValues: {
@@ -45,13 +45,13 @@ function Page() {
     }, [userEditProfile, intl]);
 
     useEffect(() => {
-        reset({
+    /*    reset({
             firstName: user?.firstName || '',
             lastName: user?.lastName || '',
             email: user?.email || '',
             phone: user?.phone || '',
-        });
-    }, [user, reset]);
+        });*/
+    }, [user]);
 
     return (
         <div className="card">
@@ -104,7 +104,7 @@ function Page() {
                                     )}
                                 </div>
                             </div>
-                            <div className="form-group">
+                         {/**    <div className="form-group">
                                 <label htmlFor="profile-email">
                                     <FormattedMessage id="INPUT_EMAIL_ADDRESS_LABEL" />
                                 </label>
@@ -128,7 +128,7 @@ function Page() {
                                         <FormattedMessage id="ERROR_FORM_INCORRECT_EMAIL" />
                                     )}
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="form-group">
                                 <label htmlFor="profile-phone">
                                     <FormattedMessage id="INPUT_PHONE_NUMBER_LABEL" />
@@ -150,14 +150,14 @@ function Page() {
                             </div>
 
                             <div className="form-group mb-0">
-                                <button
+                               {/**  <button
                                     type="submit"
                                     className={classNames('btn', 'btn-primary', 'mt-3', {
                                         'btn-loading': submitInProgress,
                                     })}
                                 >
                                     <FormattedMessage id="BUTTON_SAVE" />
-                                </button>
+                                </button> */}
                             </div>
                         </form>
                     </div>

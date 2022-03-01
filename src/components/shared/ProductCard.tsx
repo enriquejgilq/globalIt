@@ -100,7 +100,7 @@ function ProductCard(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-    
+
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -189,6 +189,22 @@ function ProductCard(props: Props) {
                             {': '}
                         </span>
                         <span style={{ color: "black", fontWeight: 'bold' }}>{productFeatured.code}</span>
+                        {is_auth === true && (<div
+                            style={{
+                                marginTop: '5px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                flexDirection: 'column',
+                                gap: '5px',
+                                width: '70px'
+                            }}>
+
+                            {productFeatured.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
+                                (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
+                            }
+                        </div>
+
+                        )}
                     </div>
                 )}
 
@@ -205,6 +221,8 @@ function ProductCard(props: Props) {
                     <AppLink onClick={ondetails} href={url.producturl(productFeatured.code)}>{productFeatured[description]}</AppLink>
                 </div>
                 <div className="product-card__rating">
+
+
                     {/**   <Rating className="product-card__rating-stars" value={product.rating || 0} />
                     <div className=" product-card__rating-label">
                         <FormattedMessage
@@ -229,52 +247,50 @@ function ProductCard(props: Props) {
                                 </li>
                             ))}
                         </ul>
+
+
                     </div>
                 )}
             </div>
             {is_auth === true && (<>
-            <div className="product-card__footer">
-                
-                {productFeatured.sale_price !== undefined && (<>
-                    {!exclude.includes('buttons') && (
-                        <React.Fragment>
-                             <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex:'1', justifyContent:'center', 
-                             alignContent:'center', alignItems:'center', alignSelf:'center' }}>
-                             
-                             <button type="button" className={`btn btn-primary btn-xs`}
-                              onClick={handleEvent} >
-                                {onPress === true ? <CurrencyFormat value={productFeatured.sale_price} /> : prices}
-                            </button>
-                            {productFeatured.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
-                            (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
-                        }
-                        </div>
-                            {!exclude.includes('list-buttons') && (
-                                <React.Fragment>
-                                    <AsyncAction
-                                        action={() => cartAddItem(productFeatured, [], quantity)}
-                                        render={({ run, loading }) => (
-                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex:'1', justifyContent:'center', 
-                                            alignContent:'center', alignItems:'center', alignSelf:'center' }}>
-                                                <Input  className={`btn btn-secondary btn-xs`}
-                                                    placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })}
-                                                    type='number'
-                                                    min="0"
-                                                    onChange={(e) => {
-                                                        const number = e.target.value;
-                                                        setQuantity(parseInt(number));
-                                                    }}
+                <div className="product-card__footer">
 
-                                                />
-                                                {/**  ['primary', 'secondary', 'light', 'muted'*/} 
-                                                <button type="button" className={`btn btn-primary btn-xs`}
-                                                    onClick={run}   >
-                                                    <FormattedMessage id="BUTTON_ADD_TO_CART" />                                                    
+                    {productFeatured.sale_price !== undefined && (<>
+                        {!exclude.includes('buttons') && (
+                            <React.Fragment>
+                                {!exclude.includes('list-buttons') && (
+                                    <React.Fragment>
+                                        <AsyncAction
+                                            action={() => cartAddItem(productFeatured, [], quantity)}
+                                            render={({ run, loading }) => (
+                                                <div style={{
+                                                    height: '40px',
+                                                    display: 'flex', flexDirection: 'row', gap: '5px', flex: '1', justifyContent: 'center',
+                                                    alignContent: 'center', alignItems: 'center', alignSelf: 'center'
+                                                }}>
+                                                    <button type="button" className={`btn btn-primary btn-xs`}
+                                                        onClick={handleEvent} >
+                                                        {onPress === true ? <CurrencyFormat value={productFeatured.sale_price} /> : prices}
                                                     </button>
-                                            </div>
-                                        )}
-                                    />
-                                    {/** 
+                                                    <Input style={{ height: '25px', width: '90px', fontSize: '12px', textAlign: 'justify' }}
+                                                        placeholder={intl.formatMessage({ id: 'TABLE_QUANTITY' })}
+                                                        type='number'
+                                                        min="0"
+                                                        onChange={(e) => {
+                                                            const number = e.target.value;
+                                                            setQuantity(parseInt(number));
+                                                        }}
+
+                                                    />
+                                                    {/**  ['primary', 'secondary', 'light', 'muted'*/}
+                                                    <button type="button" className={`btn btn-primary btn-xs`}
+                                                        onClick={run}   >
+                                                        <FormattedMessage id="BUTTON_ADD_TO_CART" />
+                                                    </button>
+                                                </div>
+                                            )}
+                                        />
+                                        {/** 
                                     <AsyncAction
                                         action={() => addToFeaturedWishlist()}
                                         render={({ run, loading }) => (
@@ -309,13 +325,13 @@ function ProductCard(props: Props) {
                                             </button>
                                         )}
                                     />*/}
-                                </React.Fragment>
-                            )}
-                        </React.Fragment>
+                                    </React.Fragment>
+                                )}
+                            </React.Fragment>
+                        )}
+                    </>
                     )}
-                </>
-                )} 
-            </div></>)}
+                </div></>)}
         </div>
     );
 }

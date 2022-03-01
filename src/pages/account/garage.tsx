@@ -32,7 +32,7 @@ function Page() {
                     </div>
                     <div className="card-divider" />
 
-                    <div className="card-body card-body--padding--2">
+                  {/**   <div className="card-body card-body--padding--2">
                         <div className="vehicles-list vehicles-list--layout--account">
                             <div className="vehicles-list__body">
                                 {vehicles.map((vehicle, index) => (
@@ -78,10 +78,11 @@ function Page() {
                             </div>
                         </div>
                     </div>
+*/}
                     <div className="card-divider" />
                 </React.Fragment>
             )}
-
+{/** 
             <div className="card-header">
                 <h5><FormattedMessage id="HEADER_ADD_VEHICLE" /></h5>
             </div>
@@ -107,7 +108,7 @@ function Page() {
                         )}
                     />
                 </div>
-            </div>
+            </div>*/}
         </div>
     );
 }

@@ -133,11 +133,10 @@ function AccountMenu(props: Props) {
                     <AppLink href={url.accountDashboard()} className="account-menu__user" onClick={onCloseMenu}>
                         <div className="account-menu__user-avatar">
                             {login.user.picture === null ? (
-                               <div><p><b>S/I</b></p></div>    
+                                <AppImage src="/images/avatars/no_avatar.png" /> 
                               ) : (
                                 <AppImage src={login.user.picture} /> 
                                     )
-                             
                               }
                         </div>
                         <div className=" account-menu__user-info">

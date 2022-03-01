@@ -40,7 +40,7 @@ function Page() {
     return (
         <div className="addresses-list">
             <PageTitle>{intl.formatMessage({ id: 'HEADER_ADDRESSES' })}</PageTitle>
-
+{/** 
             <AppLink href={url.accountAddressNew()} className="addresses-list__item addresses-list__item--new">
                 <div className="addresses-list__plus" />
                 <div className="btn btn-secondary btn-sm">
@@ -48,8 +48,8 @@ function Page() {
                 </div>
             </AppLink>
             <div className="addresses-list__divider" />
-
-            {addresses.map((address, index) => (
+ */}
+          {/**   {addresses.map((address, index) => (
                 <React.Fragment key={index}>
                     <AsyncAction
                         action={() => delAddress(address.id)}
@@ -65,7 +65,7 @@ function Page() {
                                             <FormattedMessage id="LINK_EDIT_ADDRESS" />
                                         </AppLink>
                                         &nbsp;&nbsp;
-                                        {/* eslint-disable-next-line */}
+                                        {/* eslint-disable-next-line *
                                         <AppLink anchor onClick={(event) => { event.preventDefault(); run(); }}>
                                             <FormattedMessage id="LINK_REMOVE" />
                                         </AppLink>
@@ -77,7 +77,7 @@ function Page() {
 
                     <div className="addresses-list__divider" />
                 </React.Fragment>
-            ))}
+            ))}*/} 
         </div>
     );
 }

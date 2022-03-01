@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { globalIntl } from '~/services/i18n/global-intl';
 
 // third-party
@@ -9,6 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { useShopFilters, useShopFilterValues, useShopResetFiltersThunk } from '~/store/shop/shopHooks';
 import { IShopPageOffCanvasSidebar } from '~/interfaces/pages';
 import Filter from '~/components/filters/Filter';
+import { isAuth } from '~/store/login/loginHooks'
 
 interface Props {
     offcanvasSidebar: IShopPageOffCanvasSidebar;
@@ -16,9 +17,11 @@ interface Props {
 
 function WidgetFilters(props: Props) {
     const { offcanvasSidebar } = props;
+    const is_auth = isAuth()
     const filters = useShopFilters();
     const values = useShopFilterValues();
-    const shopResetFilters = useShopResetFiltersThunk();
+    const [datas, setDatas] = useState<any>();
+        const shopResetFilters = useShopResetFiltersThunk();
 
     const rootClasses = classNames('widget', 'widget-filters', `widget-filters--offcanvas--${offcanvasSidebar}`);
     const nameCategoryProducts = globalIntl()?.formatMessage(
@@ -31,14 +34,27 @@ function WidgetFilters(props: Props) {
     const nameSearch = globalIntl()?.formatMessage(
         { id: 'TEXT_SEARCH' },
     )
-    const dataFilTers: any = [
-        {
-            name: nameCategoryProducts,
-        },
-        {
-            name: nameContainer,
-        },
-    ]
+
+
+  useEffect(() => {
+    if( is_auth === true ){
+        setDatas([
+            {
+                name: nameCategoryProducts,
+            },
+            {
+                name: nameContainer,
+            },
+        ])
+    }else {
+        setDatas([
+            {
+                name: nameCategoryProducts,
+            },
+        ])  
+    }
+}, [])
+
     
     return (
         <div className={rootClasses}>
@@ -49,14 +65,13 @@ function WidgetFilters(props: Props) {
             </div>
 
             <div className="widget-filters__list">
-               {dataFilTers.map((filter:any, index:any) => (
+             {datas?.map((filter:any, index:any) => (
                     <Filter
                         key={index}
-                        dataFilTers={dataFilTers}
+                        dataFilTers={datas}
                         title={filter.name}
-                        
                     />
-                ))} 
+                ))}  
             </div>
 
             <div className="widget-filters__actions d-flex">

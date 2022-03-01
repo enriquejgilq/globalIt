@@ -129,9 +129,9 @@ function Dropcart(props: Props) {
                         <AppLink href={url.cart()} className="btn btn-secondary" onClick={onCloseMenu}>
                             <FormattedMessage id="BUTTON_VIEW_CART" />
                         </AppLink>
-                        <AppLink href={url.checkout()} className="btn btn-primary" onClick={onCloseMenu}>
+                  {/**       <AppLink href={url.checkout()} className="btn btn-primary" onClick={onCloseMenu}>
                             <FormattedMessage id="BUTTON_CHECKOUT" />
-                        </AppLink>
+                        </AppLink> */}
                     </div>
                 </React.Fragment>
             )}
