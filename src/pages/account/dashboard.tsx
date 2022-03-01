@@ -38,7 +38,6 @@ function Page() {
     if (!user_info) {
         return null;
     }
-    console.log('<<<<<<<<<<<<<', user_info.user.picture)
     return (
         <div className="dashboard">
             <PageTitle>{intl.formatMessage({ id: 'HEADER_DASHBOARD' })}</PageTitle>

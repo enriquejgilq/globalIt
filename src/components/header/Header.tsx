@@ -36,7 +36,6 @@ function Header() {
             : <FormattedMessage id="BUTTON_DEPARTMENTS_LONG" />
     ), [desktopLayout]);
 
-    console.log('Header', user_info.user.email);
     const accountIndicatorLabel = is_auth ?   user_info.user.email: <FormattedMessage id="TEXT_GREETING" /> ;
     const accountIndicatorValue = <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_VALUE" />;
     const accountIndicatorCtrl = useRef<IIndicatorController | null>(null);
