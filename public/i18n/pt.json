@@ -335,7 +335,7 @@
     "TEXT_SOCIAL_LINKS_MESSAGE": "Siga-nos nas redes sociais",
     "TEXT_STARS": "{stars, plural, one {{stars} star rating} other {{stars} stars rating}}",
     "TEXT_STOCK_IN_STOCK": "Em estoque",
-    "TEXT_STOCK_ON_BACKORDER": "Em espera",
+    "TEXT_STOCK_ON_BACKORDER": "Poucas unidades",
     "TEXT_STOCK_OUT_OF_STOCK": "Esgotado",
     "TEXT_TAB_ANALOGS": "Analógicos",
     "TEXT_TAB_BESTSELLERS": "Mais vendidos",

@@ -96,8 +96,11 @@ function Quickview() {
                             <td>{product.code}</td>
                         </tr>
                         <div style={{ margin: '5px' }}>
-                            {product.available > 15 ? (<StockStatusBadge className="product__stock" stock={'in-stock'} />) :
-                                (<StockStatusBadge className="product__stock" stock={'out-of-stock'} />)
+                            {product.available <= 0 ?
+                                (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />)
+                                : product.available <= 15 ?
+                                    (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} />)
+                                    : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />)
                             }
                         </div>
 

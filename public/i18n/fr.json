@@ -337,7 +337,7 @@
   "TEXT_SOCIAL_LINKS_MESSAGE": "Suivez-nous sur les réseaux sociaux",
   "TEXT_STARS": "{stars, plural, one {{stars} star rating} other {{stars} stars rating}}",
   "TEXT_STOCK_IN_STOCK": "En stock",
-  "TEXT_STOCK_ON_BACKORDER": "En rupture de stock",
+  "TEXT_STOCK_ON_BACKORDER": "Peu d'unités",
   "TEXT_STOCK_OUT_OF_STOCK": "En rupture de stock",
   "TEXT_TAB_ANALOGS": "Analogues",
   "TEXT_TAB_BESTSELLERS": "Meilleures ventes",

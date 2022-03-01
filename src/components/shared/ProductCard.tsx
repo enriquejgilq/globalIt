@@ -196,14 +196,14 @@ function ProductCard(props: Props) {
                                     // flexDirection: "column",
                                     // gap: "5px",
                                     // width: "70px",
-                                }}
-                            >
+                                }}>
                                 <b>
-                                    {productFeatured.available > 15 ? (
-                                        <StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />
-                                    ) : (
-                                        <StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />
-                                    )}
+                                    {productFeatured.available <= 0 ? 
+                                    (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />)
+                                    :productFeatured.available <= 15 ? 
+                                     (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} /> )  
+                                     : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />)
+                                }
                                 </b>
                             </div>
                         )}
