@@ -90,18 +90,18 @@ function Quickview() {
                 <table>
                     <tbody>
                         <tr>
-                            <th>
+                            {/**<th>
                                 <FormattedMessage id="TABLE_SKU" />
-                            </th>
+                            </th>*/}
                             <td>{product.code}</td>
                         </tr>
-                        <div style={{ margin: '5px' }}>
+                        <div style={{ margin: '5px' }}><b>
                             {product.available <= 0 ?
                                 (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />)
                                 : product.available <= 15 ?
                                     (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} />)
                                     : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />)
-                            }
+                                   }  </b> 
                         </div>
 
                         {/**   {product.brand && (
