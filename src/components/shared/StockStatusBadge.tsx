@@ -9,10 +9,11 @@ import { IProductStock } from '~/interfaces/product';
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
     stock: IProductStock;
+    defaultValue:any
 }
 
 function StockStatusBadge(props: Props) {
-    const { stock, className, ...rootProps } = props;
+    const { stock,defaultValue, className, ...rootProps } = props;
     const rootClasses = classNames(className);
     
     const typesMap: Record<IProductStock, IStatusBadgeType> = useMemo(() => ({
@@ -21,7 +22,7 @@ function StockStatusBadge(props: Props) {
         'on-backorder': 'warning',
     }), []);
     const textMap = useMemo(() => ({
-        'in-stock': (<FormattedMessage id="TEXT_STOCK_IN_STOCK" />),
+        'in-stock': defaultValue === null ?(<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />) : (<b> {defaultValue}</b>),
         'out-of-stock': (<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />),
         'on-backorder': (<FormattedMessage id="TEXT_STOCK_ON_BACKORDER" />),
     }), []);

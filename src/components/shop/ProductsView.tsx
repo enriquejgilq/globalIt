@@ -35,7 +35,7 @@ import {
     useShopResetFiltersThunk,
     useShopResetFilterThunk,
 } from '~/store/shop/shopHooks';
-import { getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
 import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { Button, Input } from 'reactstrap';
@@ -80,6 +80,7 @@ function ProductsView(props: Props) {
     const handleBeforeChange = useSetOption('before');
     const quickviewOpenPrivate = useQuickviewOpenPrivate();
     const [findShop, setFindShop] = useState('')
+    const [ api, setApi ] = useState()
 
 
 
@@ -140,20 +141,31 @@ function ProductsView(props: Props) {
     const apiCatalogProducts = globalIntl()?.formatMessage(
         { id: 'API_GET_CATALOG_PRODUCTS' },
     )
+    const apiCatalogProductsPrivate = globalIntl()?.formatMessage(
+        { id: 'API_GET_CATALOG_PRODUCTS_PRIVATE' },
+    )
     const messageEmpty = globalIntl()?.formatMessage(
         { id: 'TEXT_EMPTY_CATEGORY_DESCRIPTION' },
     )
-
+    
     useEffect(() => {
+        if (is_auth=== true) {
+        var URLactual = window.location;
+        if(URLactual.search ){
+            var page:any = URLactual.search.toString().slice(6)
+            dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16&offset='+16*(page-1)))
+        }else{
+            dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16'))
+        }}else{
         var URLactual = window.location;
         if(URLactual.search ){
             var page:any = URLactual.search.toString().slice(6)
             dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&offset='+16*(page-1)))
         }else{
             dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
-        }
+        }}
         count()
-    }, [])
+    }, [is_auth])
     const count = () => {
         if (getCatalog.count / 16 === 0) {
             const result = getCatalog.count / 16
@@ -167,8 +179,6 @@ function ProductsView(props: Props) {
         e.preventDefault();
        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&search='+findShop))
     }
-
-
 
     return (
         <div className={rootClasses}>

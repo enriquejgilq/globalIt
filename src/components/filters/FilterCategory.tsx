@@ -93,7 +93,11 @@ function FilterCategory(props: Props) {
                             })}
                             onClick={() => {
                                 onClearCategoryChildren ? onClearCategoryChildren() : null;
+                                if (is_auth === false) {
                                 dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+                                } else {
+                                    dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16'))
+                                }
                             }}>
                             <FormattedMessage id="LINK_ALL_PRODUCTS" />
                         </button>

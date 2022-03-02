@@ -216,10 +216,11 @@ function ShopPageProduct(props: Props) {
                             )}
                         </div>
                         <b>
+                            <p>sadasd</p> 
                             {product.available > 15 ? (
-                                <StockStatusBadge className="product__stock" stock={"in-stock"} />
+                                <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available,10)} />
                             ) : (
-                                <StockStatusBadge className="product__stock" stock={"out-of-stock"} />
+                                <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available,10)} />
                             )}
                         </b>
                     </>

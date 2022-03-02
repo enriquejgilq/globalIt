@@ -160,6 +160,7 @@ function Page() {
                         <StockStatusBadge
                             stock={product.stock}
                             className="product__stock"
+                            defaultValue=''
                         />
                     </td>
                 ))}

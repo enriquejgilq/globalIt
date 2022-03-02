@@ -97,10 +97,10 @@ function Quickview() {
                         </tr>
                         <div style={{ margin: '5px' }}><b>
                             {product.available <= 0 ?
-                                (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />)
+                                (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={parseInt(product.available,10)} />)
                                 : product.available <= 15 ?
-                                    (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} />)
-                                    : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />)
+                                    (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={parseInt(product.available,10)} />)
+                                    : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(product.available,10)} />)
                                    }  </b> 
                         </div>
 

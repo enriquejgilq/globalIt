@@ -100,7 +100,6 @@ function ProductCard(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -117,9 +116,7 @@ function ProductCard(props: Props) {
                                 run ? run() : null;
                                 dispatch(getCataloLoading());
                                 dispatch(getImages(productFeatured.code));
-                                // console.log('click',productFeatured.code)
                             }}
-                            //   onClick={run}
                         >
                             <Quickview16Svg />
                         </button>
@@ -197,14 +194,16 @@ function ProductCard(props: Props) {
                                     // gap: "5px",
                                     // width: "70px",
                                 }}>
-                                <b>
-                                    {productFeatured.available <= 0 ? 
-                                    (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} />)
-                                    :productFeatured.available <= 15 ? 
-                                     (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} /> )  
-                                     : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} />)
+                                {productFeatured.available === undefined ? null :
+                                    <b>
+                                        {productFeatured.available <= 0 ?
+                                            (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={productFeatured.available} />)
+                                            : productFeatured.available <= 15 ?
+                                                (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={productFeatured.available} />)
+                                                : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(productFeatured.available, 10)} >{parseInt(productFeatured.available)}</StockStatusBadge>)
+                                        }
+                                    </b>
                                 }
-                                </b>
                             </div>
                         )}
                     </div>
