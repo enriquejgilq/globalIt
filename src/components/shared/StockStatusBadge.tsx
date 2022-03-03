@@ -1,5 +1,5 @@
 // react
-import React, { useMemo } from 'react';
+import React, { useMemo,useEffect, useState } from 'react';
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -25,8 +25,8 @@ function StockStatusBadge(props: Props) {
         'in-stock': defaultValue === null ?(<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />) : (<b> {defaultValue}</b>),
         'out-of-stock': (<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />),
         'on-backorder': (<FormattedMessage id="TEXT_STOCK_ON_BACKORDER" />),
-    }), []);
-
+    }), [defaultValue]);
+  
     return (
         <StatusBadge
             type={typesMap[stock]}
