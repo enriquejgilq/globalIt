@@ -71,12 +71,24 @@ function FilterCategory(props: Props) {
     const onFind = () => {
         if (is_auth === false) {
             dispatch(getCatalogProducts(API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
+            let search = API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop
+            localStorage.setItem('search', JSON.stringify(search))
         } else {
             dispatch(getCatalogProductsPrivate(API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
+            let search = API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop
+            localStorage.setItem('search', JSON.stringify(search))
         }
-
     }
-
+    useEffect(() => {
+        var aValue = localStorage.getItem('search');
+        if (aValue) {
+            if (is_auth === false) {
+                dispatch(getCatalogProducts(JSON.parse(aValue)))
+            } else {
+                dispatch(getCatalogProductsPrivate(JSON.parse(aValue)))
+            }
+        }
+    }, [])
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
     return (
         <div className="filter-category">
@@ -94,9 +106,13 @@ function FilterCategory(props: Props) {
                             onClick={() => {
                                 onClearCategoryChildren ? onClearCategoryChildren() : null;
                                 if (is_auth === false) {
-                                dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+                                    dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+                                    let search = API + apiCatalogProducts + 'all/all/?limit=16'
+                                    localStorage.setItem('search', JSON.stringify(search))
                                 } else {
                                     dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16'))
+                                    let search = API + apiCatalogProductsPrivate + 'all/all/?limit=16'
+                                    localStorage.setItem('search', JSON.stringify(search))
                                 }
                             }}>
                             <FormattedMessage id="LINK_ALL_PRODUCTS" />
@@ -113,9 +129,12 @@ function FilterCategory(props: Props) {
                                     shopResetFilters ? shopResetFilters() : null
                                     if (is_auth) {
                                         dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'))
-
+                                        let search = API + apiCatalogProductsPrivate + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'
+                                        localStorage.setItem('search', JSON.stringify(search))
                                     } else {
                                         dispatch(getCatalogProducts(API + apiCatalogProducts + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'))
+                                        let search = API + apiCatalogProducts + item.parent_category[slugCategoryProducts] + '/' + item.child_category[slugCategoryProducts] + '/?limit=16'
+                                        localStorage.setItem('search', JSON.stringify(search))
                                     }
                                 }
                                 }>
@@ -144,14 +163,14 @@ function FilterCategory(props: Props) {
                 </>)}
                 <li>
                     <div style={{ marginTop: '10px' }}>
-                    <div style={{ marginBottom: '10px', borderBottom: 'solid 1px #ebebeb', width: '350px', marginLeft: '-25px' }} />
+                        <div style={{ marginBottom: '10px', borderBottom: 'solid 1px #ebebeb', width: '350px', marginLeft: '-25px' }} />
                         <p><b> <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /></b></p>
                         <Input type='text'
                             value={findShop}
                             onChange={(e) => {
                                 setFindShop(e.currentTarget.value);
                             }}> </Input>
-                            <br/>
+                        <br />
                         <Button color="primary" size="sm" type='button' onClick={() => {
                             shopResetFilters ? shopResetFilters() : null
                             onFind()
