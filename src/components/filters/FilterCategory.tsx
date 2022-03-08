@@ -41,7 +41,7 @@ function FilterCategory(props: Props) {
     const dispatch = useDispatch()
     const [categoryParents, setCategoryParents] = useState("all");
     const [categoryChildren, setCategoryChildren] = useState("all");
-    const [findShop, setFindShop] = useState<any>(localStorage.getItem('find'))
+    const [findShop, setFindShop] = useState<any>('');
 
     const categoryProducts = getCategoryProducts();
     const childrenProducts = getCategoryProductsChildrenState();
@@ -90,6 +90,10 @@ function FilterCategory(props: Props) {
             } else {
                 dispatch(getCatalogProductsPrivate(JSON.parse(aValue)))
             }
+        }
+        var find = localStorage.getItem('find');
+        if (find) {
+            setFindShop(JSON.parse(find))
         }
     }, [])
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
