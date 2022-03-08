@@ -338,7 +338,7 @@
   "TEXT_STARS": "{stars, plural, one {{stars} star rating} other {{stars} stars rating}}",
   "TEXT_STOCK_IN_STOCK": "Pas d'unités",
   "TEXT_STOCK_ON_BACKORDER": "Peu d'unités",
-  "TEXT_STOCK_OUT_OF_STOCK": "Pas d'unités",
+  "TEXT_STOCK_OUT_OF_STOCK": "En rupture de stock",
   "TEXT_TAB_ANALOGS": "Analogues",
   "TEXT_TAB_BESTSELLERS": "Meilleures ventes",
   "TEXT_TAB_DESCRIPTION": "Description",
@@ -371,6 +371,7 @@
   "TEXT_ALL": "Tout Le Monde",
   "TEXT_CATEGORY": "Catégorie",
   "TEXT_CONTAINER": "Container",
+  "TEXT_CONTAINER_LIST": "Liste des conteneurs",
 
   "TEXT_TRANSLATE":"traduction non disponible",
   "TEXT_CATEGORY_DESCRIPTION":"description_fr",
