@@ -9,3 +9,4 @@ export const blogApi = new FakeBlogApi();
 export const countriesApi = new FakeCountriesApi();
 export const shopApi = new FakeShopApi();
 export const vehicleApi = new FakeVehicleApi();
+ 
