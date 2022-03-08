@@ -174,7 +174,9 @@ function FilterCategory(props: Props) {
                         <p><b> <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /></b></p>
                         <Input type='text'
                             value={findShop.replace(/['"]+/g, '')}
-
+                            onKeyDown={() => {
+                                shopResetFilters ? shopResetFilters() : null
+                                onFind()}}
                             onChange={(e) => {
                                 setFindShop(e.currentTarget.value);
                             }}>  </Input>
