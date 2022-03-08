@@ -41,7 +41,7 @@ function FilterCategory(props: Props) {
     const dispatch = useDispatch()
     const [categoryParents, setCategoryParents] = useState("all");
     const [categoryChildren, setCategoryChildren] = useState("all");
-    const [findShop, setFindShop] = useState('')
+    const [findShop, setFindShop] = useState<any>(localStorage.getItem('find'))
 
     const categoryProducts = getCategoryProducts();
     const childrenProducts = getCategoryProductsChildrenState();
@@ -73,10 +73,13 @@ function FilterCategory(props: Props) {
             dispatch(getCatalogProducts(API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
             let search = API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop
             localStorage.setItem('search', JSON.stringify(search))
+            localStorage.setItem('find', JSON.stringify(findShop))
         } else {
             dispatch(getCatalogProductsPrivate(API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
             let search = API + apiCatalogProducts + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop
             localStorage.setItem('search', JSON.stringify(search))
+            localStorage.setItem('find', JSON.stringify(findShop))
+
         }
     }
     useEffect(() => {
@@ -166,10 +169,11 @@ function FilterCategory(props: Props) {
                         <div style={{ marginBottom: '10px', borderBottom: 'solid 1px #ebebeb', width: '350px', marginLeft: '-25px' }} />
                         <p><b> <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /></b></p>
                         <Input type='text'
-                            value={findShop}
+                            value={findShop.replace(/['"]+/g, '')}
+
                             onChange={(e) => {
                                 setFindShop(e.currentTarget.value);
-                            }}> </Input>
+                            }}>  </Input>
                         <br />
                         <Button color="primary" size="sm" type='button' onClick={() => {
                             shopResetFilters ? shopResetFilters() : null
