@@ -28,6 +28,7 @@ interface Props {
     selectCategoryChildren?: (parent: any) => void,
     onClearCategoryChildren?: () => void,
     is_auth: boolean,
+    onRemoveItem?:()=> void
 }
 
 function FilterCategory(props: Props) {
@@ -35,7 +36,8 @@ function FilterCategory(props: Props) {
         categoryProductsChildren,
         selectCategoryChildren,
         onClearCategoryChildren,
-        is_auth
+        is_auth,
+        onRemoveItem,
     } = props;
     const { Provider, Consumer } = React.createContext<any>(null);
     const dispatch = useDispatch()
@@ -84,6 +86,7 @@ function FilterCategory(props: Props) {
     }
     useEffect(() => {
         var aValue = localStorage.getItem('search');
+        
         if (aValue) {
             if (is_auth === false) {
                 dispatch(getCatalogProducts(JSON.parse(aValue)))
@@ -94,6 +97,8 @@ function FilterCategory(props: Props) {
         var find = localStorage.getItem('find');
         if (find) {
             setFindShop(JSON.parse(find))
+        }else{
+            setFindShop('')
         }
     }, [])
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
@@ -112,14 +117,19 @@ function FilterCategory(props: Props) {
                             })}
                             onClick={() => {
                                 onClearCategoryChildren ? onClearCategoryChildren() : null;
+                                onRemoveItem ? onRemoveItem() : null;
                                 if (is_auth === false) {
                                     dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
                                     let search = API + apiCatalogProducts + 'all/all/?limit=16'
                                     localStorage.setItem('search', JSON.stringify(search))
+                                    setCategoryParents('all')
+                                    setCategoryChildren('all')
                                 } else {
                                     dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16'))
                                     let search = API + apiCatalogProductsPrivate + 'all/all/?limit=16'
                                     localStorage.setItem('search', JSON.stringify(search))
+                                    setCategoryParents('all')
+                                    setCategoryChildren('all')
                                 }
                             }}>
                             <FormattedMessage id="LINK_ALL_PRODUCTS" />

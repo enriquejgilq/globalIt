@@ -102,7 +102,11 @@ function Filter(props: Props) {
     const onClearCategoryChildren = () => {
         dispatch(clearCategoryChildren())
     }
-    
+    const onRemoveItem = ()=>{
+        localStorage.setItem('find','');
+        localStorage.setItem('search','');
+
+    }
     const renderFn: RenderFilterFn = ({ toggle, setItemRef, setContentRef }) => (
         <div className="filter filter--opened" ref={setItemRef}>
             <button type="button" className="filter__title" onClick={toggle}>
@@ -120,6 +124,7 @@ function Filter(props: Props) {
                             categoryProductsChildren={categoryProductsChildren}
                             selectCategoryChildren={selectCategoryChildren}
                             onClearCategoryChildren={onClearCategoryChildren}
+                            onRemoveItem={onRemoveItem}
                             is_auth={is_auth}
                         />
                     }

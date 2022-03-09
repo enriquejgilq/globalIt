@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { globalIntl } from '~/services/i18n/global-intl';
 
@@ -10,7 +10,7 @@ import { ArrowRoundedLeft7x11Svg, ArrowRoundedRight7x11Svg } from '~/svg';
 import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
 import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
 import { API } from '~/api/constantsApi';
-import {  isAuth } from '~/store/login/loginHooks'
+import { isAuth } from '~/store/login/loginHooks'
 
 
 interface Props {
@@ -29,6 +29,8 @@ function Pagination(props: Props) {
     } = props;
     const dispatch = useDispatch()
     const is_auth = isAuth()
+    const [findShop, setFindShop] = useState<any>('')
+    const find = localStorage.getItem('find');
 
     const setPage = (value: number) => {
         if (value < 1 || value > total || value === current) {
@@ -72,27 +74,39 @@ function Pagination(props: Props) {
         return pages;
     };
 
+
+
     const getNextUrl = (page: number) => {
-        if(getCatalog.next === null) {
-        const stringUrl = getCatalog.previous?.split("=");
+        if (getCatalog.next === null) {
+            const stringUrl = getCatalog.previous?.split("=");
 
-        if (page !== 1) {
-            return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
-        }
+            if (page !== 1) {
+                return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
+            }
 
-        return stringUrl[0] + "=16";
+            return stringUrl[0] + "=16";
         } else {
-        const stringUrl = getCatalog.next?.split("=");
+            const stringUrl = getCatalog.next?.split("=");
 
-        if (page !== 1) {
-            return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
+            if (page !== 1) {
+                return [stringUrl[0], stringUrl[1]].join("=") + "=" + (page - 1) * 16;
+            }
+
+            return stringUrl[0] + "=16";
         }
-
-        return stringUrl[0] + "=16";
-    }
     }
 
     const getCatalog = getCatalogProductsState();
+
+    useEffect(() => {
+
+        if (localStorage.getItem("find") === null) {
+            setFindShop('')
+        } else {
+
+            setFindShop(localStorage.getItem('find'))
+        }
+    }, [find])
     return (
         <ul className="pagination">
             <li className={classNames('page-item', { disabled: current <= 1 })}>
@@ -100,12 +114,15 @@ function Pagination(props: Props) {
                     type="button"
                     className="page-link page-link--with-arrow"
                     aria-label="Previous"
-                    onClick={() => { setPage(current - 1);
-                        if(is_auth){
-                            dispatch(getCatalogProductsPrivate(getNextUrl(current - 1)))
-                        }else{ 
-                            dispatch(getCatalogProducts(getNextUrl(current - 1))) }}
-                        } 
+                    onClick={() => {
+                        setPage(current - 1);
+                        if (is_auth) {
+                            dispatch(getCatalogProductsPrivate(getNextUrl(current - 1) + '&search=' + findShop?.replace(/['"]+/g, '')))
+                        } else {
+                            dispatch(getCatalogProducts(getNextUrl(current - 1) + '&search=' + findShop?.replace(/['"]+/g, '')))
+                        }
+                    }
+                    }
                 >
                     <span className="page-link__arrow page-link__arrow--left" aria-hidden="true">
                         <ArrowRoundedLeft7x11Svg />
@@ -125,10 +142,10 @@ function Pagination(props: Props) {
                                     setPage(page);
 
                                     { getCatalog.previous }
-                                    if(is_auth){
-                                        dispatch(getCatalogProductsPrivate(getNextUrl(page)))
-                                    }else{
-                                    dispatch(getCatalogProducts(getNextUrl(page)))
+                                    if (is_auth) {
+                                        dispatch(getCatalogProductsPrivate(getNextUrl(page) + '&search=' + findShop?.replace(/['"]+/g, '')))
+                                    } else {
+                                        dispatch(getCatalogProducts(getNextUrl(page) + '&search=' + findShop?.replace(/['"]+/g, '')))
                                     }
                                 }}>
                                     {page}
@@ -157,10 +174,10 @@ function Pagination(props: Props) {
                     aria-label="Next"
                     onClick={() => {
                         setPage(current + 1);
-                        if(is_auth){
-                            dispatch(getCatalogProductsPrivate(getNextUrl(current + 1)))
-                        }else{
-                        dispatch(getCatalogProducts(getNextUrl(current+1)))
+                        if (is_auth) {
+                            dispatch(getCatalogProductsPrivate(getNextUrl(current + 1) + '&search=' + findShop?.replace(/['"]+/g, '')))
+                        } else {
+                            dispatch(getCatalogProducts(getNextUrl(current + 1) + '&search=' + findShop?.replace(/['"]+/g, '')))
                         }
                     }}
                 >

@@ -75,7 +75,10 @@ function WidgetFilters(props: Props) {
             </div>
 
             <div className="widget-filters__actions d-flex">
-                <button type="button" className="btn btn-secondary btn-sm" onClick={shopResetFilters}>
+                <button type="button" className="btn btn-secondary btn-sm" onClick={()=>{
+                     localStorage.setItem('find','');
+                     localStorage.setItem('search','');
+                }}>
                     <FormattedMessage id="BUTTON_RESET" />
                 </button>
             </div>
