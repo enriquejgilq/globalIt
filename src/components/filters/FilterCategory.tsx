@@ -101,6 +101,12 @@ function FilterCategory(props: Props) {
             setFindShop('')
         }
     }, [])
+   const handleKeyPress = (event:any) => {
+        if(event.key === 'Enter'){
+            shopResetFilters ? shopResetFilters() : null
+             onFind()
+        }
+      }
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
     return (
         <div className="filter-category">
@@ -184,9 +190,11 @@ function FilterCategory(props: Props) {
                         <p><b> <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /></b></p>
                         <Input type='text'
                             value={findShop.replace(/['"]+/g, '')}
-                            onKeyDown={() => {
-                                shopResetFilters ? shopResetFilters() : null
-                                onFind()}}
+                            onKeyPress={handleKeyPress} 
+                            //onKeyDown={() => {
+                              //  shopResetFilters ? shopResetFilters() : null
+                               // onFind()}
+                          //  }
                             onChange={(e) => {
                                 setFindShop(e.currentTarget.value);
                             }}>  </Input>
