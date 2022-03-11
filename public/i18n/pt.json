@@ -342,7 +342,7 @@
     "TEXT_TAB_DESCRIPTION": "Descrição",
     "TEXT_TAB_FEATURED": "Apresentado",
     "TEXT_TAB_REVIEWS": "Resenhas",
-    "TEXT_TAB_SPECIFICATION": "Especificação",
+    "TEXT_TAB_SPECIFICATION": "OEM",
     "TEXT_TAB_TOP_RATED": "Melhor avaliados",
     "TEXT_TIMER_DAYS": "Dias",
     "TEXT_TIMER_HOURS": "Horas",
@@ -390,6 +390,7 @@
     "API_GET_PRODUCTS_BY_CODE" : "inventory/public-products/",
     "API_GET_PRODUCTS_BY_CODE_PRIVATE" : "inventory/products/",
     "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
+    "API_OEM" : "/inventory/oems/",
 
 
     "SLUG_NAME":"name_pt",

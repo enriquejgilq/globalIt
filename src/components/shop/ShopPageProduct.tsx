@@ -44,8 +44,10 @@ import {
 import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
+import { getoOem } from '~/store/oem/oemActions';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { useCartAddItem } from '~/store/cart/cartHooks';
+import { oemState } from '~/store/oem/oemHooks';
 
 import { Button, Input } from 'reactstrap';
 
@@ -83,6 +85,7 @@ function ShopPageProduct(props: Props) {
     const is_auth = isAuth()
 
     useEffect(() => {
+        dispatch(getoOem(product.code))
 
         // let canceled = false;
         //
@@ -98,7 +101,7 @@ function ShopPageProduct(props: Props) {
         //     canceled = true;
         //   };
     }, []);
-
+    const getoem = oemState();
     if (!product) {
         return null;
     }
@@ -127,6 +130,12 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
+    
+
+
+    console.log(product.code)
+
+    console.log(getoem)
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
@@ -491,7 +500,7 @@ function ShopPageProduct(props: Props) {
                                         {shopFeatures}
                                     </div>
 
-                                    {/***<ProductTabs className="product__tabs" product={product} layout={layout} />*/}
+                                  <ProductTabs className="product__tabs" product={getoem.results} layout={layout} /> 
                                 </div>
                             </div>
 

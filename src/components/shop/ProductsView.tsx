@@ -149,6 +149,8 @@ function ProductsView(props: Props) {
     )
     
     useEffect(() => {
+        var aValue = localStorage.getItem('search');
+        if (!aValue) {
         if (is_auth=== true) {
         var URLactual = window.location;
         if(URLactual.search ){
@@ -163,7 +165,7 @@ function ProductsView(props: Props) {
             dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&offset='+16*(page-1)))
         }else{
             dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
-        }}
+        }}}
         count()
     }, [is_auth])
     const count = () => {

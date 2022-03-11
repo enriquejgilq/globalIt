@@ -20,6 +20,7 @@ import categoryProductsReducer,{  CATEGORY_PRODUCTS_NAMESPACE   } from '../categ
 import categoryProductsChildrenReducer,{CATEGORY_PRODUCTS_CHILDREN_NAMESPACE } from '../categoryProducts/categoryProductsChildren/categoryProductsChildrenReducers'; 
 import catalogProductsReducer,{CATALOG_PRODUCTS_NAMESPACE} from '../catalogProducts/catalogProductsReducers';
 import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/imagesCarouselReducers';
+import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
 export default combineReducers({
     version: (state: number = version) => state,
     [CART_NAMESPACE]: cartReducer,
@@ -39,6 +40,8 @@ export default combineReducers({
     [CATEGORY_PRODUCTS_CHILDREN_NAMESPACE]:categoryProductsChildrenReducer,
     [CATALOG_PRODUCTS_NAMESPACE]:catalogProductsReducer,
     [IMAGESCAROUSEL_NAMESPACE]:imagesCarouselReducer,
+    [OEM_NAMESPACE]:oemReducer,
+
 
 
 });

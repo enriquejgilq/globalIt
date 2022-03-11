@@ -33,7 +33,7 @@ function ProductTabs(props: Props) {
         ...rootProps
     } = props;
 
-    const spec = useMemo(() => (
+    /*const spec = useMemo(() => (
         product.type.attributeGroups.map((group) => ({
             ...group,
             attributes: group.attributes.map((attribute) => (
@@ -41,7 +41,7 @@ function ProductTabs(props: Props) {
             )).filter((x) => x !== null),
         })).filter((x) => x.attributes.length > 0) as IProductAttributeGroup[]
     ), [product]);
-
+*/
     const tabs = useMemo<ITab[]>(() => [
         {
             id: 'product-tab-description',
@@ -56,7 +56,9 @@ function ProductTabs(props: Props) {
         {
             id: 'product-tab-specification',
             title: intl.formatMessage({ id: 'TEXT_TAB_SPECIFICATION' }),
-            content: (<Specification groups={spec} />),
+            content: (<Specification groups={product} />)
+           // (<p> Holaaaaaaaaaaaa</p> ),
+           // content: (<Specification groups={spec} />),
         },
         //ReviewsView is not implemented yet
     /*}  {
@@ -65,21 +67,23 @@ function ProductTabs(props: Props) {
             content: (<ReviewsView productId={product.id} productPageLayout={layout} />),
             counter: product.reviews,
             showCounter: typeof product.reviews === 'number' && product.reviews > 0,
-        },*/
+        },
         {
             id: 'product-tab-analogs',
             title: intl.formatMessage({ id: 'TEXT_TAB_ANALOGS' }),
             content: (<AnalogsTable productId={product.id} />),
-        },
-    ], [layout, product, spec, intl]);
+        },*/
+    ], [layout, product,  intl]);
     const [activeTab, setActiveTab] = useState(tabs[0]?.id);
 
     const rootClasses = classNames(`product-tabs product-tabs--layout--${layout}`, className);
 
+
+    console.log(tabs)
     return (
         <div className={rootClasses} {...rootProps}>
             {tabs.map((tab, index) => (
-                <div key={index} id={tab.id} />
+                <div key={index} id={tab?.id} />
             ))}
             <ul className="product-tabs__list">
                 {tabs.map((tab, index) => (
@@ -89,24 +93,24 @@ function ProductTabs(props: Props) {
                             'product-tabs__item--active': activeTab === tab.id,
                         })}
                     >
-                        <AppLink href={{ href: { hash: tab.id } }} onClick={() => setActiveTab(tab.id)}>
-                            {tab.title}
-                            {tab.showCounter && (
-                                <span className="product-tabs__item-counter">{tab.counter}</span>
+                        <AppLink href={{ href: { hash: tab?.id } }} onClick={() => setActiveTab(tab.id)}>
+                            {tab?.title}
+                            {tab?.showCounter && (
+                                <span className="product-tabs__item-counter">{tab?.counter}</span>
                             )}
                         </AppLink>
                     </li>
                 ))}
             </ul>
             <div className="product-tabs__content">
-                {tabs.map((tab, index) => (
+                {tabs?.map((tab, index) => (
                     <div
                         key={index}
                         className={classNames('product-tabs__pane', {
-                            'product-tabs__pane--active': activeTab === tab.id,
+                            'product-tabs__pane--active': activeTab === tab?.id,
                         })}
                     >
-                        {tab.content}
+                        {tab?.content}
                     </div>
                 ))}
             </div>
