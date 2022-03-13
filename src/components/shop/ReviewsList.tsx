@@ -17,7 +17,6 @@ interface Props {
 
 function ReviewsList(props: Props) {
     const { list, page, onNavigate } = props;
-    console.log('ahora aqui?', list)
 
     return (
         <div className="reviews-list">

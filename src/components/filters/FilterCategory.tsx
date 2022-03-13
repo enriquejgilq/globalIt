@@ -79,7 +79,6 @@ function FilterCategory(props: Props) {
         } else {
             dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop))
             let search = API + apiCatalogProductsPrivate + categoryParents + '/' + categoryChildren + '/?limit=16&search=' + findShop
-            console.log(search)
             localStorage.setItem('search', JSON.stringify(search))
             localStorage.setItem('find', JSON.stringify(findShop))
 

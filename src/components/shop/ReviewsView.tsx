@@ -61,8 +61,6 @@ function ReviewsView(props: Props) {
 
         toast.success(intl.formatMessage({ id: 'TEXT_TOAST_REVIEW_ADDED' }));
     }, [productId, reset]);
-    console.log('aqui?',applications);
-    console.log('lis?',list);
     return (
         <div className="reviews-view">
             {list && (

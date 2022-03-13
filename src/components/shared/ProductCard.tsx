@@ -124,7 +124,6 @@ function ProductCard(props: Props) {
                                 dispatch(getImages(productFeatured.code));
                                 dispatch(getoOem(productFeatured.code))
                                 dispatch(getApplicationsAxios(productFeatured.code))
-
                             }}
                         >
                             <Quickview16Svg />
