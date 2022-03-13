@@ -45,9 +45,11 @@ import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHook
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { getoOem } from '~/store/oem/oemActions';
+import { getApplicationsAxios } from '~/store/applications/applicationsActions';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { useCartAddItem } from '~/store/cart/cartHooks';
 import { oemState } from '~/store/oem/oemHooks';
+import { applicationsState } from '~/store/applications/applicationsHooks';
 
 import { Button, Input } from 'reactstrap';
 
@@ -83,9 +85,13 @@ function ShopPageProduct(props: Props) {
     const [quantity, setQuantity] = useState<any>(1);
     const productForm = useProductForm(product);
     const is_auth = isAuth()
+    const getoem = oemState();
+    const getapplications = applicationsState();
 
     useEffect(() => {
-        dispatch(getoOem(product.code))
+    //   dispatch(getoOem(product.code))
+
+
 
         // let canceled = false;
         //
@@ -101,7 +107,6 @@ function ShopPageProduct(props: Props) {
         //     canceled = true;
         //   };
     }, []);
-    const getoem = oemState();
     if (!product) {
         return null;
     }
@@ -130,12 +135,7 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-    
 
-
-    console.log(product.code)
-
-    console.log(getoem)
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
@@ -500,7 +500,7 @@ function ShopPageProduct(props: Props) {
                                         {shopFeatures}
                                     </div>
 
-                                  <ProductTabs className="product__tabs" product={getoem.results} layout={layout} /> 
+                                  <ProductTabs className="product__tabs" product={getoem.results} applications={getapplications}  layout={layout} /> 
                                 </div>
                             </div>
 

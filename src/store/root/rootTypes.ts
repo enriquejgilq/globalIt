@@ -18,6 +18,7 @@ import categoryProductsChildrenReducer, {CATEGORY_PRODUCTS_CHILDREN_NAMESPACE} f
 import catalogProductsReducer,{CATALOG_PRODUCTS_NAMESPACE} from '../catalogProducts/catalogProductsReducers';
 import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/imagesCarouselReducers';
 import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
+import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applicationsReducers';
 
 
 export interface IRootState {
@@ -39,6 +40,8 @@ export interface IRootState {
     [CATALOG_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof catalogProductsReducer>;
     [IMAGESCAROUSEL_NAMESPACE]: AppReducerStateType<typeof imagesCarouselReducer>;
     [OEM_NAMESPACE]: AppReducerStateType<typeof oemReducer>;
+    [APPLICATIONS_NAMESPACE]: AppReducerStateType<typeof applicationsReducer>;
+
 
 
 

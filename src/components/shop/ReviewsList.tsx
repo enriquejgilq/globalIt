@@ -10,52 +10,58 @@ import { IReviewsList } from '~/interfaces/list';
 import { isEmptyList } from '~/services/utils';
 
 interface Props {
-    list: IReviewsList;
+    list: any;
     page?: number;
     onNavigate?: (event: INavigationEvent) => void;
 }
 
 function ReviewsList(props: Props) {
     const { list, page, onNavigate } = props;
+    console.log('ahora aqui?', list)
 
     return (
         <div className="reviews-list">
-            {isEmptyList(list.navigation) && (
+            {list.length === 0 ? (
                 <FormattedMessage id="TEXT_REVIEWS_LIST_EMPTY" />
-            )}
-            {!isEmptyList(list.navigation) && (
+            ) : (
                 <React.Fragment>
                     <ol className="reviews-list__content">
-                        {list.items.map((review, index) => (
+                        {list.results.map((review: any, index: any) => (
                             <li key={index} className="reviews-list__item">
                                 <div className="review">
                                     <div className="review__body">
-                                        <div className="review__avatar">
+                                        {/**  <div className="review__avatar">
                                             <AppImage src={review.avatar} />
-                                        </div>
+                                        </div>*/}
                                         <div className="review__meta">
-                                            <div className="review__author">{review.author}</div>
-                                            <div className="review__date">
+                                            <div className="review__author">{review.brand}</div>
+                                            {/**    <div className="review__date">
                                                 <FormattedMessage
                                                     id="FORMAT_DATE_MEDIUM"
                                                     values={{ date: Date.parse(review.date) }}
                                                 />
-                                            </div>
+                                            </div>*/}
                                         </div>
-                                        <div className="review__rating">
+                                        {/***  <div className="review__rating">
                                             <Rating value={review.rating} />
-                                        </div>
+                                        </div>*/}
                                         <div className="review__content typography">
-                                            {review.content}
+                                            <ol>
+                                                <li><b>codigo: </b>  {review.code}</li>
+                                                <li><b>Motor: </b> {review.engine}</li>
+                                                <li> <b>Motor: </b> {review.engine2}</li>
+                                                <li> <b> Modelo:</b>  {review.model}</li>
+                                                <li> <b>Año: </b> {review.year}</li>
+                                            </ol>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         ))}
                     </ol>
-                    <div className="reviews-list__pagination">
+                    {/** <div className="reviews-list__pagination">
                         <Navigation data={list.navigation} page={page} onNavigate={onNavigate} />
-                    </div>
+                    </div>*/}
                 </React.Fragment>
             )}
         </div>

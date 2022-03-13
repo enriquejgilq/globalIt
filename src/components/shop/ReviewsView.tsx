@@ -23,11 +23,12 @@ interface IForm {
 interface Props {
     productId: number;
     productPageLayout: IProductPageLayout;
+    applications:any;
 }
 
 function ReviewsView(props: Props) {
     const intl = useIntl();
-    const { productId, productPageLayout } = props;
+    const { productId, productPageLayout,applications } = props;
     const formMethods = useForm<IForm>();
     const isUnmountedRef = useIsUnmountedRef();
     const {
@@ -60,19 +61,20 @@ function ReviewsView(props: Props) {
 
         toast.success(intl.formatMessage({ id: 'TEXT_TOAST_REVIEW_ADDED' }));
     }, [productId, reset]);
-
+    console.log('aqui?',applications);
+    console.log('lis?',list);
     return (
         <div className="reviews-view">
             {list && (
                 <div className="reviews-view__list">
                     <ReviewsList
-                        list={list}
+                        list={applications}
                         page={options.page}
                         onNavigate={onNavigate}
                     />
                 </div>
             )}
-
+{ /**  
             <form className="reviews-view__form" onSubmit={handleSubmit(submit)}>
                 <h3 className="reviews-view__header">
                     <FormattedMessage id="HEADER_WRITE_REVIEW" />
@@ -185,9 +187,11 @@ function ReviewsView(props: Props) {
                                 <FormattedMessage id="BUTTON_POST_REVIEW" />
                             </button>
                         </div>
+
+
                     </div>
                 </div>
-            </form>
+            </form>*/}
         </div>
     );
 }

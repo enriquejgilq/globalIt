@@ -17,11 +17,13 @@ export interface ITab {
     content: React.ReactNode;
     counter?: number;
     showCounter?: boolean;
+    applications:any
 }
 
 interface Props extends React.HTMLAttributes<HTMLElement> {
     product: IProduct;
     layout: IProductPageLayout;
+    applications:any;
 }
 
 function ProductTabs(props: Props) {
@@ -30,6 +32,7 @@ function ProductTabs(props: Props) {
         product,
         layout,
         className,
+        applications,
         ...rootProps
     } = props;
 
@@ -44,22 +47,20 @@ function ProductTabs(props: Props) {
 */
     const tabs = useMemo<ITab[]>(() => [
         {
-            id: 'product-tab-description',
-            title: intl.formatMessage({ id: 'TEXT_TAB_DESCRIPTION' }),
-            content: (
-                <div
-                    className="typography"
-                    dangerouslySetInnerHTML={{ __html: product.description }}
-                />
-            ),
-        },
-        {
             id: 'product-tab-specification',
             title: intl.formatMessage({ id: 'TEXT_TAB_SPECIFICATION' }),
-            content: (<Specification groups={product} />)
-           // (<p> Holaaaaaaaaaaaa</p> ),
-           // content: (<Specification groups={spec} />),
+            content: (<Specification groups={product} />),
+            applications:''
         },
+        {
+            id: 'product-tab-description',
+            title: intl.formatMessage({ id: 'TEXT_TAB_DESCRIPTION' }),
+            content:
+                (<ReviewsView productId={product.id} applications={applications} productPageLayout={layout} />),
+            applications:applications,
+     
+        },
+        
         //ReviewsView is not implemented yet
     /*}  {
             id: 'product-tab-reviews',

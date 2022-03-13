@@ -28,6 +28,9 @@ import {
 } from '~/svg';
 import { isAuth } from '~/store/login/loginHooks'
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
+import { getoOem } from '~/store/oem/oemActions';
+import { getApplicationsAxios } from '~/store/applications/applicationsActions';
+
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { Button, Input } from 'reactstrap';
 import StockStatusBadge from '~/components/shared/StockStatusBadge';
@@ -93,6 +96,9 @@ function ProductCard(props: Props) {
     const ondetails = () => {
         is_auth ? quickviewOpenPrivate(productFeatured?.code, false) : quickviewOpen(productFeatured?.code, false)
         dispatch(getImages(productFeatured.code))
+        dispatch(getoOem(productFeatured.code))
+        dispatch(getApplicationsAxios(productFeatured.code))
+
     }
     const handleEvent = (event: any) => {
         setOnPress(true)
@@ -116,6 +122,9 @@ function ProductCard(props: Props) {
                                 run ? run() : null;
                                 dispatch(getCataloLoading());
                                 dispatch(getImages(productFeatured.code));
+                                dispatch(getoOem(productFeatured.code))
+                                dispatch(getApplicationsAxios(productFeatured.code))
+
                             }}
                         >
                             <Quickview16Svg />

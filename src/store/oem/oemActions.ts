@@ -37,10 +37,10 @@ export function getoOem(payload:any): oemThunkAction<Promise<void>> {
         new Promise((resolve) => {
             const state = getState()
 
-            const apiCategoryProducts = globalIntl()?.formatMessage(
+            const apiOems = globalIntl()?.formatMessage(
                 { id: 'API_OEM' },
             )
-            axios.get(API + apiCategoryProducts + payload,{
+            axios.get(API + apiOems + payload,{
                     headers: {
                         Authorization: 'Token ' + state.login.access_token 
                     }

@@ -282,7 +282,7 @@
   "TEXT_DEFAULT_ADDRESS": "Default",
   "TEXT_EMAIL_ADDRESS": "Email Address",
   "TEXT_INDICATOR_ACCOUNT_LABEL": "Log In",
-  "TEXT_INDICATOR_ACCOUNT_VALUE": "My Account",
+  "TEXT_INDICATOR_ACCOUNT_VALUE": "Login",
   "TEXT_INDICATOR_CART_LABEL": "Quotes",
   "TEXT_KEY_FEATURES": "Key Features",
   "TEXT_MOBILE_INDICATOR_ACCOUNT": "Account",
@@ -389,7 +389,8 @@
   "API_GET_PRODUCTS_BY_CODE" : "inventory/public-products/",
   "API_GET_PRODUCTS_BY_CODE_PRIVATE" : "inventory/products/",
   "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
-  "API_OEM" : "/inventory/oems/",
+  "API_OEM" : "inventory/oems/",
+  "API_APPLICATIONS": "inventory/aplications-list/",
 
 
   "SLUG_NAME":"name_en",

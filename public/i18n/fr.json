@@ -284,7 +284,7 @@
   "TEXT_EMAIL_ADDRESS": "Adresse e-mail",
   "TEXT_INDICATOR_ACCOUNT_LABEL": "Connectez-vous",
   "TEXT_INDICATOR_ACCOUNT_LOGIN": "Connectez-vous",
-  "TEXT_INDICATOR_ACCOUNT_VALUE": "Mon compte",
+  "TEXT_INDICATOR_ACCOUNT_VALUE": "Login",
   "TEXT_INDICATOR_CART_LABEL": "Devis",
   "TEXT_KEY_FEATURES": "Caractéristiques clés",
   "TEXT_MOBILE_INDICATOR_ACCOUNT": "Compte",
@@ -393,6 +393,7 @@
   "API_GET_PRODUCTS_BY_CODE_PRIVATE" : "inventory/products/",
   "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
   "API_OEM" : "/inventory/oems/",
+  "API_APPLICATIONS": "inventory/aplications-list/",
 
 
   "SLUG_NAME":"name_fr",

@@ -282,7 +282,7 @@
     "TEXT_DEFAULT_ADDRESS": "Padrão",
     "TEXT_EMAIL_ADDRESS": "Endereço de e-mail",
     "TEXT_INDICATOR_ACCOUNT_LABEL": "Faça login",
-    "TEXT_INDICATOR_ACCOUNT_VALUE": "Minha conta",
+    "TEXT_INDICATOR_ACCOUNT_VALUE": "Login",
     "TEXT_INDICATOR_CART_LABEL": "citações",
     "TEXT_KEY_FEATURES": "Principais recursos",
     "TEXT_MOBILE_INDICATOR_ACCOUNT": "Conta",
@@ -390,7 +390,8 @@
     "API_GET_PRODUCTS_BY_CODE" : "inventory/public-products/",
     "API_GET_PRODUCTS_BY_CODE_PRIVATE" : "inventory/products/",
     "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
-    "API_OEM" : "/inventory/oems/",
+    "API_OEM" : "inventory/oems/",
+    "API_APPLICATIONS": "inventory/aplications-list/",
 
 
     "SLUG_NAME":"name_pt",
