@@ -12,10 +12,11 @@ interface Props {
 const textCode = globalIntl()?.formatMessage(
     { id: 'TEXT_CODE' },
 )
-console.log(textCode)
 function Specification(props: Props) {
     const { groups } = props;
-
+    if(groups.length === 0) {
+        return null
+    }
     return (
         <div className="spec">
             {groups?.map((group:any, groupIndex:any) => (
