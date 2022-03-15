@@ -19,21 +19,9 @@ function Specification(props: Props) {
     return (
         <div className="spec">
             {groups?.map((group:any, groupIndex:any) => (
-                <div key={groupIndex} className="spec__section">
-                    <h4 className="spec__section-title">{group.code}</h4>
-                        <div  className="spec__row">
-                            <div className="spec__name"> <b>{textCode}</b> </div>
-                            <div className="spec__value">
-                            {group.competitor_code}
-                            </div>
-                        </div>
-                        <div  className="spec__row">
-                            <div className="spec__name"> Nombre del competidor:</div>
-                            <div className="spec__value">
-                            {group.competitor_name}
-                            </div>
-                        </div>
-                </div>
+                <div  className="spec__row">
+                <div className="spec__name"> <b>  {group.competitor_name}</b>  {group.competitor_code}   </div>
+            </div>
             ))}
             {/** <div className="spec__disclaimer">
                 <FormattedMessage id="TEXT_PRODUCT_DISCLAIMER" />
