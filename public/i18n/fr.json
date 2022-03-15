@@ -254,7 +254,7 @@
   "TABLE_TOTAL_TAX": "Taxe",
   "TABLE_YEAR": "An",
   "TABLE_ENGINE":"Moteur",
-
+  "TABLE_ENGINE2":"Modèle",
   "TEXT_ACTIVE_FILTERS": "Filtres actifs",
   "TEXT_ALERT_RETURNING_CUSTOMER": "Client de retour ? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Cliquez ici pour vous connecter",

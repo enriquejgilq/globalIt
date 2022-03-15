@@ -38,7 +38,7 @@ export function getApplicationsAxios(payload:any): applicationsThunkAction<Promi
             const apiApplications = globalIntl()?.formatMessage(
                 { id: 'API_APPLICATIONS' },
             )
-            axios.get(API + apiApplications + payload+'/?limit=10&offset=10',{
+            axios.get(API + apiApplications + payload+'/',{
                     headers: {
                         Authorization: 'Token ' + state.login.access_token 
                     }

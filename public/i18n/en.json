@@ -253,6 +253,8 @@
   "TABLE_TOTAL_TAX": "Tax",
   "TABLE_YEAR": "Year",
   "TABLE_ENGINE":"Motor",
+  "TABLE_ENGINE2":"Model",
+
   "TEXT_ACTIVE_FILTERS": "Active Filters",
   "TEXT_ALERT_RETURNING_CUSTOMER": "Returning customer? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Click here to login",

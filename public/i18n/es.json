@@ -254,6 +254,7 @@
   "TABLE_TOTAL_TAX": "Impuestos",
   "TABLE_YEAR": "Año",
     "TABLE_ENGINE":"Motor",
+    "TABLE_ENGINE2":"Modelo",
 
   "TEXT_ACTIVE_FILTERS": "Filtros activos",
   "TEXT_ALERT_RETURNING_CUSTOMER": "¿Cliente recurrente? {link}",

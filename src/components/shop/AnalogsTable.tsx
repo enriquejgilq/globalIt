@@ -50,11 +50,11 @@ function AnalogsTable(props: Props) {
                             <FormattedMessage id="TABLE_BRAND" />
                         </th>
                         <th className="analogs-table__column analogs-table__column--brand">
-                            <FormattedMessage id="TABLE_ENGINE" />
+                            <FormattedMessage id="TABLE_ENGINE2" />
                         </th>
                         <th className="analogs-table__column analogs-table__column--rating">
                             <FormattedMessage id="TABLE_ENGINE" />
-                        </th>
+    </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,11 +65,16 @@ function AnalogsTable(props: Props) {
                                     {item.year}
                                 </AppLink>
                                 <br />
-                                <div
-                                    className="analogs-table__sku"
-                                    data-title={intl.formatMessage({ id: 'TABLE_SKU' })}
-                                >
-                                    {item.brand}
+                               
+                            </td>
+                            <td className="analogs-table__column analogs-table__column--rating">
+                                <div className="analogs-table__rating">
+                                    <div className="analogs-table__rating-stars">
+                                          {item.brand}
+                                    </div>
+                                    <div className="analogs-table__rating-label">
+                                       
+                                    </div>
                                 </div>
                             </td>
                             <td className="analogs-table__column analogs-table__column--rating">
@@ -92,7 +97,7 @@ function AnalogsTable(props: Props) {
                                     </div>
                                 </div>
                             </td>
-                            <td className="analogs-table__column analogs-table__column--rating">
+                           {/** <td className="analogs-table__column analogs-table__column--rating">
                                 <div className="analogs-table__rating">
                                     <div className="analogs-table__rating-stars">
                                           {item.engine2}
@@ -101,7 +106,7 @@ function AnalogsTable(props: Props) {
                                        
                                     </div>
                                 </div>
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                 </tbody>
