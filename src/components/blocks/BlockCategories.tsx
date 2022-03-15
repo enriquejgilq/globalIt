@@ -27,7 +27,7 @@ function BlockCategories(props: Props) {
             >
                 <div className="category-card__body">
                     <div className="category-card__content">
-                        {category.image && (
+                      {/**  */}  {category.image && (
                             <div className="category-card__image image image--type--category">
                                 <AppLink href={url.category(category)} className="image__body">
                                     <AppImage className="image__tag" src={category.image} />

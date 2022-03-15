@@ -56,7 +56,7 @@ function ProductTabs(props: Props) {
             id: 'product-tab-description',
             title: intl.formatMessage({ id: 'TEXT_TAB_DESCRIPTION' }),
             content:
-                (<ReviewsView productId={product.id} applications={applications} productPageLayout={layout} />),
+                (<AnalogsTable productId={product.id} applications={applications} productPageLayout={layout} />),
             applications:applications,
      
         },

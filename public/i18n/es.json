@@ -252,6 +252,9 @@
   "TABLE_TOTAL": "Total",
   "TABLE_TOTAL_SHIPPING": "Envío",
   "TABLE_TOTAL_TAX": "Impuestos",
+  "TABLE_YEAR": "Año",
+    "TABLE_ENGINE":"Motor",
+
   "TEXT_ACTIVE_FILTERS": "Filtros activos",
   "TEXT_ALERT_RETURNING_CUSTOMER": "¿Cliente recurrente? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Haga clic aquí para iniciar sesión",
@@ -284,6 +287,8 @@
   "TEXT_EMAIL_ADDRESS": "Dirección de correo electrónico",
   "TEXT_INDICATOR_ACCOUNT_LABEL": "Iniciar sesión",
   "TEXT_INDICATOR_ACCOUNT_VALUE": "Login",
+  "TEXT_INDICATOR_ACCOUNT_VALUE2": "Mi Cuenta",
+
   "TEXT_INDICATOR_CART_LABEL": "Cotización",
   "TEXT_KEY_FEATURES": "Funciones clave",
   "TEXT_MOBILE_INDICATOR_ACCOUNT": "Cuenta",
@@ -340,7 +345,7 @@
   "TEXT_STOCK_OUT_OF_STOCK": "Agotado",
   "TEXT_TAB_ANALOGS": "Analógicos",
   "TEXT_TAB_BESTSELLERS": "Más vendidos",
-  "TEXT_TAB_DESCRIPTION": "Descripción",
+  "TEXT_TAB_DESCRIPTION": "Aplicaciones",
   "TEXT_TAB_FEATURED": "Destacado",
   "TEXT_TAB_REVIEWS": "Reseñas",
   "TEXT_TAB_SPECIFICATION": "OEM",
@@ -380,6 +385,8 @@
   "TEXT_TITLE_ABOUT_US": "Sobre Nosotros",
   "TEXT_BODY_ABOUT_US": "Global Air es líder mundial en la industria del aire acondicionado automotriz. Nuestro equipo diseña y desarrolla productos de control de clima para todos los vehículos principales que circulan hoy en día. Con sede en Miami Gardens, Florida, EE. UU., estamos a minutos de los aeropuertos de Miami y Fort Lauderdale. Global Air se ha ganado una reputación de productos de primera calidad y servicio al cliente de clase mundial a través de años de arduo trabajo y compromiso con la excelencia. Estos factores, junto con precios competitivos, entregas a tiempo y un sólido departamento de ingeniería, hacen de Global Air la elección correcta para sus necesidades de componentes de aire acondicionado para automóviles.",
   "TEXT_GREETING":"Hola",
+  "TEXT_CODE": "CÓDIGO",
+  "TEXT_NAME_COMPETIDOR":"NOMBRE DEL COMPETIDOR",
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
   "API_LOGIN":"authenticate/login/",

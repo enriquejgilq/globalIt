@@ -4,11 +4,15 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 // application
 import { IProductAttributeGroup } from '~/interfaces/product';
+import { globalIntl } from '~/services/i18n/global-intl';
 
 interface Props {
     groups: any;
 }
-
+const textCode = globalIntl()?.formatMessage(
+    { id: 'TEXT_CODE' },
+)
+console.log(textCode)
 function Specification(props: Props) {
     const { groups } = props;
 
@@ -17,17 +21,18 @@ function Specification(props: Props) {
             {groups?.map((group:any, groupIndex:any) => (
                 <div key={groupIndex} className="spec__section">
                     <h4 className="spec__section-title">{group.code}</h4>
-                    <p> <b>Codigo: {group.competitor_code} </b></p>
-                    <p> <b> Nombre del competidor:{group.competitor_name} </b></p>
-
-                  {/**  {group?.attributes.map((attribute:any, attributeIndex:any) => (
-                        <div key={attributeIndex} className="spec__row">
-                            <div className="spec__name">{attribute.name}</div>
+                        <div  className="spec__row">
+                            <div className="spec__name"> <b>{textCode}</b> </div>
                             <div className="spec__value">
-                               {attribute?.values.map((x:any) => x.name).join(', ')}
+                            {group.competitor_code}
                             </div>
                         </div>
-                    ))} */}
+                        <div  className="spec__row">
+                            <div className="spec__name"> Nombre del competidor:</div>
+                            <div className="spec__value">
+                            {group.competitor_name}
+                            </div>
+                        </div>
                 </div>
             ))}
             {/** <div className="spec__disclaimer">

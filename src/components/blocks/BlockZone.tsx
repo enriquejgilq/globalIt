@@ -147,7 +147,7 @@ function BlockZone(props: Props) {
         <div className="block block-zone">
             <div className="container">
                 <div className="block-zone__body">
-                    <div className="block-zone__card category-card category-card--layout--overlay">
+                  {/*  <div className="block-zone__card category-card category-card--layout--overlay">
                         <div className="category-card__body">
                             <div className="category-card__overlay-image">
                                 <AppImage
@@ -155,7 +155,7 @@ function BlockZone(props: Props) {
                                     src={image}
                                     sizes="(max-width: 575px) 530px, 305px"
                                 />
-                            </div>
+                            </div> *
                             <div className="category-card__overlay-image category-card__overlay-image--blur">
                                 <AppImage
                                     srcSet={`${baseUrl(mobileImage)} 530w, ${baseUrl(image)} 305w`}
@@ -187,8 +187,8 @@ function BlockZone(props: Props) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="block-zone__widget">
+                    </div>*/}
+                    {/** <div className="block-zone__widget">
                         <div className="block-zone__widget-header">
                             <div className="block-zone__tabs">
                                 {tabs.map((tab, tabIdx) => (
@@ -215,7 +215,7 @@ function BlockZone(props: Props) {
                                 onClick={handleNextClick}
                             />
                         </div>
-                        <div className="block-zone__widget-body">
+                         <div className="block-zone__widget-body">
                             <div
                                 className={classNames('block-zone__carousel', {
                                     'block-zone__carousel--loading': isLoading,
@@ -224,18 +224,18 @@ function BlockZone(props: Props) {
                                 <div className="block-zone__carousel-loader" />
 
                                 <AppSlick className="block-zone__carousel-slick" ref={slickRef} {...slickSettings}>
-                                 {/** {productsFeatured.map((product) => (
+                                {productsFeatured.map((product) => (
                                         <div key={product.id} className="block-zone__carousel-item">
                                             <ProductCard
                                                 productFeatured={productsFeatured}
                                                 exclude={excludeElements}
                                             />
                                         </div>
-                                    ))}*/}   
+                                    ))}   
                                 </AppSlick>
                             </div>
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         </div>

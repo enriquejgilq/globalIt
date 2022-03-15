@@ -252,6 +252,8 @@
   "TABLE_TOTAL": "Total",
   "TABLE_TOTAL_SHIPPING": "Livraison",
   "TABLE_TOTAL_TAX": "Taxe",
+  "TABLE_YEAR": "An",
+  "TABLE_ENGINE":"Moteur",
 
   "TEXT_ACTIVE_FILTERS": "Filtres actifs",
   "TEXT_ALERT_RETURNING_CUSTOMER": "Client de retour ? {link}",
@@ -285,6 +287,8 @@
   "TEXT_INDICATOR_ACCOUNT_LABEL": "Connectez-vous",
   "TEXT_INDICATOR_ACCOUNT_LOGIN": "Connectez-vous",
   "TEXT_INDICATOR_ACCOUNT_VALUE": "Login",
+  "TEXT_INDICATOR_ACCOUNT_VALUE2": "Mon compte",
+
   "TEXT_INDICATOR_CART_LABEL": "Devis",
   "TEXT_KEY_FEATURES": "Caractéristiques clés",
   "TEXT_MOBILE_INDICATOR_ACCOUNT": "Compte",
@@ -341,7 +345,7 @@
   "TEXT_STOCK_OUT_OF_STOCK": "En rupture de stock",
   "TEXT_TAB_ANALOGS": "Analogues",
   "TEXT_TAB_BESTSELLERS": "Meilleures ventes",
-  "TEXT_TAB_DESCRIPTION": "Description",
+  "TEXT_TAB_DESCRIPTION": "Applications",
   "TEXT_TAB_FEATURED": "En vedette",
   "TEXT_TAB_REVIEWS": "Avis",
   "TEXT_TAB_SPECIFICATION": "OEM",
@@ -381,7 +385,8 @@
   "TEXT_TITLE_ABOUT_US": "À Propos De Nous",
   "TEXT_BODY_ABOUT_US": "Global Air est un leader mondial de l'industrie de la climatisation automobile. Notre équipe conçoit et développe des produits de climatisation pour tous les principaux véhicules sur la route aujourd'hui. Basés à Miami Gardens, en Floride, aux États-Unis, nous sommes à quelques minutes des aéroports de Miami et de Fort Lauderdale. Global Air s'est forgé une réputation de produits haut de gamme et de service client de classe mondiale grâce à des années de travail acharné et d'engagement envers l'excellence. Ces facteurs, ainsi que des prix compétitifs, une livraison à temps et un service d'ingénierie solide, font de Global Air le bon choix pour vos besoins en composants de climatisation automobile.",
   "TEXT_GREETING":"Salut",
-
+  "TEXT_CODE": "CODE",
+  "TEXT_NAME_COMPETIDOR":"CODE CONCURRENT",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",

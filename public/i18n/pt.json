@@ -251,6 +251,8 @@
     "TABLE_TOTAL": "Total",
     "TABLE_TOTAL_SHIPPING": "Frete",
     "TABLE_TOTAL_TAX": "Imposto",
+    "TABLE_YEAR": "Ano",
+    "TABLE_ENGINE":"Motor",
 
     "TEXT_ACTIVE_FILTERS": "Filtros ativos",
     "TEXT_ALERT_RETURNING_CUSTOMER": "Cliente recorrente? {link}",
@@ -283,6 +285,9 @@
     "TEXT_EMAIL_ADDRESS": "Endereço de e-mail",
     "TEXT_INDICATOR_ACCOUNT_LABEL": "Faça login",
     "TEXT_INDICATOR_ACCOUNT_VALUE": "Login",
+    "TEXT_INDICATOR_ACCOUNT_VALUE2": "Minha conta",
+
+
     "TEXT_INDICATOR_CART_LABEL": "citações",
     "TEXT_KEY_FEATURES": "Principais recursos",
     "TEXT_MOBILE_INDICATOR_ACCOUNT": "Conta",
@@ -339,7 +344,7 @@
     "TEXT_STOCK_OUT_OF_STOCK": "Esgotado",
     "TEXT_TAB_ANALOGS": "Analógicos",
     "TEXT_TAB_BESTSELLERS": "Mais vendidos",
-    "TEXT_TAB_DESCRIPTION": "Descrição",
+    "TEXT_TAB_DESCRIPTION": "Formulários",
     "TEXT_TAB_FEATURED": "Apresentado",
     "TEXT_TAB_REVIEWS": "Resenhas",
     "TEXT_TAB_SPECIFICATION": "OEM",
@@ -379,6 +384,8 @@
     "TEXT_TITLE_ABOUT_US": "Sobre Nós",
     "TEXT_BODY_ABOUT_US": "A Global Air é líder mundial na indústria de ar condicionado automotivo. Nossa equipe projeta e desenvolve produtos de controle climático para todos os principais veículos na estrada hoje. Com sede em Miami Gardens, Flórida, EUA, estamos a minutos dos aeroportos de Miami e Fort Lauderdale. A Global Air conquistou uma reputação de produtos premium e atendimento ao cliente de classe mundial através de anos de trabalho árduo e compromisso com a excelência. Esses fatores, juntamente com preços competitivos, entrega no prazo e um forte departamento de engenharia, fazem da Global Air a escolha certa para suas necessidades de componentes de ar condicionado automotivo.",
     "TEXT_GREETING":"Olá",
+    "TEXT_CODE": "CÓDIGO",
+    "TEXT_NAME_COMPETIDOR":"CÓDIGO DO CONCORRENTE",
 
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,
     "API_LOGIN":"authenticate/login/",

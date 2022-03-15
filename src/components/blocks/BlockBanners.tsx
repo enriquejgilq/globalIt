@@ -12,7 +12,7 @@ function BlockBanners() {
     return (
         <div className="block block-banners">
             <div className="container">
-                <div className="block-banners__list">
+                {/**<div className="block-banners__list">
                     <AppLink href="/" className="block-banners__item block-banners__item--style--one">
                         <span className="block-banners__item-image">
                             <AppImage className="reflect-rtl" src="/images/banners/banner1.jpg" />
@@ -54,7 +54,7 @@ function BlockBanners() {
                             <FormattedMessage id="TEXT_BANNER_TWO_BUTTON" />
                         </span>
                     </AppLink>
-                </div>
+                </div>}*/}
             </div>
         </div>
     );

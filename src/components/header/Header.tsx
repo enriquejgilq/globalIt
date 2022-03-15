@@ -35,9 +35,9 @@ function Header() {
             ? <FormattedMessage id="BUTTON_DEPARTMENTS" />
             : <FormattedMessage id="BUTTON_DEPARTMENTS_LONG" />
     ), [desktopLayout]);
-
-    const accountIndicatorLabel = is_auth ?   user_info.user.email: <FormattedMessage id="TEXT_GREETING" /> ;
-    const accountIndicatorValue = <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_VALUE" />;
+    
+    const accountIndicatorLabel = is_auth ?   user_info.user.email: '' ;
+    const accountIndicatorValue = is_auth ? <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_VALUE2" /> : <FormattedMessage id="TEXT_INDICATOR_ACCOUNT_VALUE" />;
     const accountIndicatorCtrl = useRef<IIndicatorController | null>(null);
 
     const cart = useCart();

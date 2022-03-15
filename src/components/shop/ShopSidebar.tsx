@@ -90,14 +90,14 @@ function ShopSidebar(props: Props) {
                 </div>
                 <div className="sidebar__content">
                     <WidgetFilters offcanvasSidebar={offcanvas} />
-
-                    {offcanvas !== 'always' && (
+{/**         {offcanvas !== 'always' && (
                         <WidgetProducts
                             className="d-none d-lg-block"
                             widgetTitle={latestProductsTitle}
                             products={latestProducts}
                         />
-                    )}
+                    )} */}
+            
                 </div>
             </div>
         </div>

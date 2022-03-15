@@ -12,11 +12,13 @@ import { shopApi } from '~/api';
 
 interface Props {
     productId: number;
+    applications:any;
+    productPageLayout: any;
 }
 
 function AnalogsTable(props: Props) {
     const intl = useIntl();
-    const { productId } = props;
+    const { productId,applications, productPageLayout} = props;
     const [analogs, setAnalogs] = useState<IProduct[]>([]);
 
     useEffect(() => {
@@ -35,70 +37,70 @@ function AnalogsTable(props: Props) {
         };
     }, [productId]);
 
+    console.log(applications)
     return (
         <div className="analogs-table">
             <table>
                 <thead>
                     <tr>
                         <th className="analogs-table__column analogs-table__column--name">
-                            <FormattedMessage id="TABLE_NAME" />
+                            <FormattedMessage id="TABLE_YEAR" />
                         </th>
                         <th className="analogs-table__column analogs-table__column--rating">
-                            <FormattedMessage id="TABLE_RATING" />
-                        </th>
-                        <th className="analogs-table__column analogs-table__column--brand">
                             <FormattedMessage id="TABLE_BRAND" />
                         </th>
-                        <th className="analogs-table__column analogs-table__column--price">
-                            <FormattedMessage id="TABLE_PRICE" />
+                        <th className="analogs-table__column analogs-table__column--brand">
+                            <FormattedMessage id="TABLE_ENGINE" />
+                        </th>
+                        <th className="analogs-table__column analogs-table__column--rating">
+                            <FormattedMessage id="TABLE_ENGINE" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {analogs.map((analog) => (
-                        <tr key={analog.id}>
+                    {applications.results.map((item:any) => (
+                        <tr key={item.id}>
                             <td className="analogs-table__column analogs-table__column--name">
-                                <AppLink href={url.product(analog)} className="analogs-table__product-name">
-                                    {analog.name}
+                                <AppLink  className="analogs-table__product-name">
+                                    {item.year}
                                 </AppLink>
                                 <br />
                                 <div
                                     className="analogs-table__sku"
                                     data-title={intl.formatMessage({ id: 'TABLE_SKU' })}
                                 >
-                                    {analog.sku}
+                                    {item.brand}
                                 </div>
                             </td>
                             <td className="analogs-table__column analogs-table__column--rating">
                                 <div className="analogs-table__rating">
                                     <div className="analogs-table__rating-stars">
-                                        <Rating value={analog.rating || 0} />
+                                          {item.model}
                                     </div>
                                     <div className="analogs-table__rating-label">
-                                        <FormattedMessage
-                                            id="TEXT_RATING_LABEL"
-                                            values={{ rating: analog.rating, reviews: analog.reviews }}
-                                        />
+                                       
                                     </div>
                                 </div>
                             </td>
-                            <td
-                                className="analogs-table__column analogs-table__column--brand"
-                                data-title={intl.formatMessage({ id: 'TABLE_BRAND' })}
-                            >
-                                {analog.brand && (
-                                    <React.Fragment>
-                                        {analog.brand.name}
-                                        <div className="analogs-table__country">
-                                            (
-                                            <FormattedMessage id={`COUNTRY_NAME_${analog.brand.country}`} />
-                                            )
-                                        </div>
-                                    </React.Fragment>
-                                )}
+                            <td className="analogs-table__column analogs-table__column--rating">
+                                <div className="analogs-table__rating">
+                                    <div className="analogs-table__rating-stars">
+                                          {item.engine}
+                                    </div>
+                                    <div className="analogs-table__rating-label">
+                                       
+                                    </div>
+                                </div>
                             </td>
-                            <td className="analogs-table__column analogs-table__column--price">
-                                <CurrencyFormat value={analog.price} />
+                            <td className="analogs-table__column analogs-table__column--rating">
+                                <div className="analogs-table__rating">
+                                    <div className="analogs-table__rating-stars">
+                                          {item.engine2}
+                                    </div>
+                                    <div className="analogs-table__rating-label">
+                                       
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     ))}
