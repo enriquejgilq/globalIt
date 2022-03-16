@@ -232,7 +232,7 @@
   "LINK_WISHLIST": "Wishlist",
 
   "TABLE_ADD_TO_CART": "Add To Cart",
-  "TABLE_BRAND": "Brand",
+  "TABLE_BRAND": "Make",
   "TABLE_COUNTRY": "Country",
   "TABLE_DATE": "Date",
   "TABLE_IMAGE": "Image",
@@ -252,7 +252,7 @@
   "TABLE_TOTAL_SHIPPING": "Shipping",
   "TABLE_TOTAL_TAX": "Tax",
   "TABLE_YEAR": "Year",
-  "TABLE_ENGINE":"Motor",
+  "TABLE_ENGINE":"Engine",
   "TABLE_ENGINE2":"Model",
 
   "TEXT_ACTIVE_FILTERS": "Active Filters",
@@ -397,7 +397,7 @@
   "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
   "API_OEM" : "inventory/oems/",
   "API_APPLICATIONS": "inventory/aplications-list/",
-
+  "API_RELATED_PRODUCTS": "inventory/public-related-products/",
 
   "SLUG_NAME":"name_en",
   "SLUG_CATEGORY_NAME":"slug_name_en"

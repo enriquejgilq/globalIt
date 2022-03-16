@@ -11,7 +11,7 @@ import AppImage from '~/components/shared/AppImage';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     widgetTitle: React.ReactNode;
-    products?: IProduct[];
+    products?: any;
 }
 
 function WidgetProducts(props: Props) {
@@ -25,6 +25,8 @@ function WidgetProducts(props: Props) {
     const hasTitle = !!widgetTitle;
     const rootClasses = classNames('card', 'widget', 'widget-products', className);
 
+    console.log(products.results.map((product: any) => product.product.code));
+    // Este es !!!!!!!!!!
     return (
         <div className={rootClasses} {...rootProps}>
             {hasTitle && (
@@ -33,35 +35,24 @@ function WidgetProducts(props: Props) {
                 </div>
             )}
             <div className="widget-products__list">
-                {products.map((product) => (
+                {products.results.map((product: any) => (
                     <div key={product.id} className="widget-products__item">
                         <div className="widget-products__image">
-                            <AppLink href={url.product(product)}>
-                                <AppImage src={product.images && product.images[0]} />
+                            <AppLink >
+                                {product.product.image_principal === null ? (<AppImage className="image__tag" src="/images/noimages/noimage3.jpg" />
+                                ) :
+                                    (<AppImage src={product.product.image_principal} />)
+                                }
                             </AppLink>
                         </div>
                         <div className="widget-products__info">
                             <div className="widget-products__name">
-                                <AppLink href={url.product(product)}>
-                                    {product.name}
+                                <AppLink >
+                                    <b>{product.product.description_en} </b>
                                 </AppLink>
                             </div>
                             <div className="widget-products__prices">
-                                {product.compareAtPrice && (
-                                    <React.Fragment>
-                                        <div className="widget-products__price widget-products__price--new">
-                                            <CurrencyFormat value={product.price} />
-                                        </div>
-                                        <div className="widget-products__price widget-products__price--old">
-                                            <CurrencyFormat value={product.compareAtPrice} />
-                                        </div>
-                                    </React.Fragment>
-                                )}
-                                {!product.compareAtPrice && (
-                                    <div className="widget-products__price widget-products__price--current">
-                                        <CurrencyFormat value={product.price} />
-                                    </div>
-                                )}
+                                {product.product.code}
                             </div>
                         </div>
                     </div>

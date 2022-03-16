@@ -19,6 +19,7 @@ import catalogProductsReducer,{CATALOG_PRODUCTS_NAMESPACE} from '../catalogProdu
 import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/imagesCarouselReducers';
 import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
 import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applicationsReducers';
+import relatedProductsReducer,{RELATED_PRODUCTS_NAMESPACE} from '../relatedProducts/relatedProductsReducers';
 
 
 export interface IRootState {
@@ -41,6 +42,7 @@ export interface IRootState {
     [IMAGESCAROUSEL_NAMESPACE]: AppReducerStateType<typeof imagesCarouselReducer>;
     [OEM_NAMESPACE]: AppReducerStateType<typeof oemReducer>;
     [APPLICATIONS_NAMESPACE]: AppReducerStateType<typeof applicationsReducer>;
+    [RELATED_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof relatedProductsReducer>;
 
 
 

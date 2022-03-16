@@ -45,11 +45,14 @@ import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHook
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { getoOem } from '~/store/oem/oemActions';
+import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
+import {relatedProductsState} from '~/store/relatedProducts/relatedProductsHooks';
 import { getApplicationsAxios } from '~/store/applications/applicationsActions';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { useCartAddItem } from '~/store/cart/cartHooks';
 import { oemState } from '~/store/oem/oemHooks';
 import { applicationsState } from '~/store/applications/applicationsHooks';
+import WidgetProducts from '~/components/widgets/WidgetProducts';
 
 import { Button, Input } from 'reactstrap';
 
@@ -86,13 +89,16 @@ function ShopPageProduct(props: Props) {
     const productForm = useProductForm(product);
     const is_auth = isAuth()
     const getoem = oemState();
+    const getRelatedProducts = relatedProductsState();
+
+    
+
     const getapplications = applicationsState();
 
     useEffect(() => {
-    //   dispatch(getoOem(product.code))
+     //     dispatch(getRelatedProductsAxios(product.code))
 
-
-
+         // dispatch(getoOem(product.code))
         // let canceled = false;
         //
         // shopApi.getRelatedProducts(product.id, 8).then((result) => {
@@ -135,11 +141,14 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-
+    console.log('aqui esta el producto<<<<<<<<<<', product)
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
-            <ul className="shop-features__list">
+                <WidgetProducts widgetTitle={<FormattedMessage id="HEADER_LATEST_PRODUCTS" />}
+                products={getRelatedProducts}
+                            />
+           {/* <ul className="shop-features__list">
                 <li className="shop-features__item">
                     <div className="shop-features__item-icon">
                         <FiFreeDelivery48Svg />
@@ -196,7 +205,7 @@ function ShopPageProduct(props: Props) {
                     </div>
                 </li>
                 <li className="shop-features__divider" role="presentation" />
-            </ul>
+            </ul>*/}
         </div>
     );
 

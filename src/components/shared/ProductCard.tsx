@@ -29,6 +29,7 @@ import {
 import { isAuth } from '~/store/login/loginHooks'
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getoOem } from '~/store/oem/oemActions';
+import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
 import { getApplicationsAxios } from '~/store/applications/applicationsActions';
 
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
@@ -98,6 +99,8 @@ function ProductCard(props: Props) {
         dispatch(getImages(productFeatured.code))
         dispatch(getoOem(productFeatured.code))
         dispatch(getApplicationsAxios(productFeatured.code))
+        dispatch(getRelatedProductsAxios(productFeatured.code))
+
 
     }
     const handleEvent = (event: any) => {
@@ -124,6 +127,8 @@ function ProductCard(props: Props) {
                                 dispatch(getImages(productFeatured.code));
                                 dispatch(getoOem(productFeatured.code))
                                 dispatch(getApplicationsAxios(productFeatured.code))
+                                dispatch(getRelatedProductsAxios(productFeatured.code))
+
                             }}
                         >
                             <Quickview16Svg />

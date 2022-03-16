@@ -401,6 +401,7 @@
   "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
   "API_OEM" : "inventory/oems/",
   "API_APPLICATIONS": "inventory/aplications-list/",
+  "API_RELATED_PRODUCTS": "inventory/public-related-products/",
 
 
 

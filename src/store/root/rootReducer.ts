@@ -22,6 +22,7 @@ import catalogProductsReducer,{CATALOG_PRODUCTS_NAMESPACE} from '../catalogProdu
 import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/imagesCarouselReducers';
 import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
 import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applicationsReducers';
+import relatedProductsReducer,{RELATED_PRODUCTS_NAMESPACE} from '../relatedProducts/relatedProductsReducers';
 export default combineReducers({
     version: (state: number = version) => state,
     [CART_NAMESPACE]: cartReducer,
@@ -43,6 +44,7 @@ export default combineReducers({
     [IMAGESCAROUSEL_NAMESPACE]:imagesCarouselReducer,
     [OEM_NAMESPACE]:oemReducer,
     [APPLICATIONS_NAMESPACE]:applicationsReducer,
+    [RELATED_PRODUCTS_NAMESPACE]:relatedProductsReducer,
 
 
 
