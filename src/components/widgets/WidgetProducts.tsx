@@ -1,6 +1,8 @@
 // react
 import React from 'react';
 // third-party
+import { globalIntl } from '~/services/i18n/global-intl';
+
 import classNames from 'classnames';
 // application
 import AppLink from '~/components/shared/AppLink';
@@ -24,8 +26,9 @@ function WidgetProducts(props: Props) {
 
     const hasTitle = !!widgetTitle;
     const rootClasses = classNames('card', 'widget', 'widget-products', className);
-
-    console.log(products.results.map((product: any) => product.product.code));
+    const description: any = globalIntl()?.formatMessage(
+        { id: 'TEXT_CATEGORY_DESCRIPTION' },
+    )
     // Este es !!!!!!!!!!
     return (
         <div className={rootClasses} {...rootProps}>
@@ -48,7 +51,7 @@ function WidgetProducts(props: Props) {
                         <div className="widget-products__info">
                             <div className="widget-products__name">
                                 <AppLink >
-                                    <b>{product.product.description_en} </b>
+                                    <b>{product.product[description]} </b>
                                 </AppLink>
                             </div>
                             <div className="widget-products__prices">

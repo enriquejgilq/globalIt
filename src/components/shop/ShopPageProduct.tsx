@@ -145,7 +145,7 @@ function ShopPageProduct(props: Props) {
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
-                <WidgetProducts widgetTitle={<FormattedMessage id="HEADER_LATEST_PRODUCTS" />}
+                <WidgetProducts widgetTitle={<FormattedMessage id="HEADER_RELATED_PRODUCTS" />}
                 products={getRelatedProducts}
                             />
            {/* <ul className="shop-features__list">
