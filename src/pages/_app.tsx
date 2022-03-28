@@ -92,8 +92,6 @@ function App(props: Props) {
         );
     }, [Component, pageProps]);
 
-    console.log('<<<<<<<<<<<<<<',login.access_token);
-
     // noinspection HtmlRequiredTitleElement
     return (
         <LanguageProvider {...languageInitialProps}>
