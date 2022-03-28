@@ -12,6 +12,9 @@ import url from '~/services/url';
 import { IProduct } from '~/interfaces/product';
 import AppImage from '~/components/shared/AppImage';
 import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
+import { isAuth } from '~/store/login/loginHooks'
+import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
+import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     widgetTitle: React.ReactNode;
@@ -26,7 +29,9 @@ function WidgetProducts(props: Props) {
         ...rootProps
     } = props;
     const dispatch = useDispatch()
-
+    const is_auth = isAuth()
+    const quickviewOpen = useQuickviewOpen();
+    const quickviewOpenPrivate = useQuickviewOpenPrivate();
     const hasTitle = !!widgetTitle;
     const rootClasses = classNames('card', 'widget', 'widget-products', className);
     const description: any = globalIntl()?.formatMessage(
@@ -35,6 +40,9 @@ function WidgetProducts(props: Props) {
 
     const ondetails = (e:any) => {
         dispatch(getRelatedProductsAxios(e))
+        is_auth ? quickviewOpenPrivate(e, false) : quickviewOpen(e, false)
+        dispatch(getImages(e))
+
     }
     return (
         <div className={rootClasses} {...rootProps}>

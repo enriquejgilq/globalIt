@@ -115,7 +115,7 @@ function ShopPageProduct(props: Props) {
         // return () => {
         //     canceled = true;
         //   };
-    }, []);
+    }, [product]);
     if (!product) {
         return null;
     }

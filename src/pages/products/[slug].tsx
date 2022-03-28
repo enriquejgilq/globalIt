@@ -18,6 +18,8 @@ interface Props {
     productFeatured: any  | null;
 
 }
+
+
 //export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
   //  const slug = typeof params?.slug === 'string' ? params?.slug : null;
 
@@ -37,7 +39,10 @@ function Page(props: Props) {
     if (details.product === null) {
         return <SitePageNotFound />;
     }
- 
+    var loc = window.location;
+    
+   
+   // console.log('<<<<<<<<<<<<<<<<', loc.pathname.split("/").pop());
     return (
          <ShopPageProduct
             product={details.product}
