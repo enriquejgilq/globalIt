@@ -37,7 +37,6 @@ function AnalogsTable(props: Props) {
         };
     }, [productId]);
 
-    console.log(applications)
     return (
         <div className="analogs-table">
             <table>

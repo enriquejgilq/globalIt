@@ -97,9 +97,9 @@ function ProductCard(props: Props) {
     const ondetails = () => {
         is_auth ? quickviewOpenPrivate(productFeatured?.code, false) : quickviewOpen(productFeatured?.code, false)
         dispatch(getImages(productFeatured.code))
-        dispatch(getoOem(productFeatured.code))
-        dispatch(getApplicationsAxios(productFeatured.code))
-        dispatch(getRelatedProductsAxios(productFeatured.code))
+      //  dispatch(getoOem(productFeatured.code))
+       // dispatch(getApplicationsAxios(productFeatured.code))
+       // dispatch(getRelatedProductsAxios(productFeatured.code))
 
 
     }
@@ -125,9 +125,9 @@ function ProductCard(props: Props) {
                                 run ? run() : null;
                                 dispatch(getCataloLoading());
                                 dispatch(getImages(productFeatured.code));
-                                dispatch(getoOem(productFeatured.code))
-                                dispatch(getApplicationsAxios(productFeatured.code))
-                                dispatch(getRelatedProductsAxios(productFeatured.code))
+                               // dispatch(getoOem(productFeatured.code))
+                               // dispatch(getApplicationsAxios(productFeatured.code))
+                                //dispatch(getRelatedProductsAxios(productFeatured.code))
 
                             }}
                         >

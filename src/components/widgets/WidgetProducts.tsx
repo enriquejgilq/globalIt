@@ -2,6 +2,7 @@
 import React from 'react';
 // third-party
 import { globalIntl } from '~/services/i18n/global-intl';
+import { useDispatch } from 'react-redux';
 
 import classNames from 'classnames';
 // application
@@ -10,6 +11,7 @@ import CurrencyFormat from '~/components/shared/CurrencyFormat';
 import url from '~/services/url';
 import { IProduct } from '~/interfaces/product';
 import AppImage from '~/components/shared/AppImage';
+import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     widgetTitle: React.ReactNode;
@@ -23,13 +25,17 @@ function WidgetProducts(props: Props) {
         products = [],
         ...rootProps
     } = props;
+    const dispatch = useDispatch()
 
     const hasTitle = !!widgetTitle;
     const rootClasses = classNames('card', 'widget', 'widget-products', className);
     const description: any = globalIntl()?.formatMessage(
         { id: 'TEXT_CATEGORY_DESCRIPTION' },
     )
-    // Este es !!!!!!!!!!
+
+    const ondetails = (e:any) => {
+        dispatch(getRelatedProductsAxios(e))
+    }
     return (
         <div className={rootClasses} {...rootProps}>
             {hasTitle && (
@@ -50,7 +56,7 @@ function WidgetProducts(props: Props) {
                         </div>
                         <div className="widget-products__info">
                             <div className="widget-products__name">
-                                <AppLink >
+                                <AppLink  onClick={()=>ondetails(product.product.code)} href={url.producturl(product.product.code)}>
                                     <b>{product.product[description]} </b>
                                 </AppLink>
                             </div>

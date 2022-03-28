@@ -44,10 +44,10 @@ import {
 import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
-import { getoOem } from '~/store/oem/oemActions';
-import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
-import {relatedProductsState} from '~/store/relatedProducts/relatedProductsHooks';
-import { getApplicationsAxios } from '~/store/applications/applicationsActions';
+import { getoOem,getOemLoading } from '~/store/oem/oemActions';
+import { getRelatedProductsAxios,getRelatedProductsLoading } from '~/store/relatedProducts/relatedProductsActions';
+import { relatedProductsState } from '~/store/relatedProducts/relatedProductsHooks';
+import { getApplicationsAxios,getApplicationsLoader } from '~/store/applications/applicationsActions';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { useCartAddItem } from '~/store/cart/cartHooks';
 import { oemState } from '~/store/oem/oemHooks';
@@ -91,14 +91,17 @@ function ShopPageProduct(props: Props) {
     const getoem = oemState();
     const getRelatedProducts = relatedProductsState();
 
-    
-
-    const getapplications = applicationsState();
 
     useEffect(() => {
-     //     dispatch(getRelatedProductsAxios(product.code))
+        dispatch(getApplicationsLoader())
+        dispatch(getApplicationsAxios(product.code))
+        dispatch(getRelatedProductsLoading())
+        dispatch(getRelatedProductsAxios(product.code))
+        dispatch(getOemLoading())
+        dispatch(getoOem(product.code))
+        //     dispatch(getRelatedProductsAxios(product.code))
 
-         // dispatch(getoOem(product.code))
+        // dispatch(getoOem(product.code))
         // let canceled = false;
         //
         // shopApi.getRelatedProducts(product.id, 8).then((result) => {
@@ -141,14 +144,16 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-    console.log('aqui esta el producto<<<<<<<<<<', product)
+    
+    const getapplications = applicationsState();
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
-                <WidgetProducts widgetTitle={<FormattedMessage id="HEADER_RELATED_PRODUCTS" />}
+            
+            <WidgetProducts widgetTitle={<FormattedMessage id="HEADER_RELATED_PRODUCTS" />}
                 products={getRelatedProducts}
-                            />
-           {/* <ul className="shop-features__list">
+            />
+            {/* <ul className="shop-features__list">
                 <li className="shop-features__item">
                     <div className="shop-features__item-icon">
                         <FiFreeDelivery48Svg />
@@ -217,91 +222,7 @@ function ShopPageProduct(props: Props) {
                 </div>
             )}
 
-            <div className="product__prices-stock">
-                {is_auth === true && (
-                    <>
-                        <div className="product__prices">
-                            {product.sale_price && (
-                                <button
-                                    className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
-                                        "btn-primary": "btn-primary",
-                                    })}
-                                    type="button"
-                                    onClick={handleEvent}
-                                >
-                                    {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
-                                </button>
-                            )}
-                        </div>
-                        <b>
-                            {product.available > 15 ? (
-                                <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available,10)} />
-                            ) : (
-                                <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available,10)} />
-                            )}
-                        </b>
-                    </>
-                )}
-            </div>
 
-            <div className="product__meta">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>
-                                <Input
-                                    placeholder={intl.formatMessage({ id: "TABLE_QUANTITY" })}
-                                    type="number"
-                                    //value={findShop}
-                                    onChange={(e) => {
-                                        const number = e.target.value;
-                                        setQuantity(parseInt(number));
-                                    }}
-                                />
-                            </th>
-                            <td>
-                                <Button
-                                    color="primary"
-                                    size="sm"
-                                    type="button"
-                                    onClick={() => cartAddItem(product, [], quantity)}
-                                >
-                                    <FormattedMessage id="BUTTON_ADD_TO_CART" />{" "}
-                                </Button>
-                            </td>
-                        </tr>
-                        {/**   {product.brand && (
-                            <React.Fragment>
-                                <tr>
-                                    <th>
-                                        <FormattedMessage id="TABLE_BRAND" />
-                                    </th>
-                                    <td>
-                                   {/**      <AppLink href={url.brand(product.brand)}>
-                                            {product.brand.name}
-                                        </AppLink> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <FormattedMessage id="TABLE_COUNTRY" />
-                                    </th>
-                                    <td>
-                                        <FormattedMessage id={`COUNTRY_NAME_${product.brand.country}`} /> 
-                                    </td>
-                                </tr>
-                            </React.Fragment>
-                        )}/
-                        <tr>
-                            <th>
-                                <FormattedMessage id="TABLE_PART_NUMBER" />
-                            </th>
-                             <td>{product.partNumber}</td>
-                        </tr>
-                        */}
-                    </tbody>
-                </table>
-            </div>
         </div>
     );
 
@@ -387,8 +308,8 @@ function ShopPageProduct(props: Props) {
                         ))}
                     </div> 
                 </div>
-            )}*/}
-            <ShareLinks className="product__share-links" />
+            )}
+            <ShareLinks className="product__share-links" />*/}
         </div>
     );
 
@@ -412,6 +333,7 @@ function ShopPageProduct(props: Props) {
                             <div className={`product product--layout--${layout}`}>
                                 <div className="product__body">
                                     <div className="product__card product__card--one" />
+
                                     <div className="product__card product__card--two" />
 
                                     <ProductGallery
@@ -485,13 +407,99 @@ function ShopPageProduct(props: Props) {
                                                     </div>
                                                 </div>
                                             )}*/}
+                                            <div style={{marginTop:'200px'}}> 
+                                            <div className="product__prices-stock">
+                                                {is_auth === true && (
+                                                    <>
+                                                        <div className="product__prices">
+                                                            {product.sale_price && (
+                                                                <button
+                                                                    className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
+                                                                        "btn-primary": "btn-primary",
+                                                                    })}
+                                                                    type="button"
+                                                                    onClick={handleEvent}
+                                                                >
+                                                                    {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                        <b>
+                                                            {product.available > 15 ? (
+                                                                <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available, 10)} />
+                                                            ) : (
+                                                                <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available, 10)} />
+                                                            )}
+                                                        </b>
+                                                    </>
+                                                )}
+                                            </div>
+
+                                            <div className="product__meta">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                <Input
+                                                                    placeholder={intl.formatMessage({ id: "TABLE_QUANTITY" })}
+                                                                    type="number"
+                                                                    //value={findShop}
+                                                                    onChange={(e) => {
+                                                                        const number = e.target.value;
+                                                                        setQuantity(parseInt(number));
+                                                                    }}
+                                                                />
+                                                            </th>
+                                                            <td>
+                                                                <Button
+                                                                    color="primary"
+                                                                    size="sm"
+                                                                    type="button"
+                                                                    onClick={() => cartAddItem(product, [], quantity)}
+                                                                >
+                                                                    <FormattedMessage id="BUTTON_ADD_TO_CART" />{" "}
+                                                                </Button>
+                                                            </td>
+                                                        </tr>
+                                                        {/**   {product.brand && (
+                            <React.Fragment>
+                                <tr>
+                                    <th>
+                                        <FormattedMessage id="TABLE_BRAND" />
+                                    </th>
+                                    <td>
+                                   {/**      <AppLink href={url.brand(product.brand)}>
+                                            {product.brand.name}
+                                        </AppLink> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <FormattedMessage id="TABLE_COUNTRY" />
+                                    </th>
+                                    <td>
+                                        <FormattedMessage id={`COUNTRY_NAME_${product.brand.country}`} /> 
+                                    </td>
+                                </tr>
+                            </React.Fragment>
+                        )}/
+                        <tr>
+                            <th>
+                                <FormattedMessage id="TABLE_PART_NUMBER" />
+                            </th>
+                             <td>{product.partNumber}</td>
+                        </tr>
+                        */}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            </div>
                                         </div>
                                     )}
 
                                     <div className="product__info">
                                         <FormProvider {...productForm.methods}>
                                             <form onSubmit={productForm.submit} className="product__info-card">
-                                                {productInfoBody}
                                                 {product.length > 0 && (
                                                     <ProductForm
                                                         options={product.options}
@@ -500,17 +508,15 @@ function ShopPageProduct(props: Props) {
                                                     />
                                                 )}
 
-                                                {productActions}
-
-                                                {productTagsAndShareLinks}
                                             </form>
                                         </FormProvider>
 
                                         {shopFeatures}
                                     </div>
-
-                                  <ProductTabs className="product__tabs" product={getoem.results} applications={getapplications}  layout={layout} /> 
-                                </div>
+                                       {getapplications.results.length > 0 && (                
+                                    <ProductTabs className="product__tabs" product={getoem.results} applications={getapplications} layout={layout} />
+                                    )} 
+                                    </div>
                             </div>
 
                             {/**   {relatedProducts.length > 0 && (

@@ -79,7 +79,6 @@ function ProductTabs(props: Props) {
 
     const rootClasses = classNames(`product-tabs product-tabs--layout--${layout}`, className);
 
-
     return (
         <div className={rootClasses} {...rootProps}>
             {tabs.map((tab, index) => (

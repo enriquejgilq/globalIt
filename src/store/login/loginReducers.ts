@@ -19,7 +19,7 @@ const defaultState: ILogin = {
         mac_address: '',
     },
     access_token: '',
-    error: '',
+    error: null,
     loading: false
 }
 
@@ -33,7 +33,7 @@ function loginCurrency(state = defaultState, action: any): ILogin {
                 // ...state,
                 user: action.payload.user,
                 access_token: action.payload.access_token,
-                error: '',
+                error: null,
                 loading: false
             }
         case ERROR_LOGIN:
@@ -61,7 +61,7 @@ function loginCurrency(state = defaultState, action: any): ILogin {
                     mac_address: '',
                 },
                 access_token: '',
-                error: '',
+                error: null,
                 loading: true
             }
         case LOGOUT:
@@ -82,7 +82,7 @@ function loginCurrency(state = defaultState, action: any): ILogin {
                     mac_address: '',
                 },
                 access_token: '',
-                error: '',
+                error: null,
                 loading: false
             }
 

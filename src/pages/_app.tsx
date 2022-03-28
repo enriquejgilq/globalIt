@@ -17,6 +17,8 @@ import { load, save, wrapper } from '~/store/store';
 import { optionsSetAll } from '~/store/options/optionsActions';
 import { useApplyClientState } from '~/store/client';
 import { useLoadUserVehicles } from '~/store/garage/garageHooks';
+import { getlogin } from '~/store/login/loginHooks';
+
 // styles
 import '../scss/index.scss';
 import '../scss/style.header-spaceship-variant-one.scss';
@@ -43,6 +45,7 @@ function App(props: Props) {
     const store = useStore();
     const applyClientState = useApplyClientState();
     const loadUserVehicles = useLoadUserVehicles();
+    const login = getlogin();
 
     // Loading and saving state on the client side (cart, wishlist, etc.).
     useEffect(() => {
@@ -88,6 +91,8 @@ function App(props: Props) {
             </Layout>
         );
     }, [Component, pageProps]);
+
+    console.log('<<<<<<<<<<<<<<',login.access_token);
 
     // noinspection HtmlRequiredTitleElement
     return (
