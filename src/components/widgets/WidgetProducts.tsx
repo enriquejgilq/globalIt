@@ -58,19 +58,20 @@ function WidgetProducts(props: Props) {
                             <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)} >
                                 {product.product.image_principal === null ? (<AppImage className="image__tag" src="/images/noimages/noimage3.jpg" />
                                 ) :
-                                    (<AppImage onClick={() => ondetails(product.product.code)}  src={product.product.image_principal} />)
+                                    (<AppImage onClick={() => ondetails(product.product.code)} src={product.product.image_principal} />)
                                 }
                             </AppLink>
                         </div>
                         <div className="widget-products__info">
+                            <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)} className="widget-products__prices">
+                                <b style={{ color: 'black', fontSize: '15px' }}>{product.product.code} </b>
+                            </AppLink>
                             <div className="widget-products__name">
                                 <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)}>
-                                    <b>{product.product[description]} </b>
+                                    {product.product[description]} 
                                 </AppLink>
                             </div>
-                            <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)} className="widget-products__prices">
-                               <b style={{color:'black', fontSize:'15px'}}>{product.product.code} </b>  
-                            </AppLink>
+
                         </div>
                     </div>
                 ))}

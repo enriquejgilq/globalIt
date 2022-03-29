@@ -496,8 +496,8 @@ function ShopPageProduct(props: Props) {
                                             </div>
                                         </div>
                                     )}
-
-                                    <div className="product__info">
+                                        
+                                    <div style={{marginTop:'-30px'}} className="product__info">
                                         <FormProvider {...productForm.methods}>
                                             <form onSubmit={productForm.submit} className="product__info-card">
                                                 {product.length > 0 && (
