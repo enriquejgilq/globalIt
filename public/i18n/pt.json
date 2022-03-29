@@ -355,7 +355,7 @@
     "TEXT_TIMER_MINUTES": "Minutos",
     "TEXT_TIMER_SECONDS": "Segs",
     "TEXT_TOAST_PASSWORD_CHANGED": "A senha foi alterada com sucesso.",
-    "TEXT_TOAST_PRODUCT_ADDED_TO_CART": "produtos \"{productName}\" adicionado ao carrinho! ",
+    "TEXT_TOAST_PRODUCT_ADDED_TO_CART": "produtos \"{productName}\" adicionado à cotação! ",
     "TEXT_TOAST_PRODUCT_ADDED_TO_COMPARE": "produtos \"{productName}\" adicionado para comparar! ",
     "TEXT_TOAST_PRODUCT_ADDED_TO_WISHLIST": "produtos \"{productName}\" Adicionado à Lista de Desejos!",
     "TEXT_TOAST_PROFILE_SAVED": "As informações da sua conta foram salvas com sucesso.",

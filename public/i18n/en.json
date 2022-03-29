@@ -353,7 +353,7 @@
   "TEXT_TIMER_MINUTES": "Mins",
   "TEXT_TIMER_SECONDS": "Secs",
   "TEXT_TOAST_PASSWORD_CHANGED": "Password has been successfully changed.",
-  "TEXT_TOAST_PRODUCT_ADDED_TO_CART": "Product \"{productName}\" added to cart!",
+  "TEXT_TOAST_PRODUCT_ADDED_TO_CART": "Product \"{productName}\" added to quote!",
   "TEXT_TOAST_PRODUCT_ADDED_TO_COMPARE": "Product \"{productName}\" added to compare!",
   "TEXT_TOAST_PRODUCT_ADDED_TO_WISHLIST": "Product \"{productName}\" added to wish list!",
   "TEXT_TOAST_PROFILE_SAVED": "Your account information was saved successfully.",

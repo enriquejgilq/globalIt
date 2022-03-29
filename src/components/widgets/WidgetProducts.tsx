@@ -11,7 +11,7 @@ import CurrencyFormat from '~/components/shared/CurrencyFormat';
 import url from '~/services/url';
 import { IProduct } from '~/interfaces/product';
 import AppImage from '~/components/shared/AppImage';
-import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
+import { getRelatedProductsAxios } from '~/store/relatedProducts/relatedProductsActions';
 import { isAuth } from '~/store/login/loginHooks'
 import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
 import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
@@ -38,7 +38,7 @@ function WidgetProducts(props: Props) {
         { id: 'TEXT_CATEGORY_DESCRIPTION' },
     )
 
-    const ondetails = (e:any) => {
+    const ondetails = (e: any) => {
         dispatch(getRelatedProductsAxios(e))
         is_auth ? quickviewOpenPrivate(e, false) : quickviewOpen(e, false)
         dispatch(getImages(e))
@@ -55,22 +55,22 @@ function WidgetProducts(props: Props) {
                 {products.results.map((product: any) => (
                     <div key={product.id} className="widget-products__item">
                         <div className="widget-products__image">
-                            <AppLink >
+                            <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)} >
                                 {product.product.image_principal === null ? (<AppImage className="image__tag" src="/images/noimages/noimage3.jpg" />
                                 ) :
-                                    (<AppImage src={product.product.image_principal} />)
+                                    (<AppImage onClick={() => ondetails(product.product.code)}  src={product.product.image_principal} />)
                                 }
                             </AppLink>
                         </div>
                         <div className="widget-products__info">
                             <div className="widget-products__name">
-                                <AppLink  onClick={()=>ondetails(product.product.code)} href={url.producturl(product.product.code)}>
+                                <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)}>
                                     <b>{product.product[description]} </b>
                                 </AppLink>
                             </div>
-                            <div className="widget-products__prices">
-                                {product.product.code}
-                            </div>
+                            <AppLink onClick={() => ondetails(product.product.code)} href={url.producturl(product.product.code)} className="widget-products__prices">
+                               <b style={{color:'black', fontSize:'15px'}}>{product.product.code} </b>  
+                            </AppLink>
                         </div>
                     </div>
                 ))}
