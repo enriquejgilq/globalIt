@@ -91,13 +91,13 @@ function ProductTabs(props: Props) {
                         className={classNames('product-tabs__item', {
                             'product-tabs__item--active': activeTab === tab.id,
                         })}
-                    >
-                        <AppLink href={{ href: { hash:'' } }} onClick={() => setActiveTab(tab.id)}>
+                    > 
+                    <button type="button"  className="btn btn-m " onClick={() => setActiveTab(tab.id)}>
                             {tab?.title}
                             {tab?.showCounter && (
                                 <span className="product-tabs__item-counter">{tab?.counter}</span>
                             )}
-                        </AppLink>
+                        </button >
                     </li>
                 ))}
             </ul>

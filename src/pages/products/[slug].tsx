@@ -44,7 +44,6 @@ function Page(props: Props) {
     if (details.product === null) {
         return <SitePageNotFound />;
     }
-
   // let atras = window.history.back();
    
     //is_auth ? quickviewOpenPrivate(e, false) : quickviewOpen(e, false)

@@ -100,19 +100,26 @@ function ShopPageProduct(props: Props) {
             const loc = window.location;
             setCode(loc.pathname.split("/").pop() )
         };
-       if(code !== ''){
+       if(code !== '' ){
         is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false)
        }
         //console.log(code)
     }, [code]);
     
     useEffect(() => {
+        //applications 
         dispatch(getApplicationsLoader())
         dispatch(getApplicationsAxios(product.code))
+        //Related Products
         dispatch(getRelatedProductsLoading())
         dispatch(getRelatedProductsAxios(product.code))
+        //OEM
         dispatch(getOemLoading())
         dispatch(getoOem(product.code))
+        //Images
+        dispatch(getCataloLoading())
+        dispatch(getImages(product.code))
+
         
         //     dispatch(getRelatedProductsAxios(product.code))
 

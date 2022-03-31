@@ -38,8 +38,8 @@ function AnalogsTable(props: Props) {
     }, [productId]);
 
     return (
-        <div className="analogs-table">
-            <table>
+        <div style={{ height:'400px', overflow:'scroll'}} className="analogs-table">
+            <table >
                 <thead>
                     <tr>
                         <th className="analogs-table__column analogs-table__column--name">
@@ -53,7 +53,7 @@ function AnalogsTable(props: Props) {
                         </th>
                         <th className="analogs-table__column analogs-table__column--rating">
                             <FormattedMessage id="TABLE_ENGINE" />
-    </th>
+                     </th>
                     </tr>
                 </thead>
                 <tbody>

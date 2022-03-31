@@ -18,7 +18,8 @@ function Specification(props: Props) {
         return null
     }
     return (
-        <div className="spec">
+        <div style={{ height:'400px', overflow:'scroll'}}> 
+        <div  className="spec">
             {groups?.map((group:any, groupIndex:any) => (
                 <div  className="spec__row">
                 <div className="spec__name"> <b>  {group.competitor_name}</b>  {group.competitor_code}   </div>
@@ -27,6 +28,7 @@ function Specification(props: Props) {
             {/** <div className="spec__disclaimer">
                 <FormattedMessage id="TEXT_PRODUCT_DISCLAIMER" />
                 </div>*/}
+        </div>
         </div>
     );
 }
