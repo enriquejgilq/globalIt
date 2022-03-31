@@ -92,6 +92,7 @@ function ProductsView(props: Props) {
         // Cursor based navigation
         if (event.type === 'before') {
             handleBeforeChange(event.before);
+            console.log('handlePageChange')
         }
         if (event.type === 'after') {
             handleAfterChange(event.after);
@@ -100,6 +101,7 @@ function ProductsView(props: Props) {
 
     const hasActiveFilters = shop.activeFilters.length > 0;
     const currentFiltersCount = shop.currentFilters.length;
+   
 
     const { currentFilters } = shop;
 
@@ -181,6 +183,9 @@ function ProductsView(props: Props) {
         e.preventDefault();
        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&search='+findShop))
     }
+  //  window.location.hash = window.location.lasthash[window.location.lasthash.length-1];
+   
+
 
     return (
         <div className={rootClasses}>

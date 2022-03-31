@@ -108,6 +108,8 @@ function FilterCategory(props: Props) {
         }
       }
     const result = categoryProductsChildren.results.map((id: any) => id.parent_category[nameCategoryProducts]);
+
+   
     return (
         <div className="filter-category">
             <ul className="filter-category__list">

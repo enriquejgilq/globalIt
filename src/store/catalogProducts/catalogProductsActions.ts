@@ -5,9 +5,12 @@ import {
     GET_CATALOG_PRODUCTS,
     GET_CATALOG_PRODUCTS_SUCCESS,
     GET_CATALOG_PRODUCTS_FAILURE,
+    CLEAR_CATALOG_PRODUCTS,
     catalogProductsThunkAction,
     ICatalogProductsAction,
     ICatalogProductsActionLoader,
+    CategoryProductsAction,
+
 
 } from '~/store/catalogProducts/catalogProductsActionTypes';    
 
@@ -63,4 +66,11 @@ export function getCatalogProductsPrivate(payload:any  ): catalogProductsThunkAc
             }
             )
         }));     
+}
+
+
+export function clearCataglog(): CategoryProductsAction {
+    return {
+        type: CLEAR_CATALOG_PRODUCTS,
+    };
 }

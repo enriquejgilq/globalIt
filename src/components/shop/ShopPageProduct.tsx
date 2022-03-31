@@ -53,6 +53,7 @@ import { useCartAddItem } from '~/store/cart/cartHooks';
 import { oemState } from '~/store/oem/oemHooks';
 import { applicationsState } from '~/store/applications/applicationsHooks';
 import WidgetProducts from '~/components/widgets/WidgetProducts';
+import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
 
 import { Button, Input } from 'reactstrap';
 
@@ -81,7 +82,8 @@ function ShopPageProduct(props: Props) {
     const details = useQuickview();
     const allImages = getImagesCarouselState();
     const cartAddItem = useCartAddItem();
-
+    const quickviewOpen = useQuickviewOpen();
+    const quickviewOpenPrivate = useQuickviewOpenPrivate();
     const galleryLayout = `product-${layout}` as IProductGalleryLayout;
     const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
     const [onPress, setOnPress] = useState(false);
@@ -90,8 +92,20 @@ function ShopPageProduct(props: Props) {
     const is_auth = isAuth()
     const getoem = oemState();
     const getRelatedProducts = relatedProductsState();
-
-
+    const [pressed, setPressed] = useState(false);
+    const [code, setCode] = useState<any>('')
+    useEffect(() => {
+        window.onpopstate = () => {
+            setPressed(true);
+            const loc = window.location;
+            setCode(loc.pathname.split("/").pop() )
+        };
+       if(code !== ''){
+        is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false)
+       }
+        //console.log(code)
+    }, [code]);
+    
     useEffect(() => {
         dispatch(getApplicationsLoader())
         dispatch(getApplicationsAxios(product.code))
@@ -99,6 +113,7 @@ function ShopPageProduct(props: Props) {
         dispatch(getRelatedProductsAxios(product.code))
         dispatch(getOemLoading())
         dispatch(getoOem(product.code))
+        
         //     dispatch(getRelatedProductsAxios(product.code))
 
         // dispatch(getoOem(product.code))
@@ -144,7 +159,8 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-    
+    //console.log(code)
+ 
     const getapplications = applicationsState();
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (

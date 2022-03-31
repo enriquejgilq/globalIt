@@ -92,7 +92,7 @@ function ProductTabs(props: Props) {
                             'product-tabs__item--active': activeTab === tab.id,
                         })}
                     >
-                        <AppLink href={{ href: { hash: tab?.id } }} onClick={() => setActiveTab(tab.id)}>
+                        <AppLink href={{ href: { hash:'' } }} onClick={() => setActiveTab(tab.id)}>
                             {tab?.title}
                             {tab?.showCounter && (
                                 <span className="product-tabs__item-counter">{tab?.counter}</span>

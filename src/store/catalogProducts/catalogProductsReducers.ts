@@ -1,19 +1,19 @@
 import {
-        GET_CATALOG_PRODUCTS,
-        GET_CATALOG_PRODUCTS_SUCCESS,
-        GET_CATALOG_PRODUCTS_FAILURE,
-       } from './catalogProductsActionTypes'
+    GET_CATALOG_PRODUCTS,
+    GET_CATALOG_PRODUCTS_SUCCESS,
+    GET_CATALOG_PRODUCTS_FAILURE,
+    CLEAR_CATALOG_PRODUCTS,
+} from "./catalogProductsActionTypes";
 
 const defaultState: any = {
-    count: '',
+    count: "",
     next: null,
     previous: null,
     results: [],
     error: false,
-    loading: false
-
-}
-export const CATALOG_PRODUCTS_NAMESPACE = 'catalogProducts';
+    loading: false,
+};
+export const CATALOG_PRODUCTS_NAMESPACE = "catalogProducts";
 
 const catalogProductsReducer = (state: any = defaultState, action: any) => {
     switch (action.type) {
@@ -24,30 +24,40 @@ const catalogProductsReducer = (state: any = defaultState, action: any) => {
                 previous: action.payload.previous,
                 results: action.payload.results,
                 error: false,
-                loading: false
-            }
+                loading: false,
+            };
         case GET_CATALOG_PRODUCTS_FAILURE:
             return {
                 ...state,
-                count: '',
+                count: "",
                 next: null,
                 previous: null,
                 results: [],
                 error: action.payload,
-                loading: false
-            }
+                loading: false,
+            };
         case GET_CATALOG_PRODUCTS:
             return {
                 ...state,
-                count: '',
+                count: "",
                 next: null,
                 previous: null,
                 results: [],
                 error: false,
-                loading: true
-            }
+                loading: true,
+            };
+        case CLEAR_CATALOG_PRODUCTS:
+            return {
+                count: "",
+                next: null,
+                previous: null,
+                results: [],
+                error: false,
+                loading: false,
+            };
+
         default:
             return state;
     }
-}
+};
 export default catalogProductsReducer;

@@ -39,7 +39,7 @@ function AccountMenu(props: Props) {
 
     const onLogOutButtonClick = () => {
         dispatch(logout())
-
+        localStorage.removeItem("global-air-store");
         userSignOut().then(() => {
             if (onCloseMenu) {
                 onCloseMenu();

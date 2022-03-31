@@ -18,6 +18,12 @@ import { optionsSetAll } from '~/store/options/optionsActions';
 import { useApplyClientState } from '~/store/client';
 import { useLoadUserVehicles } from '~/store/garage/garageHooks';
 import { getlogin } from '~/store/login/loginHooks';
+import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
+import { toast } from 'react-toastify';
+import {  logout} from '~/store/login/loginAction';
+import { useDispatch } from 'react-redux';
+
+//import {} 
 
 // styles
 import '../scss/index.scss';
@@ -46,6 +52,16 @@ function App(props: Props) {
     const applyClientState = useApplyClientState();
     const loadUserVehicles = useLoadUserVehicles();
     const login = getlogin();
+    const catalog = getCatalogProductsState();
+    const dispatch = useDispatch()
+// autologout test!!!!! 
+    //console.log(catalog.error.detail);
+    //if( catalog.error.detail ){
+       // toast.error(catalog.error.detail);
+
+        //dispatch(logout())
+
+   // }
 
     // Loading and saving state on the client side (cart, wishlist, etc.).
     useEffect(() => {
@@ -93,6 +109,7 @@ function App(props: Props) {
     }, [Component, pageProps]);
 
     // noinspection HtmlRequiredTitleElement
+
     return (
         <LanguageProvider {...languageInitialProps}>
             <CurrentVehicleGarageProvider>
