@@ -1,12 +1,27 @@
 // react
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 // application
 import AppLink from '~/components/shared/AppLink';
 import BlockSpace from '~/components/blocks/BlockSpace';
 import PageTitle from '~/components/shared/PageTitle';
 import url from '~/services/url';
-
+import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
+import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
+import {  isAuth } from '~/store/login/loginHooks'
 function SitePageNotFound() {
+    const is_auth = isAuth()
+   
+    const [code, setCode] = useState<any>('')
+    const quickviewOpen = useQuickviewOpen();
+    const quickviewOpenPrivate = useQuickviewOpenPrivate(); 
+    useEffect (() => {
+    const loc = window.location;
+    const codeAux:any = loc.pathname.split("/").pop()
+    setCode(codeAux)
+    if(codeAux){
+      is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false)
+    }
+    }, [])
     return (
         <React.Fragment>
             <PageTitle>

@@ -3,7 +3,7 @@ import React, {
     useCallback,
     useEffect,
     useRef,
-    useState,
+    useState,useReducer
 } from 'react';
 // third-party
 import classNames from 'classnames';
@@ -103,6 +103,7 @@ function ProductGallery(props: Props) {
     const galleryRef = useRef<PhotoSwipe<PhotoSwipeUIDefault.Options> | null>(null);
     const getIndexDependOnDirRef = useRef<((index: number) => number) | null>(null);
     const unmountedRef = useRef(false);
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
     const getIndexDependOnDir = useCallback((index: number) => {
         // we need to invert index id direction === 'rtl' due to react-slick bug
@@ -111,6 +112,7 @@ function ProductGallery(props: Props) {
         }
 
         return index;
+
     }, [direction, images]);
 
     const openPhotoswipe = (index: number) => {
@@ -118,7 +120,7 @@ function ProductGallery(props: Props) {
             return;
         }
 
-        const items = imagesRefs.current.map((tag, index) => {
+        const items = imagesRefs?.current.map((tag, index) => {
             if (!tag) {
                 throw Error('Image ref is null');
             }
@@ -138,6 +140,7 @@ function ProductGallery(props: Props) {
             items.reverse();
         }
 
+       // console.log(items)
         // noinspection JSUnusedGlobalSymbols
         const options: PhotoSwipe.Options = {
             getThumbBoundsFn: (index) => {
@@ -261,6 +264,7 @@ function ProductGallery(props: Props) {
         const timer = setTimeout(() => {
             setState((prev) => ({ ...prev, transition: false }));
         }, 0);
+        forceUpdate();
 
         return () => {
             clearTimeout(timer);
@@ -270,7 +274,7 @@ function ProductGallery(props: Props) {
     useEffect(() => {
         getIndexDependOnDirRef.current = getIndexDependOnDir;
     }, [getIndexDependOnDir]);
-
+    
     const rootClasses = classNames('product-gallery', `product-gallery--layout--${layout}`, className);
 
     return (

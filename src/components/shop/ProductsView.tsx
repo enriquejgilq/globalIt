@@ -92,7 +92,7 @@ function ProductsView(props: Props) {
         // Cursor based navigation
         if (event.type === 'before') {
             handleBeforeChange(event.before);
-            console.log('handlePageChange')
+          //  console.log('handlePageChange')
         }
         if (event.type === 'after') {
             handleAfterChange(event.after);

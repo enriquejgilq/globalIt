@@ -37,17 +37,15 @@ function Page(props: Props) {
     const { productFeatured,product } = props;
     const [code, setCode] = useState<any>('')
     const quickviewOpen = useQuickviewOpen();
-    const quickviewOpenPrivate = useQuickviewOpenPrivate();
+    const quickviewOpenPrivate = useQuickviewOpenPrivate(); 
+    //console.log('estoy pasando por aqui?', window?.location)
     if(details.stateFrom ==="server"){
        return( <p>{intl.formatMessage({ id: 'LOADING_TEXT' })}.</p>)
    }
     if (details.product === null) {
         return <SitePageNotFound />;
     }
-  // let atras = window.history.back();
    
-    //is_auth ? quickviewOpenPrivate(e, false) : quickviewOpen(e, false)
-  
     return (
          <ShopPageProduct
             product={details.product}

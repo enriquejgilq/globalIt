@@ -1,5 +1,5 @@
 // react
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 // third-party
 import { useDispatch } from 'react-redux';
 import { globalIntl } from '~/services/i18n/global-intl';
@@ -94,10 +94,11 @@ function ShopPageProduct(props: Props) {
     const getRelatedProducts = relatedProductsState();
     const [pressed, setPressed] = useState(false);
     const [code, setCode] = useState<any>('')
+
     useEffect(() => {
+        const loc = window.location;
         window.onpopstate = () => {
             setPressed(true);
-            const loc = window.location;
             setCode(loc.pathname.split("/").pop() )
         };
        if(code !== '' ){
@@ -105,7 +106,7 @@ function ShopPageProduct(props: Props) {
        }
         //console.log(code)
     }, [code]);
-    
+    console.log('aq',window.location)
     useEffect(() => {
         //applications 
         dispatch(getApplicationsLoader())
@@ -119,7 +120,14 @@ function ShopPageProduct(props: Props) {
         //Images
         dispatch(getCataloLoading())
         dispatch(getImages(product.code))
-
+        const loc = window.location;
+        const codeAux:any = loc.pathname.split("/").pop()
+        //  setCode(loc.pathname.split("/").pop() )
+        //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
+        if(product.code != codeAux){
+            is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false) 
+        }
+      //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code)
         
         //     dispatch(getRelatedProductsAxios(product.code))
 
@@ -137,6 +145,8 @@ function ShopPageProduct(props: Props) {
         // return () => {
         //     canceled = true;
         //   };
+       
+
     }, [product]);
     if (!product) {
         return null;
@@ -166,8 +176,9 @@ function ShopPageProduct(props: Props) {
             setOnPress(false)
         }, 1500);
     }
-    //console.log(code)
- 
+    const loc = window.location;
+  //  setCode(loc.pathname.split("/").pop() )
+    console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
     const getapplications = applicationsState();
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
