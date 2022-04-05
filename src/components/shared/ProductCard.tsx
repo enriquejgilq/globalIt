@@ -96,6 +96,7 @@ function ProductCard(props: Props) {
     )
     const ondetails = () => {
         is_auth ? quickviewOpenPrivate(productFeatured?.code, false) : quickviewOpen(productFeatured?.code, false)
+        dispatch(getImageLoading());
         dispatch(getImages(productFeatured.code))
       //  dispatch(getoOem(productFeatured.code))
        // dispatch(getApplicationsAxios(productFeatured.code))
