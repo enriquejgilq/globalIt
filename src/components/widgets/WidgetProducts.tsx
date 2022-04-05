@@ -41,7 +41,8 @@ function WidgetProducts(props: Props) {
     const ondetails = (e: any) => {
         dispatch(getRelatedProductsAxios(e))
         is_auth ? quickviewOpenPrivate(e, false) : quickviewOpen(e, false)
-        dispatch(getImages(e))
+         dispatch(getImageLoading())
+         dispatch(getImages(e))
 
     }
     return (

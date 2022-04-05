@@ -104,29 +104,33 @@ function ShopPageProduct(props: Props) {
             setCode(loc.pathname.split("/").pop() )
         };
        if(code !== '' ){
-        is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false)
+        is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false);
+        dispatch(getImageLoading())
+        dispatch(getImages(code))
        }
         //console.log(code)
     }, [code]);
     //console.log('aq',window.location)
     useEffect(() => {
-        //applications 
-        dispatch(getApplicationsLoader())
-        dispatch(getApplicationsAxios(product.code))
-        //Related Products
-        dispatch(getRelatedProductsLoading())
-        dispatch(getRelatedProductsAxios(product.code))
-        //OEM
-        dispatch(getOemLoading())
-        dispatch(getoOem(product.code))
-        //Images
-        dispatch(getImageLoading())
-        dispatch(getImages(product.code))
         const loc = window.location;
         const codeAux:any = loc.pathname.split("/").pop()
+        if(product.code != codeAux){
+        //applications 
+        dispatch(getApplicationsLoader())
+        dispatch(getApplicationsAxios(codeAux))
+        //Related Products
+        dispatch(getRelatedProductsLoading())
+        dispatch(getRelatedProductsAxios(codeAux))
+        //OEM
+        dispatch(getOemLoading())
+        dispatch(getoOem(codeAux))
+        //Images
+        dispatch(getImageLoading())
+        dispatch(getImages(codeAux))
+     
         //  setCode(loc.pathname.split("/").pop() )
         //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
-        if(product.code != codeAux){
+        
             is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false) 
          
         }
