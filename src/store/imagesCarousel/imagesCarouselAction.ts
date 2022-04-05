@@ -22,7 +22,7 @@ export function getImagesError ( payload: any): IImageCarouselAction {
         payload
     };
 }
-export function getCataloLoading ( ): IImageCarouselActionLoader {
+export function getImageLoading ( ): IImageCarouselActionLoader {
     return {
         type: GET_IMAGES_CAROUSEL,
     };

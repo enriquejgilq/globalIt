@@ -1,5 +1,5 @@
 // react
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useState, useReducer,useMemo } from 'react';
 // third-party
 import { useDispatch } from 'react-redux';
 import { globalIntl } from '~/services/i18n/global-intl';
@@ -42,7 +42,7 @@ import {
     Wishlist16Svg,
 } from '~/svg';
 import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
-import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
+import { getImages, getImageLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { getoOem,getOemLoading } from '~/store/oem/oemActions';
 import { getRelatedProductsAxios,getRelatedProductsLoading } from '~/store/relatedProducts/relatedProductsActions';
@@ -95,6 +95,8 @@ function ShopPageProduct(props: Props) {
     const [pressed, setPressed] = useState(false);
     const [code, setCode] = useState<any>('')
 
+    const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
+    console.log(product)
     useEffect(() => {
         const loc = window.location;
         window.onpopstate = () => {
@@ -106,7 +108,7 @@ function ShopPageProduct(props: Props) {
        }
         //console.log(code)
     }, [code]);
-    console.log('aq',window.location)
+    //console.log('aq',window.location)
     useEffect(() => {
         //applications 
         dispatch(getApplicationsLoader())
@@ -118,7 +120,7 @@ function ShopPageProduct(props: Props) {
         dispatch(getOemLoading())
         dispatch(getoOem(product.code))
         //Images
-        dispatch(getCataloLoading())
+        dispatch(getImageLoading())
         dispatch(getImages(product.code))
         const loc = window.location;
         const codeAux:any = loc.pathname.split("/").pop()
@@ -126,6 +128,8 @@ function ShopPageProduct(props: Props) {
         //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
         if(product.code != codeAux){
             is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false) 
+            dispatch(getImageLoading())
+            dispatch(getImages(codeAux))
         }
       //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code)
         
@@ -170,6 +174,9 @@ function ShopPageProduct(props: Props) {
     const prices: any = globalIntl()?.formatMessage(
         { id: 'BUTTON_VIEW_PRICES' },
     )
+     const noimage: any = globalIntl()?.formatMessage(
+        { id: 'TEXT_EMPTY_IMAGES' },
+    )
     const handleEvent = (event: any) => {
         setOnPress(true)
         setTimeout(() => {
@@ -178,7 +185,7 @@ function ShopPageProduct(props: Props) {
     }
     const loc = window.location;
   //  setCode(loc.pathname.split("/").pop() )
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
+   // console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
     const getapplications = applicationsState();
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
@@ -369,10 +376,10 @@ function ShopPageProduct(props: Props) {
                                     <div className="product__card product__card--one" />
 
                                     <div className="product__card product__card--two" />
-
+                                   
                                     <ProductGallery
-                                        images={arrayImages || []}
-                                        layout={galleryLayout}
+                                        images={image}
+                                        layout="product-sidebar"
                                         className="product__gallery"
                                     />
 
