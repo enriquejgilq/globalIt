@@ -14,7 +14,7 @@ import AppImage from '~/components/shared/AppImage';
 import { getRelatedProductsAxios } from '~/store/relatedProducts/relatedProductsActions';
 import { isAuth } from '~/store/login/loginHooks'
 import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
-import { getImages, getCataloLoading } from '~/store/imagesCarousel/imagesCarouselAction';
+import { getImages, getImageLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     widgetTitle: React.ReactNode;
