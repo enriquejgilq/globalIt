@@ -128,8 +128,7 @@ function ShopPageProduct(props: Props) {
         //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
         if(product.code != codeAux){
             is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false) 
-            dispatch(getImageLoading())
-            dispatch(getImages(codeAux))
+         
         }
       //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code)
         
