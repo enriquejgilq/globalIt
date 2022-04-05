@@ -121,6 +121,7 @@ function ProductGallery(props: Props) {
         }
 
         const items = imagesRefs?.current.map((tag, index) => {
+            forceUpdate();
             if (!tag) {
                 throw Error('Image ref is null');
             }
@@ -140,7 +141,7 @@ function ProductGallery(props: Props) {
             items.reverse();
         }
 
-       // console.log(items)
+        console.log('<<<<<<<<<<<<<<<<<<<<',items)
         // noinspection JSUnusedGlobalSymbols
         const options: PhotoSwipe.Options = {
             getThumbBoundsFn: (index) => {
