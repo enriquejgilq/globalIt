@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { Controller, FormProvider } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 // application
+import AppImage from '~/components/shared/AppImage';
 import AppLink from '~/components/shared/AppLink';
 import AsyncAction from '~/components/shared/AsyncAction';
 import BlockHeader from '~/components/blocks/BlockHeader';
@@ -55,6 +56,7 @@ import { applicationsState } from '~/store/applications/applicationsHooks';
 import WidgetProducts from '~/components/widgets/WidgetProducts';
 import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
 
+
 import { Button, Input } from 'reactstrap';
 
 
@@ -94,20 +96,23 @@ function ShopPageProduct(props: Props) {
     const getRelatedProducts = relatedProductsState();
     const [pressed, setPressed] = useState(false);
     const [code, setCode] = useState<any>('')
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+    const [imagesCarousel, setImagesCarousel] = useState<any>([]);
 
-    const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
-    console.log(product)
+    //console.log(product)
     useEffect(() => {
         const loc = window.location;
         window.onpopstate = () => {
             setPressed(true);
             setCode(loc.pathname.split("/").pop() )
         };
-       if(code !== '' ){
+       if(code !== '' && code !== 'products' ){
         is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false);
         dispatch(getImageLoading())
         dispatch(getImages(code))
        }
+       forceUpdate();
+
         //console.log(code)
     }, [code]);
     //console.log('aq',window.location)
@@ -153,6 +158,8 @@ function ShopPageProduct(props: Props) {
         //     canceled = true;
         //   };
        
+       
+        forceUpdate();
 
     }, [product]);
     if (!product) {
@@ -188,8 +195,12 @@ function ShopPageProduct(props: Props) {
     }
     const loc = window.location;
   //  setCode(loc.pathname.split("/").pop() )
-   // console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
+    console.log('<<<<<<<<<<<<<<<<<<<<<<<',code )
     const getapplications = applicationsState();
+    const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
+
+  const imageAux =   allImages.results.map((item: any) => (  item.url)    )
+
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
@@ -356,7 +367,7 @@ function ShopPageProduct(props: Props) {
             <ShareLinks className="product__share-links" />*/}
         </div>
     );
-
+console.log('qweqwewq',allImages.loading )  ;
     return (
         <React.Fragment>
             <PageTitle>{product.code}</PageTitle>
@@ -377,15 +388,15 @@ function ShopPageProduct(props: Props) {
                             <div className={`product product--layout--${layout}`}>
                                 <div className="product__body">
                                     <div className="product__card product__card--one" />
-
+                                    {allImages.loading  === true ? (
+                                    <> <p> CARGANDO...</p> </> ) :  (<> 
                                     <div className="product__card product__card--two" />
-                                   
                                     <ProductGallery
-                                        images={image}
-                                        layout="product-sidebar"
+                                        images={imageAux}
+                                        layout={galleryLayout}
                                         className="product__gallery"
                                     />
-
+                                   </> )}
                                     <div className="product__header">
                                         <h1 className="product__title">{product.code}</h1>
 

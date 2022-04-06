@@ -17,6 +17,7 @@ import AppSlick, { ISlickProps } from '~/components/shared/AppSlick';
 import { baseUrl } from '~/services/utils';
 import { useDirection } from '~/services/i18n/hooks';
 import { ZoomIn24Svg } from '~/svg';
+import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 
 type CreateGalleryFn = (
     images: PhotoSwipe.Item[],
@@ -96,6 +97,8 @@ function ProductGallery(props: Props) {
         ...rootProps
     } = props;
     const direction = useDirection();
+    const allImages = getImagesCarouselState();
+
     const [state, setState] = useState({ currentIndex: 0, transition: false });
     const imagesRefs = useRef<Array<HTMLImageElement | null>>([]);
     const slickFeaturedRef = useRef<Slick>(null);
@@ -105,6 +108,7 @@ function ProductGallery(props: Props) {
     const unmountedRef = useRef(false);
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
+    
     const getIndexDependOnDir = useCallback((index: number) => {
         // we need to invert index id direction === 'rtl' due to react-slick bug
         if (direction === 'rtl') {
@@ -116,12 +120,13 @@ function ProductGallery(props: Props) {
     }, [direction, images]);
 
     const openPhotoswipe = (index: number) => {
+       // forceUpdate();
+
         if (!createGalleryRef.current) {
             return;
         }
 
-        const items = imagesRefs?.current.map((tag, index) => {
-            forceUpdate();
+        const items = imagesRefs.current.map((tag, index) => {
             if (!tag) {
                 throw Error('Image ref is null');
             }
@@ -141,7 +146,7 @@ function ProductGallery(props: Props) {
             items.reverse();
         }
 
-        console.log('<<<<<<<<<<<<<<<<<<<<',items)
+      
         // noinspection JSUnusedGlobalSymbols
         const options: PhotoSwipe.Options = {
             getThumbBoundsFn: (index) => {
@@ -243,7 +248,9 @@ function ProductGallery(props: Props) {
 
     // componentDidMount
     useEffect(() => {
+        forceUpdate();
         createGalleryRef.current = import('~/services/photoswipe').then((module) => module.default);
+        
     }, []);
 
     // componentWillUnmount
@@ -277,7 +284,7 @@ function ProductGallery(props: Props) {
     }, [getIndexDependOnDir]);
     
     const rootClasses = classNames('product-gallery', `product-gallery--layout--${layout}`, className);
-
+   console.log();
     return (
         <div className={rootClasses} data-layout={layout} {...rootProps}>
             <div className="product-gallery__featured">
@@ -302,7 +309,7 @@ function ProductGallery(props: Props) {
                                 rel="noreferrer"
                                 onClick={(event: React.MouseEvent) => handleFeaturedClick(event, index)}
                             >
-                                {/*
+                                {/* esta 
                                 The data-width and data-height attributes must contain the size of a larger
                                 version of the product image.
 
@@ -310,13 +317,14 @@ function ProductGallery(props: Props) {
                                 attribute, in which case the width and height will be obtained from the
                                 naturalWidth and naturalHeight property of img.product-image__img.
                                 */}
+                                {allImages.loading=== true ? (<p> cargando... </p>): (
                                 <AppImage
                                     className="image__tag"
                                     src={image}
                                     ref={(element) => { imagesRefs.current[index] = element; }}
                                     data-width="700"
                                     data-height="700"
-                                />
+                                />)}
                             </AppLink>
                         </div>
                     ))}
