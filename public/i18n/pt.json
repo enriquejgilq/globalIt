@@ -39,6 +39,7 @@
     "BUTTON_UPDATE_CART": "Atualizar carrinho",
     "BUTTON_VIEW_CART": "Ver citação",
     "BUTTON_VIEW_PRICES": "Preços",
+    "BUTTON_ACEPT": "Aceitar",
 
     "COUNTRY_NAME_LAND": "RandomLand",
     "COUNTRY_NAME_RAND": "Federação Aleatória",
@@ -387,7 +388,8 @@
     "TEXT_GREETING":"Olá",
     "TEXT_CODE": "CÓDIGO",
     "TEXT_NAME_COMPETIDOR":"CÓDIGO DO CONCORRENTE",
-
+    "TEXT_SESSION_EXPIRED": "A sessão expirou. Por favor faça login novamente.",
+    "TEXT_SESSION_EXPIRED_TITLE": "Sessão expirada",
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,
     "API_LOGIN":"authenticate/login/",
     "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",
@@ -400,7 +402,7 @@
     "API_IMAGES_CAROUSEL" : "inventory/public-products-images/?code=",
     "API_OEM" : "inventory/oems/",
     "API_APPLICATIONS": "inventory/aplications-list/",
-  "API_RELATED_PRODUCTS": "inventory/public-related-products/",
+    "API_RELATED_PRODUCTS": "inventory/public-related-products/",
 
 
     "SLUG_NAME":"name_pt",

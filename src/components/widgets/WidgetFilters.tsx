@@ -42,9 +42,9 @@ function WidgetFilters(props: Props) {
             {
                 name: nameCategoryProducts,
             },
-            {
-                name: nameContainer,
-            },
+          //  {
+         //       name: nameContainer,
+         //   },
         ])
     }else {
         setDatas([

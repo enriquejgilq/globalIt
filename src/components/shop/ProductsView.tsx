@@ -35,13 +35,16 @@ import {
     useShopResetFiltersThunk,
     useShopResetFilterThunk,
 } from '~/store/shop/shopHooks';
-import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProducts, getCatalogProductsPrivate,clearCataglog } from '~/store/catalogProducts/catalogProductsActions';
 import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { Button, Input } from 'reactstrap';
 import { globalIntl } from '~/services/i18n/global-intl';
 import { API } from '~/api/constantsApi';
 import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
+import { toast } from 'react-toastify';
+import {  logout} from '~/store/login/loginAction';
+import ModalLogout from '../modal/ModalLogout';
 
 interface LayoutButton {
     layout: IShopPageLayout;
@@ -70,7 +73,7 @@ function ProductsView(props: Props) {
     const shopResetFilter = useShopResetFilterThunk();
     const [, setSidebarIsOpen] = useContext(SidebarContext);
     const [layout, setLayout] = useState(layoutProps);
-
+    const [open, setOpen] = useState<any>(true);
     const handleSortChange = useSetOption('sort', (event) => event.target.value);
     const handleLimitChange = useSetOption('limit', (event) => parseFloat(event.target.value));
     // Page based navigation
@@ -184,9 +187,22 @@ function ProductsView(props: Props) {
        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&search='+findShop))
     }
   //  window.location.hash = window.location.lasthash[window.location.lasthash.length-1];
-   
-
-
+  // console.log(getCatalog.error.detail)
+   if( getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción." ){
+        setOpen(true)
+       dispatch(clearCataglog())
+   }
+   const openModal =()=>{
+       setOpen(true)
+   }
+   const closeModal =()=>{
+    setOpen(false)
+    dispatch(logout())
+    setTimeout(() => {
+        location.reload();
+    }, 1000);
+    
+   }
     return (
         <div className={rootClasses}>
             <div className="products-view__body">
@@ -467,6 +483,7 @@ function ProductsView(props: Props) {
                     </React.Fragment>
                 )}
             </div>
+            <ModalLogout open={open.open} onChange={closeModal}/>
         </div>
     );
 }

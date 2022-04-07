@@ -39,7 +39,7 @@
   "BUTTON_UPDATE_CART": "Mettre à jour le panier",
   "BUTTON_VIEW_CART": "Voir devis",
   "BUTTON_VIEW_PRICES": "Prix",
-
+  "BUTTON_ACEPT": "Accepter",
 
   "COUNTRY_NAME_LAND": "RandomLand",
   "COUNTRY_NAME_RAND": "Fédération aléatoire",
@@ -387,6 +387,8 @@
   "TEXT_GREETING":"Salut",
   "TEXT_CODE": "CODE",
   "TEXT_NAME_COMPETIDOR":"CODE CONCURRENT",
+  "TEXT_SESSION_EXPIRED": "La session a expiré. Veuillez vous reconnecter.",
+  "TEXT_SESSION_EXPIRED_TITLE": "Session expirée", 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",

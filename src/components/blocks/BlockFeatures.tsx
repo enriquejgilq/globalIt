@@ -22,7 +22,7 @@ function BlockFeatures(props: Props) {
     return (
         <div className={`block block-features block-features--layout--${layout}`}>
             <div className="container">
-                <ul className="block-features__list">
+              {/**   <ul className="block-features__list">
                     <li className="block-features__item">
                         <div className="block-features__item-icon">
                             <FiFreeDelivery48Svg />
@@ -75,7 +75,7 @@ function BlockFeatures(props: Props) {
                             </div>
                         </div>
                     </li>
-                </ul>
+                </ul>*/}
             </div>
         </div>
     );

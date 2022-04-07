@@ -39,7 +39,7 @@
   "BUTTON_UPDATE_CART": "Actualización de la compra",
   "BUTTON_VIEW_CART": "Ver cotización",
   "BUTTON_VIEW_PRICES": "Precio",
-
+  "BUTTON_ACEPT": "Aceptar",
 
   "COUNTRY_NAME_LAND": "RandomLand",
   "COUNTRY_NAME_RAND": "Random Federation",
@@ -377,7 +377,6 @@
   "TEXT_CATEGORY": "Categorias",
   "TEXT_CONTAINER": "Container",
   "TEXT_CONTAINER_LIST": "Lista de containers",
-
   "TEXT_TRANSLATE":"traducción no disponible",
   "TEXT_CATEGORY_DESCRIPTION":"description_es",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":" No hay productos en esta categoría.",
@@ -388,6 +387,8 @@
   "TEXT_GREETING":"Hola",
   "TEXT_CODE": "CÓDIGO",
   "TEXT_NAME_COMPETIDOR":"NOMBRE DEL COMPETIDOR",
+  "TEXT_SESSION_EXPIRED": "La sesión ha expirado. Por favor, inicie sesión de nuevo.",
+  "TEXT_SESSION_EXPIRED_TITLE": "Sesión expirada",
 
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
   "API_LOGIN":"authenticate/login/",

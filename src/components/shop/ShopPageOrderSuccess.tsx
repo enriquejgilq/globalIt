@@ -89,7 +89,7 @@ function ShopPageOrderSuccess(props: Props) {
                                         <CurrencyFormat value={order.total} />
                                     </span>
                                 </li>
-                                <li className="order-success__meta-item">
+                               {/**  <li className="order-success__meta-item">
                                     <span className="order-success__meta-title">
                                         <FormattedMessage id="TEXT_PAYMENT_METHOD" />
                                         :
@@ -97,7 +97,7 @@ function ShopPageOrderSuccess(props: Props) {
                                     <span className="order-success__meta-value">
                                         {order.payment}
                                     </span>
-                                </li>
+                                </li>*/}
                             </ul>
                         </div>
 
@@ -170,7 +170,7 @@ function ShopPageOrderSuccess(props: Props) {
                                             </tr>
                                         ))}
                                     </tbody>
-                                    {order.totals.length > 0 && (
+                                  {/**    {order.totals.length > 0 && (
                                         <tbody className="order-list__subtotals">
                                             <tr>
                                                 <th className="order-list__column-label" colSpan={3}>
@@ -191,7 +191,7 @@ function ShopPageOrderSuccess(props: Props) {
                                                 </tr>
                                             ))}
                                         </tbody>
-                                    )}
+                                    )}*/}
                                     <tfoot className="order-list__footer">
                                         <tr>
                                             <th className="order-list__column-label" colSpan={3}>
@@ -206,7 +206,7 @@ function ShopPageOrderSuccess(props: Props) {
                             </div>
                         </div>
 
-                        <div className="order-success__addresses">
+                    {/**     <div className="order-success__addresses">
                             <AddressCard
                                 className="order-success__address"
                                 address={order.shippingAddress}
@@ -217,7 +217,7 @@ function ShopPageOrderSuccess(props: Props) {
                                 address={order.billingAddress}
                                 label={intl.formatMessage({ id: 'TEXT_BILLING_ADDRESS' })}
                             />
-                        </div>
+                        </div>*/} 
                     </div>
                 </div>
             </div>
