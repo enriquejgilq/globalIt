@@ -81,8 +81,8 @@ function addItem(state: ICartState, product: any, options: ICartItemOption[], qu
             id: lastItemId,
             product: JSON.parse(JSON.stringify(product)),
             options: JSON.parse(JSON.stringify(options)),
-            price: product.sale_price,
-            total: product.sale_price * quantity,
+            price: product.price,
+            total: product.price * quantity,
             quantity,
         }];
     } else {

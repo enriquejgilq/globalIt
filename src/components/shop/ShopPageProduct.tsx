@@ -467,7 +467,7 @@ function ShopPageProduct(props: Props) {
                                                 {is_auth === true && (
                                                     <>
                                                         <div className="product__prices">
-                                                            {product.sale_price && (
+                                                            {product.price && (
                                                                 <button
                                                                     className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
                                                                         "btn-primary": "btn-primary",
@@ -480,7 +480,7 @@ function ShopPageProduct(props: Props) {
                                                             )}
                                                         </div>
                                                         <b>
-                                                            {product.available > 15 ? (
+                                                            {product.stock  > 15 ? (
                                                                 <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available, 10)} />
                                                             ) : (
                                                                 <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available, 10)} />

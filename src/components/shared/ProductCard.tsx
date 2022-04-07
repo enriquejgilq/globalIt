@@ -208,11 +208,11 @@ function ProductCard(props: Props) {
                                     // gap: "5px",
                                     // width: "70px",
                                 }}>
-                                {productFeatured.available === undefined ? null :
+                                {productFeatured.stock  === undefined ? null :
                                     <b>
-                                        {productFeatured.available <= 0 ?
+                                        {productFeatured.stock  <= 0 ?
                                             (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={productFeatured.available} />)
-                                            : productFeatured.available <= 15 ?
+                                            : productFeatured.stock  <= 15 ?
                                                 (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={productFeatured.available} />)
                                                 : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(productFeatured.available, 10)} >{parseInt(productFeatured.available)}</StockStatusBadge>)
                                         }
@@ -272,7 +272,7 @@ function ProductCard(props: Props) {
 
                         }}
                     >
-                        {productFeatured.sale_price !== undefined && (
+                        {productFeatured.price !== undefined && (
                             <>
                                 {!exclude.includes("buttons") && (
                                     <React.Fragment>
