@@ -284,7 +284,7 @@ function ProductGallery(props: Props) {
     }, [getIndexDependOnDir]);
     
     const rootClasses = classNames('product-gallery', `product-gallery--layout--${layout}`, className);
-   console.log();
+   //console.log();
     return (
         <div className={rootClasses} data-layout={layout} {...rootProps}>
             <div className="product-gallery__featured">

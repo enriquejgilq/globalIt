@@ -195,7 +195,7 @@ function ShopPageProduct(props: Props) {
     }
     const loc = window.location;
   //  setCode(loc.pathname.split("/").pop() )
-    console.log('<<<<<<<<<<<<<<<<<<<<<<<',code )
+   // console.log('<<<<<<<<<<<<<<<<<<<<<<<',code )
     const getapplications = applicationsState();
     const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
 
@@ -367,7 +367,7 @@ function ShopPageProduct(props: Props) {
             <ShareLinks className="product__share-links" />*/}
         </div>
     );
-console.log('qweqwewq',allImages.loading )  ;
+//console.log('qweqwewq',allImages.loading )  ;
     return (
         <React.Fragment>
             <PageTitle>{product.code}</PageTitle>
