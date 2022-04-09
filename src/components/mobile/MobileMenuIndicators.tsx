@@ -22,7 +22,7 @@ function MobileMenuIndicators() {
 
     return (
         <div className="mobile-menu__indicators">
-            <AppLink href={url.wishlist()} className="mobile-menu__indicator" onClick={mobileMenuClose}>
+            {/* <AppLink href={url.wishlist()} className="mobile-menu__indicator" onClick={mobileMenuClose}>
                 <span className="mobile-menu__indicator-icon">
                     <Heart20Svg />
                     {wishlist.items.length > 0 && (
@@ -34,7 +34,7 @@ function MobileMenuIndicators() {
                 <span className="mobile-menu__indicator-title">
                     <FormattedMessage id="TEXT_MOBILE_INDICATOR_WISHLIST" />
                 </span>
-            </AppLink>
+            </AppLink> */}
             <AppLink href={url.accountDashboard()} className="mobile-menu__indicator" onClick={mobileMenuClose}>
                 <span className="mobile-menu__indicator-icon">
                     <Person20Svg />
@@ -56,14 +56,14 @@ function MobileMenuIndicators() {
                     <FormattedMessage id="TEXT_MOBILE_INDICATOR_CART" />
                 </span>
             </AppLink>
-            <AppLink href={url.accountGarage()} className="mobile-menu__indicator" onClick={mobileMenuClose}>
+            {/* <AppLink href={url.accountGarage()} className="mobile-menu__indicator" onClick={mobileMenuClose}>
                 <span className="mobile-menu__indicator-icon">
                     <Car20Svg />
                 </span>
                 <span className="mobile-menu__indicator-title">
                     <FormattedMessage id="TEXT_MOBILE_INDICATOR_GARAGE" />
                 </span>
-            </AppLink>
+            </AppLink> */}
         </div>
     );
 }

@@ -8,11 +8,13 @@ import {
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
     CART_UPDATE_QUANTITIES,
+    CART_CLEAR,
     CartAddItemAction,
     CartItemQuantity,
     CartRemoveItemAction,
     CartThunkAction,
     CartUpdateQuantitiesAction,
+    CartClearAction
 } from '~/store/cart/cartActionTypes';
 
 export function cartAddItemSuccess(
@@ -39,7 +41,11 @@ export function cartRemoveItemSuccess(itemId: number): CartRemoveItemAction {
         itemId,
     };
 }
-
+export function cartClear ():CartClearAction{ 
+    return {
+        type: CART_CLEAR,
+    };
+}
 export function cartUpdateQuantitiesSuccess(quantities: CartItemQuantity[]): CartUpdateQuantitiesAction {
     return {
         type: CART_UPDATE_QUANTITIES,

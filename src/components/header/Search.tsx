@@ -181,7 +181,7 @@ export function Search() {
                 <label className="sr-only" htmlFor="site-search">
                     <FormattedMessage id="INPUT_SEARCH_LABEL" />
                 </label>
-
+                {/* SERARCH PRINCIPAL */}
                 <input
                     type="text"
                     className="search__input"
@@ -194,15 +194,16 @@ export function Search() {
                     placeholder={searchPlaceholder}
                     onFocus={handleInputFocus}
                     onChange={handleInputChange}
+                    disabled
                 />
 
                 <button
                     type="button"
-                    className={classNames('search__button search__button--start', {
-                        'search__button--hover': vehiclePickerIsOpen,
+                    className={classNames("search__button search__button--start", {
+                        "search__button--hover": vehiclePickerIsOpen,
                     })}
-                    onClick={handleButtonClick}
-                    ref={selectVehicleButtonRef}
+                    // onClick={handleButtonClick}
+                    // ref={selectVehicleButtonRef}
                 >
                     <span className="search__button-icon">
                         <Car20Svg />
@@ -225,8 +226,8 @@ export function Search() {
                 </div>
 
                 <div
-                    className={classNames('search__dropdown', 'search__dropdown--suggestions', 'suggestions', {
-                        'search__dropdown--open': suggestionsIsOpen && hasSuggestions,
+                    className={classNames("search__dropdown", "search__dropdown--suggestions", "suggestions", {
+                        "search__dropdown--open": suggestionsIsOpen && hasSuggestions,
                     })}
                 >
                     {products.length > 0 && (
@@ -246,9 +247,7 @@ export function Search() {
                                             <AppImage src={product.images && product.images[0]} />
                                         </div>
                                         <div className="suggestions__product-info">
-                                            <div className="suggestions__product-name">
-                                                {product.name}
-                                            </div>
+                                            <div className="suggestions__product-name">{product.name}</div>
                                             <div className="suggestions__product-rating">
                                                 <div className="suggestions__product-rating-stars">
                                                     <Rating value={product.rating || 0} />
@@ -267,7 +266,6 @@ export function Search() {
                                         <div className=" suggestions__product-price">
                                             <CurrencyFormat value={product.price} />
                                         </div>
-
                                     </AppLink>
                                 ))}
                             </div>
@@ -295,16 +293,16 @@ export function Search() {
                 </div>
 
                 <div
-                    className={classNames('search__dropdown', 'search__dropdown--vehicle-picker', 'vehicle-picker', {
-                        'search__dropdown--open': vehiclePickerIsOpen,
+                    className={classNames("search__dropdown", "search__dropdown--vehicle-picker", "vehicle-picker", {
+                        "search__dropdown--open": vehiclePickerIsOpen,
                     })}
                     ref={vehiclePickerDropdownRef}
                 >
                     <div className="search__dropdown-arrow" />
 
                     <div
-                        className={classNames('vehicle-picker__panel', {
-                            'vehicle-picker__panel--active': vehiclePanel === 'list' && hasVehicles,
+                        className={classNames("vehicle-picker__panel", {
+                            "vehicle-picker__panel--active": vehiclePanel === "list" && hasVehicles,
                         })}
                     >
                         <div className="vehicle-picker__panel-body">
@@ -356,8 +354,8 @@ export function Search() {
                                                     render={({ run, loading }) => (
                                                         <button
                                                             type="button"
-                                                            className={classNames('vehicles-list__item-remove', {
-                                                                'vehicles-list__item-remove--loading': loading,
+                                                            className={classNames("vehicles-list__item-remove", {
+                                                                "vehicles-list__item-remove--loading": loading,
                                                             })}
                                                             onClick={run}
                                                         >
@@ -375,7 +373,7 @@ export function Search() {
                                 <button
                                     type="button"
                                     className="btn btn-primary btn-sm"
-                                    onClick={() => setVehiclePanel('form')}
+                                    onClick={() => setVehiclePanel("form")}
                                 >
                                     <FormattedMessage id="BUTTON_ADD_VEHICLE" />
                                 </button>
@@ -384,8 +382,8 @@ export function Search() {
                     </div>
 
                     <div
-                        className={classNames('vehicle-picker__panel', {
-                            'vehicle-picker__panel--active': vehiclePanel === 'form' || !hasVehicles,
+                        className={classNames("vehicle-picker__panel", {
+                            "vehicle-picker__panel--active": vehiclePanel === "form" || !hasVehicles,
                         })}
                     >
                         <div className="vehicle-picker__panel-body">
@@ -399,7 +397,7 @@ export function Search() {
                                             onClick={(event) => {
                                                 event.preventDefault();
 
-                                                setVehiclePanel('list');
+                                                setVehiclePanel("list");
                                             }}
                                         >
                                             <FormattedMessage id="BUTTON_BACK_TO_LIST" />
@@ -412,8 +410,8 @@ export function Search() {
                                     render={({ run, loading }) => (
                                         <button
                                             type="button"
-                                            className={classNames('btn', 'btn-primary', 'btn-sm', {
-                                                'btn-loading': loading,
+                                            className={classNames("btn", "btn-primary", "btn-sm", {
+                                                "btn-loading": loading,
                                             })}
                                             disabled={addVehicle === null}
                                             onClick={run}

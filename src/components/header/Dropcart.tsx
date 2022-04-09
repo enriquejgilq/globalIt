@@ -119,7 +119,7 @@ function Dropcart(props: Props) {
                                         <FormattedMessage id="TABLE_TOTAL" />
                                     </th>
                                     <td>
-                                        <CurrencyFormat value={cart.total} />
+                                        <CurrencyFormat value={cart.subtotal} />
                                     </td>
                                 </tr>
                             </tbody>

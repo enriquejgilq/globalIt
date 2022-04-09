@@ -18,6 +18,19 @@ import url from '~/services/url';
 import { Cross12Svg } from '~/svg';
 import { ICartItem } from '~/store/cart/cartTypes';
 import { useCart, useCartRemoveItem, useCartUpdateQuantities } from '~/store/cart/cartHooks';
+import { cartClear } from '~/store/cart/cartActions';
+import { useDispatch } from 'react-redux';
+
+import { 
+    //create quotes
+    createQuotesAxios,
+    //Retrieve quote per number
+    getQuotesDetailAxios,
+    //List all quotes
+    getQuotesAxios,
+    //List quotation detail filter number
+    getQuotesByIdAxios
+ } from '~/store/quotes/quotesActions';
 import { Button } from 'reactstrap';
 
 interface Quantity {
@@ -31,6 +44,7 @@ function Page() {
     const cartRemoveItem = useCartRemoveItem();
     const cartUpdateQuantities = useCartUpdateQuantities();
     const [quantities, setQuantities] = useState<Quantity[]>([]);
+    const dispatch = useDispatch()
     const { items } = cart;
 
     const updateQuantities = () => (
@@ -114,11 +128,16 @@ function Page() {
             </React.Fragment>
         );
     }
-    const onFinish =()=>{
-        toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
-        
-
+    const onFinish =()=>{ 
+        //toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
+       // dispatch(cartClear());
+       // dispatch(getQuotesAxios());
+      // dispatch(getQuotesDetailAxios('202200001'));
+      // dispatch(createQuotesAxios(cart))
+      dispatch(getQuotesByIdAxios('202200001'));
     }
+
+    console.log(cart)
     const table = (
         <table className="cart-table__table">
             <thead className="cart-table__head">
@@ -323,13 +342,15 @@ function Page() {
                                 <FormattedMessage id="TABLE_TOTAL" />
                             </th>
                             <td>
-                                <CurrencyFormat value={cart.total} />
+                                <CurrencyFormat value={cart.subtotal} />
                             </td>
                         </tr>
                     </tfoot>
                 </table>
 
-                <Button onClick={onFinish} href={url.accountProfile()} className="btn btn-xl btn-block">
+                <Button onClick={onFinish} 
+                //href={url.accountProfile()} 
+                className="btn btn-xl btn-block">
                     <FormattedMessage id="BUTTON_PROCEED_TO_CHECKOUT" />
                 </Button>
             </div>

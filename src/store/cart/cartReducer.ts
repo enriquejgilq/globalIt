@@ -13,6 +13,7 @@ import {
     CART_UPDATE_QUANTITIES,
     CartAction,
     CartItemQuantity,
+    CART_CLEAR
 } from '~/store/cart/cartActionTypes';
 
 function findItemIndex(items: ICartItem[], product: IProduct, options: ICartItemOption[]): number {
@@ -190,7 +191,17 @@ function cartBaseReducer(state = initialState, action: CartAction): ICartState {
 
     case CART_UPDATE_QUANTITIES:
         return updateQuantities(state, action.quantities);
-
+    case 
+        CART_CLEAR:
+        return {
+            lastItemId: 0,
+            quantity: 0,
+            items: [],
+            subtotal: 0,
+            totals: [],
+            total: 0,
+        };       
+           
     default:
         return state;
     }

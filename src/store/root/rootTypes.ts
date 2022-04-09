@@ -20,6 +20,7 @@ import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/
 import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
 import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applicationsReducers';
 import relatedProductsReducer,{RELATED_PRODUCTS_NAMESPACE} from '../relatedProducts/relatedProductsReducers';
+import quotesReducer,{QUOTES_NAMESPACE} from '../quotes/quotesReducers';
 
 
 export interface IRootState {
@@ -43,7 +44,7 @@ export interface IRootState {
     [OEM_NAMESPACE]: AppReducerStateType<typeof oemReducer>;
     [APPLICATIONS_NAMESPACE]: AppReducerStateType<typeof applicationsReducer>;
     [RELATED_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof relatedProductsReducer>;
-
+    [QUOTES_NAMESPACE]: AppReducerStateType<typeof quotesReducer>;
 
 
 

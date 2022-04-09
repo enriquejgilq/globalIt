@@ -177,7 +177,7 @@
         padding: 8px (11px + $local-gutter / 2);
     }
     .mobile-menu__indicator {
-        width: calc((100% - #{$local-gutter} * 3) / 4);
+        width: calc((100% - #{$local-gutter} * 3) / 2);
         display: flex;
         flex-direction: column;
         align-items: center;

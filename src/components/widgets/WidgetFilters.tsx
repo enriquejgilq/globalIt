@@ -78,6 +78,7 @@ function WidgetFilters(props: Props) {
                 <button type="button" className="btn btn-secondary btn-sm" onClick={()=>{
                      localStorage.setItem('find','');
                      localStorage.setItem('search','');
+                     location.reload();
                 }}>
                     <FormattedMessage id="BUTTON_RESET" />
                 </button>
@@ -87,3 +88,4 @@ function WidgetFilters(props: Props) {
 }
 
 export default React.memo(WidgetFilters);
+//    

@@ -112,7 +112,7 @@ function Header() {
                     href={url.cart()}
                     icon={<List2Svg /> }
                     label={cartIndicatorLabel}
-                    value={<CurrencyFormat value={cart.total} />}
+                    value={<CurrencyFormat value={cart.subtotal} />}
                     counter={cart.quantity}
                     trigger="click"
                     controllerRef={cartIndicatorCtrl}

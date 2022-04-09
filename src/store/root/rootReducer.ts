@@ -23,6 +23,8 @@ import imagesCarouselReducer,{IMAGESCAROUSEL_NAMESPACE} from '../imagesCarousel/
 import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
 import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applicationsReducers';
 import relatedProductsReducer,{RELATED_PRODUCTS_NAMESPACE} from '../relatedProducts/relatedProductsReducers';
+import quotesReducer,{QUOTES_NAMESPACE} from '../quotes/quotesReducers';
+
 export default combineReducers({
     version: (state: number = version) => state,
     [CART_NAMESPACE]: cartReducer,
@@ -45,6 +47,7 @@ export default combineReducers({
     [OEM_NAMESPACE]:oemReducer,
     [APPLICATIONS_NAMESPACE]:applicationsReducer,
     [RELATED_PRODUCTS_NAMESPACE]:relatedProductsReducer,
+    [QUOTES_NAMESPACE]:quotesReducer,
 
 
 

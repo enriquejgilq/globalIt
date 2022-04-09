@@ -35,15 +35,17 @@ import {
     useShopResetFiltersThunk,
     useShopResetFilterThunk,
 } from '~/store/shop/shopHooks';
-import { getCatalogProducts, getCatalogProductsPrivate,clearCataglog } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProducts, getCatalogProductsPrivate, clearCataglog } from '~/store/catalogProducts/catalogProductsActions';
 import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
+import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks'
+
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { Button, Input } from 'reactstrap';
 import { globalIntl } from '~/services/i18n/global-intl';
 import { API } from '~/api/constantsApi';
 import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
 import { toast } from 'react-toastify';
-import {  logout} from '~/store/login/loginAction';
+import { logout } from '~/store/login/loginAction';
 import ModalLogout from '../modal/ModalLogout';
 
 interface LayoutButton {
@@ -64,6 +66,7 @@ function ProductsView(props: Props) {
     const user = getlogin()
     const is_auth = isAuth()
     const getCatalog = getCatalogProductsState();
+    const getCategory = getCategoryProducts();
     const isLoading = useShopProductsListIsLoading();
     const shop = useShop();
     const productsList = useShopProductsList();
@@ -73,7 +76,7 @@ function ProductsView(props: Props) {
     const shopResetFilter = useShopResetFilterThunk();
     const [, setSidebarIsOpen] = useContext(SidebarContext);
     const [layout, setLayout] = useState(layoutProps);
-    const [open, setOpen] = useState<any>(true);
+    const [open, setOpen] = useState<any>(false);
     const handleSortChange = useSetOption('sort', (event) => event.target.value);
     const handleLimitChange = useSetOption('limit', (event) => parseFloat(event.target.value));
     // Page based navigation
@@ -83,7 +86,7 @@ function ProductsView(props: Props) {
     const handleBeforeChange = useSetOption('before');
     const quickviewOpenPrivate = useQuickviewOpenPrivate();
     const [findShop, setFindShop] = useState('')
-    const [ api, setApi ] = useState()
+    const [api, setApi] = useState()
 
 
 
@@ -95,7 +98,7 @@ function ProductsView(props: Props) {
         // Cursor based navigation
         if (event.type === 'before') {
             handleBeforeChange(event.before);
-          //  console.log('handlePageChange')
+            //  console.log('handlePageChange')
         }
         if (event.type === 'after') {
             handleAfterChange(event.after);
@@ -104,7 +107,7 @@ function ProductsView(props: Props) {
 
     const hasActiveFilters = shop.activeFilters.length > 0;
     const currentFiltersCount = shop.currentFilters.length;
-   
+
 
     const { currentFilters } = shop;
 
@@ -115,7 +118,7 @@ function ProductsView(props: Props) {
     const layoutButtons: LayoutButton[] = useMemo(() => [
         { layout: 'grid', icon: <LayoutGrid16Svg /> },
         { layout: 'grid-with-features', icon: <LayoutGridWithDetails16Svg /> },
-      //  { layout: 'list', icon: <LayoutList16Svg /> },
+        //  { layout: 'list', icon: <LayoutList16Svg /> },
         { layout: 'table', icon: <LayoutTable16Svg /> },
     ], []);
 
@@ -152,26 +155,35 @@ function ProductsView(props: Props) {
     const messageEmpty = globalIntl()?.formatMessage(
         { id: 'TEXT_EMPTY_CATEGORY_DESCRIPTION' },
     )
-    
+
     useEffect(() => {
-        var aValue = localStorage.getItem('search');
-        if (!aValue) {
-        if (is_auth=== true) {
-        var URLactual = window.location;
-        if(URLactual.search ){
-            var page:any = URLactual.search.toString().slice(6)
-            dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16&offset='+16*(page-1)))
-        }else{
-            dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16'))
-        }}else{
-        var URLactual = window.location;
-        if(URLactual.search ){
-            var page:any = URLactual.search.toString().slice(6)
-            dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&offset='+16*(page-1)))
-        }else{
-            dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
-        }}}
-        count()
+        if (getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción."
+            || getCategory.error.detail === "Usted no tiene permiso para realizar esta acción.") {
+            setOpen(true)
+            dispatch(clearCataglog())
+        } else {
+            var aValue = localStorage.getItem('search');
+            if (!aValue) {
+                if (is_auth === true) {
+                    var URLactual = window.location;
+                    if (URLactual.search) {
+                        var page: any = URLactual.search.toString().slice(6)
+                        dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16&offset=' + 16 * (page - 1)))
+                    } else {
+                        dispatch(getCatalogProductsPrivate(API + apiCatalogProductsPrivate + 'all/all/?limit=16'))
+                    }
+                } else {
+                    var URLactual = window.location;
+                    if (URLactual.search) {
+                        var page: any = URLactual.search.toString().slice(6)
+                        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&offset=' + 16 * (page - 1)))
+                    } else {
+                        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16'))
+                    }
+                }
+            }
+            count()
+        }
     }, [is_auth])
     const count = () => {
         if (getCatalog.count / 16 === 0) {
@@ -184,25 +196,27 @@ function ProductsView(props: Props) {
     }
     const findCatalog = (e: any) => {
         e.preventDefault();
-       dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&search='+findShop))
+        dispatch(getCatalogProducts(API + apiCatalogProducts + 'all/all/?limit=16&search=' + findShop))
     }
-  //  window.location.hash = window.location.lasthash[window.location.lasthash.length-1];
-  // console.log(getCatalog.error.detail)
-   if( getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción." ){
+    //  window.location.hash = window.location.lasthash[window.location.lasthash.length-1];
+   
+    // if(getCatalog?.error.detail === "Usted no tiene permiso para realizar esta acción."){
+    //    setOpen(true)
+    //    dispatch(clearCataglog())
+    //   }
+
+    const openModal = () => {
         setOpen(true)
-       dispatch(clearCataglog())
-   }
-   const openModal =()=>{
-       setOpen(true)
-   }
-   const closeModal =()=>{
-    setOpen(false)
-    dispatch(logout())
-    setTimeout(() => {
-        location.reload();
-    }, 1000);
-    
-   }
+    }
+    const closeModal = () => {
+        setOpen(false)
+        dispatch(logout())
+        localStorage.removeItem('search');
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+    }
+
     return (
         <div className={rootClasses}>
             <div className="products-view__body">
@@ -296,7 +310,7 @@ function ProductsView(props: Props) {
                                 <div className="view-options__spring" />
 
                                 <div className="view-options__select">
-                                 {/** 
+                                    {/** 
                                     <Input
                                         value={findShop}
                                         onChange={(e) => {
@@ -323,7 +337,7 @@ function ProductsView(props: Props) {
                                             {intl.formatMessage({ id: 'INPUT_SORT_OPTION_NAME_DESC' })}
                                         </option>
                                     </select>*/}
-                                    
+
                                 </div>
                                 {/*
                                 <div className="view-options__select">
@@ -483,7 +497,7 @@ function ProductsView(props: Props) {
                     </React.Fragment>
                 )}
             </div>
-            <ModalLogout open={open.open} onChange={closeModal}/>
+            <ModalLogout open={open} onChange={closeModal} />
         </div>
     );
 }

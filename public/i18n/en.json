@@ -401,6 +401,10 @@
   "API_OEM" : "inventory/oems/",
   "API_APPLICATIONS": "inventory/aplications-list/",
   "API_RELATED_PRODUCTS": "inventory/public-related-products/",
+  "API_GET_QUOTES_BY_ID": "quotations/quote/",
+  "API_GET_QUOTES_LIST": "quotations/quote/",
+  "API_GET_QUOTES_DETAIL": "quotations/detail-quote-number/",
+  "API_CREATE_QUOTES": "quotations/quote/",
 
   "SLUG_NAME":"name_en",
   "SLUG_CATEGORY_NAME":"slug_name_en"
