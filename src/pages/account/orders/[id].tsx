@@ -71,21 +71,18 @@ function Page() {
                     <h5 className="order-header__title">
                         <FormattedMessage id="TEXT_ORDER_WITH_NUMBER" values={{ number: orderId }} />
                     </h5>
+                    {detailOrder.results_id.quotation_status === undefined ? '' : (<>
+                         <div className=" tag-badge tag-badge--theme">
+                         <FormattedMessage id={`TEXT_ORDER_STATUS_${detailOrder?.results_id.quotation_status.toUpperCase()}`} />
+                         </div>
+                          </>)}
                     <div className="order-header__subtitle">
-                        <FormattedMessage
-                            id="TEXT_ORDER_SUMMARY"
-                            values={{
-                                date: (
-                                    <mark>
-                                        <FormattedMessage
-                                            id="TEXT_ORDER_SUMMARY_FORMAT_DATE"
-                                            values={{ date: Date.parse(detailOrder.results_id?.date) }}
-                                        />
-                                    </mark>
-                                ),
-                                status: <mark><FormattedMessage id={`TEXT_ORDER_STATUS_${detailOrder.results_id?.quotation_status.toUpperCase()}`} /></mark>,
-                            }}
-                        />
+                        {detailOrder.results_id.quotation_status === undefined ? '' : (
+
+                            <FormattedMessage
+                                id="FORMAT_DATE_MEDIUM"
+                                values={{ date: Date.parse(detailOrder.results_id?.date) }}
+                            />)}
                     </div>
                 </div>
                 <div className="card-divider" />
@@ -95,7 +92,16 @@ function Page() {
                             <thead>
                                 <tr>
                                     <th>
+                                        <FormattedMessage id="TABLE_QUANTITY" />
+                                    </th>
+                                    <th>
                                         <FormattedMessage id="TABLE_PRODUCT" />
+                                    </th>
+                                    <th>
+                                        <FormattedMessage id="TABLE_DESCRIPTION" />
+                                    </th>
+                                    <th>
+                                        <FormattedMessage id="TABLE_VALUE" />
                                     </th>
                                     <th>
                                         <FormattedMessage id="TABLE_TOTAL" />
@@ -105,7 +111,10 @@ function Page() {
                             <tbody className="card-table__body card-table__body--merge-rows">
                                 {detailOrder.results_list?.map((item: any, index: any) => (
                                     <tr key={index}>
-                                        <td>{`${item.code} × ${parseInt(item.quantity)}`}</td>
+                                        <td>{`${parseInt(item.quantity)}`}</td>
+                                        <td>{`${item.code}`}</td>
+                                        <td>{`${item.description}`}</td>
+                                        <td><CurrencyFormat value={item.base_price} /></td>
                                         <td><CurrencyFormat value={item.total} /></td>
                                     </tr>
                                 ))}
@@ -133,7 +142,13 @@ function Page() {
                                     <th>
                                         <FormattedMessage id="TABLE_TOTAL" />
                                     </th>
-                                    {/**   <td><CurrencyFormat value={order.total} /></td>*/}
+                                    <th>
+                                    </th>
+                                    <th>
+                                    </th>
+                                    <th>
+                                    </th>
+                                    <td><CurrencyFormat value={detailOrder.results_id.total} /></td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -255,6 +255,8 @@
   "TABLE_YEAR": "Year",
   "TABLE_ENGINE":"Engine",
   "TABLE_ENGINE2":"Model",
+  "TABLE_DESCRIPTION":"Description",
+  "TABLE_VALUE":"VALUE PER UNIT",
 
   "TEXT_ACTIVE_FILTERS": "Active Filters",
   "TEXT_ALERT_RETURNING_CUSTOMER": "Returning customer? {link}",
@@ -377,7 +379,6 @@
   "TEXT_CONTAINER_LIST": "Container List",
   "TEXT_CODE": "CODE",
   "TEXT_NAME_COMPETIDOR":"COMPETITOR NAME",
-
   "TEXT_TRANSLATE":"translation not available",
   "TEXT_CATEGORY_DESCRIPTION":"description_en",
   "TEXT_EMPTY_CATEGORY_DESCRIPTION":"There are no products in this category.",
@@ -408,6 +409,5 @@
 
   "SLUG_NAME":"name_en",
   "SLUG_CATEGORY_NAME":"slug_name_en"
-  
 
 }

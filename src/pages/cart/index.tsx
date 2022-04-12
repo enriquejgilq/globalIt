@@ -33,7 +33,7 @@ import {
     getQuotesAxios,
     //List quotation detail filter number
     getQuotesByIdAxios,
-    getQuotesByIdLoader
+    getQuotesByIdLoader,quotesClear
 } from '~/store/quotes/quotesActions';
 import { Button } from 'reactstrap';
 
@@ -146,6 +146,10 @@ function Page() {
         dispatch(createQuotesLoader())
         dispatch(createQuotesAxios(cart))
         // dispatch(getQuotesByIdAxios('202200001'));
+        setTimeout(() => {
+            dispatch(cartClear());
+          //  dispatch(quotesClear());
+        }, 500);
     }
     //   useEffect(() => { 
     // if( quotes.results_create !== undefined){   

@@ -31,9 +31,9 @@ function WidgetFilters(props: Props) {
         { id: 'TEXT_CONTAINER' },
     )
 
-    const nameSearch = globalIntl()?.formatMessage(
-        { id: 'TEXT_SEARCH' },
-    )
+    //const nameSearch = globalIntl()?.formatMessage(
+    //    { id: 'TEXT_SEARCH' },
+  //  )
 
 
   useEffect(() => {

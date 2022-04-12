@@ -1,5 +1,5 @@
 // react
-import React from 'react';
+import React, { useEffect } from 'react';
 // third-party
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
@@ -17,7 +17,12 @@ import { IOrder } from '~/interfaces/order';
 import { useCart, useCartRemoveItem, useCartUpdateQuantities } from '~/store/cart/cartHooks';
 import { cartClear } from '~/store/cart/cartActions';
 import { quotesClear } from '~/store/quotes/quotesActions';
-
+import {
+    //Retrieve quote per number
+    getQuotesDetailAxios,
+    getQuotesDetailListLoader,
+} from '~/store/quotes/quotesActions';
+import { quotesState } from '~/store/quotes/quotesHooks';
 
 interface Props {
     order: any;
@@ -25,14 +30,23 @@ interface Props {
 
 function ShopPageOrderSuccess(props: Props) {
     const intl = useIntl();
+    const dispatch = useDispatch()
     const { order } = props;
     const cart = useCart();
-    const dispatch = useDispatch()
+    const orderItems = quotesState();
 
-    const cleardata =()=>{
+
+    const cleardata = () => {
         dispatch(cartClear());
         dispatch(quotesClear());
     }
+    useEffect(() => {
+        //Retrieve quote per number
+        if (order.results_create.number !== undefined) {
+            dispatch(getQuotesDetailAxios(order.results_create.number));
+        }
+    }, []);
+
     return (
         <React.Fragment>
             <PageTitle>
@@ -101,7 +115,8 @@ function ShopPageOrderSuccess(props: Props) {
                                         <CurrencyFormat value={order.results_create.total} />
                                     </span>
                                 </li>
-                               {/**  <li className="order-success__meta-item">
+
+                                {/**  <li className="order-success__meta-item">
                                     <span className="order-success__meta-title">
                                         <FormattedMessage id="TEXT_PAYMENT_METHOD" />
                                         :
@@ -125,64 +140,51 @@ function ShopPageOrderSuccess(props: Props) {
                                                 <FormattedMessage id="TABLE_QUANTITY" />
                                             </th>
                                             <th className="order-list__column-total">
+                                                <FormattedMessage id="TABLE_VALUE" />
+                                            </th>
+                                            <th className="order-list__column-total">
                                                 <FormattedMessage id="TABLE_TOTAL" />
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody className="order-list__products">
-                                         {cart.items.map((item, itemIndex) => (
+                                        {orderItems.results_list.map((item: any, itemIndex: any) => (
                                             <tr key={itemIndex}>
                                                 <td className="order-list__column-image">
                                                     <div className="image image--type--product">
                                                         <AppLink
-                                                            href={url.product(item.product.code)}
+                                                            href={url.product(item.code)}
                                                             className="image__body"
                                                         >
                                                             <AppImage
                                                                 className="image__tag"
-                                                                src={ item.product.image_principal}
+                                                                src={item.image}
                                                             />
                                                         </AppLink>
                                                     </div>
                                                 </td>
                                                 <td className="order-list__column-product">
-                                                    <AppLink href={url.product(item.product.code)}>
-                                                        {item.product.code2}
+                                                    <AppLink href={url.product(item.code)}>
+                                                        {item.code}
                                                     </AppLink>
-                                                    {item.options.length > 0 && (
-                                                        <div className="order-list__options">
-                                                            <ul className="order-list__options-list">
-                                                                {item.options.map((option, optionIndex) => (
-                                                                    <li
-                                                                        key={optionIndex}
-                                                                        className="order-list__options-item"
-                                                                    >
-                                                                        <span className="order-list__options-label">
-                                                                            {option.name}
-                                                                            {': '}
-                                                                        </span>
-                                                                        <span className="order-list__options-value">
-                                                                            {option.value}
-                                                                        </span>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
-                                                    )}
+
                                                 </td>
                                                 <td
                                                     className="order-list__column-quantity"
                                                     data-title={`${intl.formatMessage({ id: 'TABLE_QUANTITY' })}:`}
                                                 >
-                                                    {item.quantity}
+                                                    {parseInt(item.quantity)}
+                                                </td>
+                                                <td className="order-list__column-total">
+                                                    <CurrencyFormat value={item.base_price} />
                                                 </td>
                                                 <td className="order-list__column-total">
                                                     <CurrencyFormat value={item.total} />
                                                 </td>
                                             </tr>
-                                        ))}   
+                                        ))}
                                     </tbody>
-                                  {/**    {order.totals.length > 0 && (
+                                    {/**    {order.totals.length > 0 && (
                                         <tbody className="order-list__subtotals">
                                             <tr>
                                                 <th className="order-list__column-label" colSpan={3}>
@@ -209,6 +211,8 @@ function ShopPageOrderSuccess(props: Props) {
                                             <th className="order-list__column-label" colSpan={3}>
                                                 <FormattedMessage id="TABLE_TOTAL" />
                                             </th>
+                                            <th>
+                                            </th>
                                             <td className="order-list__column-total">
                                                 <CurrencyFormat value={order.results_create.total} />
                                             </td>
@@ -218,7 +222,7 @@ function ShopPageOrderSuccess(props: Props) {
                             </div>
                         </div>
 
-                    {/**     <div className="order-success__addresses">
+                        {/**     <div className="order-success__addresses">
                             <AddressCard
                                 className="order-success__address"
                                 address={order.shippingAddress}
@@ -229,7 +233,7 @@ function ShopPageOrderSuccess(props: Props) {
                                 address={order.billingAddress}
                                 label={intl.formatMessage({ id: 'TEXT_BILLING_ADDRESS' })}
                             />
-                        </div>*/} 
+                        </div>*/}
                     </div>
                 </div>
             </div>

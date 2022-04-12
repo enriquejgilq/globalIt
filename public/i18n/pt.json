@@ -255,6 +255,8 @@
     "TABLE_YEAR": "Ano",
     "TABLE_ENGINE":"Motor",
     "TABLE_ENGINE2":"Modelo",
+    "TABLE_DESCRIPTION":"Descrição",
+    "TABLE_VALUE":"VALOR POR UNIDADE",
 
     "TEXT_ACTIVE_FILTERS": "Filtros ativos",
     "TEXT_ALERT_RETURNING_CUSTOMER": "Cliente recorrente? {link}",

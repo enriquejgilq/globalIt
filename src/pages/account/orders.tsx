@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 // third-party
 import { FormattedMessage, useIntl } from 'react-intl';
+import AddressCard from '~/components/shared/AddressCard';
+
 // application
 import AccountLayout from '~/components/account/AccountLayout';
 import AppLink from '~/components/shared/AppLink';
@@ -82,8 +84,9 @@ function Page() {
                                                 />
                                             </td>
                                             <td>
+                                      
                                                 <FormattedMessage
-                                                    id={`TEXT_ORDER_STATUS_${order.quotation_status.toUpperCase()}`}
+                                                    id={`TEXT_ORDER_STATUS_${order?.quotation_status.toUpperCase()}`}
                                                 />
                                             </td>
                                             <td>

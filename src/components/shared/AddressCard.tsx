@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { IAddressData } from '~/interfaces/address';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-    address: IAddressData;
+    address: any;
     label?: React.ReactNode;
     featured?: boolean;
     loading?: boolean;

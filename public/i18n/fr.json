@@ -255,6 +255,10 @@
   "TABLE_YEAR": "An",
   "TABLE_ENGINE":"Moteur",
   "TABLE_ENGINE2":"Modèle",
+  "TABLE_DESCRIPTION":"La description",
+  "TABLE_VALUE":"VALEUR PAR UNITÉ",
+
+
   "TEXT_ACTIVE_FILTERS": "Filtres actifs",
   "TEXT_ALERT_RETURNING_CUSTOMER": "Client de retour ? {link}",
   "TEXT_ALERT_RETURNING_CUSTOMER_LINK": "Cliquez ici pour vous connecter",
@@ -389,6 +393,7 @@
   "TEXT_NAME_COMPETIDOR":"CODE CONCURRENT",
   "TEXT_SESSION_EXPIRED": "La session a expiré. Veuillez vous reconnecter.",
   "TEXT_SESSION_EXPIRED_TITLE": "Session expirée", 
+  "TEXT_DESCRIPTION:":"Description:",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",

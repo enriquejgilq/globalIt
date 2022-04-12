@@ -253,8 +253,11 @@
   "TABLE_TOTAL_SHIPPING": "Envío",
   "TABLE_TOTAL_TAX": "Impuestos",
   "TABLE_YEAR": "Año",
-    "TABLE_ENGINE":"Motor",
-    "TABLE_ENGINE2":"Modelo",
+  "TABLE_ENGINE":"Motor",
+  "TABLE_ENGINE2":"Modelo",
+  "TABLE_DESCRIPTION":"Descripción",
+  "TABLE_VALUE":"VALOR POR UNIDAD",
+
 
   "TEXT_ACTIVE_FILTERS": "Filtros activos",
   "TEXT_ALERT_RETURNING_CUSTOMER": "¿Cliente recurrente? {link}",
@@ -306,7 +309,7 @@
   "TEXT_ORDER_STATUS_COMPLETED": "Completado",
   "TEXT_ORDER_STATUS_PENDING": "Pendiente",
   "TEXT_ORDER_STATUS_LOADING": "Enviado",
-  "TEXT_ORDER_SUMMARY": "Fue colocado en {date} y es actualmente {status}.",
+  "TEXT_ORDER_SUMMARY": "{date} y es actualmente {status}.",
   "TEXT_ORDER_SUMMARY_FORMAT_DATE": "{date, date, long}",
   "TEXT_ORDER_TOTAL": "{total} por {quantity} {quantity, plural, one {item} otros {items}}",
   "TEXT_ORDER_WITH_NUMBER": "Pedido {number}",
@@ -407,9 +410,7 @@
   "API_GET_QUOTES_LIST": "quotations/quote/",
   "API_GET_QUOTES_DETAIL": "quotations/detail-quote-number/",
   "API_CREATE_QUOTES": "quotations/quote/",
-
-
-
+  
   "SLUG_NAME":"name",
   "SLUG_CATEGORY_NAME":"slug_name"
 

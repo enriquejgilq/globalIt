@@ -35,11 +35,12 @@ function quotesCurrency  (state: any = defaultState, action: any) :any {
     switch (action.type) {
         case GET_ALL_QUOTES_SUCCESS:
             return {
-               // ...state,
+                ...state,
                 count: action.payload.count,
                 next: action.payload.next,
                 previous: action.payload.previous,
                 results_all: action.payload.results,
+                results_create: {},
                 error: false,
                 loading: false,
             };
@@ -51,6 +52,7 @@ function quotesCurrency  (state: any = defaultState, action: any) :any {
                 previous: null,
                 results_all: [],
                 error: action.payload,
+                results_create: {},
                 loading: false,
             };
         case GET_ALL_QUOTES:
@@ -60,6 +62,7 @@ function quotesCurrency  (state: any = defaultState, action: any) :any {
                 next: null,
                 previous: null,
                 results_all: [],
+                results_create: {},
                 error: false,
                 loading: true,
             };
