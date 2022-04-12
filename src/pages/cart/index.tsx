@@ -19,11 +19,11 @@ import { Cross12Svg } from '~/svg';
 import { ICartItem } from '~/store/cart/cartTypes';
 import { useCart, useCartRemoveItem, useCartUpdateQuantities } from '~/store/cart/cartHooks';
 import { cartClear } from '~/store/cart/cartActions';
-import { quotesState  } from '~/store/quotes/quotesHooks';
+import { quotesState } from '~/store/quotes/quotesHooks';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { hrefToRouterArgs } from '~/services/router';
-import { 
+import {
     //create quotes
     createQuotesAxios,
     createQuotesLoader,
@@ -34,7 +34,7 @@ import {
     //List quotation detail filter number
     getQuotesByIdAxios,
     getQuotesByIdLoader
- } from '~/store/quotes/quotesActions';
+} from '~/store/quotes/quotesActions';
 import { Button } from 'reactstrap';
 
 interface Quantity {
@@ -52,7 +52,7 @@ function Page() {
     const cartRemoveItem = useCartRemoveItem();
     const cartUpdateQuantities = useCartUpdateQuantities();
     const [quantities, setQuantities] = useState<Quantity[]>([]);
-   
+
     const { items } = cart;
 
     const updateQuantities = () => (
@@ -100,7 +100,7 @@ function Page() {
             ];
         });
     };
-   
+
     if (items.length === 0) {
         return (
             <React.Fragment>
@@ -137,32 +137,32 @@ function Page() {
             </React.Fragment>
         );
     }
-    const onFinish =()=>{ 
+    const onFinish = () => {
         //toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
-       // dispatch(cartClear());
-       // dispatch(getQuotesAxios());
-      // dispatch(getQuotesDetailAxios('202200001'));
-      // 
-      dispatch(createQuotesLoader())
-      dispatch(createQuotesAxios(cart))
-     // dispatch(getQuotesByIdAxios('202200001'));
+        // dispatch(cartClear());
+        // dispatch(getQuotesAxios());
+        // dispatch(getQuotesDetailAxios('202200001'));
+        // 
+        dispatch(createQuotesLoader())
+        dispatch(createQuotesAxios(cart))
+        // dispatch(getQuotesByIdAxios('202200001'));
     }
-  //   useEffect(() => { 
-   // if( quotes.results_create !== undefined){   
-    if(Object.keys(quotes?.results_create).length > 0 ){
-      ///  Object.keys(quotes?.results_create).length > 0
+    //   useEffect(() => { 
+    // if( quotes.results_create !== undefined){   
+    if (Object.keys(quotes?.results_create).length > 0) {
+        ///  Object.keys(quotes?.results_create).length > 0
         toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
         onrute()
-      //  location.replace( url.checkoutSuccess('123213'))
+        //  location.replace( url.checkoutSuccess('123213'))
     }
-//}
-  //  }, [quotes.results_create]);
+    //}
+    //  }, [quotes.results_create]);
 
-    
+
     async function onrute() {
-       await router.push(...hrefToRouterArgs(url.checkoutSuccess(quotes.results_create.number)));
-      //  await console.log(quotes.results_create.number);
-        }
+        await router.push(...hrefToRouterArgs(url.checkoutSuccess(quotes.results_create.number)));
+        //  await console.log(quotes.results_create.number);
+    }
     const table = (
         <table className="cart-table__table">
             <thead className="cart-table__head">
@@ -322,10 +322,10 @@ function Page() {
                 </h3>
 
                 <table >
-                
-    {/**  className="cart__totals-table"*/} 
-                
-                
+
+                    {/**  className="cart__totals-table"*/}
+
+
                     {/** {cart.totals.length > 0 && (
                         <React.Fragment>
                            <thead>
@@ -373,11 +373,11 @@ function Page() {
                     </tfoot>
                 </table>
 
-                <Button onClick={onFinish} 
-               // href={url.checkoutSuccess(quotes.results_create.number)}
-                //href={url.accountProfile()} 
-                disabled={quotes.loading ? true : false}
-                className={ quotes.loading ? "btn btn-xl btn-block btn-loading" : 'btn btn-xl btn-block'} >
+                <Button onClick={onFinish}
+                    // href={url.checkoutSuccess(quotes.results_create.number)}
+                    //href={url.accountProfile()} 
+                    disabled={quotes.loading ? true : false}
+                    className={quotes.loading ? "btn btn-xl btn-block btn-loading" : 'btn btn-xl btn-block'} >
                     <FormattedMessage id="BUTTON_PROCEED_TO_CHECKOUT" />
                 </Button>
             </div>

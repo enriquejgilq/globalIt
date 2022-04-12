@@ -194,7 +194,7 @@ function Quickview() {
                         <button type="button" className={`btn btn-primary btn-xs`}
                             onClick={handleEvent}
                         >
-                            {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
+                            {onPress === true ? <CurrencyFormat value={product.price} /> : prices}
                         </button>
                         <Input style={{ height: '25px', width: '90px', fontSize: '12px', textAlign: 'justify' }}
                             placeholder={amount}

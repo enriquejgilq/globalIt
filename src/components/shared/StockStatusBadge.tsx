@@ -22,7 +22,7 @@ function StockStatusBadge(props: Props) {
         'on-backorder': 'warning',
     }), []);
     const textMap = useMemo(() => ({
-        'in-stock': defaultValue === null ?(<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />) : ( <b>  <FormattedMessage id="TEXT_STOCK_IN_STOCK" />: {defaultValue}</b>),
+        'in-stock': defaultValue === null ?(<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />) : ( <b>  <FormattedMessage id="TEXT_STOCK_IN_STOCK" /></b>),
         'out-of-stock': (<FormattedMessage id="TEXT_STOCK_OUT_OF_STOCK" />),
         'on-backorder': (<FormattedMessage id="TEXT_STOCK_ON_BACKORDER" />),
     }), [defaultValue]);

@@ -304,7 +304,7 @@ function ProductCard(props: Props) {
                                                             >
                                                                 {onPress === true ? (
                                                                     <CurrencyFormat
-                                                                        value={productFeatured.sale_price}
+                                                                        value={productFeatured.price}
                                                                     />
                                                                 ) : (
                                                                     prices

@@ -475,7 +475,7 @@ function ShopPageProduct(props: Props) {
                                                                     type="button"
                                                                     onClick={handleEvent}
                                                                 >
-                                                                    {onPress === true ? <CurrencyFormat value={product.sale_price} /> : prices}
+                                                                    {onPress === true ? <CurrencyFormat value={product.price} /> : prices}
                                                                 </button>
                                                             )}
                                                         </div>
