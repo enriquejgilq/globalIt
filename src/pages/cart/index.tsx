@@ -149,7 +149,7 @@ function Page() {
     }
   //   useEffect(() => { 
    // if( quotes.results_create !== undefined){   
-    if(quotes?.results_create ){
+    if(Object.keys(quotes?.results_create).length > 0 ){
       ///  Object.keys(quotes?.results_create).length > 0
         toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
         onrute()
