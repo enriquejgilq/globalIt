@@ -42,9 +42,9 @@ const url = {
     brand: (brand: IBrand) => '/',
     cart: () => '/cart',
     checkout: () => '/cart/checkout',
-    checkoutSuccess: (order: IOrder): IAppLinkHref => ({
-        href: `/cart/checkout/[token]?token=${order.token}`,
-        as: `/cart/checkout/${order.token}`,
+    checkoutSuccess: (order: any): IAppLinkHref => ({
+        href: `/cart/checkout/[token]?token=${order}`,
+        as: `/cart/checkout/${order}`,
     }),
      producturl: (productFeatured: any): IAppLinkHref => ({
         href: `/products/[slug]?slug=${productFeatured}`,
@@ -69,9 +69,9 @@ const url = {
     accountProfile: () => '/account/profile',
     accountPassword: () => '/account/password',
     accountOrders: () => '/account/orders',
-    accountOrderView: (order: Partial<IOrder>): IAppLinkHref => ({
-        href: `/account/orders/[id]?id=${order.id}`,
-        as: `/account/orders/${order.id}`,
+    accountOrderView: (order: any): IAppLinkHref => ({
+        href: `/account/orders/[id]?id=${order}`,
+        as: `/account/orders/${order}`,
     }),
     accountAddresses: () => '/account/addresses',
     accountAddressNew: (): IAppLinkHref => ({

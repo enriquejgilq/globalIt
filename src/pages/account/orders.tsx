@@ -1,5 +1,6 @@
 // react
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 // third-party
 import { FormattedMessage, useIntl } from 'react-intl';
 // application
@@ -11,11 +12,27 @@ import PageTitle from '~/components/shared/PageTitle';
 import url from '~/services/url';
 import { accountApi } from '~/api';
 import { useList } from '~/services/hooks';
+import {
+    //List all quotes
+    getQuotesAxios,
+    getQuotesListLoader
+} from '~/store/quotes/quotesActions';
+import { quotesState } from '~/store/quotes/quotesHooks';
 
 function Page() {
     const intl = useIntl();
+    const dispatch = useDispatch()
     const { list, options, onNavigate } = useList((options) => accountApi.getOrdersList({ limit: 5, ...options }));
+    const allQuotes = quotesState();
 
+    useEffect(() => {
+        dispatch(getQuotesListLoader())
+        setTimeout(() => {
+            dispatch(getQuotesAxios())
+        }, 1000);
+    }, []);
+
+    //console.log(allQuotes)
     return (
         <div className="card">
             <PageTitle>{intl.formatMessage({ id: 'HEADER_ORDER_HISTORY' })}</PageTitle>
@@ -24,7 +41,7 @@ function Page() {
                 <h5><FormattedMessage id="HEADER_ORDER_HISTORY" /></h5>
             </div>
 
-            {list && (
+            {allQuotes && (
                 <React.Fragment>
                     <div className="card-divider" />
 
@@ -48,10 +65,10 @@ function Page() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {list.items.map((order) => (
+                                    {allQuotes.results_all.map((order: any) => (
                                         <tr key={order.id}>
                                             <td>
-                                                <AppLink href={url.accountOrderView(order)}>
+                                                <AppLink href={url.accountOrderView(order.number)}>
                                                     <FormattedMessage
                                                         id="FORMAT_ORDER_NUMBER"
                                                         values={{ number: order.number }}
@@ -61,22 +78,16 @@ function Page() {
                                             <td>
                                                 <FormattedMessage
                                                     id="FORMAT_DATE_MEDIUM"
-                                                    values={{ date: Date.parse(order.createdAt) }}
+                                                    values={{ date: Date.parse(order.date) }}
                                                 />
                                             </td>
                                             <td>
                                                 <FormattedMessage
-                                                    id={`TEXT_ORDER_STATUS_${order.status}`}
+                                                    id={`TEXT_ORDER_STATUS_${order.quotation_status.toUpperCase()}`}
                                                 />
                                             </td>
                                             <td>
-                                                <FormattedMessage
-                                                    id="TEXT_ORDER_TOTAL"
-                                                    values={{
-                                                        total: <CurrencyFormat value={order.total} />,
-                                                        quantity: order.quantity,
-                                                    }}
-                                                />
+                                                <p> $ {order.total}</p>
                                             </td>
                                         </tr>
                                     ))}
@@ -86,13 +97,13 @@ function Page() {
                     </div>
 
                     <div className="card-divider" />
-                    <div className="card-footer">
+                    {/**   <div className="card-footer">
                         <Navigation
                             data={list.navigation}
                             page={options.page}
                             onNavigate={onNavigate}
                         />
-                    </div>
+                    </div>*/}
                 </React.Fragment>
             )}
         </div>

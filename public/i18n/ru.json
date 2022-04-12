@@ -297,7 +297,7 @@
   "TEXT_ORDER_NUMBER": "Номер заказа",
   "TEXT_ORDER_STATUS_COMPLETED": "Выполнен",
   "TEXT_ORDER_STATUS_PENDING": "В ожидании",
-  "TEXT_ORDER_STATUS_SHIPPED": "Отправлен",
+  "TEXT_ORDER_STATUS_LOADING": "Отправлен",
   "TEXT_ORDER_SUMMARY": "Заказ был оформлен {date} и сейчас {status}.",
   "TEXT_ORDER_SUMMARY_FORMAT_DATE": "{date, date, long}",
   "TEXT_ORDER_TOTAL": "{total} за {quantity} {quantity, plural, one {товар} few {товара} many {товаров} other {товаров}}",

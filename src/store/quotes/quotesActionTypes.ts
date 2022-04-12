@@ -16,6 +16,8 @@ export const GET_LIST_QUOTES = 'GET_LIST_QUOTES';
 export const GET_LIST_QUOTES_SUCCESS = 'GET_LIST_QUOTES_SUCCESS';
 export const GET_LIST_QUOTES_FAILURE = 'GET_LIST_QUOTES_FAILURE';
 
+export const CLEAR_QUOTES = 'CLEAR_QUOTES';
+
 export interface IQuotesAction {
     type: string;
     payload: any
@@ -27,9 +29,15 @@ export interface IQuotesListAction {
 export interface IQuotesActionLoader {
     type: string;
 }
+
+export interface IQuotesClearAction {
+    type: typeof CLEAR_QUOTES;
+}
+
 export type QuotesAction = 
 Promise<IQuotesAction> |
 IQuotesActionLoader| 
-IQuotesListAction; 
+IQuotesListAction| 
+IQuotesClearAction; 
 
 export type quotesThunkAction<T = void> = AppAction<IQuotesAction, T>;

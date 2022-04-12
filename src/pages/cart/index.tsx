@@ -1,5 +1,5 @@
 // react
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 // third-party
@@ -19,17 +19,21 @@ import { Cross12Svg } from '~/svg';
 import { ICartItem } from '~/store/cart/cartTypes';
 import { useCart, useCartRemoveItem, useCartUpdateQuantities } from '~/store/cart/cartHooks';
 import { cartClear } from '~/store/cart/cartActions';
+import { quotesState  } from '~/store/quotes/quotesHooks';
 import { useDispatch } from 'react-redux';
-
+import { useRouter } from 'next/router';
+import { hrefToRouterArgs } from '~/services/router';
 import { 
     //create quotes
     createQuotesAxios,
+    createQuotesLoader,
     //Retrieve quote per number
     getQuotesDetailAxios,
     //List all quotes
     getQuotesAxios,
     //List quotation detail filter number
-    getQuotesByIdAxios
+    getQuotesByIdAxios,
+    getQuotesByIdLoader
  } from '~/store/quotes/quotesActions';
 import { Button } from 'reactstrap';
 
@@ -40,11 +44,15 @@ interface Quantity {
 
 function Page() {
     const intl = useIntl();
+    const dispatch = useDispatch()
+    const router = useRouter();
+
     const cart = useCart();
+    const quotes = quotesState();
     const cartRemoveItem = useCartRemoveItem();
     const cartUpdateQuantities = useCartUpdateQuantities();
     const [quantities, setQuantities] = useState<Quantity[]>([]);
-    const dispatch = useDispatch()
+   
     const { items } = cart;
 
     const updateQuantities = () => (
@@ -92,6 +100,7 @@ function Page() {
             ];
         });
     };
+   
     if (items.length === 0) {
         return (
             <React.Fragment>
@@ -133,11 +142,27 @@ function Page() {
        // dispatch(cartClear());
        // dispatch(getQuotesAxios());
       // dispatch(getQuotesDetailAxios('202200001'));
-      // dispatch(createQuotesAxios(cart))
-      dispatch(getQuotesByIdAxios('202200001'));
+      // 
+      dispatch(createQuotesLoader())
+      dispatch(createQuotesAxios(cart))
+     // dispatch(getQuotesByIdAxios('202200001'));
     }
+  //   useEffect(() => { 
+   // if( quotes.results_create !== undefined){   
+    if(quotes?.results_create ){
+      ///  Object.keys(quotes?.results_create).length > 0
+        toast.success(intl.formatMessage({ id: 'TEXT_TOAST_FINISH' }));
+        onrute()
+      //  location.replace( url.checkoutSuccess('123213'))
+    }
+//}
+  //  }, [quotes.results_create]);
 
-    console.log(cart)
+    
+    async function onrute() {
+       await router.push(...hrefToRouterArgs(url.checkoutSuccess(quotes.results_create.number)));
+      //  await console.log(quotes.results_create.number);
+        }
     const table = (
         <table className="cart-table__table">
             <thead className="cart-table__head">
@@ -349,8 +374,10 @@ function Page() {
                 </table>
 
                 <Button onClick={onFinish} 
+               // href={url.checkoutSuccess(quotes.results_create.number)}
                 //href={url.accountProfile()} 
-                className="btn btn-xl btn-block">
+                disabled={quotes.loading ? true : false}
+                className={ quotes.loading ? "btn btn-xl btn-block btn-loading" : 'btn btn-xl btn-block'} >
                     <FormattedMessage id="BUTTON_PROCEED_TO_CHECKOUT" />
                 </Button>
             </div>

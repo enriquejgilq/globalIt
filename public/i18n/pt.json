@@ -305,7 +305,7 @@
     "TEXT_ORDER_NUMBER": "Número do pedido",
     "TEXT_ORDER_STATUS_COMPLETED": "Concluído",
     "TEXT_ORDER_STATUS_PENDING": "Pendente",
-    "TEXT_ORDER_STATUS_SHIPPED": "Enviado",
+    "TEXT_ORDER_STATUS_LOADING": "Enviado",
     "TEXT_ORDER_SUMMARY": "Foi colocado em {date} e é atualmente {status}.",
     "TEXT_ORDER_SUMMARY_FORMAT_DATE": "{date, date, long}",
     "TEXT_ORDER_TOTAL": "{total} for {quantity} {quantity, plural, one {item} other {items}}",

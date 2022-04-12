@@ -2,6 +2,8 @@
 import React from 'react';
 // third-party
 import { FormattedMessage, useIntl } from 'react-intl';
+import { useDispatch } from 'react-redux';
+
 // application
 import AddressCard from '~/components/shared/AddressCard';
 import AppImage from '~/components/shared/AppImage';
@@ -12,15 +14,25 @@ import PageTitle from '~/components/shared/PageTitle';
 import url from '~/services/url';
 import { Check100Svg } from '~/svg';
 import { IOrder } from '~/interfaces/order';
+import { useCart, useCartRemoveItem, useCartUpdateQuantities } from '~/store/cart/cartHooks';
+import { cartClear } from '~/store/cart/cartActions';
+import { quotesClear } from '~/store/quotes/quotesActions';
+
 
 interface Props {
-    order: IOrder;
+    order: any;
 }
 
 function ShopPageOrderSuccess(props: Props) {
     const intl = useIntl();
     const { order } = props;
+    const cart = useCart();
+    const dispatch = useDispatch()
 
+    const cleardata =()=>{
+        dispatch(cartClear());
+        dispatch(quotesClear());
+    }
     return (
         <React.Fragment>
             <PageTitle>
@@ -30,7 +42,7 @@ function ShopPageOrderSuccess(props: Props) {
                         {
                             number: intl.formatMessage(
                                 { id: 'FORMAT_ORDER_NUMBER' },
-                                { number: order.number },
+                                { number: order.results_create.number },
                             ),
                         },
                     )
@@ -51,7 +63,7 @@ function ShopPageOrderSuccess(props: Props) {
                                 <FormattedMessage id="HEADER_ORDER_SUCCESS_SUBTITLE" />
                             </div>
                             <div className="order-success__actions">
-                                <AppLink href={url.home()} className="btn btn-sm btn-secondary">
+                                <AppLink onClick={cleardata} href={url.home()} className="btn btn-sm btn-secondary">
                                     <FormattedMessage id="BUTTON_GO_TO_HOMEPAGE" />
                                 </AppLink>
                             </div>
@@ -65,7 +77,7 @@ function ShopPageOrderSuccess(props: Props) {
                                         :
                                     </span>
                                     <span className="order-success__meta-value">
-                                        <FormattedMessage id="FORMAT_ORDER_NUMBER" values={{ number: order.number }} />
+                                        <FormattedMessage id="FORMAT_ORDER_NUMBER" values={{ number: order.results_create.number }} />
                                     </span>
                                 </li>
                                 <li className="order-success__meta-item">
@@ -76,7 +88,7 @@ function ShopPageOrderSuccess(props: Props) {
                                     <span className="order-success__meta-value">
                                         <FormattedMessage
                                             id="FORMAT_DATE_MEDIUM"
-                                            values={{ date: Date.parse(order.createdAt) }}
+                                            values={{ date: Date.parse(order.results_create.date) }}
                                         />
                                     </span>
                                 </li>
@@ -86,7 +98,7 @@ function ShopPageOrderSuccess(props: Props) {
                                         :
                                     </span>
                                     <span className="order-success__meta-value">
-                                        <CurrencyFormat value={order.total} />
+                                        <CurrencyFormat value={order.results_create.total} />
                                     </span>
                                 </li>
                                {/**  <li className="order-success__meta-item">
@@ -118,24 +130,24 @@ function ShopPageOrderSuccess(props: Props) {
                                         </tr>
                                     </thead>
                                     <tbody className="order-list__products">
-                                        {order.items.map((item, itemIndex) => (
+                                         {cart.items.map((item, itemIndex) => (
                                             <tr key={itemIndex}>
                                                 <td className="order-list__column-image">
                                                     <div className="image image--type--product">
                                                         <AppLink
-                                                            href={url.product(item.product)}
+                                                            href={url.product(item.product.code)}
                                                             className="image__body"
                                                         >
                                                             <AppImage
                                                                 className="image__tag"
-                                                                src={item.product.images && item.product.images[0]}
+                                                                src={ item.product.image_principal}
                                                             />
                                                         </AppLink>
                                                     </div>
                                                 </td>
                                                 <td className="order-list__column-product">
-                                                    <AppLink href={url.product(item.product)}>
-                                                        {item.product.name}
+                                                    <AppLink href={url.product(item.product.code)}>
+                                                        {item.product.code2}
                                                     </AppLink>
                                                     {item.options.length > 0 && (
                                                         <div className="order-list__options">
@@ -168,7 +180,7 @@ function ShopPageOrderSuccess(props: Props) {
                                                     <CurrencyFormat value={item.total} />
                                                 </td>
                                             </tr>
-                                        ))}
+                                        ))}   
                                     </tbody>
                                   {/**    {order.totals.length > 0 && (
                                         <tbody className="order-list__subtotals">
@@ -198,7 +210,7 @@ function ShopPageOrderSuccess(props: Props) {
                                                 <FormattedMessage id="TABLE_TOTAL" />
                                             </th>
                                             <td className="order-list__column-total">
-                                                <CurrencyFormat value={order.total} />
+                                                <CurrencyFormat value={order.results_create.total} />
                                             </td>
                                         </tr>
                                     </tfoot>

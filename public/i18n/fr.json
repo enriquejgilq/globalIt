@@ -304,7 +304,7 @@
   "TEXT_ORDER_NUMBER": "Numéro de commande",
   "TEXT_ORDER_STATUS_COMPLETED": "Terminé",
   "TEXT_ORDER_STATUS_PENDING": "En attente",
-  "TEXT_ORDER_STATUS_SHIPPED": "Expédié",
+  "TEXT_ORDER_STATUS_LOADING": "Expédié",
   "TEXT_ORDER_SUMMARY": "A été placé sur {date} et est actuellement {status}.",
   "TEXT_ORDER_SUMMARY_FORMAT_DATE": "{date, date, long}",
   "TEXT_ORDER_TOTAL": "{total} for {quantity} {quantity, plural, one {item} other {items}}",

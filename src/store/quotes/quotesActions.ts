@@ -17,6 +17,8 @@ import {
     IQuotesAction,
     IQuotesActionLoader,
     quotesThunkAction,
+    IQuotesClearAction,
+    CLEAR_QUOTES,
 } from "~/store/quotes/quotesActionTypes";
 //Retrieve quote per number quotations/quote/202200001/
 export function getQuotesById(payload: any): IQuotesAction {
@@ -132,11 +134,11 @@ export function getQuotesDetailAxios(payload: any): quotesThunkAction<Promise<vo
                     },
                 })
                 .then((response) => {
-                    dispatch(getQuotesById(response.data));
+                    dispatch(getQuotesDetailList(response.data));
                     resolve();
                 })
                 .catch((error) => {
-                    dispatch(getQuotesByIdError(error ? error.response.data : "Algo salio mal"));
+                    dispatch(getQuotesDetailListError(error ? error.response.data : "Algo salio mal"));
                 });
         });
 }
@@ -155,10 +157,9 @@ export function createQuotesError(payload: any): IQuotesAction {
     };
 }
 
-export function createQuotesLoading(payload: any): IQuotesAction {
+export function createQuotesLoader(): IQuotesActionLoader {
     return {
         type: CREATE_QUOTES,
-        payload,
     };
 }
 
@@ -184,4 +185,9 @@ export function createQuotesAxios(payload: any): quotesThunkAction<Promise<void>
                     throw error.response?.data;
                 });
         });
+}
+export function quotesClear ():IQuotesClearAction{ 
+    return {
+        type: CLEAR_QUOTES,
+    };
 }

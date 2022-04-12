@@ -303,7 +303,7 @@
   "TEXT_ORDER_NUMBER": "Order number",
   "TEXT_ORDER_STATUS_COMPLETED": "Completed",
   "TEXT_ORDER_STATUS_PENDING": "Pending",
-  "TEXT_ORDER_STATUS_SHIPPED": "Shipped",
+  "TEXT_ORDER_STATUS_LOADING": "Shipped",
   "TEXT_ORDER_SUMMARY": "Was placed on {date} and is currently {status}.",
   "TEXT_ORDER_SUMMARY_FORMAT_DATE": "{date, date, long}",
   "TEXT_ORDER_TOTAL": "{total} for {quantity} {quantity, plural, one {item} other {items}}",

@@ -69,6 +69,7 @@ export type IProductCompatibilityResult = 'all' | 'fit' | 'not-fit' | 'unknown';
 
 export interface IProduct {
     code: any;
+    code2: any;
     image_principal: any;
     sale_price: any;
     webp_100: string;
