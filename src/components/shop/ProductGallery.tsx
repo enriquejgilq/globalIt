@@ -3,7 +3,7 @@ import React, {
     useCallback,
     useEffect,
     useRef,
-    useState,useReducer
+    useState, useReducer
 } from 'react';
 // third-party
 import classNames from 'classnames';
@@ -18,6 +18,7 @@ import { baseUrl } from '~/services/utils';
 import { useDirection } from '~/services/i18n/hooks';
 import { ZoomIn24Svg } from '~/svg';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
+import SliderImage from 'react-zoom-slider';
 
 type CreateGalleryFn = (
     images: PhotoSwipe.Item[],
@@ -107,8 +108,8 @@ function ProductGallery(props: Props) {
     const getIndexDependOnDirRef = useRef<((index: number) => number) | null>(null);
     const unmountedRef = useRef(false);
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-
-    
+    const [dataImg, setDataImg] = useState<any>({ image: '', text: 'img' })
+    const [dataAuxI, setdataAuxI] = useState<any>([]);
     const getIndexDependOnDir = useCallback((index: number) => {
         // we need to invert index id direction === 'rtl' due to react-slick bug
         if (direction === 'rtl') {
@@ -120,7 +121,7 @@ function ProductGallery(props: Props) {
     }, [direction, images]);
 
     const openPhotoswipe = (index: number) => {
-       // forceUpdate();
+        // forceUpdate();
 
         if (!createGalleryRef.current) {
             return;
@@ -146,7 +147,7 @@ function ProductGallery(props: Props) {
             items.reverse();
         }
 
-      
+
         // noinspection JSUnusedGlobalSymbols
         const options: PhotoSwipe.Options = {
             getThumbBoundsFn: (index) => {
@@ -250,7 +251,7 @@ function ProductGallery(props: Props) {
     useEffect(() => {
         forceUpdate();
         createGalleryRef.current = import('~/services/photoswipe').then((module) => module.default);
-        
+
     }, []);
 
     // componentWillUnmount
@@ -282,13 +283,20 @@ function ProductGallery(props: Props) {
     useEffect(() => {
         getIndexDependOnDirRef.current = getIndexDependOnDir;
     }, [getIndexDependOnDir]);
-    
+
     const rootClasses = classNames('product-gallery', `product-gallery--layout--${layout}`, className);
-   //console.log();
+    //console.log();
+    useEffect(() => {
+        let aux = [];
+        for (let i = 0; i < images.length; i++) {
+            aux.push({ ...dataImg, image: images[i] });
+        }
+        setdataAuxI(aux);
+    }, [dataImg]);
     return (
         <div className={rootClasses} data-layout={layout} {...rootProps}>
             <div className="product-gallery__featured">
-                <button type="button" className="product-gallery__zoom" onClick={handleZoomButtonClick}>
+                {/**   <button type="button" className="product-gallery__zoom" onClick={handleZoomButtonClick}>
                     <ZoomIn24Svg />
                 </button>
 
@@ -316,7 +324,7 @@ function ProductGallery(props: Props) {
                                 If you do not know the image size, you can remove the data-width and data-height
                                 attribute, in which case the width and height will be obtained from the
                                 naturalWidth and naturalHeight property of img.product-image__img.
-                                */}
+                                *
                                 {allImages.loading=== true ? (<p> cargando... </p>): (
                                 <AppImage
                                     className="image__tag"
@@ -329,7 +337,16 @@ function ProductGallery(props: Props) {
                         </div>
                     ))}
                 </AppSlick>
+
+            */}
             </div>
+            {dataAuxI.length > 0 && (<SliderImage
+                data={dataAuxI}
+                width="340px"
+                showDescription={false}
+                direction="right"
+            />)}
+            {/** 
             <div className="product-gallery__thumbnails">
                 <AppSlick {...slickSettingsThumbnails[layout]}>
                     {images.map((image, index) => (
@@ -347,7 +364,7 @@ function ProductGallery(props: Props) {
                         </button>
                     ))}
                 </AppSlick>
-            </div>
+            </div>*/}
         </div>
     );
 }
