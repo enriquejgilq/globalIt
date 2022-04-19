@@ -45,11 +45,9 @@ function FilterApplications(props: Props) {
         { option: '3', label: '3' },
     ]
     const onSelectYear = (e: any) => {
-        console.log('onSelectYear', e.currentTarget.value)
         dispatch(getFilterMakeLoader())
         dispatch(getFilterMakeAxios(e.currentTarget.value))
     }
-    console.log(value)
 
     return (
         <div className={styles.filterApplications}>
