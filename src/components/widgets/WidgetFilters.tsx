@@ -21,7 +21,7 @@ function WidgetFilters(props: Props) {
     const filters = useShopFilters();
     const values = useShopFilterValues();
     const [datas, setDatas] = useState<any>();
-        const shopResetFilters = useShopResetFiltersThunk();
+    const shopResetFilters = useShopResetFiltersThunk();
 
     const rootClasses = classNames('widget', 'widget-filters', `widget-filters--offcanvas--${offcanvasSidebar}`);
     const nameCategoryProducts = globalIntl()?.formatMessage(
@@ -30,32 +30,43 @@ function WidgetFilters(props: Props) {
     const nameContainer = globalIntl()?.formatMessage(
         { id: 'TEXT_CONTAINER' },
     )
-
+    const nameApplicacions = globalIntl()?.formatMessage(
+        { id: 'TEXT_APP' },
+    )
+    const nameCross = globalIntl()?.formatMessage(
+        { id: 'TEXT_CROSS_REFERENT' },
+    )
     //const nameSearch = globalIntl()?.formatMessage(
     //    { id: 'TEXT_SEARCH' },
-  //  )
+    //  )
+    //name container 
+
+    useEffect(() => {
+        if (is_auth === true) {
+            setDatas([
+                {
+                    name: nameCategoryProducts,
+                },
+                {
+                    name: nameApplicacions,
+                },
+            ])
+        } else {
+            setDatas([
+                {
+                    name: nameCategoryProducts,
+                },
+                {
+                    name: nameApplicacions,
+                },
+                {
+                    name: nameCross,
+                },
+            ])
+        }
+    }, [])
 
 
-  useEffect(() => {
-    if( is_auth === true ){
-        setDatas([
-            {
-                name: nameCategoryProducts,
-            },
-          //  {
-         //       name: nameContainer,
-         //   },
-        ])
-    }else {
-        setDatas([
-            {
-                name: nameCategoryProducts,
-            },
-        ])  
-    }
-}, [])
-
-    
     return (
         <div className={rootClasses}>
             <div className="widget__header widget-filters__header">
@@ -65,20 +76,20 @@ function WidgetFilters(props: Props) {
             </div>
 
             <div className="widget-filters__list">
-             {datas?.map((filter:any, index:any) => (
+                {datas?.map((filter: any, index: any) => (
                     <Filter
                         key={index}
                         dataFilTers={datas}
                         title={filter.name}
                     />
-                ))}  
+                ))}
             </div>
 
             <div className="widget-filters__actions d-flex">
-                <button type="button" className="btn btn-secondary btn-sm" onClick={()=>{
-                     localStorage.setItem('find','');
-                     localStorage.setItem('search','');
-                     location.reload();
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => {
+                    localStorage.setItem('find', '');
+                    localStorage.setItem('search', '');
+                    location.reload();
                 }}>
                     <FormattedMessage id="BUTTON_RESET" />
                 </button>

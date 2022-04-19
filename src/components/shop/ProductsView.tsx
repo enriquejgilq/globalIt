@@ -216,6 +216,7 @@ function ProductsView(props: Props) {
             location.reload();
         }, 1000);
     }
+    console.log(getCatalog.results.map((product: any) => product))
 
     return (
         <div className={rootClasses}>
@@ -456,7 +457,7 @@ function ProductsView(props: Props) {
                                 )}
                                 {getCatalog.results.map((item: any) => (
                                     <div key={item.id} className="products-list__item">
-                                        <ProductCard productFeatured={item} />
+                                        <ProductCard productFeatured={item.product} />
                                     </div>
                                 ))}
                             </div>

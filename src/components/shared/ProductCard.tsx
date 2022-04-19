@@ -29,7 +29,7 @@ import {
 import { isAuth } from '~/store/login/loginHooks'
 import { getImages, getImageLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getoOem } from '~/store/oem/oemActions';
-import {getRelatedProductsAxios} from '~/store/relatedProducts/relatedProductsActions';
+import { getRelatedProductsAxios } from '~/store/relatedProducts/relatedProductsActions';
 import { getApplicationsAxios } from '~/store/applications/applicationsActions';
 
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
@@ -98,9 +98,9 @@ function ProductCard(props: Props) {
         is_auth ? quickviewOpenPrivate(productFeatured?.code, false) : quickviewOpen(productFeatured?.code, false)
         dispatch(getImageLoading());
         dispatch(getImages(productFeatured.code))
-      //  dispatch(getoOem(productFeatured.code))
-       // dispatch(getApplicationsAxios(productFeatured.code))
-       // dispatch(getRelatedProductsAxios(productFeatured.code))
+        //  dispatch(getoOem(productFeatured.code))
+        // dispatch(getApplicationsAxios(productFeatured.code))
+        // dispatch(getRelatedProductsAxios(productFeatured.code))
 
 
     }
@@ -110,6 +110,7 @@ function ProductCard(props: Props) {
             setOnPress(false)
         }, 1500);
     }
+
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -126,8 +127,8 @@ function ProductCard(props: Props) {
                                 run ? run() : null;
                                 dispatch(getImageLoading());
                                 dispatch(getImages(productFeatured.code));
-                               // dispatch(getoOem(productFeatured.code))
-                               // dispatch(getApplicationsAxios(productFeatured.code))
+                                // dispatch(getoOem(productFeatured.code))
+                                // dispatch(getApplicationsAxios(productFeatured.code))
                                 //dispatch(getRelatedProductsAxios(productFeatured.code))
 
                             }}
@@ -208,11 +209,11 @@ function ProductCard(props: Props) {
                                     // gap: "5px",
                                     // width: "70px",
                                 }}>
-                                {productFeatured.stock  === undefined ? null :
+                                {productFeatured.stock === undefined ? null :
                                     <b>
-                                        {productFeatured.stock  <= 0 ?
+                                        {productFeatured.stock <= 0 ?
                                             (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={productFeatured.available} />)
-                                            : productFeatured.stock  <= 15 ?
+                                            : productFeatured.stock <= 15 ?
                                                 (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={productFeatured.available} />)
                                                 : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(productFeatured.available, 10)} >{parseInt(productFeatured.available)}</StockStatusBadge>)
                                         }

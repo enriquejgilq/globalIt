@@ -4,6 +4,7 @@ import { globalIntl } from '~/services/i18n/global-intl';
 
 import { ArrowRoundedDown12x7Svg } from '~/svg';
 import FilterCategory from '~/components/filters/FilterCategory';
+import FilterApplications from './FilterApplications';
 import FilterVehicle from '~/components/filters/FilterVehicle';
 import { getFilterValue, isDefaultFilterValue, serializeFilterValue } from '~/services/filters';
 import FilterRange from '~/components/filters/FilterRange';
@@ -69,6 +70,9 @@ function Filter(props: Props) {
     const nameContainer = globalIntl()?.formatMessage(
         { id: 'TEXT_CONTAINER' },
     )
+    const nameApplications = globalIntl()?.formatMessage(
+        { id: 'TEXT_APP' },
+    )
     //const nameSearch = globalIntl()?.formatMessage(
       //  { id: 'TEXT_SEARCH' },
    // )
@@ -129,6 +133,9 @@ function Filter(props: Props) {
                         />
                     }
                     {title === nameContainer &&  <FilterContainer value={value} />}
+                    {title === nameApplications &&  <FilterApplications value={'value'} />}
+
+                    
                     {/** 
 
                             {filter.type === 'range' && (
