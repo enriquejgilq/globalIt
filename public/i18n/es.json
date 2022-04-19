@@ -396,6 +396,7 @@
   "TEXT_SESSION_EXPIRED": "La sesión ha expirado. Por favor, inicie sesión de nuevo.",
   "TEXT_SESSION_EXPIRED_TITLE": "Sesión expirada",
 
+  "API_LANGUAGE": "es/",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",

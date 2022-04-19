@@ -393,6 +393,8 @@
     "TEXT_NAME_COMPETIDOR":"CÓDIGO DO CONCORRENTE",
     "TEXT_SESSION_EXPIRED": "A sessão expirou. Por favor faça login novamente.",
     "TEXT_SESSION_EXPIRED_TITLE": "Sessão expirada",
+
+    "API_LANGUAGE": "pt/",
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,
     "API_LOGIN":"authenticate/login/",
     "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",

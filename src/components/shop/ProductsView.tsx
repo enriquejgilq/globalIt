@@ -216,7 +216,7 @@ function ProductsView(props: Props) {
             location.reload();
         }, 1000);
     }
-    console.log(getCatalog.results.map((product: any) => product))
+   
 
     return (
         <div className={rootClasses}>

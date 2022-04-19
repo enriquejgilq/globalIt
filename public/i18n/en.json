@@ -390,6 +390,8 @@
   "TEXT_GREETING":"Hello",
   "TEXT_SESSION_EXPIRED": "The session has expired. Please login again.",
   "TEXT_SESSION_EXPIRED_TITLE": "Session Expired", 
+
+  "API_LANGUAGE": "/",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/en/all/", 
   "API_LOGIN":"authenticate/login/",
   "API_GET_CATEGORIES":"inventory/public-categories/?is_principal=true",

@@ -1,6 +1,7 @@
 // react
 import React, { useState, useEffect } from 'react';
 import { globalIntl } from '~/services/i18n/global-intl';
+import { useDispatch } from 'react-redux';
 
 // third-party
 import classNames from 'classnames';
@@ -10,6 +11,8 @@ import { useShopFilters, useShopFilterValues, useShopResetFiltersThunk } from '~
 import { IShopPageOffCanvasSidebar } from '~/interfaces/pages';
 import Filter from '~/components/filters/Filter';
 import { isAuth } from '~/store/login/loginHooks'
+import { getCategoryProductsParents, getCategoryLoading } from '~/store/categoryProducts/categoryProductsActions';
+import { getFilterYearsAxios, getFilterYearsLoader } from '~/store/filterApplications/filterApplicationsActions';
 
 interface Props {
     offcanvasSidebar: IShopPageOffCanvasSidebar;
@@ -17,6 +20,7 @@ interface Props {
 
 function WidgetFilters(props: Props) {
     const { offcanvasSidebar } = props;
+    const dispatch = useDispatch()
     const is_auth = isAuth()
     const filters = useShopFilters();
     const values = useShopFilterValues();
@@ -65,7 +69,15 @@ function WidgetFilters(props: Props) {
             ])
         }
     }, [])
-
+    useEffect(() => {
+        setTimeout(() => {
+        dispatch(getCategoryLoading());
+        dispatch(getCategoryProductsParents())
+        dispatch(getFilterYearsLoader())
+        dispatch(getFilterYearsAxios()) 
+        }, 2000);
+       
+    }, [])
 
     return (
         <div className={rootClasses}>

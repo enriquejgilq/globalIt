@@ -11,34 +11,7 @@ function FilterCroos(props: Props) {
         value
     } = props;
     const [state, setState] = React.useState(true)
-    //data de prueba, consumir api y traer los datos 
-    const data: any = [{
-        label: '1',
-        value: '1',
-        disabled: false,
-        placeholder: 'hola'
-    },
-    {
-        label: '1',
-        value: '1',
-        disabled: false,
-        placeholder: 'hola'
-    },
-    {
-        label: '1',
-        value: '1',
-        disabled: false,
-        placeholder: 'hola'
-
-    },
-
-
-    ]
-    const options: any = [
-        { option: '1', label: '1' },
-        { option: '2', label: '2' },
-        { option: '3', label: '3' },
-    ]
+ 
     return (
         <div className={styles.filterApplications}>
            <p> filter croos </p>

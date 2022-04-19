@@ -24,6 +24,7 @@ import oemReducer,{OEM_NAMESPACE} from '../oem/oemReducers';
 import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applicationsReducers';
 import relatedProductsReducer,{RELATED_PRODUCTS_NAMESPACE} from '../relatedProducts/relatedProductsReducers';
 import quotesReducer,{QUOTES_NAMESPACE} from '../quotes/quotesReducers';
+import filterApplicationsReducer,{FILTER_APPLICATIONS_NAMESPACE} from '../filterApplications/filterApplicationsReducers';
 
 export default combineReducers({
     version: (state: number = version) => state,
@@ -48,6 +49,7 @@ export default combineReducers({
     [APPLICATIONS_NAMESPACE]:applicationsReducer,
     [RELATED_PRODUCTS_NAMESPACE]:relatedProductsReducer,
     [QUOTES_NAMESPACE]:quotesReducer,
+    [FILTER_APPLICATIONS_NAMESPACE]:filterApplicationsReducer,
 
 
 

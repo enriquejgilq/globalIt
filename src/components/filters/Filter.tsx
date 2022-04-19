@@ -18,13 +18,14 @@ import { IFilter } from '~/interfaces/filter';
 import { useShopSetFilterValueThunk } from '~/store/shop/shopHooks';
 import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks';
 import { getCategoryProductsParents, getCategoryLoading } from '~/store/categoryProducts/categoryProductsActions';
-import {
-    getCategoryProductsChildren,
+import { getCategoryProductsChildren,
     clearCategoryChildren, getCategoryProductsChildrenPrivate
 } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenAction';
+import { getFilterYearsAxios, getFilterYearsLoader } from '~/store/filterApplications/filterApplicationsActions';
 import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categoryProductsChildren/categoryProductsChildrenHooks';
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { useCart } from '~/store/cart/cartHooks';
+import { filterApplicationsState } from '~/store/filterApplications/filterApplicationsHooks';
 import { Button } from 'reactstrap';
 
 
@@ -51,6 +52,7 @@ function Filter(props: Props) {
     const dispatch = useDispatch()
     const is_auth = isAuth()
     const cart = useCart();
+    const filterApplications = filterApplicationsState();
     const { Provider, Consumer } = React.createContext<any>('all');
 
     const shopSetFilterValue = useShopSetFilterValueThunk();
@@ -74,13 +76,9 @@ function Filter(props: Props) {
         { id: 'TEXT_APP' },
     )
     //const nameSearch = globalIntl()?.formatMessage(
-      //  { id: 'TEXT_SEARCH' },
-   // )
-    useEffect(() => {
-        dispatch(getCategoryLoading());
-        dispatch(getCategoryProductsParents())
-
-    }, [])
+    //  { id: 'TEXT_SEARCH' },
+    // )
+  
 
     useEffect(() => {
         const ft: any = cart.items.map((item: any) =>
@@ -106,9 +104,9 @@ function Filter(props: Props) {
     const onClearCategoryChildren = () => {
         dispatch(clearCategoryChildren())
     }
-    const onRemoveItem = ()=>{
-        localStorage.setItem('find','');
-        localStorage.setItem('search','');
+    const onRemoveItem = () => {
+        localStorage.setItem('find', '');
+        localStorage.setItem('search', '');
 
     }
     const renderFn: RenderFilterFn = ({ toggle, setItemRef, setContentRef }) => (
@@ -122,7 +120,7 @@ function Filter(props: Props) {
             <div className="filter__body" ref={setContentRef}>
                 <div className="filter__container">
                     {title === nameCategoryProducts &&
-                    
+
                         <FilterCategory
                             categoryProductsParents={categoryProductsParents}
                             categoryProductsChildren={categoryProductsChildren}
@@ -132,10 +130,10 @@ function Filter(props: Props) {
                             is_auth={is_auth}
                         />
                     }
-                    {title === nameContainer &&  <FilterContainer value={value} />}
-                    {title === nameApplications &&  <FilterApplications value={'value'} />}
+                    {title === nameContainer && <FilterContainer value={value} />}
+                    {title === nameApplications && <FilterApplications value={filterApplications} />}
 
-                    
+
                     {/** 
 
                             {filter.type === 'range' && (
