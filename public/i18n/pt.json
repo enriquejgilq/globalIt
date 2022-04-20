@@ -393,6 +393,11 @@
     "TEXT_NAME_COMPETIDOR":"CÓDIGO DO CONCORRENTE",
     "TEXT_SESSION_EXPIRED": "A sessão expirou. Por favor faça login novamente.",
     "TEXT_SESSION_EXPIRED_TITLE": "Sessão expirada",
+    "TEXT_CROSS_REFERENT": "Referências cruzadas",
+    "TEXT_TOAST_SELECT_YEAR": "Selecione um ano",
+    "TEXT_TOAST_SELECT_BRAND": "Selecione uma marca",
+    "TEXT_TOAST_SELECT_MODEL": "Selecione um modelo",
+    "TEXT_TOAST_SELECT_ENGINE": "Selecione um motor",
 
     "API_LANGUAGE": "pt/",
     "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/pt/all/" ,

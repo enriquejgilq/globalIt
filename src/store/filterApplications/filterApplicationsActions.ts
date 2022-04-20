@@ -53,7 +53,7 @@ export function getFilterYearsAxios(): filterApplicationsThunkAction<Promise<voi
                 });
         });
 }
-//function to get the makes of the applications
+//functions to get the makes of the applications
 
 export function getFilterMake(payload: any): IFilterApplicationsAction {
     return {
@@ -84,6 +84,72 @@ export function getFilterMakeAxios(payload:any): filterApplicationsThunkAction<P
                 })
                 .catch((error) => {
                     dispatch(getFilterMakeError(error));
+                });
+        });
+}
+//funtions to get the engine of the applications 
+export function getFilterModel(payload: any): IFilterApplicationsAction {
+    return {
+        type: MODEL_APPLICATIONS_SUCCESS,
+        payload,
+    };
+}
+export function getFilterModelError(payload: any): IFilterApplicationsAction {
+    return {
+        type: MODEL_APPLICATIONS_FAILURE,
+        payload,
+    };
+}
+export function getFilterModelLoader(): IFilterAplicationsActionLoader {
+    return {
+        type: MODEL_APPLICATIONS,
+    };
+}
+
+export function getFilterModelAxios(payload:any): filterApplicationsThunkAction<Promise<void>> {
+    return (dispatch) =>
+        new Promise((resolve) => {
+            axios
+                .get(API + "inventory/public-model-applications/" + payload+"/")
+                .then((response) => {
+                    dispatch(getFilterModel(response?.data));
+                    resolve();
+                })
+                .catch((error) => {
+                    dispatch(getFilterModelError(error));
+                });
+        });
+}
+
+export function getFilterEngine(payload: any): IFilterApplicationsAction {
+    return {
+        type: ENGINE_APPLICATIONS_SUCCESS,
+        payload,
+    };
+}
+export function getFilterEngineError(payload: any): IFilterApplicationsAction {
+    return {
+        type: ENGINE_APPLICATIONS_FAILURE,
+        payload,
+    };
+}
+export function getFilterEngineLoader(): IFilterAplicationsActionLoader {
+    return {
+        type: ENGINE_APPLICATIONS,
+    };
+}
+// 
+export function getFilterEngineAxios(payload:any): filterApplicationsThunkAction<Promise<void>> {
+    return (dispatch) =>
+        new Promise((resolve) => {
+            axios
+                .get(API + "inventory/public-engine-applications/" + payload+"/")
+                .then((response) => {
+                    dispatch(getFilterEngine(response?.data));
+                    resolve();
+                })
+                .catch((error) => {
+                    dispatch(getFilterEngineError(error));
                 });
         });
 }

@@ -395,6 +395,11 @@
   "TEXT_SESSION_EXPIRED": "La session a expiré. Veuillez vous reconnecter.",
   "TEXT_SESSION_EXPIRED_TITLE": "Session expirée", 
   "TEXT_DESCRIPTION:":"Description:",
+  "TEXT_CROSS_REFERENT": "Références croisées",
+  "TEXT_TOAST_SELECT_YEAR": "Sélectionnez une année",
+  "TEXT_TOAST_SELECT_BRAND": "Sélectionnez une marque",
+  "TEXT_TOAST_SELECT_MODEL": "Sélectionnez un modèle",
+  "TEXT_TOAST_SELECT_ENGINE": "Sélectionnez un moteur",
 
   "API_LANGUAGE": "fr/",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/fr/all/" ,

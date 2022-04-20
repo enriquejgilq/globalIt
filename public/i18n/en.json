@@ -390,6 +390,11 @@
   "TEXT_GREETING":"Hello",
   "TEXT_SESSION_EXPIRED": "The session has expired. Please login again.",
   "TEXT_SESSION_EXPIRED_TITLE": "Session Expired", 
+  "TEXT_CROSS_REFERENT": "Cross references",
+  "TEXT_TOAST_SELECT_YEAR": "Select a year",
+  "TEXT_TOAST_SELECT_BRAND": "Select a brand",
+  "TEXT_TOAST_SELECT_MODEL": "Select a model",
+  "TEXT_TOAST_SELECT_ENGINE": "Select a engine",
 
   "API_LANGUAGE": "/",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/en/all/", 

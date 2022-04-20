@@ -71,14 +71,13 @@ function WidgetFilters(props: Props) {
     }, [])
     useEffect(() => {
         setTimeout(() => {
-        dispatch(getCategoryLoading());
-        dispatch(getCategoryProductsParents())
-        dispatch(getFilterYearsLoader())
-        dispatch(getFilterYearsAxios()) 
+            dispatch(getCategoryLoading());
+            dispatch(getCategoryProductsParents())
+            dispatch(getFilterYearsLoader())
+            dispatch(getFilterYearsAxios())
         }, 2000);
-       
-    }, [])
 
+    }, [])
     return (
         <div className={rootClasses}>
             <div className="widget__header widget-filters__header">
@@ -93,6 +92,7 @@ function WidgetFilters(props: Props) {
                         key={index}
                         dataFilTers={datas}
                         title={filter.name}
+
                     />
                 ))}
             </div>

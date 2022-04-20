@@ -381,7 +381,6 @@
   "TEXT_CONTAINER": "Container",
   "TEXT_APP": "Aplicaciones",
   "TEXT_CROSS_REFERENT": "Referencias cruzadas",
-
   "TEXT_CONTAINER_LIST": "Lista de containers",
   "TEXT_TRANSLATE":"traducción no disponible",
   "TEXT_CATEGORY_DESCRIPTION":"description_es",
@@ -395,6 +394,10 @@
   "TEXT_NAME_COMPETIDOR":"NOMBRE DEL COMPETIDOR",
   "TEXT_SESSION_EXPIRED": "La sesión ha expirado. Por favor, inicie sesión de nuevo.",
   "TEXT_SESSION_EXPIRED_TITLE": "Sesión expirada",
+  "TEXT_TOAST_SELECT_YEAR": "Seleccione un año",
+  "TEXT_TOAST_SELECT_BRAND": "Seleccione una marca",
+  "TEXT_TOAST_SELECT_MODEL": "Seleccione un modelo",
+  "TEXT_TOAST_SELECT_ENGINE": "Seleccione un motor",
 
   "API_LANGUAGE": "es/",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",
