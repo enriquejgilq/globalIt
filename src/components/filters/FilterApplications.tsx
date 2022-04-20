@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
-import { API } from "~/api/constantsApi";
+import { API_SHOP, PUBLIC_LOGIN } from "~/api/constantsApi";
 import { Input, Button } from "reactstrap";
 import styles from './filter.module.scss'
 import {
@@ -13,7 +13,8 @@ import {
     getFilterEngineAxios,
     getFilterEngineLoader
 } from '~/store/filterApplications/filterApplicationsActions';
-import { getCatalogProducts } from '~/store/catalogProducts/catalogProductsActions';
+import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
+import { isAuth } from '~/store/login/loginHooks';
 
 interface Props {
     value: any
@@ -24,11 +25,13 @@ function FilterApplications(props: Props) {
     } = props;
     const dispatch = useDispatch()
     const intl = useIntl();
+    const is_auth = isAuth()
 
     const [state, setState] = React.useState(true)
     const [year, setYear] = useState('')
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
+    const [path, setPath] = useState('')
 
 
     const onSelectYear = (e: any) => {
@@ -64,7 +67,14 @@ function FilterApplications(props: Props) {
         if (e.target.value === '' || e.target.value === undefined) {
             toast.error(intl.formatMessage({ id: 'TEXT_TOAST_SELECT_ENGINE' }));
         } else {
-            dispatch(getCatalogProducts(API + "inventory/public-products-application/" + e.target.value + "/"))
+            if (is_auth === true) {
+                dispatch(getCatalogProductsPrivate(API_SHOP + "products-application/" + e.target.value + "/"))
+                localStorage.setItem('path', API_SHOP + "products-application/" + e.target.value + "/")
+
+            } else {
+                dispatch(getCatalogProducts(API_SHOP + PUBLIC_LOGIN + "products-application/" + e.target.value + "/"))
+                localStorage.setItem('path', API_SHOP + PUBLIC_LOGIN + "products-application/" + e.target.value + "/")
+            }
             setModel(e.currentTarget.value)
         }
     }

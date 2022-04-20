@@ -53,7 +53,7 @@ export function getCatalogProductsPrivate(payload:any  ): catalogProductsThunkAc
         new Promise((resolve) => {
             const state = getState()
             axios.get(
-                 payload,{
+                payload,{
                 headers: {
                     Authorization: 'Token ' + state.login.access_token 
                 }
