@@ -15,7 +15,7 @@ const FilterCrossReferents = (props: Props) => {
     const dispatch = useDispatch()
     const is_auth = isAuth()
     const intl = useIntl();
-
+ 
     const onFind = () => {
         if (findShop === '' || findShop === undefined) {
             toast.error(intl.formatMessage({ id: 'TEXT_TOAST_REFERENCE_EMPTY' }));

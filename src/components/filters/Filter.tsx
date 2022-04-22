@@ -101,7 +101,7 @@ function Filter(props: Props) {
             dispatch(getCategoryProductsChildren(parent))
         }
     }
-
+ 
     const onClearCategoryChildren = () => {
         dispatch(clearCategoryChildren())
     }
