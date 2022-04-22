@@ -79,7 +79,6 @@ function WidgetFilters(props: Props) {
             dispatch(getFilterYearsLoader())
             dispatch(getFilterYearsAxios())
         }, 2000);
-
     }, [])
     return (
         <div className={rootClasses}>
