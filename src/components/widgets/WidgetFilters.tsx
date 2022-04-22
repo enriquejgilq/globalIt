@@ -54,6 +54,9 @@ function WidgetFilters(props: Props) {
                 {
                     name: nameApplicacions,
                 },
+                {
+                    name: nameCross,
+                },
             ])
         } else {
             setDatas([
