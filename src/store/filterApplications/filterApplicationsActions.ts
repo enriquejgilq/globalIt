@@ -15,10 +15,12 @@ import {
     ENGINE_APPLICATIONS,
     ENGINE_APPLICATIONS_SUCCESS,
     ENGINE_APPLICATIONS_FAILURE,
+    CLEAR_APPLICATIONS,
     //actions
     filterApplicationsThunkAction,
     IFilterApplicationsAction,
     IFilterAplicationsActionLoader,
+    ClearApplications
 } from "~/store/filterApplications/filterApplicationsActionsTypes";
 //function to get the years of the applications
 export function getFilterYears(payload: any): IFilterApplicationsAction {
@@ -152,4 +154,9 @@ export function getFilterEngineAxios(payload:any): filterApplicationsThunkAction
                     dispatch(getFilterEngineError(error));
                 });
         });
+}
+export function clearApplications ():ClearApplications{ 
+    return {
+        type: CLEAR_APPLICATIONS,
+    };
 }

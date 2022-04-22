@@ -398,6 +398,7 @@
   "TEXT_TOAST_SELECT_BRAND": "Seleccione una marca",
   "TEXT_TOAST_SELECT_MODEL": "Seleccione un modelo",
   "TEXT_TOAST_SELECT_ENGINE": "Seleccione un motor",
+  "TEXT_TOAST_REFERENCE_EMPTY": "campo de referencia vacío",
 
   "API_LANGUAGE": "es/",
   "API_GET_PRODUCTS_FEATURED": "inventory/public-featured-products/es/all/",

@@ -17,6 +17,8 @@ export const ENGINE_APPLICATIONS = 'ENGINE_APPLICATIONS';
 export const ENGINE_APPLICATIONS_SUCCESS = 'ENGINE_APPLICATIONS_SUCCESS';
 export const ENGINE_APPLICATIONS_FAILURE = 'ENGINE_APPLICATIONS_FAILURE';
 
+export const CLEAR_APPLICATIONS = 'CLEAR_APPLICATIONS';
+
 
 
 export interface IFilterApplicationsAction {
@@ -27,9 +29,12 @@ export interface IFilterApplicationsAction {
 export interface IFilterAplicationsActionLoader {
     type: string;
 }
-
+export interface ClearApplications {
+    type: typeof CLEAR_APPLICATIONS;
+}
 export type FilterApplicationsAction = 
 Promise<IFilterApplicationsAction> |
-IFilterAplicationsActionLoader; 
+IFilterAplicationsActionLoader |
+ClearApplications;
 
 export type filterApplicationsThunkAction<T = void> = AppAction<IFilterApplicationsAction, T>;

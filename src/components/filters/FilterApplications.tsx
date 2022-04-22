@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useReducer } from 'react'
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useIntl } from 'react-intl';
 import { API_SHOP, PUBLIC_LOGIN } from "~/api/constantsApi";
-import { Input, Button } from "reactstrap";
+import { Input, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem  } from "reactstrap";
 import styles from './filter.module.scss'
 import {
     getFilterMakeAxios,
@@ -11,7 +11,8 @@ import {
     getFilterModelAxios,
     getFilterModelLoader,
     getFilterEngineAxios,
-    getFilterEngineLoader
+    getFilterEngineLoader,
+    clearApplications,
 } from '~/store/filterApplications/filterApplicationsActions';
 import { getCatalogProducts, getCatalogProductsPrivate } from '~/store/catalogProducts/catalogProductsActions';
 import { isAuth } from '~/store/login/loginHooks';
@@ -32,16 +33,17 @@ function FilterApplications(props: Props) {
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
     const [path, setPath] = useState('')
-
+    const [dropdownOpen, setDropdownOpen] = useState(false)
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
     const onSelectYear = (e: any) => {
         if (e.target.value === '' || e.target.value === undefined) {
             toast.error(intl.formatMessage({ id: 'TEXT_TOAST_SELECT_YEAR' }));
         } else {
+            dispatch(clearApplications())
             dispatch(getFilterMakeLoader())
             dispatch(getFilterMakeAxios(e.currentTarget.value))
             setYear(e.currentTarget.value)
-
         }
 
     }
@@ -78,10 +80,16 @@ function FilterApplications(props: Props) {
             setModel(e.currentTarget.value)
         }
     }
-
+   const toggle = () => {
+    setDropdownOpen(!dropdownOpen);
+      }
+    useEffect(() => {
+        forceUpdate();
+    }, [year]);
+   console.log(year)
     return (
         <div className={styles.filterApplications}>
-            <Input type={"select"} onChange={(e) => onSelectYear(e)}>
+            <Input type={"select"}    onChange={(e) => onSelectYear(e)}>
                 <option value={''}>{''}</option>
                 {value?.years.map((item: any) => (
                     <>

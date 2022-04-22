@@ -5,6 +5,7 @@ import { globalIntl } from '~/services/i18n/global-intl';
 import { ArrowRoundedDown12x7Svg } from '~/svg';
 import FilterCategory from '~/components/filters/FilterCategory';
 import FilterApplications from './FilterApplications';
+import FilterCrossReferents from './FilterCrossReferents';
 import FilterVehicle from '~/components/filters/FilterVehicle';
 import { getFilterValue, isDefaultFilterValue, serializeFilterValue } from '~/services/filters';
 import FilterRange from '~/components/filters/FilterRange';
@@ -75,9 +76,9 @@ function Filter(props: Props) {
     const nameApplications = globalIntl()?.formatMessage(
         { id: 'TEXT_APP' },
     )
-    //const nameSearch = globalIntl()?.formatMessage(
-    //  { id: 'TEXT_SEARCH' },
-    // )
+    const nameCross = globalIntl()?.formatMessage(
+        { id: 'TEXT_CROSS_REFERENT' },
+    )
   
 
     useEffect(() => {
@@ -132,6 +133,7 @@ function Filter(props: Props) {
                     }
                     {title === nameContainer && <FilterContainer value={value} />}
                     {title === nameApplications && <FilterApplications value={filterApplications} />}
+                    {title === nameCross && <FilterCrossReferents  />}
 
 
                     {/** 

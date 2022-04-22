@@ -11,6 +11,7 @@ import {
     ENGINE_APPLICATIONS,
     ENGINE_APPLICATIONS_SUCCESS,
     ENGINE_APPLICATIONS_FAILURE,
+    CLEAR_APPLICATIONS,
 
 } from "./filterApplicationsActionsTypes";
 
@@ -146,6 +147,18 @@ const filterapplicationsReducer = (state: any = defaultState, action: any) => {
                 previous: null,
                 engine: [],
                 error: action.payload,
+                loading: false,
+            };
+        case CLEAR_APPLICATIONS:
+            return {
+                ...state,
+                count: "",
+                next: null,
+                previous: null,
+                make: [],
+                model: [],
+                engine: [],
+                error: false,
                 loading: false,
             };
             default:
