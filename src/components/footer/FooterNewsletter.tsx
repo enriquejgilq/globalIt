@@ -15,9 +15,9 @@ const FooterNewsletter: FunctionComponent<React.HTMLAttributes<HTMLElement>> = (
     };
 
     const socialLinks = [
-        { type: 'instagram', url: theme.author.profile_url, icon: 'fab fa-instagram' },
+        { type: "instagram", url: theme.author.instagram, icon: "fab fa-instagram" },
 
-    /**   { type: 'facebook', url: theme.author.profile_url, icon: 'fab fa-facebook-f' },
+        /**   { type: 'facebook', url: theme.author.profile_url, icon: 'fab fa-facebook-f' },
         { type: 'twitter', url: theme.author.profile_url, icon: 'fab fa-twitter' },
         { type: 'youtube', url: theme.author.profile_url, icon: 'fab fa-youtube' },  
         { type: 'rss', url: theme.author.profile_url, icon: 'fas fa-rss' },*/

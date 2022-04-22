@@ -5,19 +5,23 @@ import { FormattedMessage } from 'react-intl';
 // data
 import theme from '~/data/theme';
 
-const FooterContacts: FunctionComponent<React.HTMLAttributes<HTMLElement>> = () => (
+const FooterContactsUsa: FunctionComponent<React.HTMLAttributes<HTMLElement>> = () => (
     <div className="footer-contacts">
-        {/* <h5 className="footer-contacts__title">
+        <h5 className="footer-contacts__title">
             <FormattedMessage id="HEADER_CONTACT_US" />
-        </h5> */}
+        </h5>
+        <h3 className="footer-contacts__title">USA</h3>
 
-        <h3 className="footer-contacts__title mt-5">PANAMA</h3>
+        {/* <div className="footer-contacts__text">
+            <FormattedMessage id="TEXT_CONTACT_US_MESSAGE" />
+        </div> */}
+
         <address className="footer-contacts__contacts">
             <dl>
                 <dt>
                     <FormattedMessage id="TEXT_EMAIL_ADDRESS" />
                 </dt>
-                {theme.contacts.email.map((item, index) => (
+                {theme.contacts_usa.email.map((item, index) => (
                     <dd key={index}>{item}</dd>
                 ))}
             </dl>
@@ -25,7 +29,7 @@ const FooterContacts: FunctionComponent<React.HTMLAttributes<HTMLElement>> = () 
                 <dt>
                     <FormattedMessage id="TEXT_PHONE_NUMBER" />
                 </dt>
-                {theme.contacts.phone.map((item, index) => (
+                {theme.contacts_usa.phone.map((item, index) => (
                     <dd key={index}>{item}</dd>
                 ))}
             </dl>
@@ -33,7 +37,7 @@ const FooterContacts: FunctionComponent<React.HTMLAttributes<HTMLElement>> = () 
                 <dt>
                     <FormattedMessage id="TEXT_OUR_LOCATION" />
                 </dt>
-                {theme.contacts.address.map((item, index) => (
+                {theme.contacts_usa.address.map((item, index) => (
                     <dd key={index}>{item}</dd>
                 ))}
             </dl>
@@ -52,4 +56,4 @@ const FooterContacts: FunctionComponent<React.HTMLAttributes<HTMLElement>> = () 
     </div>
 );
 
-export default FooterContacts;
+export default FooterContactsUsa;

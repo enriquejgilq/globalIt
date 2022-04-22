@@ -7,6 +7,7 @@ import AppImage from '~/components/shared/AppImage';
 import AppLink from '~/components/shared/AppLink';
 import Decor from '~/components/shared/Decor';
 import FooterContacts from '~/components/footer/FooterContacts';
+import FooterContactsUsa from "~/components/footer/FooterContactsUsa";
 import FooterLinks from '~/components/footer/FooterLinks';
 import FooterNewsletter from '~/components/footer/FooterNewsletter';
 // data
@@ -20,24 +21,27 @@ export function Footer() {
                 <div className="container">
                     <div className="row">
                         <div className="col-12 col-xl-4">
+                            <FooterContactsUsa className="site-footer__widget" />
+                        </div>
+                        <div className="col-12 col-xl-4">
                             <FooterContacts className="site-footer__widget" />
                         </div>
-                        <div className="col-6 col-md-3 col-xl-2">
+                        {/* <div className="col-6 col-md-3 col-xl-2">
                             <FooterLinks
                                 className="site-footer__widget"
                                 header={<FormattedMessage id="HEADER_INFORMATION" />}
                                 links={[
                                     { title: <FormattedMessage id="LINK_ABOUT_US" /> },
-                                    { title: <FormattedMessage id="LINK_DELIVERY_INFORMATION" /> },
-                                    { title: <FormattedMessage id="LINK_PRIVACY_POLICY" /> },
-                                    { title: <FormattedMessage id="LINK_BRANDS" /> },
+                                    // { title: <FormattedMessage id="LINK_DELIVERY_INFORMATION" /> },
+                                    // { title: <FormattedMessage id="LINK_PRIVACY_POLICY" /> },
+                                    // { title: <FormattedMessage id="LINK_BRANDS" /> },
                                     { title: <FormattedMessage id="LINK_CONTACT_US" /> },
-                                    { title: <FormattedMessage id="LINK_RETURNS" /> },
-                                    { title: <FormattedMessage id="LINK_SITE_MAP" /> },
+                                    // { title: <FormattedMessage id="LINK_RETURNS" /> },
+                                    // { title: <FormattedMessage id="LINK_SITE_MAP" /> },
                                 ]}
                             />
-                        </div>
-                        <div className="col-6 col-md-3 col-xl-2">
+                        </div> */}
+                        {/* <div className="col-6 col-md-3 col-xl-2">
                             <FooterLinks
                                 className="site-footer__widget"
                                 header={<FormattedMessage id="HEADER_MY_ACCOUNT" />}
@@ -51,7 +55,7 @@ export function Footer() {
                                     { title: <FormattedMessage id="LINK_AFFILIATE" /> },
                                 ]}
                             />
-                        </div>
+                        </div> */}
                         <div className="col-12 col-md-6 col-xl-4">
                             <FooterNewsletter className="site-footer__widget" />
                         </div>
@@ -63,14 +67,14 @@ export function Footer() {
                     <div className="site-footer__bottom-row">
                         <div className="site-footer__copyright">
                             {/* copyright */}
-                            {'Powered and Designed by '}
-                            <AppLink href="https://globalair.us/" target="_blank" rel="noreferrer">Global Air IT</AppLink>
-                           
+                            {"Powered and Designed by "}
+                            <AppLink href="https://globalair.us/" target="_blank" rel="noreferrer">
+                                Global Air
+                            </AppLink>
+
                             {/* copyright / end */}
                         </div>
-                        <div className="site-footer__payments">
-                            {/* <AppImage src="/images/payments.png" /> */}
-                        </div>
+                        <div className="site-footer__payments">{/* <AppImage src="/images/payments.png" /> */}</div>
                     </div>
                 </div>
             </div>
