@@ -30,7 +30,7 @@ interface Props {
     is_auth: boolean,
     onRemoveItem?:()=> void
 }
-
+   
 function FilterCategory(props: Props) {
     const { categoryProductsParents,
         categoryProductsChildren,

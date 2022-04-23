@@ -90,8 +90,8 @@ function App(props: Props) {
     useEffect(() => {
         loadUserVehicles().then();
     }, [loadUserVehicles]);
-
-    // preloader
+  
+    // preloader   
     useEffect(() => {
         const preloader = document.querySelector('.site-preloader');
 

@@ -113,7 +113,7 @@ function WidgetFilters(props: Props) {
 
         }
     }
-
+   
     return (
         <div className={rootClasses}>
             <div className="widget__header widget-filters__header">
