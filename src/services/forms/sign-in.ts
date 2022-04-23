@@ -57,8 +57,8 @@ export function useSignInForm(options: ISignInFormOptions = {}) {
             password: data.password,
             mac_address: ip //'191.95.167.233'
             //+info
-           // '43:45:21:34:54:14',
-            // ip+info,
+           // '43:45:21:34:54:14',     
+            // ip+info,   
         }
         if( ip === ''|| ip===undefined){
           //  console.log('ipvacio')
