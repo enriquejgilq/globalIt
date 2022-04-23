@@ -340,8 +340,9 @@ function ProductGallery(props: Props) {
 
             */}
             </div>
-            {dataAuxI.length > 0 && (<SliderImage
-                data={dataAuxI}
+            {dataAuxI.length > 0 && (
+            <SliderImage
+                data={dataAuxI.length === 1 ? [dataAuxI[0], dataAuxI[0]] : dataAuxI}
                 width="340px"
                 showDescription={false}
                 direction="right"

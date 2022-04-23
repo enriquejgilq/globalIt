@@ -467,7 +467,7 @@ function ShopPageProduct(props: Props) {
                                                 {is_auth === true && (
                                                     <>
                                                         <div className="product__prices">
-                                                            {product.price && (
+                                                            {product.price > 0 && (
                                                                 <button
                                                                     className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
                                                                         "btn-primary": "btn-primary",
