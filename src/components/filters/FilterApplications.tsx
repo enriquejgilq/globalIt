@@ -86,7 +86,6 @@ function FilterApplications(props: Props) {
     useEffect(() => {
         forceUpdate();
     }, [year]);
-   console.log(year)
     return (
         <div className={styles.filterApplications}>
             <Input type={"select"}    onChange={(e) => onSelectYear(e)}>

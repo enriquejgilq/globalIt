@@ -111,6 +111,7 @@ function FilterCategory(props: Props) {
    
     return (
         <div className="filter-category">
+            
             <ul className="filter-category__list">
                 {categoryProductsChildren.results != 0 && (<>
                     <li className="filter-category__item filter-category__item--parent">
@@ -186,27 +187,7 @@ function FilterCategory(props: Props) {
                     ))}
                 </>)}
                 <li>
-                    <div style={{ marginTop: '10px' }}>
-                        <div style={{ marginBottom: '10px', borderBottom: 'solid 1px #ebebeb', width: '350px', marginLeft: '-25px' }} />
-                        <p><b> <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" /></b></p>
-                        <Input type='text'
-                            value={findShop.replace(/['"]+/g, '')}
-                            onKeyPress={handleKeyPress} 
-                            //onKeyDown={() => {
-                              //  shopResetFilters ? shopResetFilters() : null
-                               // onFind()}
-                          //  }
-                            onChange={(e) => {
-                                setFindShop(e.currentTarget.value);
-                            }}>  </Input>
-                        <br />
-                        <Button color="primary" size="sm" type='button' onClick={() => {
-                            shopResetFilters ? shopResetFilters() : null
-                            onFind()
-                        }}>
-                            <FormattedMessage id="BUTTON_BLOCK_FINDER_SEARCH" />
-                        </Button>
-                    </div>
+                  
 
 
                 </li>

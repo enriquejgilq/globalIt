@@ -27,9 +27,6 @@ import { getCategoryProductsChildrenState } from '~/store/categoryProducts/categ
 import { getlogin, isAuth } from '~/store/login/loginHooks'
 import { useCart } from '~/store/cart/cartHooks';
 import { filterApplicationsState } from '~/store/filterApplications/filterApplicationsHooks';
-import { Button } from 'reactstrap';
-
-
 type RenderFilterFn = ICollapseRenderFn<HTMLDivElement, HTMLDivElement>;
 
 interface ChangeValueEvent {

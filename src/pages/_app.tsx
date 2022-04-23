@@ -1,5 +1,5 @@
 // react
-import React, { ComponentType, useEffect, useMemo } from 'react';
+import React, { ComponentType, useEffect, useMemo,useState } from 'react';
 // third-party
 import AppBase, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
@@ -19,10 +19,13 @@ import { useApplyClientState } from '~/store/client';
 import { useLoadUserVehicles } from '~/store/garage/garageHooks';
 import { getlogin } from '~/store/login/loginHooks';
 import { getCatalogProductsState } from '~/store/catalogProducts/catalogProductsHooks'
+import { getCategoryProducts } from '~/store/categoryProducts/categoryProductsHooks'
+import ModalLogout from '../components/modal/ModalLogout';
+import { clearCataglog } from '~/store/catalogProducts/catalogProductsActions';
+
 import { toast } from 'react-toastify';
 import {  logout} from '~/store/login/loginAction';
 import { useDispatch } from 'react-redux';
-
 //import {} 
 
 // styles
@@ -54,6 +57,9 @@ function App(props: Props) {
     const login = getlogin();
     const catalog = getCatalogProductsState();
     const dispatch = useDispatch()
+    const [open, setOpen] = useState<any>(false);
+    const getCatalog = getCatalogProductsState();
+    const getCategory = getCategoryProducts();
 // autologout test!!!!! 
     //console.log(catalog.error.detail);
     //if( catalog.error.detail ){
@@ -63,6 +69,10 @@ function App(props: Props) {
 
    // }
 
+   if (getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción."
+   || getCategory.error.detail === "Usted no tiene permiso para realizar esta acción.") {
+   setOpen(true)
+   }
     // Loading and saving state on the client side (cart, wishlist, etc.).
     useEffect(() => {
         const state = load();
@@ -95,7 +105,15 @@ function App(props: Props) {
             }
         }, 100);
     }, []);
-
+    const closeModal = () => {
+        setOpen(false)
+        dispatch(clearCataglog())
+        dispatch(logout())
+        localStorage.removeItem('search');
+        setTimeout(() => {
+            location.reload();
+        }, 1000);
+    }
     const page = useMemo(() => {
         const PageLayout = Component.Layout || React.Fragment;
 
@@ -103,7 +121,10 @@ function App(props: Props) {
             <Layout>
                 <PageLayout>
                     <Component {...pageProps} />
+
                 </PageLayout>
+                <ModalLogout open={open} onChange={closeModal} />
+
             </Layout>
         );
     }, [Component, pageProps]);
