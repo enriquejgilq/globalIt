@@ -24,12 +24,17 @@ import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHook
 import { useWishlistAddItem } from '~/store/wishlist/wishlistHooks';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { useCartAddItem } from '~/store/cart/cartHooks';
+import { isAuth, viewPrices, viewStock } from '~/store/login/loginHooks'
 
 import { Button, Input } from 'reactstrap';
 
 function Quickview() {
     const quickview = useQuickview();
     const quickviewClose = useQuickviewClose();
+    const is_auth = isAuth()
+    const view_prices = viewPrices()
+    const view_stock = viewStock()
+
     const wishlistAddItem = useWishlistAddItem();
     const compareAddItem = useCompareAddItem();
     const cartAddItem = useCartAddItem();
@@ -95,15 +100,16 @@ function Quickview() {
                             </th>*/}
                             <td>{product.code}</td>
                         </tr>
-                        <div style={{ margin: '5px' }}><b>
-                            {product.stock  <= 0 ?
-                                (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={parseInt(product.available,10)} />)
-                                : product.stock  <= 15 ?
-                                    (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={parseInt(product.available,10)} />)
-                                    : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(product.available,10)} />)
-                                   }  </b> 
-                        </div>
-
+                        {view_stock === true && (
+                            <div style={{ margin: '5px' }}><b>
+                                {product.stock <= 0 ?
+                                    (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={parseInt(product.available, 10)} />)
+                                    : product.stock <= 15 ?
+                                        (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={parseInt(product.available, 10)} />)
+                                        : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(product.available, 10)} />)
+                                }  </b>
+                            </div>
+                        )}
                         {/**   {product.brand && (
                             <React.Fragment>
                                 <tr>
@@ -157,6 +163,7 @@ function Quickview() {
                             </div>
                         </React.Fragment>
                     )} */}
+
                     {product.compareAtPrice === null && (
                         <div className="quickview__product-price quickview__product-price--current">
                             <CurrencyFormat value={product.price} />
@@ -185,17 +192,21 @@ function Quickview() {
                         )}
                     />*/}
                 </div>
+                { is_auth === true && (<>                    
                 <div className="quickview__product-actions-item quickview__product-actions-item--addtocart">
                     <div style={{
                         height: '40px',
                         display: 'flex', flexDirection: 'row', gap: '5px', flex: '1', justifyContent: 'center',
                         alignContent: 'center', alignItems: 'center', alignSelf: 'center'
                     }}>
-                        <button type="button" className={`btn btn-primary btn-xs`}
-                            onClick={handleEvent}
-                        >
-                            {onPress === true ? <CurrencyFormat value={product.price} /> : prices}
-                        </button>
+                        {view_prices === true && (<>
+
+                            <button type="button" className={`btn btn-primary btn-xs`}
+                                onClick={handleEvent}
+                            >
+                                {onPress === true ? <CurrencyFormat value={product.price} /> : prices}
+                            </button>
+                        </>)}
                         <Input style={{ height: '25px', width: '90px', fontSize: '12px', textAlign: 'justify' }}
                             placeholder={amount}
                             type='number'
@@ -218,6 +229,7 @@ function Quickview() {
                                 </div>
                             )}
                         />
+
                     </div>
 
                     {/**   <button
@@ -230,7 +242,7 @@ function Quickview() {
                         <FormattedMessage id="BUTTON_ADD_TO_CART" />
                     </button> */}
                 </div>
-
+                </>)}
                 {/**  <AsyncAction
                     action={() => wishlistAddItem(product)}
                     render={({ run, loading }) => (
@@ -266,6 +278,7 @@ function Quickview() {
                 />*/}
             </div>
         </div>
+        
     );
 
     return (

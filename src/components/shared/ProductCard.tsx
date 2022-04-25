@@ -26,7 +26,7 @@ import {
     Quickview16Svg,
     Wishlist16Svg,
 } from '~/svg';
-import { isAuth } from '~/store/login/loginHooks'
+import { isAuth, viewPrices, viewStock } from '~/store/login/loginHooks'
 import { getImages, getImageLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getoOem } from '~/store/oem/oemActions';
 import { getRelatedProductsAxios } from '~/store/relatedProducts/relatedProductsActions';
@@ -35,7 +35,7 @@ import { getApplicationsAxios } from '~/store/applications/applicationsActions';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
 import { Button, Input } from 'reactstrap';
 import StockStatusBadge from '~/components/shared/StockStatusBadge';
-
+import styles from './shared.module.scss';
 export type IProductCardElement = 'actions' | 'status-badge' | 'meta' | 'features' | 'buttons' | 'list-buttons';
 
 export type IProductCardLayout = 'grid' | 'list' | 'table' | 'horizontal';
@@ -64,6 +64,8 @@ function ProductCard(props: Props) {
     const intl = useIntl();
     // const featuredAttributes = product.attributes.filter((x) => x.featured);
     const is_auth = isAuth()
+    const is_view_prices = viewPrices()
+    const is_view_stock = viewStock()
     const allImages = getImagesCarouselState();
     const dispatch = useDispatch()
     const cartAddItem = useCartAddItem();
@@ -111,6 +113,7 @@ function ProductCard(props: Props) {
         }, 1500);
     }
 
+    console.log(is_auth)
     return (
         <div className={rootClasses} {...rootProps}>
             <div className="product-card__actions-list">
@@ -196,27 +199,22 @@ function ProductCard(props: Props) {
                             {/* <FormattedMessage id="TEXT_SKU" /> */}
                             {/* {": "} */}
                         </span>
-                        <span style={{ fontSize: "14px", color: "black", fontWeight: "bold", marginLeft: "-2px" }}>
+                        <span className={styles.detailProduct}>
                             {productFeatured.code}
                         </span>
+
                         {is_auth === true && (
-                            <div
-                                style={{
-                                    marginTop: "-6px",
-                                    // display: "flex",
-                                    // justifyContent: "center",
-                                    // flexDirection: "column",
-                                    // gap: "5px",
-                                    // width: "70px",
-                                }}>
+                            <div className={styles.authDetails}>
                                 {productFeatured.stock === undefined ? null :
                                     <b>
+                                        {is_view_stock === true && (<>
                                         {productFeatured.stock <= 0 ?
                                             (<StockStatusBadge className="product__stock ml-1" stock={"out-of-stock"} defaultValue={productFeatured.available} />)
                                             : productFeatured.stock <= 15 ?
                                                 (<StockStatusBadge className="product__stock ml-1" stock={"on-backorder"} defaultValue={productFeatured.available} />)
                                                 : (<StockStatusBadge className="product__stock ml-1" stock={"in-stock"} defaultValue={parseInt(productFeatured.available, 10)} >{parseInt(productFeatured.available)}</StockStatusBadge>)
                                         }
+                                        </> )}
                                     </b>
                                 }
                             </div>
@@ -283,18 +281,9 @@ function ProductCard(props: Props) {
                                                     action={() => cartAddItem(productFeatured, [], quantity)}
                                                     render={({ run, loading }) => (
                                                         <div
-                                                            style={{
-                                                                height: "40px",
-                                                                display: "flex",
-                                                                flexDirection: "row",
-                                                                gap: "5px",
-                                                                flex: "1",
-                                                                justifyContent: "center",
-                                                                alignContent: "center",
-                                                                alignItems: "center",
-                                                                alignSelf: "center",
-                                                            }}
-                                                        >
+                                                            className={styles.detailPrices}
+                                                        > 
+                                                        { is_view_prices === true && (
                                                             <button
                                                                 type="button"
                                                                 className={`btn btn-primary btn-xs mr-3`}
@@ -310,14 +299,9 @@ function ProductCard(props: Props) {
                                                                 ) : (
                                                                     prices
                                                                 )}
-                                                            </button>
+                                                            </button>) }
                                                             <Input
-                                                                style={{
-                                                                    height: "25px",
-                                                                    width: "85px",
-                                                                    fontSize: "12px",
-                                                                    textAlign: "justify",
-                                                                }}
+                                                                className={styles.detailButton}
                                                                 placeholder={intl.formatMessage({
                                                                     id: "TABLE_QUANTITY",
                                                                 })}

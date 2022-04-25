@@ -13,6 +13,7 @@ export interface ILogin {
         is_active: boolean;
         expiration: string;
         view_prices: boolean;
+        view_stock: boolean;
     }
     access_token:string;
     error: any;

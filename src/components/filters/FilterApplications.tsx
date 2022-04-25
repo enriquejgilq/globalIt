@@ -89,7 +89,7 @@ function FilterApplications(props: Props) {
     return (
         <div className={styles.filterApplications}>
             <Input type={"select"}    onChange={(e) => onSelectYear(e)}>
-                <option value={''}>{''}</option>
+                <option value={''}> {intl.formatMessage({ id: 'TEXT_TOAST_SELECT_YEAR' })} </option>
                 {value?.years.map((item: any) => (
                     <>
                         <option value={item.year}>{item.year}</option>
@@ -97,7 +97,7 @@ function FilterApplications(props: Props) {
                 ))}
             </Input>
             <Input type={"select"} onChange={(e) => onSelectMake(e)}>
-                <option value={''}></option>
+                <option value={''}> {intl.formatMessage({ id: 'TEXT_TOAST_SELECT_BRAND' })}</option>
                 {value.make === undefined ? (
                     <option value={''}>{''}</option>) : (<>
                         {value.make?.map((item: any) => (
@@ -106,7 +106,7 @@ function FilterApplications(props: Props) {
             </Input>
             <Input
                 type={"select"} onChange={(e) => onSelectModel(e)}>
-                <option value={''}>{''}</option>
+                <option value={''}>{intl.formatMessage({ id: 'TEXT_TOAST_SELECT_MODEL' })}</option>
                 {value.model === undefined ? (
                     <option value={''}>{''}</option>) : (<>
                         {value.model?.map((item: any) => (
@@ -114,7 +114,7 @@ function FilterApplications(props: Props) {
                     </>)}
             </Input>
             <Input type={"select"} onChange={(e) => onSelectEngine(e)}>
-                <option value={''}>{''}</option>
+                <option value={''}>{intl.formatMessage({ id: 'TEXT_TOAST_SELECT_ENGINE' })}</option>
                 {value.engine === undefined ? (
                     <option value={''}>{''}</option>) : (<>
                         {value.engine?.map((item: any) => (

@@ -1,0 +1,25 @@
+.authDetails {
+    margin-top: -6px;
+}
+.detailProduct {
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+    margin-left: 0px;
+}
+.detailPrices {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    aling-self: center;
+}
+.detailButton {
+    height: 25px;
+    width: 85px;
+    font-size: 12px;
+    text-align: justify;
+}

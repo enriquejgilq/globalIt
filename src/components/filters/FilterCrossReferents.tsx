@@ -30,9 +30,17 @@ const FilterCrossReferents = (props: Props) => {
             }
         }
     }
+
+    const handleKeyPress = (event:any) => {
+        if(event.key === 'Enter'){
+           // shopResetFilters ? shopResetFilters() : null
+             onFind()
+        }
+      }
     return (
         <div style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}>
             <Input type='text'
+                onKeyPress={handleKeyPress}
                 onChange={(e) => {
                     setFindShop(e.currentTarget.value);
                 }}>

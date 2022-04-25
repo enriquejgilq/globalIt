@@ -6,4 +6,6 @@ export const getlogin = () => useAppSelector((state) => state[LOGIN_NAMESPACE]);
 
 export const isAuth =() => useAppSelector((state) => state.login.user.is_active );
 
+export const viewPrices =() => useAppSelector((state) => state.login.user.view_prices );
 
+export const viewStock=() => useAppSelector((state) => state.login.user.view_stock );
