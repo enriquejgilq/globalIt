@@ -21,12 +21,12 @@ const FilterCrossReferents = (props: Props) => {
             toast.error(intl.formatMessage({ id: 'TEXT_TOAST_REFERENCE_EMPTY' }));
         } else {
             if (is_auth === true) {
-                dispatch(getCatalogProductsPrivate(API_SHOP + "cross-references/" + findShop + "/"))
-                localStorage.setItem('path', API_SHOP + "cross-references/" + findShop + "/")
+                dispatch(getCatalogProductsPrivate(API_SHOP + "cross-references/?search=" + findShop ))
+                localStorage.setItem('path', API_SHOP + "cross-references/?search=" + findShop )
 
             } else {
-                dispatch(getCatalogProducts(API_SHOP + PUBLIC_LOGIN + "cross-references/" + findShop + "/"))
-                localStorage.setItem('path', API_SHOP + PUBLIC_LOGIN + "cross-references/" + findShop + "/")
+                dispatch(getCatalogProducts(API_SHOP + PUBLIC_LOGIN + "cross-references/?search=" + findShop ))
+                localStorage.setItem('path', API_SHOP + PUBLIC_LOGIN + "cross-references/?search=" + findShop )
             }
         }
     }
