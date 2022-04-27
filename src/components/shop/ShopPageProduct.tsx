@@ -1,5 +1,5 @@
 // react
-import React, { useEffect, useState, useReducer,useMemo } from 'react';
+import React, { useEffect, useState, useReducer, useMemo } from 'react';
 // third-party
 import { useDispatch } from 'react-redux';
 import { globalIntl } from '~/services/i18n/global-intl';
@@ -45,11 +45,11 @@ import {
 import { useQuickview, useQuickviewClose } from '~/store/quickview/quickviewHooks';
 import { getImages, getImageLoading } from '~/store/imagesCarousel/imagesCarouselAction';
 import { getImagesCarouselState } from '~/store/imagesCarousel/imagesCarouselHooks';
-import { getoOem,getOemLoading } from '~/store/oem/oemActions';
-import { getRelatedProductsAxios,getRelatedProductsLoading } from '~/store/relatedProducts/relatedProductsActions';
+import { getoOem, getOemLoading } from '~/store/oem/oemActions';
+import { getRelatedProductsAxios, getRelatedProductsLoading } from '~/store/relatedProducts/relatedProductsActions';
 import { relatedProductsState } from '~/store/relatedProducts/relatedProductsHooks';
-import { getApplicationsAxios,getApplicationsLoader } from '~/store/applications/applicationsActions';
-import { getlogin, isAuth , viewPrices, viewStock} from '~/store/login/loginHooks'
+import { getApplicationsAxios, getApplicationsLoader } from '~/store/applications/applicationsActions';
+import { getlogin, isAuth, viewPrices, viewStock } from '~/store/login/loginHooks'
 import { useCartAddItem } from '~/store/cart/cartHooks';
 import { oemState } from '~/store/oem/oemHooks';
 import { applicationsState } from '~/store/applications/applicationsHooks';
@@ -107,43 +107,43 @@ function ShopPageProduct(props: Props) {
         const loc = window.location;
         window.onpopstate = () => {
             setPressed(true);
-            setCode(loc.pathname.split("/").pop() )
+            setCode(loc.pathname.split("/").pop())
         };
-       if(code !== '' && code !== 'products' ){
-        is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false);
-        dispatch(getImageLoading())
-        dispatch(getImages(code))
-       }
-       forceUpdate();
+        if (code !== '' && code !== 'products') {
+            is_auth ? quickviewOpenPrivate(code, false) : quickviewOpen(code, false);
+            dispatch(getImageLoading())
+            dispatch(getImages(code))
+        }
+        forceUpdate();
 
         //console.log(code)
     }, [code]);
     //console.log('aq',window.location)
     useEffect(() => {
         const loc = window.location;
-        const codeAux:any = loc.pathname.split("/").pop()
-        if(product.code != codeAux){
-        //applications 
-        dispatch(getApplicationsLoader())
-        dispatch(getApplicationsAxios(codeAux))
-        //Related Products
-        dispatch(getRelatedProductsLoading())
-        dispatch(getRelatedProductsAxios(codeAux))
-        //OEM
-        dispatch(getOemLoading())
-        dispatch(getoOem(codeAux))
-        //Images
-        dispatch(getImageLoading())
-        dispatch(getImages(codeAux))
-     
-        //  setCode(loc.pathname.split("/").pop() )
-        //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
-        
-            is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false) 
-         
+        const codeAux: any = loc.pathname.split("/").pop()
+        if (product.code != codeAux) {
+            //applications 
+            dispatch(getApplicationsLoader())
+            dispatch(getApplicationsAxios(codeAux))
+            //Related Products
+            dispatch(getRelatedProductsLoading())
+            dispatch(getRelatedProductsAxios(codeAux))
+            //OEM
+            dispatch(getOemLoading())
+            dispatch(getoOem(codeAux))
+            //Images
+            dispatch(getImageLoading())
+            dispatch(getImages(codeAux))
+
+            //  setCode(loc.pathname.split("/").pop() )
+            //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code, loc.pathname.split("/").pop() )
+
+            is_auth ? quickviewOpenPrivate(codeAux, false) : quickviewOpen(codeAux, false)
+
         }
-      //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code)
-        
+        //  console.log('<<<<<<<<<<<<<<<<<<<<<<<',product.code)
+
         //     dispatch(getRelatedProductsAxios(product.code))
 
         // dispatch(getoOem(product.code))
@@ -160,8 +160,8 @@ function ShopPageProduct(props: Props) {
         // return () => {
         //     canceled = true;
         //   };
-       
-       
+
+
         forceUpdate();
 
     }, [product]);
@@ -187,7 +187,7 @@ function ShopPageProduct(props: Props) {
     const prices: any = globalIntl()?.formatMessage(
         { id: 'BUTTON_VIEW_PRICES' },
     )
-     const noimage: any = globalIntl()?.formatMessage(
+    const noimage: any = globalIntl()?.formatMessage(
         { id: 'TEXT_EMPTY_IMAGES' },
     )
     const handleEvent = (event: any) => {
@@ -197,17 +197,17 @@ function ShopPageProduct(props: Props) {
         }, 1500);
     }
     const loc = window.location;
-  //  setCode(loc.pathname.split("/").pop() )
-   // console.log('<<<<<<<<<<<<<<<<<<<<<<<',code )
+    //  setCode(loc.pathname.split("/").pop() )
+    // console.log('<<<<<<<<<<<<<<<<<<<<<<<',code )
     const getapplications = applicationsState();
     const image = useMemo(() => allImages.results.map((item: any) => { return item.url }) || [], [product]);
 
-  const imageAux =   allImages.results.map((item: any) => (  item.url)    )
+    const imageAux = allImages.results.map((item: any) => (item.url))
 
     //const featuredAttributes = product.attributes.filter((x) => x.featured);
     const shopFeatures = (
         <div className="product__shop-features shop-features">
-            
+
             <WidgetProducts widgetTitle={<FormattedMessage id="HEADER_RELATED_PRODUCTS" />}
                 products={getRelatedProducts}
             />
@@ -370,7 +370,7 @@ function ShopPageProduct(props: Props) {
             <ShareLinks className="product__share-links" />*/}
         </div>
     );
-//console.log('qweqwewq',allImages.loading )  ;
+    //console.log('qweqwewq',allImages.loading )  ;
     return (
         <React.Fragment>
             <PageTitle>{product.code}</PageTitle>
@@ -380,7 +380,7 @@ function ShopPageProduct(props: Props) {
             <div className={classNames('block-split', { 'block-split--has-sidebar': layout === 'sidebar' })}>
                 <div className="container">
                     <div className="block-split__row row no-gutters">
-                    <AppImage className={styles.backImg} src="/images/back.png"  onClick={()=>history.go(-1)}/>
+                        <AppImage className={styles.backImg} src="/images/vectorpaint.svg" onClick={() => history.go(-1)} />
                         {layout === 'sidebar' && sidebarPosition === 'start' && (
                             <div className="block-split__item block-split__item-sidebar col-auto">
                                 <ProductSidebar />
@@ -391,15 +391,15 @@ function ShopPageProduct(props: Props) {
                             <div className={`product product--layout--${layout}`}>
                                 <div className="product__body">
                                     <div className="product__card product__card--one" />
-                                    {allImages.loading  === true ? (
-                                    <> <p> CARGANDO...</p> </> ) :  (<> 
-                                    <div className="product__card product__card--two" />
-                                    <ProductGallery
-                                        images={imageAux}
-                                        layout={galleryLayout}
-                                        className="product__gallery"
-                                    />
-                                   </> )}
+                                    {allImages.loading === true ? (
+                                        <> <p> CARGANDO...</p> </>) : (<>
+                                            <div className="product__card product__card--two" />
+                                            <ProductGallery
+                                                images={imageAux}
+                                                layout={galleryLayout}
+                                                className="product__gallery"
+                                            />
+                                        </>)}
                                     <div className="product__header">
                                         <h1 className="product__title">{product.code}</h1>
 
@@ -465,62 +465,65 @@ function ShopPageProduct(props: Props) {
                                                     </div>
                                                 </div>
                                             )}*/}
-                                            <div style={{marginTop:'200px'}}> 
-                                            <div className="product__prices-stock">
-                                                {is_auth === true && (
-                                                    <>
-                                                        <div className="product__prices">
-                                                            {product.price > 0 && (
-                                                                <button
-                                                                    className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
-                                                                        "btn-primary": "btn-primary",
-                                                                    })}
-                                                                    type="button"
-                                                                    onClick={handleEvent}
-                                                                >
-                                                                    {onPress === true ? <CurrencyFormat value={product.price} /> : prices}
-                                                                </button>
-                                                            )}
-                                                        </div>
-                                                        {is_view_stock === true && (
-                                                        <b> 
-                                                            {product.stock  > 15 ? (
-                                                                <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available, 10)} />
-                                                            ) : (
-                                                                <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available, 10)} />
-                                                            )}
-                                                        </b>) }
-                                                    </>
-                                                )}
-                                            </div>
+                                            <div style={{ marginTop: '200px' }}>
+                                                <div className="product__prices-stock">
+                                                    {is_auth === true && (
+                                                        <>
+                                                            <div className="product__prices">
+                                                                {product.price > 0 && (
+                                                                    <button
+                                                                        className={classNames("btn", "btn-primary", "btn-lg", "btn-block", {
+                                                                            "btn-primary": "btn-primary",
+                                                                        })}
+                                                                        type="button"
+                                                                        onClick={handleEvent}
+                                                                    >
+                                                                        {onPress === true ? <CurrencyFormat value={product.price} /> : prices}
+                                                                    </button>
+                                                                )}
+                                                            </div>
+                                                            {is_view_stock === true && (
+                                                                <b>
+                                                                    {product.stock > 15 ? (
+                                                                        <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available, 10)} />
+                                                                    ) : (
+                                                                        <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available, 10)} />
+                                                                    )}
+                                                                </b>)}
+                                                        </>
+                                                    )}
+                                                </div>
 
-                                            <div className="product__meta">
-                                                <table>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th>
-                                                                <Input
-                                                                    placeholder={intl.formatMessage({ id: "TABLE_QUANTITY" })}
-                                                                    type="number"
-                                                                    //value={findShop}
-                                                                    onChange={(e) => {
-                                                                        const number = e.target.value;
-                                                                        setQuantity(parseInt(number));
-                                                                    }}
-                                                                />
-                                                            </th>
-                                                            <td>
-                                                                <Button
-                                                                    color="primary"
-                                                                    size="sm"
-                                                                    type="button"
-                                                                    onClick={() => cartAddItem(product, [], quantity)}
-                                                                >
-                                                                    <FormattedMessage id="BUTTON_ADD_TO_CART" />{" "}
-                                                                </Button>
-                                                            </td>
-                                                        </tr>
-                                                        {/**   {product.brand && (
+                                                <div className="product__meta">
+                                                    <table>
+                                                        <tbody>
+                                                            {is_auth === true && (
+                                                                <tr>
+                                                                    <th>
+                                                                        <Input
+                                                                            placeholder={intl.formatMessage({ id: "TABLE_QUANTITY" })}
+                                                                            type="number"
+                                                                            //value={findShop}
+                                                                            onChange={(e) => {
+                                                                                const number = e.target.value;
+                                                                                setQuantity(parseInt(number));
+                                                                            }}
+                                                                        />
+                                                                    </th>
+                                                                    <td>
+                                                                        <Button
+                                                                            color="primary"
+                                                                            size="sm"
+                                                                            type="button"
+                                                                            onClick={() => cartAddItem(product, [], quantity)}
+                                                                        >
+                                                                            <FormattedMessage id="BUTTON_ADD_TO_CART" />{" "}
+                                                                        </Button>
+                                                                    </td>
+                                                                </tr>
+                                                            )}
+
+                                                            {/**   {product.brand && (
                             <React.Fragment>
                                 <tr>
                                     <th>
@@ -549,14 +552,14 @@ function ShopPageProduct(props: Props) {
                              <td>{product.partNumber}</td>
                         </tr>
                         */}
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     )}
-                                        
-                                    <div style={{marginTop:'-30px'}} className="product__info">
+
+                                    <div style={{ marginTop: '-30px' }} className="product__info">
                                         <FormProvider {...productForm.methods}>
                                             <form onSubmit={productForm.submit} className="product__info-card">
                                                 {product.length > 0 && (
@@ -572,10 +575,10 @@ function ShopPageProduct(props: Props) {
 
                                         {shopFeatures}
                                     </div>
-                                       {getapplications.results.length > 0 && (                
-                                    <ProductTabs className="product__tabs" product={getoem.results} applications={getapplications} layout={layout} />
-                                    )} 
-                                    </div>
+                                    {getapplications.results.length > 0 && (
+                                        <ProductTabs className="product__tabs" product={getoem.results} applications={getapplications} layout={layout} />
+                                    )}
+                                </div>
                             </div>
 
                             {/**   {relatedProducts.length > 0 && (

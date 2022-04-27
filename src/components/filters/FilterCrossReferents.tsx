@@ -23,10 +23,14 @@ const FilterCrossReferents = (props: Props) => {
             if (is_auth === true) {
                 dispatch(getCatalogProductsPrivate(API_SHOP + "cross-references/?search=" + findShop ))
                 localStorage.setItem('path', API_SHOP + "cross-references/?search=" + findShop )
+                localStorage.setItem('search', JSON.stringify(API_SHOP + "cross-references/?search=" + findShop))
+
 
             } else {
                 dispatch(getCatalogProducts(API_SHOP + PUBLIC_LOGIN + "cross-references/?search=" + findShop ))
                 localStorage.setItem('path', API_SHOP + PUBLIC_LOGIN + "cross-references/?search=" + findShop )
+                localStorage.setItem('search', JSON.stringify(API_SHOP + PUBLIC_LOGIN + "cross-references/?search=" + findShop))
+
             }
         }
     }

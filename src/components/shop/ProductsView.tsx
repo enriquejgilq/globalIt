@@ -457,7 +457,7 @@ function ProductsView(props: Props) {
                                 )}
                                 {getCatalog.results.map((item: any) => (
                                     <div key={item.id} className="products-list__item">
-                                        <ProductCard productFeatured={item.product} />
+                                        <ProductCard productFeatured={item?.product} />
                                     </div>
                                 ))}
                             </div>
