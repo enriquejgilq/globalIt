@@ -95,7 +95,7 @@ function WidgetFilters(props: Props) {
     const handleKeyPress = (event: any) => {
         if (event.key === 'Enter') {
             shopResetFilters ? shopResetFilters() : null
-            //  onFind()
+              onFind()
         }
     }
 

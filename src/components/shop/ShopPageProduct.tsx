@@ -49,12 +49,13 @@ import { getoOem,getOemLoading } from '~/store/oem/oemActions';
 import { getRelatedProductsAxios,getRelatedProductsLoading } from '~/store/relatedProducts/relatedProductsActions';
 import { relatedProductsState } from '~/store/relatedProducts/relatedProductsHooks';
 import { getApplicationsAxios,getApplicationsLoader } from '~/store/applications/applicationsActions';
-import { getlogin, isAuth } from '~/store/login/loginHooks'
+import { getlogin, isAuth , viewPrices, viewStock} from '~/store/login/loginHooks'
 import { useCartAddItem } from '~/store/cart/cartHooks';
 import { oemState } from '~/store/oem/oemHooks';
 import { applicationsState } from '~/store/applications/applicationsHooks';
 import WidgetProducts from '~/components/widgets/WidgetProducts';
 import { useQuickviewOpen, useQuickviewOpenPrivate } from '~/store/quickview/quickviewHooks';
+import styles from './shop.module.scss';
 
 
 import { Button, Input } from 'reactstrap';
@@ -92,6 +93,8 @@ function ShopPageProduct(props: Props) {
     const [quantity, setQuantity] = useState<any>(1);
     const productForm = useProductForm(product);
     const is_auth = isAuth()
+    const is_view_prices = viewPrices()
+    const is_view_stock = viewStock()
     const getoem = oemState();
     const getRelatedProducts = relatedProductsState();
     const [pressed, setPressed] = useState(false);
@@ -374,10 +377,10 @@ function ShopPageProduct(props: Props) {
             <BlockHeader
                 breadcrumb={breadcrumb}
             />
-
             <div className={classNames('block-split', { 'block-split--has-sidebar': layout === 'sidebar' })}>
                 <div className="container">
                     <div className="block-split__row row no-gutters">
+                    <AppImage className={styles.backImg} src="/images/back.png"  onClick={()=>history.go(-1)}/>
                         {layout === 'sidebar' && sidebarPosition === 'start' && (
                             <div className="block-split__item block-split__item-sidebar col-auto">
                                 <ProductSidebar />
@@ -479,13 +482,14 @@ function ShopPageProduct(props: Props) {
                                                                 </button>
                                                             )}
                                                         </div>
-                                                        <b>
+                                                        {is_view_stock === true && (
+                                                        <b> 
                                                             {product.stock  > 15 ? (
                                                                 <StockStatusBadge className="product__stock" stock={"in-stock"} defaultValue={parseInt(product.available, 10)} />
                                                             ) : (
                                                                 <StockStatusBadge className="product__stock" stock={"out-of-stock"} defaultValue={parseInt(product.available, 10)} />
                                                             )}
-                                                        </b>
+                                                        </b>) }
                                                     </>
                                                 )}
                                             </div>

@@ -72,10 +72,14 @@ function FilterApplications(props: Props) {
             if (is_auth === true) {
                 dispatch(getCatalogProductsPrivate(API_SHOP + "products-application/" + e.target.value + "/"))
                 localStorage.setItem('path', API_SHOP + "products-application/" + e.target.value + "/")
+                localStorage.setItem('search', JSON.stringify( API_SHOP + "products-application/" + e.target.value + "/"))
+
 
             } else {
                 dispatch(getCatalogProducts(API_SHOP + PUBLIC_LOGIN + "products-application/" + e.target.value + "/"))
                 localStorage.setItem('path', API_SHOP + PUBLIC_LOGIN + "products-application/" + e.target.value + "/")
+                localStorage.setItem('search', JSON.stringify(  API_SHOP + PUBLIC_LOGIN + "products-application/" + e.target.value + "/"))
+
             }
             setModel(e.currentTarget.value)
         }
