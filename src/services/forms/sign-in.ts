@@ -17,6 +17,7 @@ interface ISignInFormOptions {
 export interface ISignInForm {
     email: string;
     password: string;
+    mac_address : string;
     remember: boolean;
 }
 
@@ -32,6 +33,7 @@ export function useSignInForm(options: ISignInFormOptions = {}) {
         defaultValues: {
             email: '',
             password: '',
+            mac_address: '',
             remember: false,
         },
     });
@@ -49,13 +51,12 @@ export function useSignInForm(options: ISignInFormOptions = {}) {
     }, [info, ip])
 
     const { handleSubmit } = methods;
-    const [submit, submitInProgress] = useAsyncAction((data: ISignInForm) => {
-        setServerError(null);
+    const submit =( data :any ) => {
 
         const postData = {
             email: data.email,
             password: data.password,
-            mac_address: ip //'191.95.167.233'
+            mac_address: ip//'191.95.167.233'
             //+info
            // '43:45:21:34:54:14',     
             // ip+info,   
@@ -63,12 +64,34 @@ export function useSignInForm(options: ISignInFormOptions = {}) {
         if( ip === ''|| ip===undefined){
           //  console.log('ipvacio')
         }else{
-            dispatch(postLogin(postData))
+        // 
+         dispatch(postLogin(postData)) 
 
         }
-        return signIn(data.email, data.password).then(
+       // console.log(data)
+    }
+  /*  const [submit, submitInProgress] = useAsyncAction((data: ISignInForm) => {
+        setServerError(null);
+
+        const postData = {
+            email: data.email,
+            password: data.password,
+            mac_address: '191.95.167.233'
+            //+info
+           // '43:45:21:34:54:14',     
+            // ip+info,   
+        }
+        if( ip === ''|| ip===undefined){
+          //  console.log('ipvacio')
+        }else{
+        //   
+
+        }
+        return signIn(postData.email, postData.password,postData.mac_address).then(
             () => {
+                dispatch(postLogin(postData))
                 if (onSuccess) {
+                    dispatch(postLogin(postData))
                     onSuccess();
                 }
             },
@@ -77,10 +100,12 @@ export function useSignInForm(options: ISignInFormOptions = {}) {
             },
         );
     }, [signIn, setServerError, onSuccess]);
+*/
 
+   // const onSubmitLogin = handleSubmit(submit);
     return {
         submit: useMemo(() => handleSubmit(submit), [handleSubmit, submit]),
-        submitInProgress: submitInProgress || methods.formState.isSubmitting,
+       // submitInProgress: submitInProgress || methods.formState.isSubmitting,
         serverError,
         errors: methods.formState.errors,
         register: methods.register,

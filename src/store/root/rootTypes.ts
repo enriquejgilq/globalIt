@@ -22,6 +22,7 @@ import applicationsReducer,{APPLICATIONS_NAMESPACE} from '../applications/applic
 import relatedProductsReducer,{RELATED_PRODUCTS_NAMESPACE} from '../relatedProducts/relatedProductsReducers';
 import quotesReducer,{QUOTES_NAMESPACE} from '../quotes/quotesReducers';
 import filterapplicationsReducer,{FILTER_APPLICATIONS_NAMESPACE} from '../filterApplications/filterApplicationsReducers';
+import passwordReducer,{NEW_PASSWORD_NAMESPACE} from '../password/passwordReducers';
 
 
 export interface IRootState {
@@ -47,6 +48,7 @@ export interface IRootState {
     [RELATED_PRODUCTS_NAMESPACE]: AppReducerStateType<typeof relatedProductsReducer>;
     [QUOTES_NAMESPACE]: AppReducerStateType<typeof quotesReducer>;
     [FILTER_APPLICATIONS_NAMESPACE]: AppReducerStateType<typeof filterapplicationsReducer>;
+    [NEW_PASSWORD_NAMESPACE]: AppReducerStateType<typeof passwordReducer>;
 
 
 

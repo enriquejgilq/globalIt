@@ -117,7 +117,7 @@ function AccountMenu(props: Props) {
                         <button
                             type="submit"
                             className={classNames("btn", "btn-primary", "btn-sm", {
-                                "btn-loading": signInForm.submitInProgress,
+                                "btn-loading": login.loading,
                             })}
                         >
                             <FormattedMessage id="BUTTON_LOGIN" />

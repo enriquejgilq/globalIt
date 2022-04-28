@@ -1,5 +1,7 @@
 // react
 import React, { PropsWithChildren } from 'react';
+import { useDispatch } from 'react-redux';
+
 // third-party
 import classNames from 'classnames';
 import { FormattedMessage, useIntl } from 'react-intl';
@@ -13,11 +15,14 @@ import { ILink } from '~/interfaces/link';
 import { useAsyncAction } from '~/store/hooks';
 import { useUser, useUserSignOut } from '~/store/user/userHooks';
 import { isAuth } from '~/store/login/loginHooks'
+import {  logout} from '~/store/login/loginAction';
 
 interface Props extends PropsWithChildren<{}> { }
 
 function AccountLayout(props: Props) {
     const { children } = props;
+    const dispatch = useDispatch()
+
     const intl = useIntl();
     const router = useRouter();
     const userSignOut = useUserSignOut();
@@ -31,12 +36,15 @@ function AccountLayout(props: Props) {
         { title: intl.formatMessage({ id: 'LINK_ACCOUNT_PROFILE' }), url: url.accountProfile() },
         { title: intl.formatMessage({ id: 'LINK_ACCOUNT_ORDERS' }), url: url.accountOrders() },
         { title: intl.formatMessage({ id: 'LINK_ACCOUNT_ADDRESSES' }), url: url.accountAddresses() },
-       // { title: intl.formatMessage({ id: 'LINK_ACCOUNT_PASSWORD' }), url: url.accountPassword() },
+        { title: intl.formatMessage({ id: 'LINK_ACCOUNT_PASSWORD' }), url: url.accountPassword() },
     ];
 
     if (is_auth===false) {
-        
-        //return <Redirect href={url.signIn()} />;
+        return <Redirect href={url.home()} />;
+    }
+    const onLogout = () => {
+        dispatch(logout())
+        localStorage.removeItem("global-air-store");
     }
 
     return (
@@ -67,7 +75,7 @@ function AccountLayout(props: Props) {
                                     <li className="account-nav__divider" role="presentation" />
                                     <li className="account-nav__item">
                                         {/* eslint-disable-next-line */}
-                                        <button type="button" >
+                                        <button onClick={onLogout} type="button" >
                                             <FormattedMessage id="LINK_ACCOUNT_LOGOUT" />
                                         </button>
                                     </li>

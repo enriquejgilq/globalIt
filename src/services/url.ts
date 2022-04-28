@@ -59,7 +59,7 @@ const url = {
     post: (post: IPost) => '/demo/blog/post-full-width',
 
     // auth pages
-    signIn: () => '/account/login',
+    //signIn: () => '/account/login',
     signUp: () => '/',
     passwordRecovery: () => '/',
 

@@ -15,7 +15,7 @@ import { useSignUpForm } from '~/services/forms/sign-up';
 import { useUser } from '~/store/user/userHooks';
 import { validateEmail } from '~/services/validators';
 import { useDispatch } from 'react-redux';
-import { getlogin} from '~/store/login/loginHooks'
+import { getlogin, isAuth} from '~/store/login/loginHooks'
 
 function Page() {
     const intl = useIntl();
@@ -24,14 +24,10 @@ function Page() {
     const signInForm = useSignInForm();
     const signUpForm = useSignUpForm();
     const login = getlogin();
+    const is_auth = isAuth()
 
-    let msj_error = login?.error[Object.keys(login.error)[0]]
-    let text = msj_error?.toString();
-    if (user) {
-        return <Redirect href={url.accountDashboard()} />;
-    }
-    if(login.user.is_active){
-        return <Redirect href={url.pageStoreLocation()} />;
+    if (is_auth===false || is_auth===true ) {
+        return <Redirect href={url.home()} />;
     }
 
     const { ref: signInFormRememberMeRef, ...signInFormRememberMeRefProps } = signInForm.register('remember');
@@ -51,10 +47,10 @@ function Page() {
                                     <h3 className="card-title">
                                         <FormattedMessage id="HEADER_LOGIN" />
                                     </h3>
-                                    <form onSubmit={signInForm.submit}>
+                                   {/**  <form onSubmit={signInForm.submit}>
                                         {msj_error && (                   
                                             <div className="alert alert-sm alert-danger">
-                                                {/*<FormattedMessage id={signInForm.serverError} />*/}
+                                                {/*<FormattedMessage id={signInForm.serverError} />
                                                 <p>{text}</p>
                                             </div>
                                         )}
@@ -130,7 +126,7 @@ function Page() {
                                                 <FormattedMessage id="BUTTON_LOGIN" />
                                             </button>
                                         </div>
-                                    </form>
+                                    </form>*/}
                                 </div>
                             </div>
                         </div>
