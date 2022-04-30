@@ -14,6 +14,7 @@ import { accountApi } from '~/api';
 import { useAsyncAction } from '~/store/hooks';
 import { changePasswordAxios, changePasswordLoading,newPasswordClear  } from '~/store/password/passwordActions';
 import { newpasswordState } from '~/store/password/passwordHooks';
+import { globalIntl } from '~/services/i18n/global-intl';
 
 interface IForm {
     currentPassword: string;
@@ -24,7 +25,7 @@ interface IForm {
 function Page() {
     const intl = useIntl();
     const dispatch = useDispatch()
-    const error = newpasswordState()
+    const password = newpasswordState()
     const [serverError, setServerError] = useState<string | null>(null);
     const {
         register,
@@ -34,7 +35,6 @@ function Page() {
     } = useForm<IForm>();
 
     const submitPassword =( data :any ) => {
-
         const newPassword = {
             current: data.current,
             new_pass: data.new_pass,
@@ -44,7 +44,9 @@ function Page() {
          dispatch(changePasswordAxios(newPassword)) 
     }
    
-
+    const message = globalIntl()?.formatMessage(
+        { id: 'TEXT_PASSWORD_CHANGE_SUCCESS' },
+    )
 
     const [submit, submitInProgress] = useAsyncAction((data: IForm) => {
         setServerError(null);
@@ -64,21 +66,28 @@ function Page() {
             },
         );
     }, [intl]);
-    console.log(error.error)
-    if(error.error){
-          toast.error(error.error)
+    if(password.error){
+          toast.error(password.error)
         setTimeout(() => {
             dispatch(newPasswordClear())
         }, 300);
      }
+
+
+     if(password.results){
+        toast.success(message)
+      setTimeout(() => {
+          dispatch(newPasswordClear())
+      }, 300);
+   }
+
      const clear =()=>{
         dispatch(newPasswordClear())
      }
+     
     return (
         <div className="card">
             <PageTitle>{intl.formatMessage({ id: 'HEADER_CHANGE_PASSWORD' })}</PageTitle> 
-            <p onClick={clear}> hola </p> 
-
             <div className="card-header">
                 <h5><FormattedMessage id="HEADER_CHANGE_PASSWORD" /></h5>
             </div>

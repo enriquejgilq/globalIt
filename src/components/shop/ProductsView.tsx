@@ -157,11 +157,6 @@ function ProductsView(props: Props) {
     )
 
     useEffect(() => {
-        if (getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción."
-            || getCategory.error.detail === "Usted no tiene permiso para realizar esta acción.") {
-            setOpen(true)
-            dispatch(clearCataglog())
-        } else {
             var aValue = localStorage.getItem('search');
             if (!aValue) {
                 if (is_auth === true) {
@@ -183,7 +178,7 @@ function ProductsView(props: Props) {
                 }
             }
             count()
-        }
+        
     }, [is_auth])
     const count = () => {
         if (getCatalog.count / 16 === 0) {
@@ -208,15 +203,32 @@ function ProductsView(props: Props) {
     const openModal = () => {
         setOpen(true)
     }
+ 
+   
+
+
+    if(getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción."){
+        setTimeout(() => {
+        setOpen(true)
+        dispatch(clearCataglog())
+        }, 1000);
+    }
+    if(getCategory.error.detail === "Usted no tiene permiso para realizar esta acción."){
+        setTimeout(() => {
+        setOpen(true)
+        dispatch(clearCataglog())
+    }, 1000);
+
+    }
     const closeModal = () => {
         setOpen(false)
+        dispatch(clearCataglog())
         dispatch(logout())
         localStorage.removeItem('search');
         setTimeout(() => {
             location.reload();
-        }, 1000);
+        }, 500);
     }
-   
 
     return (
         <div className={rootClasses}>

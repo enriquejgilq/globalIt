@@ -69,10 +69,10 @@ function App(props: Props) {
 
    // }
 
-   if (getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción."
+  /* if (getCatalog.error.detail === "Usted no tiene permiso para realizar esta acción."
    || getCategory.error.detail === "Usted no tiene permiso para realizar esta acción.") {
    setOpen(true)
-   }
+   }*/
     // Loading and saving state on the client side (cart, wishlist, etc.).
     useEffect(() => {
         const state = load();
@@ -123,7 +123,7 @@ function App(props: Props) {
                     <Component {...pageProps} />
 
                 </PageLayout>
-                <ModalLogout open={open} onChange={closeModal} />
+               {/**  <ModalLogout open={open} onChange={closeModal} />*/}
 
             </Layout>
         );

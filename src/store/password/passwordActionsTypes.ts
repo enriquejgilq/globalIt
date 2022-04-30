@@ -11,7 +11,7 @@ export interface IPasswordAction {
     payload: any
 }
 
-export interface IPasswordActionLoader {
+export interface IPasswordAction {
     type: string;
 }
 export interface IClearNewClearAction {
@@ -19,7 +19,6 @@ export interface IClearNewClearAction {
 }
 export type PasswordAction = 
 Promise<IPasswordAction> |
-IPasswordActionLoader| 
 IClearNewClearAction; 
 
 export type passwordThunkAction<T = void> = AppAction<IPasswordAction, T>;

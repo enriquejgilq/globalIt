@@ -40,7 +40,9 @@ function AccountLayout(props: Props) {
     ];
 
     if (is_auth===false) {
+        setTimeout(() => {
         return <Redirect href={url.home()} />;
+        }, 500);
     }
     const onLogout = () => {
         dispatch(logout())

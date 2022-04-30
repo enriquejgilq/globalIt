@@ -7,15 +7,16 @@ import {
     NEW_PASSWORD_FAILURE,
     passwordThunkAction,
     IPasswordAction,
-    IPasswordActionLoader,
     IClearNewClearAction,
     CLEAR_NEW_PASSWORD
 } from "~/store/password/passwordActionsTypes";
-
+const messageS = globalIntl()?.formatMessage(
+    { id: 'TEXT_PASSWORD_CHANGE_SUCCESS' },
+)
 export function changePassword(payload: any): IPasswordAction {
     return {
         type: NEW_PASSWORD_SUCCESS,
-        payload,
+        payload:payload,
     };
 }
 
@@ -26,17 +27,20 @@ export function changePasswordError(payload: any): IPasswordAction {
     };
 }
 
-export function changePasswordLoading(): IPasswordActionLoader {
+export function changePasswordLoading(payload: any): IPasswordAction {
     return {
         type: NEW_PASSWORD,
+        payload,
     };
 }
 
 export function changePasswordAxios(payload: any): passwordThunkAction<Promise<void>> {
     return (dispatch, getState) =>
+    
         new Promise((resolve) => {
             const state = getState();
             const apichange = "users/change-password/";
+            dispatch(changePasswordLoading(payload))  
             axios({
                 method: 'POST',
                 url: API + apichange,
@@ -44,7 +48,8 @@ export function changePasswordAxios(payload: any): passwordThunkAction<Promise<v
                 headers: {
                     Authorization: 'Token ' + state.login.access_token 
                 }
-            }).then((response) => {
+            }).then((response) => 
+            {
                 dispatch(changePassword(response.data))  
             }).catch((error) => {
                 dispatch(changePasswordError(error.response.data))
