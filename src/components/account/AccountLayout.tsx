@@ -15,7 +15,7 @@ import { ILink } from '~/interfaces/link';
 import { useAsyncAction } from '~/store/hooks';
 import { useUser, useUserSignOut } from '~/store/user/userHooks';
 import { isAuth } from '~/store/login/loginHooks'
-import {  logout} from '~/store/login/loginAction';
+import { logout } from '~/store/login/loginAction';
 
 interface Props extends PropsWithChildren<{}> { }
 
@@ -39,15 +39,18 @@ function AccountLayout(props: Props) {
         { title: intl.formatMessage({ id: 'LINK_ACCOUNT_PASSWORD' }), url: url.accountPassword() },
     ];
 
-    if (is_auth===false) {
+    if (is_auth === false) {
         setTimeout(() => {
-        return <Redirect href={url.home()} />;
+            return <Redirect href={url.home()} />;
         }, 500);
     }
     const onLogout = () => {
         dispatch(logout())
         localStorage.removeItem("global-air-store");
     }
+
+
+
 
     return (
         <React.Fragment>

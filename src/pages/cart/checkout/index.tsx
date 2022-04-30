@@ -53,7 +53,9 @@ function Page() {
             comment: '',
             payment: 'bank',
         },
-    });  
+    });
+
+
     const { handleSubmit, register, formState: { errors } } = formMethods;
     const [checkout, checkoutInProgress] = useAsyncAction(async (data: IForm) => {
         const { billingAddress } = data;
@@ -78,7 +80,7 @@ function Page() {
             try {
                 await userSignUp(data.account.email, data.account.password);
             } catch (error) {
-               // alert(intl.formatMessage({ id: `ERROR_API_${error.message}` }));
+                // alert(intl.formatMessage({ id: `ERROR_API_${error.message}` }));
 
                 return;
             }
