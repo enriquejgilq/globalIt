@@ -125,7 +125,7 @@ function Page() {
                                             id="TEXT_ALERT_RETURNING_CUSTOMER"
                                             values={{
                                                 link: (
-                                                    <AppLink href={url.signIn()}>
+                                                    <AppLink >
                                                         <FormattedMessage id="TEXT_ALERT_RETURNING_CUSTOMER_LINK" />
                                                     </AppLink>
                                                 ),
