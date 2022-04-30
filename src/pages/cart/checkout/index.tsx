@@ -53,7 +53,7 @@ function Page() {
             comment: '',
             payment: 'bank',
         },
-    });
+    });  
     const { handleSubmit, register, formState: { errors } } = formMethods;
     const [checkout, checkoutInProgress] = useAsyncAction(async (data: IForm) => {
         const { billingAddress } = data;
